@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla de Tipos Pokémon y Multiplicadores de Daño</title>
+  <style>
+:root {
+  --pk-red: #e3350d;
+  --pk-red-dark: #b91c1c;
+  --pk-red-soft: #fef2f2;
+  --pk-yellow: #ffcb05;
+  --pk-blue: #1e3a8a;
+  --pk-blue-mid: #1d4ed8;
+  --pk-blue-soft: #eff6ff;
+  --pk-green: #047857;
+  --pk-green-soft: #ecfdf5;
+  --pk-ink: #1e293b;
+  --pk-muted: #475569;
+  --pk-border: #cbd5e1;
+  --pk-bg: #f1f5f9;
+  --pk-surface: #ffffff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--pk-ink);
+  background: var(--pk-bg);
+  line-height: 1.55;
+}
+
+/* Barra superior de herramientas (oculta al imprimir) */
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.25rem;
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid var(--pk-yellow);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-primary {
+  background: var(--pk-red);
+  border-color: var(--pk-red);
+}
+
+.btn-primary:hover {
+  background: var(--pk-red-dark);
+}
+
+.btn-toggle.active {
+  background: var(--pk-blue-mid);
+  border-color: #93c5fd;
+}
+
+/* Contenedor principal tipo ficha A4 */
+.page-container {
+  max-width: 960px;
+  margin: 1.5rem auto 3rem;
+  padding: 2rem 2.25rem;
+  background: var(--pk-surface);
+  border: 1px solid var(--pk-border);
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.07);
+}
+
+/* Cabecera infantil de entrenador */
+.header-box {
+  background: linear-gradient(135deg, #ffcb05 0%, #f97316 45%, #e3350d 100%);
+  border-radius: 14px;
+  padding: 1.15rem 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(227, 53, 13, 0.22);
+}
+
+.header-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-title-row h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1.55rem;
+  color: #ffffff;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.badge-grade {
+  background: #ffffff;
+  color: var(--pk-red);
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.trainer-ranks-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.25);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.student-fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.student-field-line {
+  border-bottom: 2px dotted #94a3b8;
+  padding-bottom: 2px;
+}
+
+.kid-welcome {
+  background: #fef9c3;
+  border: 2px solid #f59e0b;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.94rem;
+  color: #78350f;
+}
+
+h1 {
+  margin-top: 0;
+  padding-bottom: 0.55rem;
+  font-size: 1.7rem;
+  line-height: 1.25;
+  color: #0f172a;
+  border-bottom: 3px solid var(--pk-red);
+}
+
+h2 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 1.25rem;
+  color: var(--pk-blue);
+  background: var(--pk-blue-soft);
+  border-left: 5px solid var(--pk-blue-mid);
+  border-radius: 0 8px 8px 0;
+}
+
+h2.special-challenges-title {
+  color: #9a3412;
+  background: #ffedd5;
+  border-left-color: #ea580c;
+}
+
+h3 {
+  margin-top: 1.1rem;
+  margin-bottom: 0.45rem;
+  font-size: 1.06rem;
+  color: #0f172a;
+}
+
+p, ul, ol {
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--pk-border);
+  margin: 1.25rem 0;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: #f1f5f9;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 0.65rem 1rem;
+  background: var(--pk-red-soft);
+  border-left: 4px solid var(--pk-red);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Tarjeta de problema infantil con imagen y cuadrícula */
+.problem-card {
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.problem-card.is-reto {
+  border-color: #fdba74;
+  background: #fffaf5;
+}
+
+.problem-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 2px dashed #e2e8f0;
+}
+
+.problem-card-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--pk-blue);
+}
+
+.problem-card.is-reto .problem-card-header h3 {
+  color: #c2410c;
+}
+
+.poke-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.problem-body-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.problem-sprites {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+}
+
+.poke-sprite {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  display: block;
+}
+
+.poke-sprite-secondary {
+  width: 56px;
+  height: 56px;
+}
+
+.problem-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.96rem;
+}
+
+.problem-question {
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  background: #eff6ff;
+  border-left: 4px solid var(--pk-blue-mid);
+  border-radius: 0 6px 6px 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.workspace-box {
+  margin-top: 0.65rem;
+  height: 92px;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+  background-size: 18px 18px;
+  position: relative;
+}
+
+.workspace-label {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+body.hide-workspaces .workspace-box {
+  display: none !important;
+}
+
+/* Solucionario */
+.solution-card {
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.7rem;
+  background: #f8fafc;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.solution-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px dashed var(--pk-border);
+  color: var(--pk-green);
+}
+
+/* Ficha del Profesor Oak (para docentes y familias al final) */
+.prof-oak-dossier {
+  margin-top: 2rem;
+  padding: 1.4rem 1.5rem;
+  background: var(--pk-green-soft);
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  break-before: page;
+  page-break-before: always;
+}
+
+.prof-oak-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid #6ee7b7;
+  padding-bottom: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.prof-oak-header h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #065f46;
+  font-size: 1.35rem;
+}
+
+.prof-oak-badge {
+  background: #065f46;
+  color: #ffffff;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+body.hide-solutions .solutions-section,
+body.hide-solutions .prof-oak-dossier {
+  display: none !important;
+}
+
+/* Tablas responsivas y accesibles */
+.table-wrapper {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  background: #ffffff;
+  container-type: inline-size;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  background: #1e293b;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 2px solid #0f172a;
+}
+
+tbody td, tbody th {
+  padding: 0.42rem 0.6rem;
+  border-bottom: 1px solid var(--pk-border);
+  border-right: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+tbody td:first-child, tbody th:first-child {
+  font-weight: 600;
+}
+
+table.type-matrix {
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+table.type-matrix th, table.type-matrix td {
+  padding: 0.28rem 0.32rem;
+  text-align: center;
+}
+
+table.type-matrix tbody td:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background: #f1f5f9;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Tarjetas del índice */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--pk-border);
+  border-radius: 10px;
+  padding: 1.1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+}
+
+.doc-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--pk-blue-soft);
+  color: var(--pk-blue);
+  margin-bottom: 0.5rem;
+}
+
+.doc-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.doc-card p {
+  font-size: 0.88rem;
+  color: var(--pk-muted);
+  margin-bottom: 0.9rem;
+}
+
+.doc-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--pk-blue-mid);
+  color: var(--pk-blue-mid);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--pk-blue-soft);
+}
+
+/* Reglas de impresión A4 */
+@page {
+  size: A4;
+  margin: 12mm 12mm;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff;
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .page-container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .header-box {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-card {
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 0.65rem;
+    box-shadow: none;
+  }
+
+  .poke-sprite {
+    width: 64px;
+    height: 64px;
+  }
+
+  .poke-sprite-secondary {
+    width: 46px;
+    height: 46px;
+  }
+
+  .workspace-box {
+    height: 70px;
+  }
+
+  h2 {
+    font-size: 12pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 10pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .solutions-section {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .table-wrapper {
+    overflow: visible !important;
+    border: 0;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  thead th, tbody td:first-child {
+    position: static !important;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  table {
+    font-size: 8.5pt;
+  }
+
+  table.type-matrix {
+    font-size: 6.8pt;
+  }
+
+  table.type-matrix th, table.type-matrix td {
+    padding: 2px 2px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+</style>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});"></script>
+
+</head>
+<body>
+  <header class="print-toolbar no-print">
+    <div class="toolbar-left">
+      <a class="btn" href="index.html">← Índice</a>
+      <span class="toolbar-title">Tabla de Tipos Pokémon y Multiplicadores de Daño</span>
+    </div>
+    <div class="toolbar-actions">
+      
+      <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </div>
+  </header>
+  <main class="page-container">
+    <h1 id="tabla-de-tipos-pokemon-y-multiplicadores-de-dano-guia-de-referencia-matematica-lomloe">Tabla de Tipos Pokémon y Multiplicadores de Daño: Guía de Referencia Matemática (LOMLOE)</h1>
+<p><strong>Proyecto:</strong> Matemáticas Primaria con Pokémon (LOMLOE 2º a 6º de Educación Primaria)<br />
+<strong>Documento:</strong> Referencia Técnica y Curricular de Tipos Elementales (Requisito R2)<br />
+<strong>Marco Legal:</strong> Real Decreto 157/2022 (LOMLOE) — Sentido Numérico, Operaciones y Proporcionalidad<br />
+<strong>Versión de Mecánicas:</strong> Generaciones VI a IX (Saga Principal)  </p>
+<hr />
+<h2 id="1-introduccion-didactica-y-marco-matematico">1. Introducción Didáctica y Marco Matemático</h2>
+<p>En el universo de Pokémon, cada criatura y cada movimiento de combate posee una o dos afinidades elementales denominadas <strong>Tipos</strong>. El sistema de combate está regido por una matriz de interacciones de tipo que determina la eficacia del daño infligido. Desde la introducción del tipo Hada en la 6ª Generación (Pokémon X/Y), el sistema cuenta con exactamente <strong>18 tipos canónicos</strong>.</p>
+<p>Desde el punto de vista matemático y didáctico, la tabla de tipos constituye una aplicación real y motivadora del <strong>álgebra de operadores multiplicativos</strong>, el estudio de <strong>fracciones</strong>, <strong>números decimales</strong> y <strong>sistemas de proporcionalidad</strong>:</p>
+<ol>
+<li><strong>Elemento Neutro de la Multiplicación ($x1$):</strong> Cuando un movimiento impacta contra un Pokémon sin ventajas ni desventajas elementales, el daño base se multiplica por $1$.</li>
+<li><strong>Duplicación y Cuadruplicación ($x2$ y $x4$):</strong> Los ataques "Súper eficaces" multiplican el daño por $2$. Si el defensor posee un tipo dual con debilidad en ambos tipos, se aplica la propiedad asociativa de la multiplicación: $2 \times 2 = 4$ ($400\%$ del daño base).</li>
+<li><strong>Fracciones y Reducción a la Mitad ($x0.5$ y $x0.25$):</strong> Los ataques "Poco eficaces" reducen el daño a la mitad, operando como un factor de $\frac{1}{2}$ o decimal $0,5$. En tipos duales con doble resistencia, la fracción se multiplica: $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$ ($0,25$ o $25\%$ del daño base).</li>
+<li><strong>Elemento Absorbente / Inmunidad ($x0$):</strong> Ciertas interacciones anulan por completo el impacto, comportándose exactamente como la multiplicación por cero: cualquier cantidad multiplicada por cero resulta en cero ($D \times 0 = 0$).</li>
+<li><strong>Bonificación por Mismo Tipo (STAB - Same-Type Attack Bonus, $x1.5$):</strong> Cuando un Pokémon ejecuta un movimiento que coincide con alguno de sus tipos propios, el ataque recibe un multiplicador adicional de $\frac{3}{2}$ ($1,5$ o $+50\%$).</li>
+</ol>
+<hr />
+<h2 id="2-escala-canonica-de-multiplicadores-de-dano">2. Escala Canónica de Multiplicadores de Daño</h2>
+<p>La siguiente tabla resume todos los multiplicadores posibles que pueden producirse en un combate Pokémon según la combinación de tipos y la bonificación STAB:</p>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: center;">Multiplicador Numérico</th>
+<th style="text-align: center;">Notación Fraccionaria</th>
+<th style="text-align: center;">Notación Porcentual</th>
+<th style="text-align: left;">Denominación en el Juego</th>
+<th style="text-align: left;">Efecto Matemático en el Daño ($D$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>$x0$</strong></td>
+<td style="text-align: center;">$\frac{0}{1}$</td>
+<td style="text-align: center;">$0\%$</td>
+<td style="text-align: left;"><strong>Inmune / Sin efecto</strong></td>
+<td style="text-align: left;">Anulación total: $D \times 0 = 0$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x0.25$</strong></td>
+<td style="text-align: center;">$\frac{1}{4}$</td>
+<td style="text-align: center;">$25\%$</td>
+<td style="text-align: left;"><strong>Doble resistencia</strong></td>
+<td style="text-align: left;">Reducción a la cuarta parte: $D \div 4$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x0.375$</strong></td>
+<td style="text-align: center;">$\frac{3}{8}$</td>
+<td style="text-align: center;">$37,5\%$</td>
+<td style="text-align: left;"><strong>Doble resistencia + STAB</strong></td>
+<td style="text-align: left;">$D \times \frac{1}{4} \times \frac{3}{2} = \frac{3}{8} D$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x0.5$</strong></td>
+<td style="text-align: center;">$\frac{1}{2}$</td>
+<td style="text-align: center;">$50\%$</td>
+<td style="text-align: left;"><strong>Poco eficaz / Resistencia</strong></td>
+<td style="text-align: left;">Reducción a la mitad: $D \div 2$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x0.75$</strong></td>
+<td style="text-align: center;">$\frac{3}{4}$</td>
+<td style="text-align: center;">$75\%$</td>
+<td style="text-align: left;"><strong>Resistencia simple + STAB</strong></td>
+<td style="text-align: left;">$D \times \frac{1}{2} \times \frac{3}{2} = \frac{3}{4} D$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x1$</strong></td>
+<td style="text-align: center;">$\frac{1}{1}$</td>
+<td style="text-align: center;">$100\%$</td>
+<td style="text-align: left;"><strong>Daño neutro / Normal</strong></td>
+<td style="text-align: left;">Daño estándar sin alteración: $D \times 1$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x1.5$</strong></td>
+<td style="text-align: center;">$\frac{3}{2}$</td>
+<td style="text-align: center;">$150\%$</td>
+<td style="text-align: left;"><strong>Daño neutro + STAB</strong></td>
+<td style="text-align: left;">Incremento del cincuenta por ciento: $D \times 1,5$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x2$</strong></td>
+<td style="text-align: center;">$\frac{2}{1}$</td>
+<td style="text-align: center;">$200\%$</td>
+<td style="text-align: left;"><strong>Súper eficaz / Debilidad</strong></td>
+<td style="text-align: left;">Daño duplicado: $D \times 2$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x3$</strong></td>
+<td style="text-align: center;">$\frac{3}{1}$</td>
+<td style="text-align: center;">$300\%$</td>
+<td style="text-align: left;"><strong>Súper eficaz + STAB</strong></td>
+<td style="text-align: left;">Triple de daño: $D \times 2 \times 1,5 = 3D$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x4$</strong></td>
+<td style="text-align: center;">$\frac{4}{1}$</td>
+<td style="text-align: center;">$400\%$</td>
+<td style="text-align: left;"><strong>Doble debilidad</strong></td>
+<td style="text-align: left;">Cuádruple de daño: $D \times 2 \times 2 = 4D$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>$x6$</strong></td>
+<td style="text-align: center;">$\frac{6}{1}$</td>
+<td style="text-align: center;">$600\%$</td>
+<td style="text-align: left;"><strong>Doble debilidad + STAB</strong></td>
+<td style="text-align: left;">Séxtuple de daño: $D \times 4 \times 1,5 = 6D$</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-matriz-completa-de-efectividad-de-tipos-1818">3. Matriz Completa de Efectividad de Tipos 18×18</h2>
+<p>A continuación se presenta la matriz canónica completa de $18 \times 18$ interacciones individuales (Generaciones VI a IX).</p>
+<ul>
+<li><strong>Filas (Vertical):</strong> Tipo del movimiento atacante (<em>Attacking Type</em>).</li>
+<li><strong>Columnas (Horizontal):</strong> Tipo elemental del Pokémon defensor (<em>Defending Type</em>).</li>
+<li><strong>Valores en la tabla:</strong></li>
+<li><code>2</code>: Súper eficaz ($x2$, daño doble)</li>
+<li><code>½</code>: Poco eficaz ($x0.5$, daño a la mitad)</li>
+<li><code>0</code>: Sin efecto / Inmune ($x0$, daño nulo)</li>
+<li><em>(casilla vacía)</em>: Daño neutro ($x1$, daño normal estándar)</li>
+</ul>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table class="type-matrix">
+<thead>
+<tr>
+<th style="text-align: left;">Atacante ↓ / Defensor →</th>
+<th style="text-align: center;">Nor</th>
+<th style="text-align: center;">Fue</th>
+<th style="text-align: center;">Agu</th>
+<th style="text-align: center;">Pla</th>
+<th style="text-align: center;">Ele</th>
+<th style="text-align: center;">Hie</th>
+<th style="text-align: center;">Luc</th>
+<th style="text-align: center;">Ven</th>
+<th style="text-align: center;">Tie</th>
+<th style="text-align: center;">Vol</th>
+<th style="text-align: center;">Psi</th>
+<th style="text-align: center;">Bic</th>
+<th style="text-align: center;">Roc</th>
+<th style="text-align: center;">Fan</th>
+<th style="text-align: center;">Dra</th>
+<th style="text-align: center;">Sin</th>
+<th style="text-align: center;">Ace</th>
+<th style="text-align: center;">Had</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Normal</strong> (Normal)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fuego</strong> (Fire)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Agua</strong> (Water)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Planta</strong> (Grass)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eléctrico</strong> (Electric)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Hielo</strong> (Ice)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Lucha</strong> (Fighting)</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Veneno</strong> (Poison)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tierra</strong> (Ground)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Volador</strong> (Flying)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Psíquico</strong> (Psychic)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bicho</strong> (Bug)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Roca</strong> (Rock)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fantasma</strong> (Ghost)</td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dragón</strong> (Dragon)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Siniestro</strong> (Dark)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Acero</strong> (Steel)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Hada</strong> (Fairy)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">½</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="4-desglose-exhaustivo-por-tipo-18-fichas-individuales">4. Desglose Exhaustivo por Tipo (18 Fichas Individuales)</h2>
+<p>A continuación se detalla el perfil ofensivo y defensivo completo de cada uno de los 18 tipos elementales:</p>
+<hr />
+<h3 id="41-tipo-normal-normal">4.1 Tipo Normal (Normal)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>normal</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Normal.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Ninguno (único tipo sin ventajas ofensivas).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Roca, Acero.</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Fantasma.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Lucha.</li>
+<li><strong>Resistente a ($x0.5$):</strong> Ninguno.</li>
+<li><strong>Inmune a ($x0$):</strong> Fantasma.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Es el arquetipo más equilibrado para introducir el concepto de daño neutro ($x1$) y la inmunidad absoluta ($x0$).</li>
+</ul>
+<hr />
+<h3 id="42-tipo-fuego-fire">4.2 Tipo Fuego (Fire)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>fire</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Fire.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Planta, Hielo, Bicho, Acero (4 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Fuego, Agua, Roca, Dragón (4 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Agua, Tierra, Roca (3 tipos).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Fuego, Planta, Hielo, Bicho, Acero, Hada (6 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Excelente ratio defensivo con 6 resistencias ($50\%$ de daño), ideal para problemas de división y fracciones.</li>
+</ul>
+<hr />
+<h3 id="43-tipo-agua-water">4.3 Tipo Agua (Water)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>water</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Water.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Fuego, Tierra, Roca (3 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Agua, Planta, Dragón (3 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Eléctrico, Planta (2 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Fuego, Agua, Hielo, Acero (4 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Presenta simetría $3 \times 3$ en su faceta ofensiva (3 súper eficaces y 3 poco eficaces).</li>
+</ul>
+<hr />
+<h3 id="44-tipo-planta-grass">4.4 Tipo Planta (Grass)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>grass</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Grass.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Agua, Tierra, Roca (3 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Fuego, Planta, Veneno, Volador, Bicho, Dragón, Acero (7 tipos; máxima resistencia ofensiva del juego).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Fuego, Hielo, Veneno, Volador, Bicho (5 debilidades; comparte el récord negativo junto a Roca).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Agua, Eléctrico, Planta, Tierra (4 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Su alta cantidad de resistencias ofensivas ($7/18 \approx 38,9\%$) permite ejercicios de fracciones y porcentajes.</li>
+</ul>
+<hr />
+<h3 id="45-tipo-electrico-electric">4.5 Tipo Eléctrico (Electric)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>electric</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Electric.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Agua, Volador (2 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Eléctrico, Planta, Dragón (3 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Tierra.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Tierra (única debilidad en todo el juego).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Eléctrico, Volador, Acero (3 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Posee exactamente 1 debilidad defensiva ($1/18 \approx 5,56\%$), lo que lo convierte en un modelo perfecto de minimalismo probabilístico.</li>
+</ul>
+<hr />
+<h3 id="46-tipo-hielo-ice">4.6 Tipo Hielo (Ice)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>ice</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Ice.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Planta, Tierra, Volador, Dragón (4 tipos clave).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Fuego, Agua, Hielo, Acero (4 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Fuego, Lucha, Roca, Acero (4 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Hielo (única resistencia propia).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Es el tipo defensivamente más frágil ($1$ sola resistencia frente a $4$ debilidades), generando contrastes matemáticos de supervivencia.</li>
+</ul>
+<hr />
+<h3 id="47-tipo-lucha-fighting">4.7 Tipo Lucha (Fighting)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>fighting</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Fighting.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Normal, Hielo, Roca, Siniestro, Acero (5 tipos; récord ofensivo empatado con Tierra).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Veneno, Volador, Psíquico, Bicho, Hada (5 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Fantasma.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Volador, Psíquico, Hada (3 tipos).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Bicho, Roca, Siniestro (3 tipos).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Récord de $5$ ventajas ofensivas ($5/18 \approx 27,8\%$), excelente para problemas de probabilidad y conjuntos disjuntos.</li>
+</ul>
+<hr />
+<h3 id="48-tipo-veneno-poison">4.8 Tipo Veneno (Poison)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>poison</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Poison.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Planta, Hada (2 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Veneno, Tierra, Roca, Fantasma (4 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Acero.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Tierra, Psíquico (2 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Planta, Lucha, Veneno, Bicho, Hada (5 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Perfil defensivo altamente favorable ($5$ resistencias y solo $2$ debilidades), ideal para razones y proporciones ($5:2$).</li>
+</ul>
+<hr />
+<h3 id="49-tipo-tierra-ground">4.9 Tipo Tierra (Ground)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>ground</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Ground.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Fuego, Eléctrico, Veneno, Roca, Acero (5 tipos; récord ofensivo empatado con Lucha).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Planta, Bicho (2 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Volador.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Agua, Planta, Hielo (3 tipos).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Veneno, Roca (2 tipos).</li>
+<li><strong>Inmune a ($x0$):</strong> Eléctrico.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> El único tipo que golpea súper eficaz a Eléctrico y Acero simultáneamente.</li>
+</ul>
+<hr />
+<h3 id="410-tipo-volador-flying">4.10 Tipo Volador (Flying)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>flying</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Flying.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Planta, Lucha, Bicho (3 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Eléctrico, Roca, Acero (3 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Eléctrico, Hielo, Roca (3 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Planta, Lucha, Bicho (3 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Tierra.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Simetría reflexiva: los 3 tipos a los que golpea súper eficaz (Planta, Lucha, Bicho) son exactamente los 3 tipos a los que resiste defensivamente.</li>
+</ul>
+<hr />
+<h3 id="411-tipo-psiquico-psychic">4.11 Tipo Psíquico (Psychic)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>psychic</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Psychic.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Lucha, Veneno (2 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Psíquico, Acero (2 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Siniestro.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Bicho, Fantasma, Siniestro (3 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Lucha, Psíquico (2 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Inmunidad del tipo Siniestro ante ataques de tipo Psíquico ($D \times 0 = 0$).</li>
+</ul>
+<hr />
+<h3 id="412-tipo-bicho-bug">4.12 Tipo Bicho (Bug)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>bug</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Bug.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Planta, Psíquico, Siniestro (3 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Fuego, Lucha, Veneno, Volador, Fantasma, Acero, Hada (7 tipos; empatado con Planta en mayor número de resistencias en contra).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Fuego, Volador, Roca (3 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Planta, Lucha, Tierra (3 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Ofensivamente resistido por $7/18$ tipos ($\approx 38,9\%$).</li>
+</ul>
+<hr />
+<h3 id="413-tipo-roca-rock">4.13 Tipo Roca (Rock)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>rock</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Rock.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Fuego, Hielo, Volador, Bicho (4 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Lucha, Tierra, Acero (3 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Agua, Planta, Lucha, Tierra, Acero (5 debilidades; máximo del juego junto a Planta).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Normal, Fuego, Veneno, Volador (4 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Rango polarizado: $4$ ventajas ofensivas y $5$ debilidades defensivas.</li>
+</ul>
+<hr />
+<h3 id="414-tipo-fantasma-ghost">4.14 Tipo Fantasma (Ghost)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>ghost</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Ghost.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Psíquico, Fantasma (2 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Siniestro.</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Normal.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Fantasma, Siniestro (2 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Veneno, Bicho (2 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Normal, Lucha (2 inmunidades; único tipo con doble inmunidad natural).</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Único tipo elemental con dos factores de anulación total ($x0$) en su defensa natural.</li>
+</ul>
+<hr />
+<h3 id="415-tipo-dragon-dragon">4.15 Tipo Dragón (Dragon)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>dragon</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Dragon.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Dragón (únicamente contra sí mismo).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Acero.</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Hada.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Hielo, Dragón, Hada (3 tipos).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Fuego, Agua, Eléctrico, Planta (los 4 elementos clásicos).</li>
+<li><strong>Inmune a ($x0$):</strong> Ninguno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Resiste a los 4 tipos iniciales elementales a la vez, representando una probabilidad de resistencia acumulada del $4/18 \approx 22,2\%$.</li>
+</ul>
+<hr />
+<h3 id="416-tipo-siniestro-dark">4.16 Tipo Siniestro (Dark)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>dark</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Dark.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Psíquico, Fantasma (2 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Lucha, Siniestro, Hada (3 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Lucha, Bicho, Hada (3 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Fantasma, Siniestro (2 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Psíquico.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Factor cero absoluto frente a ataques Psíquicos ($D \times 0 = 0$).</li>
+</ul>
+<hr />
+<h3 id="417-tipo-acero-steel">4.17 Tipo Acero (Steel)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>steel</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Steel.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Hielo, Roca, Hada (3 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Fuego, Agua, Eléctrico, Acero (4 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Fuego, Lucha, Tierra (3 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Normal, Planta, Hielo, Volador, Psíquico, Bicho, Roca, Dragón, Acero, Hada (<strong>10 resistencias; récord absoluto indiscutido</strong>).</li>
+<li><strong>Inmune a ($x0$):</strong> Veneno.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> La fortaleza defensiva del tipo Acero protege contra $11$ de los $18$ tipos ($10$ resistencias $+ 1$ inmunidad), lo que equivale al $\frac{11}{18} \approx 61,1\%$ de todos los tipos existentes.</li>
+</ul>
+<hr />
+<h3 id="418-tipo-hada-fairy">4.18 Tipo Hada (Fairy)</h3>
+<ul>
+<li><strong>Identificador PokeAPI:</strong> <code>fairy</code></li>
+<li><strong>Icono / Badge Showdown:</strong> <code>https://play.pokemonshowdown.com/sprites/types/Fairy.png</code></li>
+<li><strong>Perfil Ofensivo (Al atacar):</strong></li>
+<li><strong>Súper eficaz contra ($x2$):</strong> Lucha, Dragón, Siniestro (3 tipos).</li>
+<li><strong>Poco eficaz contra ($x0.5$):</strong> Fuego, Veneno, Acero (3 tipos).</li>
+<li><strong>Ineficaz contra ($x0$):</strong> Ninguno.</li>
+<li><strong>Perfil Defensivo (Al defender):</strong></li>
+<li><strong>Débil contra ($x2$):</strong> Veneno, Acero (2 debilidades).</li>
+<li><strong>Resistente a ($x0.5$):</strong> Lucha, Bicho, Siniestro (3 resistencias).</li>
+<li><strong>Inmune a ($x0$):</strong> Dragón.</li>
+<li><strong>Aspecto Matemático Destacado:</strong> Introducido en la Generación VI para reequilibrar la balanza probabilística, posee inmunidad completa contra el tipo Dragón ($D \times 0 = 0$).</li>
+</ul>
+<hr />
+<h2 id="5-guia-matematica-de-tipos-dobles-multiplicacion-y-fracciones">5. Guía Matemática de Tipos Dobles (Multiplicación y Fracciones)</h2>
+<p>Aproximadamente la mitad de todas las especies de Pokémon poseen <strong>dos tipos simultáneos</strong> (por ejemplo, Charizard es Fuego/Volador; Swampert es Agua/Tierra). Cuando un ataque elemental impacta contra un Pokémon de tipo dual ($T_1 / T_2$), el multiplicador total es el <strong>producto directo de los dos multiplicadores individuales</strong>:</p>
+<p>$$M_{\text{total}} = M(\text{Ataque} \to T_1) \times M(\text{Ataque} \to T_2)$$</p>
+<p>El conjunto de valores posibles que puede tomar este producto forma un conjunto discreto de factores:</p>
+<p>$$\mathcal{M} = \left\{ 0, \; \frac{1}{4}, \; \frac{1}{2}, \; 1, \; 2, \; 4 \right\} = \{ 0; \; 0,25; \; 0,5; \; 1; \; 2; \; 4 \}$$</p>
+<h3 id="51-tabla-de-operaciones-de-multiplicadores-combinados">5.1 Tabla de Operaciones de Multiplicadores Combinados</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: center;">Multiplicador en Tipo 1 ($M_1$)</th>
+<th style="text-align: center;">Multiplicador en Tipo 2 ($M_2$)</th>
+<th style="text-align: center;">Operación Aritmética</th>
+<th style="text-align: center;">Multiplicador Total ($M_{\text{total}}$)</th>
+<th style="text-align: left;">Efecto en Batalla</th>
+<th style="text-align: left;">Denominación Didáctica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">$2$</td>
+<td style="text-align: center;">$2$</td>
+<td style="text-align: center;">$2 \times 2$</td>
+<td style="text-align: center;"><strong>$x4$</strong> ($400\%$)</td>
+<td style="text-align: left;">Doble debilidad</td>
+<td style="text-align: left;">Cuádruple de daño</td>
+</tr>
+<tr>
+<td style="text-align: center;">$2$</td>
+<td style="text-align: center;">$1$</td>
+<td style="text-align: center;">$2 \times 1$</td>
+<td style="text-align: center;"><strong>$x2$</strong> ($200\%$)</td>
+<td style="text-align: left;">Debilidad simple</td>
+<td style="text-align: left;">Doble de daño</td>
+</tr>
+<tr>
+<td style="text-align: center;">$2$</td>
+<td style="text-align: center;">$0,5$ ($\frac{1}{2}$)</td>
+<td style="text-align: center;">$2 \times \frac{1}{2} = \frac{2}{2}$</td>
+<td style="text-align: center;"><strong>$x1$</strong> ($100\%$)</td>
+<td style="text-align: left;">Cancelación neutra</td>
+<td style="text-align: left;">Daño normal estándar</td>
+</tr>
+<tr>
+<td style="text-align: center;">$2$</td>
+<td style="text-align: center;">$0$</td>
+<td style="text-align: center;">$2 \times 0$</td>
+<td style="text-align: center;"><strong>$x0$</strong> ($0\%$)</td>
+<td style="text-align: left;">Inmunidad absorbente</td>
+<td style="text-align: left;">Daño nulo</td>
+</tr>
+<tr>
+<td style="text-align: center;">$1$</td>
+<td style="text-align: center;">$1$</td>
+<td style="text-align: center;">$1 \times 1$</td>
+<td style="text-align: center;"><strong>$x1$</strong> ($100\%$)</td>
+<td style="text-align: left;">Neutralidad pura</td>
+<td style="text-align: left;">Daño normal estándar</td>
+</tr>
+<tr>
+<td style="text-align: center;">$1$</td>
+<td style="text-align: center;">$0,5$ ($\frac{1}{2}$)</td>
+<td style="text-align: center;">$1 \times \frac{1}{2}$</td>
+<td style="text-align: center;"><strong>$x0.5$</strong> ($50\%$)</td>
+<td style="text-align: left;">Resistencia simple</td>
+<td style="text-align: left;">Mitad de daño</td>
+</tr>
+<tr>
+<td style="text-align: center;">$1$</td>
+<td style="text-align: center;">$0$</td>
+<td style="text-align: center;">$1 \times 0$</td>
+<td style="text-align: center;"><strong>$x0$</strong> ($0\%$)</td>
+<td style="text-align: left;">Inmunidad absorbente</td>
+<td style="text-align: left;">Daño nulo</td>
+</tr>
+<tr>
+<td style="text-align: center;">$0,5$ ($\frac{1}{2}$)</td>
+<td style="text-align: center;">$0,5$ ($\frac{1}{2}$)</td>
+<td style="text-align: center;">$\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$</td>
+<td style="text-align: center;"><strong>$x0.25$</strong> ($25\%$)</td>
+<td style="text-align: left;">Doble resistencia</td>
+<td style="text-align: left;">Cuarto de daño</td>
+</tr>
+<tr>
+<td style="text-align: center;">$0,5$ ($\frac{1}{2}$)</td>
+<td style="text-align: center;">$0$</td>
+<td style="text-align: center;">$\frac{1}{2} \times 0$</td>
+<td style="text-align: center;"><strong>$x0$</strong> ($0\%$)</td>
+<td style="text-align: left;">Inmunidad absorbente</td>
+<td style="text-align: left;">Daño nulo</td>
+</tr>
+<tr>
+<td style="text-align: center;">$0$</td>
+<td style="text-align: center;">$0$</td>
+<td style="text-align: center;">$0 \times 0$</td>
+<td style="text-align: center;"><strong>$x0$</strong> ($0\%$)</td>
+<td style="text-align: left;">Doble inmunidad</td>
+<td style="text-align: left;">Daño nulo</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h3 id="52-casos-de-estudio-canonicos-de-combate">5.2 Casos de Estudio Canónicos de Combate</h3>
+<h4 id="caso-1-doble-debilidad-cuadruple-math_token_266">Caso 1: Doble Debilidad Cuádruple ($2 \times 2 = 4$)</h4>
+<ul>
+<li><strong>Defensor:</strong> Swampert (Tipo dual: <strong>Agua / Tierra</strong>).</li>
+<li><strong>Ataque entrante:</strong> Hoja Aguda (Tipo <strong>Planta</strong>, potencia base $90$).</li>
+<li><strong>Cálculo del multiplicador:</strong></li>
+<li>Planta contra Agua: $M_1 = 2$ (Súper eficaz).</li>
+<li>Planta contra Tierra: $M_2 = 2$ (Súper eficaz).</li>
+<li>Multiplicador total: $M_{\text{total}} = 2 \times 2 = \mathbf{4}$ ($x4$).</li>
+<li><strong>Consecuencia:</strong> Swampert recibe el cuádruple ($400\%$) del daño base. Si el daño base estimado era $85$, el daño final resultante es $85 \times 4 = \mathbf{340}$ puntos de vida.</li>
+</ul>
+<h4 id="caso-2-doble-resistencia-cuarta-math_token_275">Caso 2: Doble Resistencia Cuarta ($0,5 \times 0,5 = 0,25$)</h4>
+<ul>
+<li><strong>Defensor:</strong> Kingdra (Tipo dual: <strong>Agua / Dragón</strong>).</li>
+<li><strong>Ataque entrante:</strong> Lanzallamas (Tipo <strong>Fuego</strong>, potencia base $90$).</li>
+<li><strong>Cálculo del multiplicador:</strong></li>
+<li>Fuego contra Agua: $M_1 = 0,5$ ($\frac{1}{2}$).</li>
+<li>Fuego contra Dragón: $M_2 = 0,5$ ($\frac{1}{2}$).</li>
+<li>Multiplicador total: $M_{\text{total}} = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4} = \mathbf{0,25}$ ($x0.25$).</li>
+<li><strong>Consecuencia:</strong> Kingdra absorbe el ataque reduciéndolo a la cuarta parte ($25\%$). Si el ataque infligiría $100$ PS a un objetivo neutro, Kingdra recibe únicamente $100 \times 0,25 = \mathbf{25}$ PS.</li>
+</ul>
+<h4 id="caso-3-cancelacion-neutra-math_token_286">Caso 3: Cancelación Neutra ($2 \times 0,5 = 1$)</h4>
+<ul>
+<li><strong>Defensor:</strong> Ludicolo (Tipo dual: <strong>Agua / Planta</strong>).</li>
+<li><strong>Ataque entrante:</strong> Rueda Fuego (Tipo <strong>Fuego</strong>, potencia base $60$).</li>
+<li><strong>Cálculo del multiplicador:</strong></li>
+<li>Fuego contra Agua: $M_1 = 0,5$ (Resistencia).</li>
+<li>Fuego contra Planta: $M_2 = 2,0$ (Debilidad).</li>
+<li>Multiplicador total: $M_{\text{total}} = 0,5 \times 2 = \frac{1}{2} \times 2 = \frac{2}{2} = \mathbf{1,0}$ ($x1$).</li>
+<li><strong>Consecuencia:</strong> Los dos factores se compensan mutuamente. Ludicolo recibe daño neutro estándar ($100\%$).</li>
+</ul>
+<h4 id="caso-4-inmunidad-absoluta-que-anula-debilidad-math_token_293">Caso 4: Inmunidad Absoluta que Anula Debilidad ($2 \times 0 = 0$)</h4>
+<ul>
+<li><strong>Defensor:</strong> Gliscor (Tipo dual: <strong>Tierra / Volador</strong>).</li>
+<li><strong>Ataque entrante:</strong> Rayo (Tipo <strong>Eléctrico</strong>, potencia base $90$).</li>
+<li><strong>Cálculo del multiplicador:</strong></li>
+<li>Eléctrico contra Volador: $M_1 = 2$ (Súper eficaz).</li>
+<li>Eléctrico contra Tierra: $M_2 = 0$ (Inmune / Sin efecto).</li>
+<li>Multiplicador total: $M_{\text{total}} = 2 \times 0 = \mathbf{0}$ ($x0$).</li>
+<li><strong>Consecuencia:</strong> A pesar de que el tipo Volador es débil a Eléctrico, la propiedad absorbente del cero en el tipo Tierra anula completamente el ataque. Daño total infligido = $\mathbf{0}$ PS.</li>
+</ul>
+<h4 id="caso-5-la-bonificacion-por-mismo-tipo-stab-en-tipo-dual">Caso 5: La Bonificación por Mismo Tipo (STAB) en Tipo Dual</h4>
+<ul>
+<li><strong>Atacante:</strong> Charizard (Fuego / Volador) usando Lanzallamas (Tipo Fuego).</li>
+<li><strong>Defensor:</strong> Venusaur (Planta / Veneno).</li>
+<li><strong>Factores intervinientes:</strong></li>
+<li>STAB: Al ser Charizard de tipo Fuego, recibe factor $\times 1,5$.</li>
+<li>Fuego contra Planta: $M_1 = 2$ (Súper eficaz).</li>
+<li>Fuego contra Veneno: $M_2 = 1$ (Neutro).</li>
+<li>Multiplicador total de combate: $M = 1,5 \times (2 \times 1) = 1,5 \times 2 = \mathbf{3}$ ($x3$).</li>
+<li><strong>Consecuencia:</strong> El daño final se triplica exactamente ($300\%$).</li>
+</ul>
+<hr />
+<h2 id="6-conexion-pedagogica-con-el-curriculo-lomloe-de-primaria">6. Conexión Pedagógica con el Currículo LOMLOE de Primaria</h2>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Nivel Educativo</th>
+<th style="text-align: left;">Saberes Básicos LOMLOE (Real Decreto 157/2022)</th>
+<th style="text-align: left;">Aplicación con la Tabla de Tipos Pokémon</th>
+<th style="text-align: left;">Ejemplo Didáctico de Aula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>2º de Primaria</strong></td>
+<td style="text-align: left;">- Sentido Numérico: El concepto de doble y mitad.<br>- Suma repetida como iniciación al producto.<br>- Comparación y ordenación de números naturales hasta 999.</td>
+<td style="text-align: left;">- Identificar ataques "Súper eficaces" como <strong>el doble</strong> ($2 \times D = D + D$).<br>- Identificar ataques "Poco eficaces" como <strong>la mitad</strong> de la cantidad base.<br>- El concepto de cero como "no recibir nada" ($0$).</td>
+<td style="text-align: left;">"Pikachu usa Impactrueno contra Squirtle (daño doble). Si el ataque normal causa 14 puntos de daño, ¿cuánto daño hace el doble? $14 + 14 = 28$ puntos".</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3º de Primaria</strong></td>
+<td style="text-align: left;">- Tablas de multiplicar (del 1 al 10).<br>- Multiplicación por una cifra.<br>- División exacta como reparto en partes iguales.<br>- Fracción elemental: un medio ($\frac{1}{2}$).</td>
+<td style="text-align: left;">- Aplicar formalmente el factor $x2$ y la división $\div 2$.<br>- Tablas de doble entrada: lectura de filas y columnas en la matriz elemental.</td>
+<td style="text-align: left;">"Un ataque de tipo Agua de 36 puntos de potencia impacta contra un Geodude (Roca). Al ser súper eficaz ($x2$), ¿cuál es el daño total? $36 \times 2 = 72$".</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4º de Primaria</strong></td>
+<td style="text-align: left;">- Multiplicación de números de dos y tres cifras.<br>- División entera con resto.<br>- Fracción de una cantidad ($\frac{1}{2}$ y $\frac{1}{4}$).<br>- Números decimales: décimas y centésimas ($0,5$ y $0,25$).</td>
+<td style="text-align: left;">- Multiplicar por factores combinados de tipo dual ($x4$ y $x0.25$).<br>- Demostrar que dividir entre $4$ equivale a calcular la cuarta parte ($\frac{1}{4}$).</td>
+<td style="text-align: left;">"Kingdra recibe un ataque de tipo Fuego de 80 puntos de daño. Si su resistencia es $\frac{1}{4}$ ($x0.25$), ¿cuánto daño recibe? $80 \div 4 = 20$ puntos".</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5º de Primaria</strong></td>
+<td style="text-align: left;">- Operaciones combinadas y jerarquía de operaciones.<br>- Multiplicación de fracciones: $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$.<br>- Números decimales: multiplicación por $1,5$ (STAB).<br>- Porcentajes elementales ($25\%$, $50\%$, $150\%$, $200\%$, $400\%$).</td>
+<td style="text-align: left;">- Cálculo simultáneo de debilidad de tipo y bonificación STAB: $\text{Daño} \times 1,5 \times 2$.<br>- Conversión entre multiplicador decimal y porcentaje de daño.</td>
+<td style="text-align: left;">"Un ataque con daño base de 50 puntos tiene STAB ($x1.5$) y es súper eficaz ($x2$). Calcula: $50 \times 1,5 \times 2 = 50 \times 3 = 150$ puntos ($300\%$)".</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>6º de Primaria</strong></td>
+<td style="text-align: left;">- Jerarquía de operaciones con paréntesis y corchetes.<br>- Proporcionalidad directa y cálculo de porcentajes sucesivos.<br>- Estructura de matrices y conjuntos discretos de operadores.<br>- Operaciones con números racionales y decimales periódicos/exactos.</td>
+<td style="text-align: left;">- Modelización algebraica formal del daño elemental: $D_f = D_b \cdot \text{STAB} \cdot \prod_{i=1}^{k} M_i$.<br>- Análisis combinatorio de los 18 tipos: ¿cuántas combinaciones duales existen? $\binom{18}{2} + 18 = 153 + 18 = 171$ tipos posibles.</td>
+<td style="text-align: left;">"Si existen 18 tipos elementales simples, ¿cuántas combinaciones duales únicas existen sin importar el orden? $\frac{18 \times 17}{2} = 153$ combinaciones duales".</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="7-aviso-legal-y-atribucion-educativa">7. Aviso Legal y Atribución Educativa</h2>
+<p><strong>Aviso Legal y de Atribución Educativa:</strong><br />
+<em>Pokémon y todas las marcas, nombres de personajes, criaturas y tipos asociados son marcas registradas y propiedad intelectual exclusiva de Nintendo Co., Ltd., Creatures Inc. y GAME FREAK Inc. Este material de referencia ha sido diseñado y redactado exclusivamente con fines educativos, formativos y de divulgación matemática curricular sin ningún ánimo de lucro, de conformidad con el Artículo 32.2 (Ilustración de la enseñanza) del Real Decreto Legislativo 1/1996, de 12 de abril (Ley de Propiedad Intelectual de España), y la doctrina internacional de Uso Legítimo (Fair Use, 17 U.S.C. § 107).</em></p>
+  </main>
+  
+  <script>
+    function toggleSolutions() {
+      const hidden = document.body.classList.toggle('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar solucionario y Ficha Oak' : 'Modo Alumno (solo ejercicios)';
+      }
+    }
+    function toggleWorkspaces() {
+      const hidden = document.body.classList.toggle('hide-workspaces');
+      const btn = document.getElementById('toggle-workspaces');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar cuadrículas' : 'Ocultar cuadrículas';
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Fuentes de Imágenes, Sprites y Datos Pokémon</title>
+  <style>
+:root {
+  --pk-red: #e3350d;
+  --pk-red-dark: #b91c1c;
+  --pk-red-soft: #fef2f2;
+  --pk-yellow: #ffcb05;
+  --pk-blue: #1e3a8a;
+  --pk-blue-mid: #1d4ed8;
+  --pk-blue-soft: #eff6ff;
+  --pk-green: #047857;
+  --pk-green-soft: #ecfdf5;
+  --pk-ink: #1e293b;
+  --pk-muted: #475569;
+  --pk-border: #cbd5e1;
+  --pk-bg: #f1f5f9;
+  --pk-surface: #ffffff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--pk-ink);
+  background: var(--pk-bg);
+  line-height: 1.55;
+}
+
+/* Barra superior de herramientas (oculta al imprimir) */
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.25rem;
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid var(--pk-yellow);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-primary {
+  background: var(--pk-red);
+  border-color: var(--pk-red);
+}
+
+.btn-primary:hover {
+  background: var(--pk-red-dark);
+}
+
+.btn-toggle.active {
+  background: var(--pk-blue-mid);
+  border-color: #93c5fd;
+}
+
+/* Contenedor principal tipo ficha A4 */
+.page-container {
+  max-width: 960px;
+  margin: 1.5rem auto 3rem;
+  padding: 2rem 2.25rem;
+  background: var(--pk-surface);
+  border: 1px solid var(--pk-border);
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.07);
+}
+
+/* Cabecera infantil de entrenador */
+.header-box {
+  background: linear-gradient(135deg, #ffcb05 0%, #f97316 45%, #e3350d 100%);
+  border-radius: 14px;
+  padding: 1.15rem 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(227, 53, 13, 0.22);
+}
+
+.header-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-title-row h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1.55rem;
+  color: #ffffff;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.badge-grade {
+  background: #ffffff;
+  color: var(--pk-red);
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.trainer-ranks-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.25);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.student-fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.student-field-line {
+  border-bottom: 2px dotted #94a3b8;
+  padding-bottom: 2px;
+}
+
+.kid-welcome {
+  background: #fef9c3;
+  border: 2px solid #f59e0b;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.94rem;
+  color: #78350f;
+}
+
+h1 {
+  margin-top: 0;
+  padding-bottom: 0.55rem;
+  font-size: 1.7rem;
+  line-height: 1.25;
+  color: #0f172a;
+  border-bottom: 3px solid var(--pk-red);
+}
+
+h2 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 1.25rem;
+  color: var(--pk-blue);
+  background: var(--pk-blue-soft);
+  border-left: 5px solid var(--pk-blue-mid);
+  border-radius: 0 8px 8px 0;
+}
+
+h2.special-challenges-title {
+  color: #9a3412;
+  background: #ffedd5;
+  border-left-color: #ea580c;
+}
+
+h3 {
+  margin-top: 1.1rem;
+  margin-bottom: 0.45rem;
+  font-size: 1.06rem;
+  color: #0f172a;
+}
+
+p, ul, ol {
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--pk-border);
+  margin: 1.25rem 0;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: #f1f5f9;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 0.65rem 1rem;
+  background: var(--pk-red-soft);
+  border-left: 4px solid var(--pk-red);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Tarjeta de problema infantil con imagen y cuadrícula */
+.problem-card {
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.problem-card.is-reto {
+  border-color: #fdba74;
+  background: #fffaf5;
+}
+
+.problem-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 2px dashed #e2e8f0;
+}
+
+.problem-card-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--pk-blue);
+}
+
+.problem-card.is-reto .problem-card-header h3 {
+  color: #c2410c;
+}
+
+.poke-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.problem-body-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.problem-sprites {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+}
+
+.poke-sprite {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  display: block;
+}
+
+.poke-sprite-secondary {
+  width: 56px;
+  height: 56px;
+}
+
+.problem-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.96rem;
+}
+
+.problem-question {
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  background: #eff6ff;
+  border-left: 4px solid var(--pk-blue-mid);
+  border-radius: 0 6px 6px 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.workspace-box {
+  margin-top: 0.65rem;
+  height: 92px;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+  background-size: 18px 18px;
+  position: relative;
+}
+
+.workspace-label {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+body.hide-workspaces .workspace-box {
+  display: none !important;
+}
+
+/* Solucionario */
+.solution-card {
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.7rem;
+  background: #f8fafc;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.solution-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px dashed var(--pk-border);
+  color: var(--pk-green);
+}
+
+/* Ficha del Profesor Oak (para docentes y familias al final) */
+.prof-oak-dossier {
+  margin-top: 2rem;
+  padding: 1.4rem 1.5rem;
+  background: var(--pk-green-soft);
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  break-before: page;
+  page-break-before: always;
+}
+
+.prof-oak-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid #6ee7b7;
+  padding-bottom: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.prof-oak-header h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #065f46;
+  font-size: 1.35rem;
+}
+
+.prof-oak-badge {
+  background: #065f46;
+  color: #ffffff;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+body.hide-solutions .solutions-section,
+body.hide-solutions .prof-oak-dossier {
+  display: none !important;
+}
+
+/* Tablas responsivas y accesibles */
+.table-wrapper {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  background: #ffffff;
+  container-type: inline-size;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  background: #1e293b;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 2px solid #0f172a;
+}
+
+tbody td, tbody th {
+  padding: 0.42rem 0.6rem;
+  border-bottom: 1px solid var(--pk-border);
+  border-right: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+tbody td:first-child, tbody th:first-child {
+  font-weight: 600;
+}
+
+table.type-matrix {
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+table.type-matrix th, table.type-matrix td {
+  padding: 0.28rem 0.32rem;
+  text-align: center;
+}
+
+table.type-matrix tbody td:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background: #f1f5f9;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Tarjetas del índice */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--pk-border);
+  border-radius: 10px;
+  padding: 1.1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+}
+
+.doc-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--pk-blue-soft);
+  color: var(--pk-blue);
+  margin-bottom: 0.5rem;
+}
+
+.doc-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.doc-card p {
+  font-size: 0.88rem;
+  color: var(--pk-muted);
+  margin-bottom: 0.9rem;
+}
+
+.doc-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--pk-blue-mid);
+  color: var(--pk-blue-mid);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--pk-blue-soft);
+}
+
+/* Reglas de impresión A4 */
+@page {
+  size: A4;
+  margin: 12mm 12mm;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff;
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .page-container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .header-box {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-card {
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 0.65rem;
+    box-shadow: none;
+  }
+
+  .poke-sprite {
+    width: 64px;
+    height: 64px;
+  }
+
+  .poke-sprite-secondary {
+    width: 46px;
+    height: 46px;
+  }
+
+  .workspace-box {
+    height: 70px;
+  }
+
+  h2 {
+    font-size: 12pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 10pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .solutions-section {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .table-wrapper {
+    overflow: visible !important;
+    border: 0;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  thead th, tbody td:first-child {
+    position: static !important;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  table {
+    font-size: 8.5pt;
+  }
+
+  table.type-matrix {
+    font-size: 6.8pt;
+  }
+
+  table.type-matrix th, table.type-matrix td {
+    padding: 2px 2px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+</style>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});"></script>
+
+</head>
+<body>
+  <header class="print-toolbar no-print">
+    <div class="toolbar-left">
+      <a class="btn" href="index.html">← Índice</a>
+      <span class="toolbar-title">Guía de Fuentes de Imágenes, Sprites y Datos Pokémon</span>
+    </div>
+    <div class="toolbar-actions">
+      
+      <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </div>
+  </header>
+  <main class="page-container">
+    <h1 id="guia-de-recursos-fuentes-de-datos-y-activos-visuales-pokemon-manual-de-integracion-educativa-lomloe">Guía de Recursos, Fuentes de Datos y Activos Visuales Pokémon: Manual de Integración Educativa (LOMLOE)</h1>
+<p><strong>Proyecto:</strong> Matemáticas Primaria con Pokémon (LOMLOE 2º a 6º de Educación Primaria)<br />
+<strong>Documento:</strong> Guía de Aprovisionamiento de Activos y Fuentes de Datos (Requisito R3)<br />
+<strong>Marco Legal:</strong> Real Decreto 157/2022 (LOMLOE) &amp; Real Decreto Legislativo 1/1996 (Art. 32.2 LPI)<br />
+<strong>Destinatarios:</strong> Docentes de Educación Primaria, Diseñadores de Material Didáctico y Desarrolladores  </p>
+<hr />
+<h2 id="1-introduccion-y-proposito-del-documento">1. Introducción y Propósito del Documento</h2>
+<p>El presente documento constituye la guía canónica de referencia para la obtención, consulta e incrustación de datos estadísticos, tablas mecánicas y recursos gráficos del universo Pokémon en fichas de trabajo, exámenes y materiales didácticos de matemáticas de Educación Primaria (cursos 2º a 6º de Primaria bajo el marco LOMLOE).</p>
+<p>Todas las fuentes, APIs REST y redes de distribución de contenidos (CDNs) documentadas en esta guía han sido verificadas empíricamente, son de <strong>acceso público y gratuito</strong>, y permiten su utilización directa sin requerir claves de API (<em>API keys</em>) privadas.</p>
+<hr />
+<h2 id="2-pokeapi-rest-v2-especificaciones-y-endpoints-verificados">2. PokeAPI REST v2 (Especificaciones y Endpoints Verificados)</h2>
+<p><a href="https://pokeapi.co/">PokeAPI</a> es la mayor base de datos abierta y estructurada sobre Pokémon en formato JSON.</p>
+<h3 id="21-especificaciones-tecnicas-y-parametros-de-red">2.1 Especificaciones Técnicas y Parámetros de Red</h3>
+<ul>
+<li><strong>URL Base:</strong> <code>https://pokeapi.co/api/v2/</code></li>
+<li><strong>Protocolo:</strong> HTTPS con soporte HTTP/2 y compresión gzip/brotli.</li>
+<li><strong>Cabeceras CORS:</strong> Totalmente permisivas (<code>Access-Control-Allow-Origin: *</code>). Permite peticiones directas desde aplicaciones web cliente, navegadores y libretas Jupyter.</li>
+<li><strong>Políticas de Caché:</strong> Cabecera <code>Cache-Control: public, max-age=86400</code> (los recursos se conservan 24 horas en caché).</li>
+<li><strong>Límites de Petición (<em>Rate Limiting</em>):</strong> Aproximadamente 100 peticiones por minuto por dirección IP.</li>
+<li><strong>Recomendación para Aula:</strong> Para generar bancos de problemas o trabajar sin conexión en el aula, se recomienda descargar las tablas CSV de respaldo o consultar directamente las URLs de la CDN de GitHub Raw, las cuales carecen de límites de tasa.</li>
+</ul>
+<hr />
+<h3 id="22-catalogo-de-endpoints-rest-clave">2.2 Catálogo de Endpoints REST Clave</h3>
+<h4 id="1-endpoint-de-especie-y-estadisticas-de-combate-get-pokemonid_o_nombre">1. Endpoint de Especie y Estadísticas de Combate: <code>GET /pokemon/{id_o_nombre}</code></h4>
+<ul>
+<li><strong>Ejemplo:</strong> <code>https://pokeapi.co/api/v2/pokemon/1</code> (Bulbasaur) o <code>https://pokeapi.co/api/v2/pokemon/pikachu</code></li>
+<li><strong>Campos esenciales para problemas matemáticos:</strong></li>
+<li><code>id</code>: Número en la Pokédex Nacional (entero).</li>
+<li><code>name</code>: Nombre en inglés (cadena en minúsculas).</li>
+<li><code>height</code>: Altura en <strong>decímetros (dm)</strong>. <em>(Ver sección 2.3 para su aplicación didáctica)</em>.</li>
+<li><code>weight</code>: Peso en <strong>hectogramos (hg)</strong>. <em>(Ver sección 2.3 para su aplicación didáctica)</em>.</li>
+<li><code>base_experience</code>: Experiencia base obtenida al derrotarlo en combate ($b$).</li>
+<li><code>stats</code>: Matriz con los valores base de las 6 características de combate:<ul>
+<li><code>stats[0]</code> (<code>hp</code>): Puntos de Salud base ($\text{BaseHP}$).</li>
+<li><code>stats[1]</code> (<code>attack</code>): Ataque físico base.</li>
+<li><code>stats[2]</code> (<code>defense</code>): Defensa física base.</li>
+<li><code>stats[3]</code> (<code>special-attack</code>): Ataque especial base.</li>
+<li><code>stats[4]</code> (<code>special-defense</code>): Defensa especial base.</li>
+<li><code>stats[5]</code> (<code>speed</code>): Velocidad base.</li>
+</ul>
+</li>
+<li><code>types</code>: Tipos elementales (ranuras 1 y 2).</li>
+<li><code>sprites</code>: Objeto con punteros a las imágenes oficiales.</li>
+</ul>
+<h4 id="2-endpoint-de-especie-y-lore-multilingue-get-pokemon-speciesid_o_nombre">2. Endpoint de Especie y Lore Multilingüe: <code>GET /pokemon-species/{id_o_nombre}</code></h4>
+<ul>
+<li><strong>Ejemplo:</strong> <code>https://pokeapi.co/api/v2/pokemon-species/25</code> (Pikachu)</li>
+<li><strong>Campos esenciales para problemas matemáticos:</strong></li>
+<li><code>names</code>: Nombres localizados. Filtrando por <code>language.name == "es"</code> se obtiene la denominación oficial en español.</li>
+<li><code>flavor_text_entries</code>: Textos de la Pokédex en español (<code>language.name == "es"</code>), ideales para redactar el contexto narrativo de los problemas.</li>
+<li><code>capture_rate</code>: Ratio base de captura ($3$ a $255$), indispensable para problemas de fracciones y probabilidad en 5º y 6º de Primaria.</li>
+<li><code>base_happiness</code>: Amistad base ($0$ a $255$), empleada en evoluciones por afecto.</li>
+<li><code>growth_rate</code>: Referencia a la curva de crecimiento de experiencia.</li>
+<li><code>evolution_chain</code>: Enlace al árbol genealógico evolutivo.</li>
+</ul>
+<h4 id="3-endpoint-de-tipos-elementales-get-typeid_o_nombre">3. Endpoint de Tipos Elementales: <code>GET /type/{id_o_nombre}</code></h4>
+<ul>
+<li><strong>Ejemplo:</strong> <code>https://pokeapi.co/api/v2/type/10</code> (Fuego) o <code>https://pokeapi.co/api/v2/type/water</code></li>
+<li><strong>Campos esenciales:</strong></li>
+<li><code>damage_relations</code>: Contiene las listas completas de interacciones:<ul>
+<li><code>double_damage_to</code> ($x2$, súper eficaz)</li>
+<li><code>half_damage_to</code> ($x0.5$, poco eficaz)</li>
+<li><code>no_damage_to</code> ($x0$, inmune)</li>
+<li><code>double_damage_from</code> ($x2$, debilidad)</li>
+<li><code>half_damage_from</code> ($x0.5$, resistencia)</li>
+<li><code>no_damage_from</code> ($x0$, inmunidad defensiva)</li>
+</ul>
+</li>
+<li><code>names</code>: Nombre traducido al español (<code>Fuego</code>, <code>Agua</code>, <code>Planta</code>, etc.).</li>
+</ul>
+<h4 id="4-endpoint-de-curvas-de-experiencia-get-growth-rateid_o_nombre">4. Endpoint de Curvas de Experiencia: <code>GET /growth-rate/{id_o_nombre}</code></h4>
+<ul>
+<li><strong>Ejemplo:</strong> <code>https://pokeapi.co/api/v2/growth-rate/2</code> (<code>medium</code>, Medio Rápido)</li>
+<li><strong>Campos esenciales:</strong></li>
+<li><code>formula</code>: Expresión algebraica en notación matemática / LaTeX de la curva.</li>
+<li><code>levels</code>: Lista de 100 elementos con el total exacto de EXP requerida para cada nivel desde el 1 hasta el 100.</li>
+</ul>
+<h4 id="5-endpoint-de-cadena-evolutiva-get-evolution-chainid">5. Endpoint de Cadena Evolutiva: <code>GET /evolution-chain/{id}</code></h4>
+<ul>
+<li><strong>Ejemplo:</strong> <code>https://pokeapi.co/api/v2/evolution-chain/1</code> (Línea de Bulbasaur)</li>
+<li><strong>Campos esenciales:</strong></li>
+<li><code>chain.species.name</code>: Fase básica inicial.</li>
+<li><code>chain.evolves_to</code>: Árbol con las fases intermedias y finales.</li>
+<li><code>evolution_details.min_level</code>: Nivel mínimo requerido para desencadenar la evolución (ej. Nivel 16 para Ivysaur, Nivel 32 para Venusaur).</li>
+</ul>
+<h4 id="6-endpoint-de-objetos-y-economia-get-itemid_o_nombre">6. Endpoint de Objetos y Economía: <code>GET /item/{id_o_nombre}</code></h4>
+<ul>
+<li><strong>Ejemplo:</strong> <code>https://pokeapi.co/api/v2/item/4</code> (<code>poke-ball</code>) o <code>https://pokeapi.co/api/v2/item/potion</code></li>
+<li><strong>Campos esenciales:</strong></li>
+<li><code>cost</code>: Precio oficial de compra en Pokédólares / Pokécuartos (₽).</li>
+<li><code>names</code>: Nombre del objeto en español (<code>language.name == "es"</code>).</li>
+<li><code>sprites.default</code>: URL directa del icono del objeto.</li>
+</ul>
+<hr />
+<h3 id="23-nota-didactica-esencial-unidades-metricas-en-pokeapi">2.3 Nota Didáctica Esencial: Unidades Métricas en PokeAPI</h3>
+<p>Uno de los aspectos pedagógicamente más potentes de PokeAPI para el currículo LOMLOE de Matemáticas (Sentido de la Medida) reside en sus unidades de almacenamiento:</p>
+<ol>
+<li>
+<p><strong>Altura (<code>height</code>):</strong> Se almacena en <strong>decímetros (dm)</strong>.<br />
+   - Para convertir a <strong>metros (m)</strong>: Dividir entre $10$ (desplazar la coma un lugar a la izquierda).<br />
+   - Para convertir a <strong>centímetros (cm)</strong>: Multiplicar por $10$.<br />
+   - <em>Ejemplo en Bulbasaur:</em> <code>height = 7</code> $\implies 7\text{ dm} = 0,7\text{ m} = 70\text{ cm}$.<br />
+   - <em>Ejemplo en Charizard:</em> <code>height = 17</code> $\implies 17\text{ dm} = 1,7\text{ m} = 170\text{ cm}$.<br />
+   - <em>Ejemplo en Wailord:</em> <code>height = 145</code> $\implies 145\text{ dm} = 14,5\text{ m} = 1.450\text{ cm}$.</p>
+</li>
+<li>
+<p><strong>Peso (<code>weight</code>):</strong> Se almacena en <strong>hectogramos (hg)</strong>.<br />
+   - Para convertir a <strong>kilogramos (kg)</strong>: Dividir entre $10$.<br />
+   - Para convertir a <strong>gramos (g)</strong>: Multiplicar por $100$.<br />
+   - <em>Ejemplo en Bulbasaur:</em> <code>weight = 69</code> $\implies 69\text{ hg} = 6,9\text{ kg} = 6.900\text{ g}$.<br />
+   - <em>Ejemplo en Pikachu:</em> <code>weight = 60</code> $\implies 60\text{ hg} = 6,0\text{ kg} = 6.000\text{ g}$.<br />
+   - <em>Ejemplo en Snorlax:</em> <code>weight = 4600</code> $\implies 4600\text{ hg} = 460,0\text{ kg} = 460.000\text{ g}$.</p>
+</li>
+</ol>
+<p><em>Aplicación LOMLOE:</em> Esta característica permite plantear de forma nativa problemas reales de conversión entre múltiplos y submúltiplos del Sistema Internacional de Unidades para 3º, 4º y 5º de Primaria.</p>
+<hr />
+<h2 id="3-red-cdn-de-sprites-de-github-raw-pokeapisprites">3. Red CDN de Sprites de GitHub Raw (PokeAPI/sprites)</h2>
+<p>PokeAPI almacena todo su catálogo visual en el repositorio público de GitHub <a href="https://github.com/PokeAPI/sprites"><code>PokeAPI/sprites</code></a>. Al ser servidas a través de <code>raw.githubusercontent.com</code>, estas URLs <strong>no tienen límite de tasa</strong>, admiten incrustación directa en documentos Markdown y páginas web, y garantizan una alta disponibilidad global.</p>
+<h3 id="31-plantillas-de-urls-de-la-cdn">3.1 Plantillas de URLs de la CDN</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Variedad de Activo</th>
+<th style="text-align: left;">Plantilla de URL Directa</th>
+<th style="text-align: center;">Formato y Dimensiones</th>
+<th style="text-align: left;">Ejemplo Verificado (#1 Bulbasaur)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Ilustración Oficial (<em>Official Artwork</em>)</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{id}.png</code></td>
+<td style="text-align: center;">PNG $475 \times 475$ px (Fondo transparente)</td>
+<td style="text-align: left;"><code>.../official-artwork/1.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ilustración Oficial Variocolor (<em>Shiny</em>)</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/{id}.png</code></td>
+<td style="text-align: center;">PNG $475 \times 475$ px</td>
+<td style="text-align: left;"><code>.../official-artwork/shiny/1.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sprite Frontal Clásico (Pixel Art)</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png</code></td>
+<td style="text-align: center;">PNG $96 \times 96$ px</td>
+<td style="text-align: left;"><code>.../sprites/pokemon/1.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sprite Trasero Clásico</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{id}.png</code></td>
+<td style="text-align: center;">PNG $96 \times 96$ px</td>
+<td style="text-align: left;"><code>.../sprites/pokemon/back/1.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sprite Frontal Variocolor (<em>Shiny</em>)</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{id}.png</code></td>
+<td style="text-align: center;">PNG $96 \times 96$ px</td>
+<td style="text-align: left;"><code>.../sprites/pokemon/shiny/1.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Vectorial Dream World (SVG)</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{id}.svg</code></td>
+<td style="text-align: center;">Vectorial SVG escalable (Gen 1 a 5)</td>
+<td style="text-align: left;"><code>.../dream-world/1.svg</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modelo 3D Pokémon HOME</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/{id}.png</code></td>
+<td style="text-align: center;">PNG $512 \times 512$ px</td>
+<td style="text-align: left;"><code>.../other/home/1.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GIF Animado Showdown (Frente)</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/{id}.gif</code></td>
+<td style="text-align: center;">GIF Animado</td>
+<td style="text-align: left;"><code>.../other/showdown/1.gif</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GIF Animado Showdown (Espalda)</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/{id}.gif</code></td>
+<td style="text-align: center;">GIF Animado</td>
+<td style="text-align: left;"><code>.../other/showdown/back/1.gif</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GIF Animado Gen 5 B/N</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{id}.gif</code></td>
+<td style="text-align: center;">GIF Animado 2D</td>
+<td style="text-align: left;"><code>.../generation-v/black-white/animated/1.gif</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sprite de Objeto / Ítem</strong></td>
+<td style="text-align: left;"><code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{item_slug}.png</code></td>
+<td style="text-align: center;">PNG $32 \times 32$ px</td>
+<td style="text-align: left;"><code>.../sprites/items/poke-ball.png</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Nota sobre IDs:</em> El parámetro <code>{id}</code> corresponde siempre al número de Pokédex Nacional sin ceros a la izquierda (por ejemplo, <code>1</code> para Bulbasaur, <code>25</code> para Pikachu, <code>150</code> para Mewtwo).</p>
+<hr />
+<h2 id="4-repositorio-de-activos-de-pokemon-showdown-playpokemonshowdowncom">4. Repositorio de Activos de Pokémon Showdown (<code>play.pokemonshowdown.com</code>)</h2>
+<p><a href="https://pokemonshowdown.com/">Pokémon Showdown</a> es el simulador de combate competitivo de código abierto de referencia mundial. Su servidor de contenidos proporciona activos visuales estáticos y animados de todas las generaciones, insignias de tipo e iconos de objetos.</p>
+<h3 id="41-regla-canonica-de-normalizacion-de-nombres-slugs">4.1 Regla Canónica de Normalización de Nombres (<em>Slugs</em>)</h3>
+<p>A diferencia de PokeAPI (que utiliza identificadores numéricos enteros), Pokémon Showdown organiza sus archivos mediante nombres en texto (<em>slugs</em>). Para garantizar una llamada correcta sin errores 404, es <strong>obligatorio</strong> aplicar la siguiente regla:</p>
+<p>$$\text{Slug} = \text{minusculas}(\text{filtrar\_alfanumerico}(Nombre)) \in [a\text{-}z0\text{-}9]$$</p>
+<ol>
+<li>Transformar todo el texto a <strong>minúsculas estrictas</strong>.</li>
+<li><strong>Eliminar por completo</strong> espacios, puntos, guiones, apóstrofes y signos de puntuación:<br />
+   - <code>Mr. Mime</code> $\to$ <code>mrmime</code><br />
+   - <code>Farfetch'd</code> $\to$ <code>farfetchd</code><br />
+   - <code>Type: Null</code> $\to$ <code>typenull</code><br />
+   - <code>Tapu Koko</code> $\to$ <code>tapukoko</code><br />
+   - <code>Ho-Oh</code> $\to$ <code>hooh</code><br />
+   - <code>Porygon-Z</code> $\to$ <code>porygonz</code><br />
+   - <code>Jangmo-o</code> $\to$ <code>jangmoo</code></li>
+<li><strong>Casos especiales de género:</strong><br />
+   - <code>Nidoran♀</code> $\to$ <code>nidoranf</code><br />
+   - <code>Nidoran♂</code> $\to$ <code>nidoranm</code></li>
+</ol>
+<hr />
+<h3 id="42-catalogo-de-directorios-y-urls-de-showdown">4.2 Catálogo de Directorios y URLs de Showdown</h3>
+<ul>
+<li><strong>URL Base:</strong> <code>https://play.pokemonshowdown.com/sprites/</code></li>
+</ul>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Directorio y Ruta</th>
+<th style="text-align: left;">Formato y Contenido</th>
+<th style="text-align: left;">Ejemplo de URL Completa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gen5/{slug}.png</code></td>
+<td style="text-align: left;">Sprite estático 2D estilo Blanco/Negro</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/gen5/pikachu.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gen5ani/{slug}.gif</code></td>
+<td style="text-align: left;">Sprite animado 2D pixel art</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/gen5ani/pikachu.gif</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ani/{slug}.gif</code></td>
+<td style="text-align: left;">Modelo 3D animado oficial (Gen 6 a 9)</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/ani/pikachu.gif</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ani-back/{slug}.gif</code></td>
+<td style="text-align: left;">Modelo 3D animado de espalda</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/ani-back/pikachu.gif</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ani-shiny/{slug}.gif</code></td>
+<td style="text-align: left;">Modelo 3D animado variocolor (<em>shiny</em>)</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/ani-shiny/pikachu.gif</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>dex/{slug}.png</code></td>
+<td style="text-align: left;">Icono miniatura de la Pokédex</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/dex/pikachu.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>types/{Type}.png</code></td>
+<td style="text-align: left;">Insignia oficial de tipo elemental (<em>Title-Case</em>)</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Electric.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>categories/{Cat}.png</code></td>
+<td style="text-align: left;">Insignia de categoría física/especial/estado</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/categories/Physical.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>itemicons/{item}.png</code></td>
+<td style="text-align: left;">Icono de objeto con guiones</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/itemicons/ultra-ball.png</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>trainers/{trainer}.png</code></td>
+<td style="text-align: left;">Sprite de entrenador para narrativa</td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/trainers/red.png</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Nota sobre Badges de Tipos:</em> En el directorio <code>types/</code>, los nombres de archivo inician con mayúscula: <code>Normal.png</code>, <code>Fire.png</code>, <code>Water.png</code>, <code>Grass.png</code>, <code>Electric.png</code>, <code>Ice.png</code>, <code>Fighting.png</code>, <code>Poison.png</code>, <code>Ground.png</code>, <code>Flying.png</code>, <code>Psychic.png</code>, <code>Bug.png</code>, <code>Rock.png</code>, <code>Ghost.png</code>, <code>Dragon.png</code>, <code>Dark.png</code>, <code>Steel.png</code>, <code>Fairy.png</code>.</p>
+<hr />
+<h2 id="5-base-de-datos-relacional-veekun-distribucion-csv-en-github">5. Base de Datos Relacional Veekun (Distribución CSV en GitHub)</h2>
+<p>La base de datos <a href="https://github.com/veekun/pokedex">Veekun</a> (creada por Alex Munroe) es la fuente relacional de código abierto que sirve de cimiento para PokeAPI. Se distribuye como una colección de archivos CSV en texto plano, lo que permite su descarga directa o análisis con librerías como Pandas, Python o Excel para validar problemas matemáticos en masa.</p>
+<ul>
+<li><strong>Repositorio GitHub:</strong> <code>https://github.com/veekun/pokedex</code></li>
+<li><strong>Ruta Base de Descarga Raw:</strong> <code>https://raw.githubusercontent.com/veekun/pokedex/master/pokedex/data/csv/</code></li>
+</ul>
+<h3 id="51-tablas-maestras-para-matematicas-escolares">5.1 Tablas Maestras para Matemáticas Escolares</h3>
+<ol>
+<li><strong><code>pokemon.csv</code></strong><br />
+   - <strong>Columnas:</strong> <code>id, identifier, species_id, height, weight, base_experience, order, is_default</code><br />
+   - <strong>Utilidad:</strong> Datos canónicos de altura ($dm$), peso ($hg$) y rendimiento base de experiencia ($b$) para todas las especies.</li>
+<li><strong><code>pokemon_stats.csv</code></strong><br />
+   - <strong>Columnas:</strong> <code>pokemon_id, stat_id, base_stat, effort</code><br />
+   - <strong>Clave de atributos:</strong> <code>1</code> = PS, <code>2</code> = Ataque, <code>3</code> = Defensa, <code>4</code> = At. Especial, <code>5</code> = Def. Especial, <code>6</code> = Velocidad.<br />
+   - <strong>Utilidad:</strong> Consulta rápida y verificación de estadísticas base para problemas de progresión de PS.</li>
+<li><strong><code>experience.csv</code></strong><br />
+   - <strong>Columnas:</strong> <code>growth_rate_id, level, experience</code><br />
+   - <strong>Utilidad:</strong> Tabla precalculada con los $600$ registros exactos de experiencia acumulada para cada uno de los 100 niveles en las 6 curvas de crecimiento. Previene errores de coma flotante en las soluciones del solucionario.</li>
+<li><strong><code>growth_rates.csv</code></strong><br />
+   - <strong>Columnas:</strong> <code>id, identifier, formula</code><br />
+   - <strong>Utilidad:</strong> Definición matemática formal de las curvas cúbicas y polinómicas:<ul>
+<li>ID 1 (<code>slow</code> / Lento): $EXP = \frac{5 x^3}{4}$ ($1.250.000$ a nivel 100).</li>
+<li>ID 2 (<code>medium</code> / Medio Rápido): $EXP = x^3$ ($1.000.000$ a nivel 100).</li>
+<li>ID 3 (<code>fast</code> / Rápido): $EXP = \frac{4 x^3}{5}$ ($800.000$ a nivel 100).</li>
+<li>ID 4 (<code>medium-slow</code> / Medio Lento): $EXP = \frac{6 x^3}{5} - 15 x^2 + 100 x - 140$ ($1.059.860$ a nivel 100).</li>
+</ul>
+</li>
+<li><strong><code>type_efficacy.csv</code></strong><br />
+   - <strong>Columnas:</strong> <code>damage_type_id, target_type_id, damage_factor</code><br />
+   - <strong>Factores:</strong> <code>0</code> ($x0$), <code>50</code> ($x0.5$), <code>100</code> ($x1.0$), <code>200</code> ($x2.0$).<br />
+   - <strong>Utilidad:</strong> Los $324$ registros que componen la matriz completa de $18 \times 18$ interacciones elementales.</li>
+<li><strong><code>pokemon_species.csv</code></strong><br />
+   - <strong>Columnas:</strong> <code>id, identifier, generation_id, evolves_from_species_id, evolution_chain_id, capture_rate, base_happiness...</code><br />
+   - <strong>Utilidad:</strong> Mapeo de progenitores evolutivos y ratios de captura ($3$ a $255$).</li>
+</ol>
+<hr />
+<h2 id="6-pokemon-database-pokemondbnet-y-pokedex-oficial-pokemoncom">6. Pokémon Database (<code>pokemondb.net</code>) y Pokédex Oficial (<code>pokemon.com</code>)</h2>
+<h3 id="61-pokemon-database">6.1 Pokémon Database</h3>
+<ul>
+<li><strong>Portal Principal:</strong> <code>https://pokemondb.net/</code></li>
+<li><strong>CDN de Ilustraciones:</strong> <code>https://img.pokemondb.net/artwork/{slug}.jpg</code> (ej. <code>https://img.pokemondb.net/artwork/charizard.jpg</code>).</li>
+<li><strong>CDN de Modelos HOME:</strong> <code>https://img.pokemondb.net/sprites/home/normal/{slug}.png</code>.</li>
+</ul>
+<h3 id="62-pokedex-oficial-de-the-pokemon-company-international">6.2 Pokédex Oficial de The Pokémon Company International</h3>
+<ul>
+<li><strong>Portal Oficial en Español:</strong> <code>https://www.pokemon.com/es/pokedex/{slug}</code> (descripciones y fichas técnicas oficiales revisadas en castellano).</li>
+<li><strong>CDN Oficial de Ilustraciones en Alta Resolución:</strong></li>
+<li><strong>URL Base:</strong> <code>https://assets.pokemon.com/assets/cms2/img/pokedex/full/</code></li>
+<li><strong>Regla Estricta de Relleno con Ceros (<em>Zero-Padding</em>):</strong><ul>
+<li>Para números del $1$ al $999$: Se deben rellenar con ceros a la izquierda hasta completar <strong>3 dígitos exactos</strong> (<code>001.png</code>, <code>004.png</code>, <code>025.png</code>, <code>150.png</code>, <code>999.png</code>).</li>
+<li>Para números del $1000$ en adelante: Se utilizan <strong>4 dígitos</strong> (<code>1000.png</code> para Gholdengo, <code>1008.png</code> para Miraidon).</li>
+</ul>
+</li>
+<li><strong>Ejemplo Verificado (#25 Pikachu):</strong><br />
+<code>https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png</code></li>
+</ul>
+<hr />
+<h2 id="7-ejemplos-practicos-de-incrustacion-en-markdown-y-html">7. Ejemplos Prácticos de Incrustación en Markdown y HTML</h2>
+<h3 id="71-imagen-estandar-en-markdown-diseno-responsivo-basico">7.1 Imagen Estándar en Markdown (Diseño Responsivo Básico)</h3>
+<p>Ideal para enunciados limpios en fichas de trabajo digitales:</p>
+<pre><code class="language-markdown">![Pikachu](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png)
+</code></pre>
+<hr />
+<h3 id="72-incrustacion-en-html-con-control-explicito-de-dimensiones">7.2 Incrustación en HTML con Control Explícito de Dimensiones</h3>
+<p>Recomendada para maquetaciones impresas, fichas en PDF o pantallas de tableta donde se requiera fijar el ancho y alto exactos:</p>
+<pre><code class="language-html">&lt;img src=&quot;https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png&quot; 
+     alt=&quot;Pikachu&quot; 
+     width=&quot;100&quot; 
+     height=&quot;100&quot; 
+     style=&quot;vertical-align: middle; display: inline-block;&quot; /&gt;
+</code></pre>
+<hr />
+<h3 id="73-renderizado-pixelado-nitido-evitar-desenfoque-bilineal-en-sprites-retro">7.3 Renderizado Pixelado Nítido (Evitar Desenfoque Bilineal en Sprites Retro)</h3>
+<p>Por defecto, los motores de renderizado de los navegadores web modernos aplican un filtro bilineal o bicúbico al reescalar imágenes pequeñas de pixel art (como los sprites clásicos de $96 \times 96$ px), provocando un efecto borroso.</p>
+<p>Para conservar los píxeles nítidos y definidos al ampliar los sprites, es <strong>imprescindible</strong> aplicar las siguientes propiedades CSS:</p>
+<pre><code class="language-html">&lt;img src=&quot;https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png&quot; 
+     alt=&quot;Charmander Pixel Art&quot; 
+     width=&quot;96&quot; 
+     height=&quot;96&quot; 
+     style=&quot;image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;&quot; /&gt;
+</code></pre>
+<hr />
+<h3 id="74-tabla-didactica-de-problemas-con-sprites-incrustados">7.4 Tabla Didáctica de Problemas con Sprites Incrustados</h3>
+<p>Plantilla lista para su integración en bancos de problemas:</p>
+<pre><code class="language-markdown">| Pokémon | Sprite Pixel Art | Tipo Elemental | PS Base | Altura (dm $\to$ m) | Peso (hg $\to$ kg) |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| **Charmander** | &lt;img src=&quot;https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png&quot; width=&quot;48&quot; height=&quot;48&quot; style=&quot;image-rendering: pixelated;&quot;/&gt; | Fuego | 39 | $6\text{ dm} = 0,6\text{ m}$ | $85\text{ hg} = 8,5\text{ kg}$ |
+| **Squirtle** | &lt;img src=&quot;https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png&quot; width=&quot;48&quot; height=&quot;48&quot; style=&quot;image-rendering: pixelated;&quot;/&gt; | Agua | 44 | $5\text{ dm} = 0,5\text{ m}$ | $90\text{ hg} = 9,0\text{ kg}$ |
+| **Bulbasaur** | &lt;img src=&quot;https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png&quot; width=&quot;48&quot; height=&quot;48&quot; style=&quot;image-rendering: pixelated;&quot;/&gt; | Planta / Veneno | 45 | $7\text{ dm} = 0,7\text{ m}$ | $69\text{ hg} = 6,9\text{ kg}$ |
+</code></pre>
+<hr />
+<h3 id="75-tarjeta-de-batalla-battle-card-showcase-con-diseno-flexbox">7.5 Tarjeta de Batalla (<em>Battle Card Showcase</em>) con Diseño Flexbox</h3>
+<p>Plantilla visualmente atractiva para problemas de comparación de vida o turnos:</p>
+<pre><code class="language-html">&lt;div style=&quot;display: flex; align-items: center; justify-content: space-around; background-color: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; padding: 16px; margin: 16px 0;&quot;&gt;
+  &lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;https://play.pokemonshowdown.com/sprites/ani/pikachu.gif&quot; alt=&quot;Pikachu&quot; style=&quot;height: 80px;&quot; /&gt;&lt;br&gt;
+    &lt;strong&gt;Pikachu (Nv. 25)&lt;/strong&gt;&lt;br&gt;
+    &lt;span style=&quot;color: #16a34a; font-weight: bold;&quot;&gt;PS: 56 / 56&lt;/span&gt;&lt;br&gt;
+    &lt;small&gt;Velocidad: 60&lt;/small&gt;
+  &lt;/div&gt;
+  &lt;div style=&quot;font-size: 28px; font-weight: 900; color: #dc2626; padding: 0 20px;&quot;&gt;
+    VS
+  &lt;/div&gt;
+  &lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;https://play.pokemonshowdown.com/sprites/ani/gyarados.gif&quot; alt=&quot;Gyarados&quot; style=&quot;height: 100px;&quot; /&gt;&lt;br&gt;
+    &lt;strong&gt;Gyarados (Nv. 25)&lt;/strong&gt;&lt;br&gt;
+    &lt;span style=&quot;color: #16a34a; font-weight: bold;&quot;&gt;PS: 86 / 86&lt;/span&gt;&lt;br&gt;
+    &lt;small&gt;Velocidad: 52&lt;/small&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<hr />
+<h2 id="8-diccionario-terminologico-espanol-ingles">8. Diccionario Terminológico Español - Inglés</h2>
+<p>Para facilitar el desarrollo de problemas bajo la LOMLOE manteniendo la coherencia con PokeAPI y las fuentes internacionales, se proporciona la siguiente correspondencia unívoca de términos:</p>
+<h3 id="81-estadisticas-y-atributos-de-combate">8.1 Estadísticas y Atributos de Combate</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Término en Español (LOMLOE)</th>
+<th style="text-align: center;">Abreviatura (ES)</th>
+<th style="text-align: left;">Clave PokeAPI (EN)</th>
+<th style="text-align: left;">Significado Matemático Curricular</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Puntos de Salud</strong> / Puntos de Vida</td>
+<td style="text-align: center;"><strong>PS</strong></td>
+<td style="text-align: left;"><code>hp</code></td>
+<td style="text-align: left;">Cantidad escalar acotada; sustracción de daño, sumas de poción, progresión evolutiva</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ataque</strong> (Físico)</td>
+<td style="text-align: center;"><strong>Atq</strong></td>
+<td style="text-align: left;"><code>attack</code></td>
+<td style="text-align: left;">Factor multiplicativo del daño físico</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Defensa</strong> (Física)</td>
+<td style="text-align: center;"><strong>Def</strong></td>
+<td style="text-align: left;"><code>defense</code></td>
+<td style="text-align: left;">Divisor de reducción del daño físico</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ataque Especial</strong></td>
+<td style="text-align: center;"><strong>At. Esp.</strong></td>
+<td style="text-align: left;"><code>special-attack</code></td>
+<td style="text-align: left;">Factor multiplicativo del daño energético/especial</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Defensa Especial</strong></td>
+<td style="text-align: center;"><strong>Def. Esp.</strong></td>
+<td style="text-align: left;"><code>special-defense</code></td>
+<td style="text-align: left;">Divisor de reducción del daño especial</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Velocidad</strong></td>
+<td style="text-align: center;"><strong>Vel</strong></td>
+<td style="text-align: left;"><code>speed</code></td>
+<td style="text-align: left;">Relación de orden ($&gt;$, $&lt;$, $=$) y prioridad temporal en turnos de combate</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Altura</strong></td>
+<td style="text-align: center;"><strong>Alt</strong></td>
+<td style="text-align: left;"><code>height</code></td>
+<td style="text-align: left;">Longitud en decímetros ($dm$); conversión métrica a metros y centímetros</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Peso</strong></td>
+<td style="text-align: center;"><strong>Peso</strong></td>
+<td style="text-align: left;"><code>weight</code></td>
+<td style="text-align: left;">Masa en hectogramos ($hg$); conversión métrica a kilogramos y gramos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Experiencia Base</strong></td>
+<td style="text-align: center;"><strong>EXP Base</strong></td>
+<td style="text-align: left;"><code>base_experience</code></td>
+<td style="text-align: left;">Coeficiente $b$ en la fórmula canónica de derrota en combate</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h3 id="82-tipos-elementales-y-urls-de-badges">8.2 Tipos Elementales y URLs de Badges</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">Nombre en Español (Oficial)</th>
+<th style="text-align: left;">Identificador PokeAPI (EN)</th>
+<th style="text-align: left;">URL de la Insignia Showdown (<em>Badge</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong>Normal</strong></td>
+<td style="text-align: left;"><code>normal</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Normal.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><strong>Lucha</strong></td>
+<td style="text-align: left;"><code>fighting</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Fighting.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><strong>Volador</strong></td>
+<td style="text-align: left;"><code>flying</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Flying.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><strong>Veneno</strong></td>
+<td style="text-align: left;"><code>poison</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Poison.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><strong>Tierra</strong></td>
+<td style="text-align: left;"><code>ground</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Ground.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><strong>Roca</strong></td>
+<td style="text-align: left;"><code>rock</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Rock.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><strong>Bicho</strong></td>
+<td style="text-align: left;"><code>bug</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Bug.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><strong>Fantasma</strong></td>
+<td style="text-align: left;"><code>ghost</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Ghost.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><strong>Acero</strong></td>
+<td style="text-align: left;"><code>steel</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Steel.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><strong>Fuego</strong></td>
+<td style="text-align: left;"><code>fire</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Fire.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><strong>Agua</strong></td>
+<td style="text-align: left;"><code>water</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Water.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><strong>Planta</strong></td>
+<td style="text-align: left;"><code>grass</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Grass.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><strong>Eléctrico</strong></td>
+<td style="text-align: left;"><code>electric</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Electric.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><strong>Psíquico</strong></td>
+<td style="text-align: left;"><code>psychic</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Psychic.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">15</td>
+<td style="text-align: left;"><strong>Hielo</strong></td>
+<td style="text-align: left;"><code>ice</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Ice.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;"><strong>Dragón</strong></td>
+<td style="text-align: left;"><code>dragon</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Dragon.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">17</td>
+<td style="text-align: left;"><strong>Siniestro</strong></td>
+<td style="text-align: left;"><code>dark</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Dark.png</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">18</td>
+<td style="text-align: left;"><strong>Hada</strong></td>
+<td style="text-align: left;"><code>fairy</code></td>
+<td style="text-align: left;"><code>https://play.pokemonshowdown.com/sprites/types/Fairy.png</code></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h3 id="83-objetos-comunes-de-la-poke-tienda">8.3 Objetos Comunes de la Poké Tienda</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Nombre en Español (Oficial)</th>
+<th style="text-align: left;">Nombre en Inglés (PokeAPI Slug)</th>
+<th style="text-align: center;">Precio de Compra (₽)</th>
+<th style="text-align: center;">Precio de Venta (₽)</th>
+<th style="text-align: left;">Efecto Matemático en Juego</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Poké Ball</strong></td>
+<td style="text-align: left;"><code>poke-ball</code></td>
+<td style="text-align: center;">200 ₽</td>
+<td style="text-align: center;">100 ₽</td>
+<td style="text-align: left;">Multiplicador de captura $1,0\times$ (1 Honor Ball gratis por cada 10)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Super Ball</strong></td>
+<td style="text-align: left;"><code>great-ball</code></td>
+<td style="text-align: center;">600 ₽</td>
+<td style="text-align: center;">300 ₽</td>
+<td style="text-align: left;">Multiplicador de captura $1,5\times$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ultra Ball</strong></td>
+<td style="text-align: left;"><code>ultra-ball</code></td>
+<td style="text-align: center;">1.200 ₽</td>
+<td style="text-align: center;">600 ₽</td>
+<td style="text-align: left;">Multiplicador de captura $2,0\times$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Poción</strong></td>
+<td style="text-align: left;"><code>potion</code></td>
+<td style="text-align: center;">200 ₽</td>
+<td style="text-align: center;">100 ₽</td>
+<td style="text-align: left;">Suma $+20$ PS de vitalidad</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Superpoción</strong></td>
+<td style="text-align: left;"><code>super-potion</code></td>
+<td style="text-align: center;">700 ₽</td>
+<td style="text-align: center;">350 ₽</td>
+<td style="text-align: left;">Suma $+60$ PS de vitalidad</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Hiperpoción</strong></td>
+<td style="text-align: left;"><code>hyper-potion</code></td>
+<td style="text-align: center;">1.500 ₽</td>
+<td style="text-align: center;">750 ₽</td>
+<td style="text-align: left;">Suma $+120$ PS de vitalidad</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Poción Máxima</strong></td>
+<td style="text-align: left;"><code>max-potion</code></td>
+<td style="text-align: center;">2.500 ₽</td>
+<td style="text-align: center;">1.250 ₽</td>
+<td style="text-align: left;">Restaura el $100\%$ de los PS máximos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Restaurar Todo</strong></td>
+<td style="text-align: left;"><code>full-restore</code></td>
+<td style="text-align: center;">3.000 ₽</td>
+<td style="text-align: center;">1.500 ₽</td>
+<td style="text-align: left;">Restaura el $100\%$ de los PS y cura estados</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Revivir</strong></td>
+<td style="text-align: left;"><code>revive</code></td>
+<td style="text-align: center;">1.500 ₽</td>
+<td style="text-align: center;">750 ₽</td>
+<td style="text-align: left;">Recupera del debilitamiento con el $50\%$ de los PS máximos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Antídoto</strong></td>
+<td style="text-align: left;"><code>antidote</code></td>
+<td style="text-align: center;">100 ₽</td>
+<td style="text-align: center;">50 ₽</td>
+<td style="text-align: left;">Elimina el estado de envenenamiento</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cura Total</strong></td>
+<td style="text-align: left;"><code>full-heal</code></td>
+<td style="text-align: center;">600 ₽</td>
+<td style="text-align: center;">300 ₽</td>
+<td style="text-align: left;">Elimina cualquier problema de estado</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Repelente</strong></td>
+<td style="text-align: left;"><code>repel</code></td>
+<td style="text-align: center;">400 ₽</td>
+<td style="text-align: center;">200 ₽</td>
+<td style="text-align: left;">Protege durante 100 pasos ($4,0$ ₽/paso)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Superrepelente</strong></td>
+<td style="text-align: left;"><code>super-repel</code></td>
+<td style="text-align: center;">500 ₽</td>
+<td style="text-align: center;">250 ₽</td>
+<td style="text-align: left;">Protege durante 200 pasos (<strong>$2,5$ ₽/paso; opción más económica</strong>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Máximo Repelente</strong></td>
+<td style="text-align: left;"><code>max-repel</code></td>
+<td style="text-align: center;">700 ₽</td>
+<td style="text-align: center;">350 ₽</td>
+<td style="text-align: left;">Protege durante 250 pasos ($2,8$ ₽/paso)</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h3 id="84-terminos-de-combate-y-mecanicas">8.4 Términos de Combate y Mecánicas</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Término en Español</th>
+<th style="text-align: left;">Término en Inglés</th>
+<th style="text-align: left;">Concepto Matemático LOMLOE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Nivel</strong></td>
+<td style="text-align: left;"><em>Level</em> ($L$)</td>
+<td style="text-align: left;">Variable discreta acotada $L \in [1, 100]$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Daño</strong></td>
+<td style="text-align: left;"><em>Damage</em> ($D$)</td>
+<td style="text-align: left;">Cantidad sustraída en operaciones aritméticas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Súper eficaz</strong></td>
+<td style="text-align: left;"><em>Super effective</em></td>
+<td style="text-align: left;">Multiplicador $\times 2$ o $\times 4$ (dobles y cuádruples)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Poco eficaz</strong></td>
+<td style="text-align: left;"><em>Not very effective</em></td>
+<td style="text-align: left;">Multiplicador $\times 0,5$ o $\times 0,25$ (mitades y cuartas partes)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sin efecto / Inmune</strong></td>
+<td style="text-align: left;"><em>No effect / Immune</em></td>
+<td style="text-align: left;">Multiplicador $\times 0$ (elemento absorbente de la multiplicación)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>STAB (Bonificación por Tipo)</strong></td>
+<td style="text-align: left;"><em>Same-Type Attack Bonus</em></td>
+<td style="text-align: left;">Multiplicador $\times 1,5$ (aumento del $50\%$ o fracción $\frac{3}{2}$)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Golpe Crítico</strong></td>
+<td style="text-align: left;"><em>Critical Hit</em></td>
+<td style="text-align: left;">Multiplicador $\times 1,5$ (Gen 6+)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ratio de Captura</strong></td>
+<td style="text-align: left;"><em>Catch Rate</em> ($a$)</td>
+<td style="text-align: left;">Probabilidad, razones, fracciones irreducibles y porcentajes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Monedas / Pokécuartos</strong></td>
+<td style="text-align: left;"><em>Poké Dollars</em> (₽)</td>
+<td style="text-align: left;">Sistema monetario, cálculo de vueltas y presupuestos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ciclo de Huevo</strong></td>
+<td style="text-align: left;"><em>Egg Cycle</em></td>
+<td style="text-align: left;">Bloque de $256$ pasos por ciclo para eclosionar</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Evolución</strong></td>
+<td style="text-align: left;"><em>Evolution</em></td>
+<td style="text-align: left;">Discontinuidad y salto discreto de estadísticas ($\Delta \text{PS}$)</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h3 id="85-curvas-de-experiencia-growth-rates">8.5 Curvas de Experiencia (<em>Growth Rates</em>)</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Denominación en Español</th>
+<th style="text-align: left;">Identificador PokeAPI</th>
+<th style="text-align: left;">Fórmula Matemática</th>
+<th style="text-align: center;">EXP Acumulada a Nivel 100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Rápido</strong></td>
+<td style="text-align: left;"><code>fast</code></td>
+<td style="text-align: left;">$\text{EXP}(n) = \lfloor \frac{4 n^3}{5} \rfloor$</td>
+<td style="text-align: center;">$800.000$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Medio Rápido</strong> (Normal)</td>
+<td style="text-align: left;"><code>medium</code></td>
+<td style="text-align: left;">$\text{EXP}(n) = n^3$</td>
+<td style="text-align: center;">$1.000.000$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Medio Lento</strong> (Parabólico)</td>
+<td style="text-align: left;"><code>medium-slow</code></td>
+<td style="text-align: left;">$\text{EXP}(n) = \lfloor \frac{6 n^3}{5} - 15 n^2 + 100 n - 140 \rfloor$</td>
+<td style="text-align: center;">$1.059.860$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Lento</strong></td>
+<td style="text-align: left;"><code>slow</code></td>
+<td style="text-align: left;">$\text{EXP}(n) = \lfloor \frac{5 n^3}{4} \rfloor$</td>
+<td style="text-align: center;">$1.250.000$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Errático</strong></td>
+<td style="text-align: left;"><code>erratic</code></td>
+<td style="text-align: left;">Función polinómica a trozos (<em>piecewise</em>)</td>
+<td style="text-align: center;">$600.000$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fluctuante</strong></td>
+<td style="text-align: left;"><code>fluctuating</code></td>
+<td style="text-align: left;">Función polinómica a trozos (<em>piecewise</em>)</td>
+<td style="text-align: center;">$1.640.000$</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="9-marco-legal-propiedad-intelectual-y-uso-legitimo-educativo">9. Marco Legal, Propiedad Intelectual y Uso Legítimo Educativo</h2>
+<h3 id="91-titularidad-de-derechos">9.1 Titularidad de Derechos</h3>
+<p>Pokémon, los nombres de los personajes y criaturas, las marcas comerciales asociadas, las ilustraciones oficiales y los sprites son propiedad intelectual exclusiva y derechos reservados de <strong>Nintendo Co., Ltd.</strong>, <strong>Creatures Inc.</strong> y <strong>GAME FREAK Inc.</strong></p>
+<p>Este proyecto curricular es una <strong>iniciativa educativa, abierta y sin ánimo de lucro</strong> destinada de forma exclusiva al apoyo didáctico del profesorado y al aprendizaje del alumnado de Educación Primaria.</p>
+<hr />
+<h3 id="92-marco-normativo-espanol-y-europeo-ilustracion-de-la-ensenanza">9.2 Marco Normativo Español y Europeo (Ilustración de la Enseñanza)</h3>
+<p>La integración de activos gráficos y referencias en este proyecto se ampara de forma rigurosa en el <strong>Real Decreto Legislativo 1/1996, de 12 de abril</strong>, por el que se aprueba el texto refundido de la <strong>Ley de Propiedad Intelectual de España</strong>, y sus posteriores modificaciones transpositivas de directivas europeas:</p>
+<ul>
+<li>
+<p><strong>Artículo 32.2 (Ilustración de la enseñanza):</strong></p>
+<blockquote>
+<p><em>"Es lícita la utilización de pequeños fragmentos de obras o de obras aisladas de carácter plástico o fotográfico figurativo [...] cuando se realice para el profesorado de la educación reglada para ilustrar sus actividades docentes, en la medida justificada por la finalidad no comercial perseguida, y siempre que se trate de obras ya divulgadas y, salvo en los casos en que resulte imposible, se incluyan el nombre del autor y la fuente."</em></p>
+</blockquote>
+</li>
+<li>
+<p><strong>Garantías de Cumplimiento en este Proyecto:</strong><br />
+  1. <strong>Finalidad estrictamente no comercial:</strong> El material se distribuye de forma abierta y totalmente gratuita.<br />
+  2. <strong>Proporcionalidad y fragmentación:</strong> Únicamente se referencian miniaturas (<em>sprites</em> y avatares de baja resolución) e ilustraciones aisladas con el fin exclusivo de motivar y facilitar la comprensión visual de los problemas matemáticos.<br />
+  3. <strong>No sustitución del mercado original:</strong> En ningún caso este material sustituye ni compite con los videojuegos, productos comerciales o servicios ofrecidos por The Pokémon Company.</p>
+</li>
+</ul>
+<hr />
+<h3 id="93-doctrina-de-uso-legitimo-internacional-fair-use-17-usc-107">9.3 Doctrina de Uso Legítimo Internacional (<em>Fair Use</em>, 17 U.S.C. § 107)</h3>
+<p>En el ámbito internacional, el uso de estos activos cumple plenamente con los cuatro factores de la doctrina del <em>Fair Use</em>:<br />
+1. <strong>Propósito y Carácter del Uso:</strong> Transformador, educativo y pedagógico, sin ningún fin lucrativo.<br />
+2. <strong>Naturaleza de la Obra Protegida:</strong> Ficción fantástica empleada como metáfora contextual para el aprendizaje de las ciencias exactas.<br />
+3. <strong>Cantidad y Sustancialidad Empleada:</strong> Inclusión mínima de activos visuales secundarios e hipervínculos; no se distribuye código ejecutable, emuladores ni ROMs de los juegos.<br />
+4. <strong>Efecto sobre el Mercado Potencial:</strong> Nulo impacto comercial adverso sobre las ventas de la obra original.</p>
+<hr />
+<h3 id="94-texto-preceptivo-de-atribucion-educativa">9.4 Texto Preceptivo de Atribución Educativa</h3>
+<p>Todo documento de trabajo, examen o ficha didáctica que incorpore activos referenciados en esta guía debe incluir al pie de página el siguiente aviso formal:</p>
+<blockquote>
+<p><strong>Aviso Legal y de Atribución Educativa:</strong><br />
+<em>Pokémon y los nombres de las criaturas y personajes son marcas comerciales y derechos reservados de Nintendo, Creatures Inc. y Game Freak Inc. Este material didáctico ha sido desarrollado exclusivamente con fines educativos y de divulgación matemática escolar sin ánimo de lucro, al amparo del artículo 32.2 del Real Decreto Legislativo 1/1996 de la Ley de Propiedad Intelectual de España y la doctrina internacional de Uso Legítimo (Fair Use, 17 U.S.C. § 107). Este proyecto no está respaldado, afiliado ni patrocinado por Nintendo ni The Pokémon Company.</em></p>
+</blockquote>
+  </main>
+  
+  <script>
+    function toggleSolutions() {
+      const hidden = document.body.classList.toggle('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar solucionario y Ficha Oak' : 'Modo Alumno (solo ejercicios)';
+      }
+    }
+    function toggleWorkspaces() {
+      const hidden = document.body.classList.toggle('hide-workspaces');
+      const btn = document.getElementById('toggle-workspaces');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar cuadrículas' : 'Ocultar cuadrículas';
+      }
+    }
+  </script>
+
+</body>
+</html>

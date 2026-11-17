@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Maestra del Proyecto — Matemáticas Pokémon (LOMLOE)</title>
+  <style>
+:root {
+  --pk-red: #e3350d;
+  --pk-red-dark: #b91c1c;
+  --pk-red-soft: #fef2f2;
+  --pk-yellow: #ffcb05;
+  --pk-blue: #1e3a8a;
+  --pk-blue-mid: #1d4ed8;
+  --pk-blue-soft: #eff6ff;
+  --pk-green: #047857;
+  --pk-green-soft: #ecfdf5;
+  --pk-ink: #1e293b;
+  --pk-muted: #475569;
+  --pk-border: #cbd5e1;
+  --pk-bg: #f1f5f9;
+  --pk-surface: #ffffff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--pk-ink);
+  background: var(--pk-bg);
+  line-height: 1.55;
+}
+
+/* Barra superior de herramientas (oculta al imprimir) */
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.25rem;
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid var(--pk-yellow);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-primary {
+  background: var(--pk-red);
+  border-color: var(--pk-red);
+}
+
+.btn-primary:hover {
+  background: var(--pk-red-dark);
+}
+
+.btn-toggle.active {
+  background: var(--pk-blue-mid);
+  border-color: #93c5fd;
+}
+
+/* Contenedor principal tipo ficha A4 */
+.page-container {
+  max-width: 960px;
+  margin: 1.5rem auto 3rem;
+  padding: 2rem 2.25rem;
+  background: var(--pk-surface);
+  border: 1px solid var(--pk-border);
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.07);
+}
+
+/* Cabecera infantil de entrenador */
+.header-box {
+  background: linear-gradient(135deg, #ffcb05 0%, #f97316 45%, #e3350d 100%);
+  border-radius: 14px;
+  padding: 1.15rem 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(227, 53, 13, 0.22);
+}
+
+.header-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-title-row h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1.55rem;
+  color: #ffffff;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.badge-grade {
+  background: #ffffff;
+  color: var(--pk-red);
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.trainer-ranks-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.25);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.student-fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.student-field-line {
+  border-bottom: 2px dotted #94a3b8;
+  padding-bottom: 2px;
+}
+
+.kid-welcome {
+  background: #fef9c3;
+  border: 2px solid #f59e0b;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.94rem;
+  color: #78350f;
+}
+
+h1 {
+  margin-top: 0;
+  padding-bottom: 0.55rem;
+  font-size: 1.7rem;
+  line-height: 1.25;
+  color: #0f172a;
+  border-bottom: 3px solid var(--pk-red);
+}
+
+h2 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 1.25rem;
+  color: var(--pk-blue);
+  background: var(--pk-blue-soft);
+  border-left: 5px solid var(--pk-blue-mid);
+  border-radius: 0 8px 8px 0;
+}
+
+h2.special-challenges-title {
+  color: #9a3412;
+  background: #ffedd5;
+  border-left-color: #ea580c;
+}
+
+h3 {
+  margin-top: 1.1rem;
+  margin-bottom: 0.45rem;
+  font-size: 1.06rem;
+  color: #0f172a;
+}
+
+p, ul, ol {
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--pk-border);
+  margin: 1.25rem 0;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: #f1f5f9;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 0.65rem 1rem;
+  background: var(--pk-red-soft);
+  border-left: 4px solid var(--pk-red);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Tarjeta de problema infantil con imagen y cuadrícula */
+.problem-card {
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.problem-card.is-reto {
+  border-color: #fdba74;
+  background: #fffaf5;
+}
+
+.problem-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 2px dashed #e2e8f0;
+}
+
+.problem-card-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--pk-blue);
+}
+
+.problem-card.is-reto .problem-card-header h3 {
+  color: #c2410c;
+}
+
+.poke-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.problem-body-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.problem-sprites {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+}
+
+.poke-sprite {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  display: block;
+}
+
+.poke-sprite-secondary {
+  width: 56px;
+  height: 56px;
+}
+
+.problem-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.96rem;
+}
+
+.problem-question {
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  background: #eff6ff;
+  border-left: 4px solid var(--pk-blue-mid);
+  border-radius: 0 6px 6px 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.workspace-box {
+  margin-top: 0.65rem;
+  height: 92px;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+  background-size: 18px 18px;
+  position: relative;
+}
+
+.workspace-label {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+body.hide-workspaces .workspace-box {
+  display: none !important;
+}
+
+/* Solucionario */
+.solution-card {
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.7rem;
+  background: #f8fafc;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.solution-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px dashed var(--pk-border);
+  color: var(--pk-green);
+}
+
+/* Ficha del Profesor Oak (para docentes y familias al final) */
+.prof-oak-dossier {
+  margin-top: 2rem;
+  padding: 1.4rem 1.5rem;
+  background: var(--pk-green-soft);
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  break-before: page;
+  page-break-before: always;
+}
+
+.prof-oak-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid #6ee7b7;
+  padding-bottom: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.prof-oak-header h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #065f46;
+  font-size: 1.35rem;
+}
+
+.prof-oak-badge {
+  background: #065f46;
+  color: #ffffff;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+body.hide-solutions .solutions-section,
+body.hide-solutions .prof-oak-dossier {
+  display: none !important;
+}
+
+/* Tablas responsivas y accesibles */
+.table-wrapper {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  background: #ffffff;
+  container-type: inline-size;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  background: #1e293b;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 2px solid #0f172a;
+}
+
+tbody td, tbody th {
+  padding: 0.42rem 0.6rem;
+  border-bottom: 1px solid var(--pk-border);
+  border-right: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+tbody td:first-child, tbody th:first-child {
+  font-weight: 600;
+}
+
+table.type-matrix {
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+table.type-matrix th, table.type-matrix td {
+  padding: 0.28rem 0.32rem;
+  text-align: center;
+}
+
+table.type-matrix tbody td:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background: #f1f5f9;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Tarjetas del índice */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--pk-border);
+  border-radius: 10px;
+  padding: 1.1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+}
+
+.doc-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--pk-blue-soft);
+  color: var(--pk-blue);
+  margin-bottom: 0.5rem;
+}
+
+.doc-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.doc-card p {
+  font-size: 0.88rem;
+  color: var(--pk-muted);
+  margin-bottom: 0.9rem;
+}
+
+.doc-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--pk-blue-mid);
+  color: var(--pk-blue-mid);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--pk-blue-soft);
+}
+
+/* Reglas de impresión A4 */
+@page {
+  size: A4;
+  margin: 12mm 12mm;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff;
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .page-container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .header-box {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-card {
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 0.65rem;
+    box-shadow: none;
+  }
+
+  .poke-sprite {
+    width: 64px;
+    height: 64px;
+  }
+
+  .poke-sprite-secondary {
+    width: 46px;
+    height: 46px;
+  }
+
+  .workspace-box {
+    height: 70px;
+  }
+
+  h2 {
+    font-size: 12pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 10pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .solutions-section {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .table-wrapper {
+    overflow: visible !important;
+    border: 0;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  thead th, tbody td:first-child {
+    position: static !important;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  table {
+    font-size: 8.5pt;
+  }
+
+  table.type-matrix {
+    font-size: 6.8pt;
+  }
+
+  table.type-matrix th, table.type-matrix td {
+    padding: 2px 2px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+</style>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});"></script>
+
+</head>
+<body>
+  <header class="print-toolbar no-print">
+    <div class="toolbar-left">
+      <a class="btn" href="index.html">← Índice</a>
+      <span class="toolbar-title">Guía Maestra del Proyecto — Matemáticas Pokémon (LOMLOE)</span>
+    </div>
+    <div class="toolbar-actions">
+      
+      <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </div>
+  </header>
+  <main class="page-container">
+    <h1 id="proyecto-curricular-de-matematicas-pokemon-educacion-primaria-lomloe">Proyecto Curricular de Matemáticas Pokémon — Educación Primaria (LOMLOE)</h1>
+<p><img alt="LOMLOE" src="https://img.shields.io/badge/Curr%C3%ADculo-LOMLOE%20RD%20157%2F2022-blue" /><br />
+<img alt="Cursos" src="https://img.shields.io/badge/Cursos-2%C2%BA%20a%206%C2%BA%20Primaria-brightgreen" /><br />
+<img alt="Problemas" src="https://img.shields.io/badge/Problemas-500%20(100%2Fcurso)-orange" /><br />
+<img alt="Solucionario" src="https://img.shields.io/badge/Solucionario-100%25%20Paso%20a%20Paso-yellow" /><br />
+<img alt="Tests" src="https://img.shields.io/badge/Pytest-162%20Tests%20Passing-success" /><br />
+<img alt="Integridad" src="https://img.shields.io/badge/Mec%C3%A1nicas%20Pok%C3%A9mon-Gen%20III--IX%20Can%C3%B3nicas-red" /></p>
+<hr />
+<h2 id="1-vision-general-del-proyecto-y-alineacion-curricular-lomloe">1. Visión General del Proyecto y Alineación Curricular LOMLOE</h2>
+<p>El <strong>Proyecto Curricular de Matemáticas Pokémon</strong> es una propuesta didáctica integral, estructurada y pedagógicamente rigurosa diseñada para la Educación Primaria española (desde 2º hasta 6º de Primaria). El proyecto toma como base legal y organizativa el <strong>Real Decreto 157/2022, de 1 de marzo</strong>, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Primaria en el marco de la <strong>LOMLOE</strong> (<em>Ley Orgánica 3/2020</em>).</p>
+<p>A través de la gamificación contextualizada en el universo y las mecánicas competitivas de la franquicia Pokémon (fórmulas de daño, puntos de vida, curvas de experiencia, multiplicadores de tipos y economía del juego), se movilizan de forma significativa las competencias específicas del área de Matemáticas y los <strong>cinco Sentidos Matemáticos</strong> estipulados por el currículo oficial:</p>
+<ol>
+<li><strong>Sentido Numérico</strong>: Comprensión del sistema de numeración decimal, valor posicional, conteo, estimación, operaciones básicas con y sin llevada, cálculo mental, potencias, fracciones, números decimales, porcentajes y números enteros.</li>
+<li><strong>Sentido de la Medida</strong>: Estimación y cálculo de magnitudes físicas (longitud, masa, capacidad, superficie y volumen), tiempo (horas, minutos, segundos, calendarios) y el sistema monetario (Pokédólares / monedas aplicadas a transacciones).</li>
+<li><strong>Sentido Espacial</strong>: Reconocimiento de figuras geométricas planas (polígonos, círculos) y cuerpos tridimensionales (poliedros, prismas, pirámides, cuerpos de revolución), coordenadas cartesianas, distancias euclidianas y Manhattan, transformaciones, ángulos, perímetros y áreas.</li>
+<li><strong>Sentido Algebraico</strong>: Búsqueda de patrones, regularidades, relaciones funcionales, proporcionalidad directa e inversa, igualdades numéricas y modelización mediante fórmulas canónicas (como el cálculo de PS máximos o la ganancia de EXP).</li>
+<li><strong>Sentido Estocástico</strong>: Interpretación y elaboración de tablas y gráficos estadísticos (barras, líneas, sectores), medidas de tendencia central (media, moda) y cálculo formal o cualitativo de probabilidades (sucesos seguros, posibles o imposibles; probabilidades fraccionarias de captura y golpes críticos).</li>
+</ol>
+<hr />
+<h2 id="2-resumen-de-entregables-del-repositorio">2. Resumen de Entregables del Repositorio</h2>
+<p>El repositorio está organizado como un sistema modular que combina recursos de aula listos para su impresión o integración digital, tablas técnicas de consulta para docentes y alumnos, una guía de recursos multimedia y una suite de pruebas automatizadas en Python.</p>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Entregable</th>
+<th>Archivo</th>
+<th>Descripción y Alcance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2º de Primaria</strong></td>
+<td><a href="problemas_2_primaria.md"><code>problemas_2_primaria.md</code></a></td>
+<td><strong>100 problemas y 100 soluciones</strong>: Dominio numérico 0–999. Sumas/restas con y sin llevada, figuras 2D, orientación, tiempo y dinero.</td>
+</tr>
+<tr>
+<td><strong>3º de Primaria</strong></td>
+<td><a href="problemas_3_primaria.md"><code>problemas_3_primaria.md</code></a></td>
+<td><strong>100 problemas y 100 soluciones</strong>: Dominio numérico 0–9.999. Tablas de multiplicar (1–10), división exacta e inexacta, unidades métricas y gráficos de barras.</td>
+</tr>
+<tr>
+<td><strong>4º de Primaria</strong></td>
+<td><a href="problemas_4_primaria.md"><code>problemas_4_primaria.md</code></a></td>
+<td><strong>100 problemas y 100 soluciones</strong>: Dominio numérico hasta 99.999 y 6 cifras. Multiplicación multidígito, división con resto, fracciones, decimales, perímetros y ángulos.</td>
+</tr>
+<tr>
+<td><strong>5º de Primaria</strong></td>
+<td><a href="problemas_5_primaria.md"><code>problemas_5_primaria.md</code></a></td>
+<td><strong>100 problemas y 100 soluciones</strong>: Dominio &gt; 100.000. Operaciones con fracciones y decimales, porcentajes, áreas de polígonos y coordenadas en el primer cuadrante.</td>
+</tr>
+<tr>
+<td><strong>6º de Primaria</strong></td>
+<td><a href="problemas_6_primaria.md"><code>problemas_6_primaria.md</code></a></td>
+<td><strong>100 problemas y 100 soluciones</strong>: Fracciones complejas, porcentajes/proporcionalidad, números enteros, plano cartesiano de 4 cuadrantes, volúmenes y probabilidad.</td>
+</tr>
+<tr>
+<td><strong>Tabla de Tipos</strong></td>
+<td><a href="referencia_tabla_tipos.md"><code>referencia_tabla_tipos.md</code></a></td>
+<td><strong>Matriz 18×18 completa</strong>: 324 interacciones elementales, 11 multiplicadores canónicos (0x a 6x con STAB), tipos duales e Inverted Battles.</td>
+</tr>
+<tr>
+<td><strong>Fórmulas de PS</strong></td>
+<td><a href="referencia_ps_evoluciones.md"><code>referencia_ps_evoluciones.md</code></a></td>
+<td><strong>Mecánicas de Puntos de Salud</strong>: Fórmula canónica Gen III-IX, delta constante de 94 PS a nivel 100, anomalía de Shedinja, 18 líneas evolutivas y Eevee.</td>
+</tr>
+<tr>
+<td><strong>Guía de Recursos</strong></td>
+<td><a href="guia_recursos_activos.md"><code>guia_recursos_activos.md</code></a></td>
+<td><strong>Fuentes y APIs oficiales</strong>: PokeAPI REST v2, repositorios CDN de sprites y artwork oficial, Pokémon Showdown, base de datos Veekun CSV y guía legal.</td>
+</tr>
+<tr>
+<td><strong>Batería de Tests</strong></td>
+<td><a href="tests/"><code>tests/</code></a></td>
+<td><strong>Suite automatizada de 162 pruebas en Pytest</strong>: Validación de conteo, biyección 1-a-1 de solucionarios, etiquetas LOMLOE, fórmulas y tests adversariales.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-arquitectura-y-esquema-de-los-bancos-de-problemas">3. Arquitectura y Esquema de los Bancos de Problemas</h2>
+<p>Cada archivo de curso (<code>problemas_X_primaria.md</code>) presenta una arquitectura bifásica rigurosamente estandarizada para garantizar su legibilidad tanto humana como computacional.</p>
+<h3 id="31-estructura-interna-del-documento">3.1 Estructura Interna del Documento</h3>
+<ol>
+<li><strong>Encabezado y Metadatos</strong>: Identificación del curso, marco normativo LOMLOE y resumen de bloques competenciales.</li>
+<li><strong>Parte 1: Enunciados de los Problemas (1 al 100)</strong>: Diseñada para el alumnado. Cada problema incluye:<br />
+   - <code>### Problema N</code><br />
+   - <code>- **Subcategoría**</code>: Una de las 7 subcategorías pedagógicas del curso.<br />
+   - <code>- **Sentido LOMLOE**</code>: Sentido matemático curricular principal al que responde el ejercicio.<br />
+   - <code>- **Contexto Pokémon**</code>: Ambientación narrativa inmersiva (entrenadores, rutas, gimnasios, combates, crianza).<br />
+   - <code>**Pregunta**</code>: Formulación clara, con datos cuantitativos explícitos y sin ambigüedades.</li>
+<li><strong>Parte 2: Solucionario y Respuestas Razonadas (1 al 100)</strong>: Diseñada para el docente o la autoevaluación guiada. Cada solución sigue un esquema de tres fases obligatorias:<br />
+   - <code>### Solución Problema N</code><br />
+   - <code>- **Datos identificados**</code>: Extracción ordenada de los datos clave del enunciado.<br />
+   - <code>- **Planteamiento y Operaciones**</code>: Justificación didáctica, fórmula aplicada y desarrollo paso a paso del cálculo.<br />
+   - <code>- **Respuesta Final**</code>: Enunciado unívoco con la magnitud numérica y unidades físicas o del juego remarcadas en <strong>negrita</strong> (ej. <strong>$1.850 \text{ Pokédólares}$</strong>, <strong>$45 \text{ PS}$</strong>, <strong>$\frac{3}{8}$</strong>).</li>
+</ol>
+<h3 id="32-distribucion-de-las-7-subcategorias-tematicas">3.2 Distribución de las 7 Subcategorías Temáticas</h3>
+<p>Para garantizar una cobertura pedagógica equilibrada y representativa de todos los aspectos del juego, los 100 problemas de cada curso se distribuyen homogéneamente entre las siguientes 7 subcategorías:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│             DISTRIBUCIÓN DE SUBCATEGORÍAS POR CURSO (100 PROBLEMAS)    │
+├────┬──────────────────────────────────────────┬────────────────────────┤
+│ 1. │ Aritmética y Operaciones de Combate      │ ~15 problemas / curso  │
+│ 2. │ Captura, Crianza y Probabilidad          │ ~14 problemas / curso  │
+│ 3. │ Economía Pokémon y Tiendas               │ ~14 problemas / curso  │
+│ 4. │ Medida, Tiempo y Distancias              │ ~14 problemas / curso  │
+│ 5. │ Geometría y Exploración Espacial         │ ~14 problemas / curso  │
+│ 6. │ Puntos de Experiencia (EXP) y Nivel      │ &gt;=15 problemas / curso │
+│ 7. │ Estadísticas, Datos y Gráficos           │ ~14 problemas / curso  │
+└────┴──────────────────────────────────────────┴────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="4-progresion-pedagogica-del-calculo-de-experiencia-exp">4. Progresión Pedagógica del Cálculo de Experiencia (EXP)</h2>
+<p>Uno de los requerimientos nucleares del proyecto es la inclusión de al menos 15 problemas dedicados por curso (77 en total a lo largo del proyecto) orientados al cálculo de la experiencia necesaria para subir de nivel y la obtenida tras derrotar oponentes. La complejidad matemática de estos problemas evoluciona en estricta sincronía con la madurez curricular del alumnado:</p>
+<pre><code>  2º Primaria (Lineal &amp; Sumativo)
+  ├── Sumas y restas lineales: EXP requerida = Base + Incremento fijo.
+  ├── Caramelos Raros (+1 nivel directo) y barras de EXP simples.
+  └── Dominio numérico natural acotado a [0, 999].
+        │
+        ▼
+  3º Primaria (Multiplicativo &amp; Reparto Exacto)
+  ├── Reparto equitativo entre el equipo: División exacta sin resto (EXP / N).
+  ├── Acumulación de experiencia por derrotas consecutivas (N victorias × EXP).
+  └── Dominio numérico natural acotado a [0, 9.999].
+        │
+        ▼
+  4º Primaria (Fracciones de Barra &amp; División con Resto)
+  ├── Fracciones de la barra de nivel (ej. 3/4 de 800 EXP).
+  ├── Estimación de combates necesarios: Cociente y resto de la división entera.
+  └── Multiplicadores de combate introductorios (Combate contra Entrenador × 1,5).
+        │
+        ▼
+  5º Primaria (Fórmula Canónica de Derrota &amp; Porcentajes)
+  ├── Fórmula canónica simplificada de combate: EXP = floor((BaseEXP × Nivel) / 7).
+  ├── Modificadores acumulativos: Huevo Suerte (+50%), Pokémon intercambiado (+50%).
+  └── Porcentajes de avance de nivel y cálculo de porcentajes restantes.
+        │
+        ▼
+  6º Primaria (Curvas Cúbicas L³ &amp; Repartir Experiencia Moderno)
+  ├── Modelos de crecimiento cúbico de nivel: Rápido (0,8·L³), Medio (L³), Lento (1,25·L³).
+  ├── Repartir Experiencia moderno (Gen VI-IX): Activo 100% + 5 reservas al 50% = 350% total.
+  └── Estadísticas compuestas, potencias cúbicas y sistemas de niveles límite (Nivel 100).
+</code></pre>
+<hr />
+<h2 id="5-indice-y-guia-de-documentos-de-referencia-tecnica">5. Índice y Guía de Documentos de Referencia Técnica</h2>
+<p>Los documentos de referencia proporcionan el marco formal y las tablas de consulta indispensables para que tanto docentes como alumnos contrasten los datos de los enunciados.</p>
+<h3 id="51-matriz-de-efectividad-de-tipos-referencia_tabla_tiposmd">5.1 Matriz de Efectividad de Tipos (<code>referencia_tabla_tipos.md</code>)</h3>
+<ul>
+<li><strong>Matriz 18×18 completa</strong>: Cubre los 18 tipos elementales oficiales (<em>Acero, Agua, Bicho, Dragón, Eléctrico, Fantasma, Fuego, Hada, Hielo, Lucha, Normal, Planta, Psíquico, Roca, Siniestro, Tierra, Veneno, Volador</em>) totalizando 324 combinaciones individuales.</li>
+<li><strong>Tabla de Multiplicadores Canónicos</strong>:</li>
+<li>Inmunidad: <strong>$0\times$</strong></li>
+<li>Doble resistencia: <strong>$0,25\times$</strong></li>
+<li>Resistencia combinada con STAB: <strong>$0,375\times$</strong> y <strong>$0,75\times$</strong></li>
+<li>Resistencia simple: <strong>$0,5\times$</strong></li>
+<li>Daño neutro: <strong>$1\times$</strong></li>
+<li>Bonificación por mismo tipo (STAB): <strong>$1,5\times$</strong></li>
+<li>Súper eficaz simple: <strong>$2\times$</strong></li>
+<li>Súper eficaz con STAB: <strong>$3\times$</strong></li>
+<li>Cuádruple debilidad (doble tipo débil): <strong>$4\times$</strong></li>
+<li>Cuádruple debilidad con STAB: <strong>$6\times$</strong></li>
+<li><strong>Álgebra de Tipos Duales</strong>: Demostración del producto cartesiano $M_{\text{total}} = M(T_{\text{atk}} \to T_{\text{def1}}) \times M(T_{\text{atk}} \to T_{\text{def2}})$ verificado sobre las 2.754 combinaciones posibles.</li>
+<li><strong>Combates Inversos (<em>Inverse Battles</em>)</strong>: Formalización de la mecánica donde las debilidades se tornan resistencias y las resistencias/inmunidades se tornan debilidades ($2\times$).</li>
+</ul>
+<h3 id="52-formulas-de-ps-y-progresion-evolutiva-referencia_ps_evolucionesmd">5.2 Fórmulas de PS y Progresión Evolutiva (<code>referencia_ps_evoluciones.md</code>)</h3>
+<ul>
+<li><strong>Fórmula Canónica de Puntos de Salud (Generaciones III a IX)</strong>:<br />
+  $$\text{PS}_{\max} = \left\lfloor \frac{(2 \cdot \text{Base} + \text{IV} + \lfloor \frac{\text{EV}}{4} \rfloor) \cdot \text{Nivel}}{100} \right\rfloor + \text{Nivel} + 10$$<br />
+  donde $\text{IV} \in [0, 31]$ y $\text{EV} \in [0, 252]$.</li>
+<li><strong>Invariante del Rango Genético</strong>: Demostración analítica de que a nivel 100, la diferencia absoluta entre el PS máximo absoluto ($\text{IV}=31, \text{EV}=252$) y el mínimo ($\text{IV}=0, \text{EV}=0$) es <strong>estrictamente igual a 94 PS</strong> para cualquier valor de estadística base:<br />
+  $$\Delta \text{PS}(100) = (2 \cdot \text{Base} + 204) - (2 \cdot \text{Base} + 110) = 94\text{ PS}$$</li>
+<li><strong>La Anomalía de Shedinja</strong>: Documentación matemática del invariante $\text{PS}_{\text{Shedinja}} \equiv 1$ en todos los niveles, justificado por su habilidad <em>Superguarda</em>.</li>
+<li><strong>Familias Evolutivas Documentadas</strong>: 18 líneas representativas (Kanto a Paldea), incluyendo la matriz de ramificación de <strong>Eevee</strong> (8 evoluciones desde Base 55).</li>
+<li><strong>Tabla de Consulta Rápida (Sección 7)</strong>: 85 valores exactos evaluados a niveles 10, 25, 50, 75 y 100 para verificación directa en el aula.</li>
+</ul>
+<h3 id="53-guia-de-fuentes-de-activos-y-multimedia-guia_recursos_activosmd">5.3 Guía de Fuentes de Activos y Multimedia (<code>guia_recursos_activos.md</code>)</h3>
+<ul>
+<li><strong>Endpoints REST de PokeAPI v2</strong>:</li>
+<li>Datos generales: <code>https://pokeapi.co/api/v2/pokemon/{id_o_nombre}/</code></li>
+<li>Especie y cadena evolutiva: <code>https://pokeapi.co/api/v2/pokemon-species/{id_o_nombre}/</code></li>
+<li>Relaciones de tipos: <code>https://pokeapi.co/api/v2/type/{id_o_nombre}/</code></li>
+<li>Curvas de crecimiento: <code>https://pokeapi.co/api/v2/growth-rate/{id_o_nombre}/</code></li>
+<li><strong>Repositorios CDN de Sprites y Arte Oficial</strong>:</li>
+<li>Artwork oficial en alta definición: <code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{id}.png</code></li>
+<li>Sprites animados Gen 5 (Pokémon Showdown): <code>https://play.pokemonshowdown.com/sprites/gen5/{slug}.png</code></li>
+<li>Iconos oficiales de tipos: <code>https://play.pokemonshowdown.com/sprites/types/{Tipo}.png</code></li>
+<li><strong>Base de Datos Relacional Veekun CSV</strong>: Tablas de referencia directa para minería masiva de datos en formato abierto.</li>
+<li><strong>Seguridad y Cumplimiento</strong>: 100% de enlaces bajo protocolo seguro HTTPS y estricto encuadre en el derecho de cita didáctica y uso legítimo educativo.</li>
+</ul>
+<hr />
+<h2 id="6-guia-de-ejecucion-y-bateria-de-pruebas-automatizadas-pytest">6. Guía de Ejecución y Batería de Pruebas Automatizadas (Pytest)</h2>
+<p>El proyecto cuenta con un arnés de pruebas automatizadas independiente en Python (<code>pytest</code>) que valida de forma continua la integridad matemática, la estructura de los archivos Markdown y el cumplimiento curricular.</p>
+<h3 id="61-requisitos-previos">6.1 Requisitos Previos</h3>
+<ul>
+<li>Python 3.10 o superior.</li>
+<li>Paquete <code>pytest</code> (versión 7.0 o superior).</li>
+</ul>
+<p>Instalación rápida de dependencias:</p>
+<pre><code class="language-powershell">pip install pytest
+</code></pre>
+<h3 id="62-comandos-de-ejecucion-de-pruebas">6.2 Comandos de Ejecución de Pruebas</h3>
+<p>Para ejecutar la suite completa de 162 pruebas desde el directorio raíz del proyecto:</p>
+<pre><code class="language-powershell"># Ejecución completa con reporte detallado paso a paso
+python -m pytest tests/ -v
+
+# Ejecución en modo resumen rápido
+python -m pytest tests/ -q
+</code></pre>
+<p>Para ejecutar de manera aislada la suite de pruebas adversariales y de estrés (Tier 5):</p>
+<pre><code class="language-powershell">python -m pytest tests/test_tier5_adversarial.py -v
+</code></pre>
+<h3 id="63-arquitectura-de-los-5-tiers-de-verificacion">6.3 Arquitectura de los 5 Tiers de Verificación</h3>
+<p>La suite de pruebas está organizada en 5 niveles de abstracción (<em>Tiers</em>), sumando un total de <strong>162 pruebas automatizadas</strong> que se ejecutan en aproximadamente 1 segundo:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────────┐
+│                    ARQUITECTURA DEL TEST HARNESS (162 TESTS)                │
+├────────┬──────────────────────────────────┬───────┬─────────────────────────┤
+│ Tier   │ Nombre del Módulo                │ Tests │ Objetivo Principal      │
+├────────┼──────────────────────────────────┼───────┼─────────────────────────┤
+│ Tier 1 │ test_tier1_problem_counts.py     │   21  │ Existencia de archivos, │
+│        │                                  │       │ conteo (100/curso, 500  │
+│        │                                  │       │ total) y numeración.    │
+├────────┼──────────────────────────────────┼───────┼─────────────────────────┤
+│ Tier 2 │ test_tier2_answer_keys.py        │   21  │ Biyección 1-a-1 de so-  │
+│        │                                  │       │ luciones, bloques obli- │
+│        │                                  │       │ gatorios y negritas.    │
+├────────┼──────────────────────────────────┼───────┼─────────────────────────┤
+│ Tier 3 │ test_tier3_lomloe_and_exp.py     │   26  │ Sentidos LOMLOE, &gt;=15   │
+│        │                                  │       │ EXP por curso y progre- │
+│        │                                  │       │ sión pedagógica.        │
+├────────┼──────────────────────────────────┼───────┼─────────────────────────┤
+│ Tier 4 │ test_tier4_reference_tables.py   │   13  │ Integridad matriz 18x18,│
+│        │                                  │       │ fórmulas de PS y URLs.  │
+├────────┼──────────────────────────────────┼───────┼─────────────────────────┤
+│ Tier 5 │ test_tier5_adversarial.py        │   81  │ Estrés adversarial,     │
+│        │                                  │       │ límites numéricos RD    │
+│        │                                  │       │ 157/2022, 2.754 combi-  │
+│        │                                  │       │ naciones duales, 85 PS  │
+│        │                                  │       │ benchmarks, bitwise     │
+│        │                                  │       │ LF/CRLF y 100% HTTPS.   │
+├────────┴──────────────────────────────────┴───────┴─────────────────────────┤
+│ TOTAL AUTOMATED TESTS: 162 PASSED (Exit Code 0)                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="7-aviso-legal-atribucion-y-licencia-educativa">7. Aviso Legal, Atribución y Licencia Educativa</h2>
+<p>Este proyecto ha sido desarrollado exclusivamente con fines educativos, de divulgación pedagógica e investigación didáctica sin ánimo de lucro, de acuerdo con las disposiciones sobre el derecho de cita y uso legítimo recogidas en la legislación internacional sobre propiedad intelectual (<em>Fair Use</em>).</p>
+<ul>
+<li>Las marcas, nombres de criaturas, habilidades, conceptos y elementos del juego Pokémon son propiedad registrada de <strong>Nintendo</strong>, <strong>Creatures Inc.</strong> y <strong>Game Freak Inc.</strong></li>
+<li>Los textos de los problemas, las explicaciones didácticas, las soluciones paso a paso y la infraestructura de pruebas automatizadas han sido creados de forma original para este repositorio, quedando a disposición de la comunidad educativa bajo licencia de uso abierto para docentes y centros escolares.</li>
+</ul>
+  </main>
+  
+  <script>
+    function toggleSolutions() {
+      const hidden = document.body.classList.toggle('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar solucionario y Ficha Oak' : 'Modo Alumno (solo ejercicios)';
+      }
+    }
+    function toggleWorkspaces() {
+      const hidden = document.body.classList.toggle('hide-workspaces');
+      const btn = document.getElementById('toggle-workspaces');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar cuadrículas' : 'Ocultar cuadrículas';
+      }
+    }
+  </script>
+
+</body>
+</html>

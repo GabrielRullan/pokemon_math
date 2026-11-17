@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puntos de Salud (PS) y Escalado en Evoluciones</title>
+  <style>
+:root {
+  --pk-red: #e3350d;
+  --pk-red-dark: #b91c1c;
+  --pk-red-soft: #fef2f2;
+  --pk-yellow: #ffcb05;
+  --pk-blue: #1e3a8a;
+  --pk-blue-mid: #1d4ed8;
+  --pk-blue-soft: #eff6ff;
+  --pk-green: #047857;
+  --pk-green-soft: #ecfdf5;
+  --pk-ink: #1e293b;
+  --pk-muted: #475569;
+  --pk-border: #cbd5e1;
+  --pk-bg: #f1f5f9;
+  --pk-surface: #ffffff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--pk-ink);
+  background: var(--pk-bg);
+  line-height: 1.55;
+}
+
+/* Barra superior de herramientas (oculta al imprimir) */
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.25rem;
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid var(--pk-yellow);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-primary {
+  background: var(--pk-red);
+  border-color: var(--pk-red);
+}
+
+.btn-primary:hover {
+  background: var(--pk-red-dark);
+}
+
+.btn-toggle.active {
+  background: var(--pk-blue-mid);
+  border-color: #93c5fd;
+}
+
+/* Contenedor principal tipo ficha A4 */
+.page-container {
+  max-width: 960px;
+  margin: 1.5rem auto 3rem;
+  padding: 2rem 2.25rem;
+  background: var(--pk-surface);
+  border: 1px solid var(--pk-border);
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.07);
+}
+
+/* Cabecera infantil de entrenador */
+.header-box {
+  background: linear-gradient(135deg, #ffcb05 0%, #f97316 45%, #e3350d 100%);
+  border-radius: 14px;
+  padding: 1.15rem 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(227, 53, 13, 0.22);
+}
+
+.header-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-title-row h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1.55rem;
+  color: #ffffff;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.badge-grade {
+  background: #ffffff;
+  color: var(--pk-red);
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.trainer-ranks-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.25);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.student-fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.student-field-line {
+  border-bottom: 2px dotted #94a3b8;
+  padding-bottom: 2px;
+}
+
+.kid-welcome {
+  background: #fef9c3;
+  border: 2px solid #f59e0b;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.94rem;
+  color: #78350f;
+}
+
+h1 {
+  margin-top: 0;
+  padding-bottom: 0.55rem;
+  font-size: 1.7rem;
+  line-height: 1.25;
+  color: #0f172a;
+  border-bottom: 3px solid var(--pk-red);
+}
+
+h2 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 1.25rem;
+  color: var(--pk-blue);
+  background: var(--pk-blue-soft);
+  border-left: 5px solid var(--pk-blue-mid);
+  border-radius: 0 8px 8px 0;
+}
+
+h2.special-challenges-title {
+  color: #9a3412;
+  background: #ffedd5;
+  border-left-color: #ea580c;
+}
+
+h3 {
+  margin-top: 1.1rem;
+  margin-bottom: 0.45rem;
+  font-size: 1.06rem;
+  color: #0f172a;
+}
+
+p, ul, ol {
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--pk-border);
+  margin: 1.25rem 0;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: #f1f5f9;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 0.65rem 1rem;
+  background: var(--pk-red-soft);
+  border-left: 4px solid var(--pk-red);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Tarjeta de problema infantil con imagen y cuadrícula */
+.problem-card {
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.problem-card.is-reto {
+  border-color: #fdba74;
+  background: #fffaf5;
+}
+
+.problem-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 2px dashed #e2e8f0;
+}
+
+.problem-card-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--pk-blue);
+}
+
+.problem-card.is-reto .problem-card-header h3 {
+  color: #c2410c;
+}
+
+.poke-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.problem-body-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.problem-sprites {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+}
+
+.poke-sprite {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  display: block;
+}
+
+.poke-sprite-secondary {
+  width: 56px;
+  height: 56px;
+}
+
+.problem-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.96rem;
+}
+
+.problem-question {
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  background: #eff6ff;
+  border-left: 4px solid var(--pk-blue-mid);
+  border-radius: 0 6px 6px 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.workspace-box {
+  margin-top: 0.65rem;
+  height: 92px;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+  background-size: 18px 18px;
+  position: relative;
+}
+
+.workspace-label {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+body.hide-workspaces .workspace-box {
+  display: none !important;
+}
+
+/* Solucionario */
+.solution-card {
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.7rem;
+  background: #f8fafc;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.solution-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px dashed var(--pk-border);
+  color: var(--pk-green);
+}
+
+/* Ficha del Profesor Oak (para docentes y familias al final) */
+.prof-oak-dossier {
+  margin-top: 2rem;
+  padding: 1.4rem 1.5rem;
+  background: var(--pk-green-soft);
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  break-before: page;
+  page-break-before: always;
+}
+
+.prof-oak-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid #6ee7b7;
+  padding-bottom: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.prof-oak-header h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #065f46;
+  font-size: 1.35rem;
+}
+
+.prof-oak-badge {
+  background: #065f46;
+  color: #ffffff;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+body.hide-solutions .solutions-section,
+body.hide-solutions .prof-oak-dossier {
+  display: none !important;
+}
+
+/* Tablas responsivas y accesibles */
+.table-wrapper {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--pk-border);
+  border-radius: 8px;
+  background: #ffffff;
+  container-type: inline-size;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  background: #1e293b;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 2px solid #0f172a;
+}
+
+tbody td, tbody th {
+  padding: 0.42rem 0.6rem;
+  border-bottom: 1px solid var(--pk-border);
+  border-right: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+tbody td:first-child, tbody th:first-child {
+  font-weight: 600;
+}
+
+table.type-matrix {
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+table.type-matrix th, table.type-matrix td {
+  padding: 0.28rem 0.32rem;
+  text-align: center;
+}
+
+table.type-matrix tbody td:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background: #f1f5f9;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Tarjetas del índice */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--pk-border);
+  border-radius: 10px;
+  padding: 1.1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  break-inside: avoid;
+}
+
+.doc-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--pk-blue-soft);
+  color: var(--pk-blue);
+  margin-bottom: 0.5rem;
+}
+
+.doc-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.doc-card p {
+  font-size: 0.88rem;
+  color: var(--pk-muted);
+  margin-bottom: 0.9rem;
+}
+
+.doc-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--pk-blue-mid);
+  color: var(--pk-blue-mid);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--pk-blue-soft);
+}
+
+/* Reglas de impresión A4 */
+@page {
+  size: A4;
+  margin: 12mm 12mm;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff;
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .page-container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .header-box {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-card {
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 0.65rem;
+    box-shadow: none;
+  }
+
+  .poke-sprite {
+    width: 64px;
+    height: 64px;
+  }
+
+  .poke-sprite-secondary {
+    width: 46px;
+    height: 46px;
+  }
+
+  .workspace-box {
+    height: 70px;
+  }
+
+  h2 {
+    font-size: 12pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 10pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .solutions-section {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .table-wrapper {
+    overflow: visible !important;
+    border: 0;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  thead th, tbody td:first-child {
+    position: static !important;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  table {
+    font-size: 8.5pt;
+  }
+
+  table.type-matrix {
+    font-size: 6.8pt;
+  }
+
+  table.type-matrix th, table.type-matrix td {
+    padding: 2px 2px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+</style>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});"></script>
+
+</head>
+<body>
+  <header class="print-toolbar no-print">
+    <div class="toolbar-left">
+      <a class="btn" href="index.html">← Índice</a>
+      <span class="toolbar-title">Puntos de Salud (PS) y Escalado en Evoluciones</span>
+    </div>
+    <div class="toolbar-actions">
+      
+      <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </div>
+  </header>
+  <main class="page-container">
+    <h1 id="mecanica-de-puntos-de-salud-ps-hp-y-progresion-evolutiva-pokemon-guia-de-referencia-matematica-lomloe">Mecánica de Puntos de Salud (PS / HP) y Progresión Evolutiva Pokémon: Guía de Referencia Matemática (LOMLOE)</h1>
+<p><strong>Proyecto:</strong> Matemáticas Primaria con Pokémon (LOMLOE 2º a 6º de Educación Primaria)<br />
+<strong>Documento:</strong> Referencia Técnica y Curricular de Puntos de Salud y Evolución (Requisito R2)<br />
+<strong>Marco Legal:</strong> Real Decreto 157/2022 (LOMLOE) — Sentido Numérico, Medida, Álgebra y Funciones<br />
+<strong>Versión de Mecánicas:</strong> Generaciones III a IX (Saga Principal)  </p>
+<hr />
+<h2 id="1-introduccion-conceptual-a-los-puntos-de-salud-ps-hp">1. Introducción Conceptual a los Puntos de Salud (PS / HP)</h2>
+<p>Los <strong>Puntos de Salud</strong> (en inglés <em>Hit Points</em>, abreviados como <strong>HP</strong>, y en la traducción oficial en español <strong>Puntos de Salud</strong> o <strong>Puntos de Vida</strong>, abreviados como <strong>PS</strong>) representan la vitalidad física de un Pokémon durante el combate.</p>
+<h3 id="11-dinamica-de-la-barra-de-vida-y-estados-de-combate">1.1 Dinámica de la Barra de Vida y Estados de Combate</h3>
+<p>En la interfaz del juego, los PS se visualizan como una barra de salud numérica y cromática:<br />
+- <strong>Barra Verde:</strong> Cuando el Pokémon conserva más del $50\%$ de sus PS máximos ($\text{PS}_{\text{actual}} &gt; 0,5 \cdot \text{PS}_{\max}$).<br />
+- <strong>Barra Amarilla:</strong> Cuando el Pokémon se encuentra entre el $20\%$ y el $50\%$ de sus PS máximos ($0,2 \cdot \text{PS}_{\max} \le \text{PS}_{\text{actual}} \le 0,5 \cdot \text{PS}_{\max}$).<br />
+- <strong>Barra Roja:</strong> Cuando el Pokémon entra en estado crítico con menos del $20\%$ de sus PS máximos ($\text{PS}_{\text{actual}} &lt; 0,2 \cdot \text{PS}_{\max}$).<br />
+- <strong>Debilitamiento ($0$ PS):</strong> Cuando los PS actuales caen a cero ($\text{PS} = 0$), el Pokémon queda fuera de combate (<em>fainted</em> / debilitado) y no puede seguir luchando hasta ser curado mediante objetos (Revivir, Poción) o en un Centro Pokémon.</p>
+<p>Matemáticamente, los PS operan como una <strong>variable de estado acumulativa y acotada</strong>:<br />
+$$0 \le \text{PS}_{\text{actual}} \le \text{PS}_{\max}$$</p>
+<p>Cada impacto recibido resta vida ($\text{PS}_{\text{nuevo}} = \text{PS}_{\text{actual}} - \text{Daño}$), mientras que los objetos curativos suman vida sin exceder nunca el límite máximo ($\text{PS}_{\text{nuevo}} = \min(\text{PS}_{\max}, \; \text{PS}_{\text{actual}} + \text{Curación})$).</p>
+<hr />
+<h2 id="2-la-formula-canonica-de-la-saga-principal-generaciones-iii-a-ix">2. La Fórmula Canónica de la Saga Principal (Generaciones III a IX)</h2>
+<p>Desde el lanzamiento de <em>Pokémon Rubí y Zafiro</em> (Generación III) hasta las entregas actuales de <em>Pokémon Escarlata y Púrpura</em> (Generación IX), el cálculo de los Puntos de Salud máximos de cualquier Pokémon viene determinado de forma universal por la siguiente fórmula aritmética:</p>
+<p>$$\text{PS}_{\max} = \left\lfloor \frac{\left(2 \cdot \text{BaseHP} + \text{IV} + \left\lfloor \frac{\text{EV}}{4} \right\rfloor \right) \cdot \text{Nivel}}{100} \right\rfloor + \text{Nivel} + 10$$</p>
+<h3 id="21-desglose-termino-a-termino-de-las-variables">2.1 Desglose Término a Término de las Variables</h3>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Nombre Completo</th>
+<th style="text-align: center;">Rango Canónico</th>
+<th style="text-align: left;">Significado Matemático y de Juego</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>$\text{BaseHP}$</strong></td>
+<td style="text-align: left;"><em>Base Hit Points</em> (PS Base)</td>
+<td style="text-align: center;">$[1, \; 255]$</td>
+<td style="text-align: left;">Estadística intrínseca de la especie (ej. Charmander = 39, Snorlax = 160, Blissey = 255). Es constante para todos los miembros de la misma especie.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>$\text{IV}$</strong></td>
+<td style="text-align: left;"><em>Individual Value</em> (Genética)</td>
+<td style="text-align: center;">$[0, \; 31]$</td>
+<td style="text-align: left;">Valor individual inherente al Pokémon al nacer o ser capturado. Equivale a su "potencial genético". En nivel 100, cada punto de IV otorga exactamente 1 punto adicional de PS.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>$\text{EV}$</strong></td>
+<td style="text-align: left;"><em>Effort Values</em> (Puntos de Esfuerzo)</td>
+<td style="text-align: center;">$[0, \; 252]$</td>
+<td style="text-align: left;">Puntos obtenidos al derrotar adversarios mediante entrenamiento. Cada 4 puntos de EV equivalen a 1 punto adicional de estadística a nivel 100 ($\lfloor \text{EV}/4 \rfloor \in [0, \; 63]$).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>$\text{Nivel}$</strong> ($L$)</td>
+<td style="text-align: left;">Nivel de experiencia</td>
+<td style="text-align: center;">$[1, \; 100]$</td>
+<td style="text-align: left;">Factor de escala lineal principal. Determina qué fracción porcentual del potencial base se manifiesta en la estadística.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>$\lfloor \dots \rfloor$</strong></td>
+<td style="text-align: left;">Función Suelo (<em>Floor</em>)</td>
+<td style="text-align: center;">$\mathbb{R} \to \mathbb{Z}$</td>
+<td style="text-align: left;">Redondeo por defecto hacia el número entero inferior más cercano. En la informática de las consolas de Nintendo, esto equivale a truncar la parte decimal de la división entera.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constante $+ \text{Nivel}$</strong></td>
+<td style="text-align: left;">Progresión por nivel</td>
+<td style="text-align: center;">$[1, \; 100]$</td>
+<td style="text-align: left;">Garantiza que subir de nivel siempre incremente los PS, independientemente de la base.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constante $+ 10$</strong></td>
+<td style="text-align: left;">Vitalidad mínima garantizada</td>
+<td style="text-align: center;">$+10$</td>
+<td style="text-align: left;">Asegura que incluso a nivel 1 con base muy baja, ningún Pokémon empiece con 0 PS.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-la-singular-excepcion-canonica-shedinja">3. La Singular Excepción Canónica: Shedinja</h2>
+<p>Existe exactamente <strong>una única excepción canónica</strong> en toda la franquicia Pokémon a la fórmula universal de PS: <strong>Shedinja</strong> (Pokémon de tipo Bicho/Fantasma, número de Pokédex #292).</p>
+<p>$$\text{PS}_{\text{Shedinja}} = 1 \quad \forall \; \text{Nivel} \in [1, \; 100]$$</p>
+<ul>
+<li><strong>Justificación de diseño y lore:</strong> Shedinja nace de la muda o caparazón vacío que deja Nincada al evolucionar a Ninjask. Al carecer de cuerpo biológico real, posee exactamente <strong>1 PS constante</strong>.</li>
+<li><strong>Independencia de variables:</strong> Aunque Shedinja tenga $\text{BaseHP} = 1$, $\text{IV} = 31$, $\text{EV} = 252$ y se encuentre a Nivel 100, el motor del juego sobreescribe cualquier cálculo matemático fijando siempre sus PS en $1$.</li>
+<li><strong>Mecánica de supervivencia:</strong> Para compensar esta fragilidad extrema, Shedinja cuenta con la habilidad exclusiva <strong>Superguarda</strong> (<em>Wonder Guard</em>), la cual le otorga inmunidad absoluta frente a cualquier movimiento directo que no sea súper eficaz ($x2$).</li>
+</ul>
+<hr />
+<h2 id="4-casos-limite-y-valores-frontera">4. Casos Límite y Valores Frontera</h2>
+<p>El análisis de extremos a Nivel 100 ($L = 100$) permite simplificar la fórmula de manera elegante, ya que la fracción $\frac{\dots \cdot 100}{100}$ cancela el denominador:</p>
+<p>$$\text{PS}(100) = 2 \cdot \text{BaseHP} + \text{IV} + \left\lfloor \frac{\text{EV}}{4} \right\rfloor + 100 + 10$$</p>
+<h3 id="41-valores-extremos-a-nivel-100">4.1 Valores Extremos a Nivel 100</h3>
+<ol>
+<li><strong>Mínimo Absoluto a Nivel 100 ($\text{IV} = 0, \; \text{EV} = 0$):</strong><br />
+   $$\text{PS}_{\min}(100) = 2 \cdot \text{BaseHP} + 0 + 0 + 110 = \mathbf{2 \cdot \text{BaseHP} + 110}$$</li>
+<li><strong>Máximo Absoluto a Nivel 100 ($\text{IV} = 31, \; \text{EV} = 252 \implies \lfloor 252/4 \rfloor = 63$):</strong><br />
+   $$\text{PS}_{\max}(100) = 2 \cdot \text{BaseHP} + 31 + 63 + 110 = \mathbf{2 \cdot \text{BaseHP} + 204}$$</li>
+<li><strong>Pokémon Salvaje Estándar a Nivel 100 ($\text{IV} = 15, \; \text{EV} = 0$):</strong><br />
+   $$\text{PS}_{\text{salvaje}}(100) = 2 \cdot \text{BaseHP} + 15 + 0 + 110 = \mathbf{2 \cdot \text{BaseHP} + 125}$$</li>
+<li><strong>Rango de Variación Total por Genética y Esfuerzo:</strong><br />
+   $$\Delta \text{PS}_{\text{rango}} = \text{PS}_{\max}(100) - \text{PS}_{\min}(100) = 204 - 110 = \mathbf{94 \text{ PS}}$$<br />
+<em>Insight didáctico:</em> Dos Pokémon de la misma especie a nivel 100 pueden diferenciarse en hasta 94 puntos de salud únicamente por sus IVs y su entrenamiento.</li>
+</ol>
+<h3 id="42-valores-a-nivel-50-math_token_54-estandar-de-torneos-competitivos">4.2 Valores a Nivel 50 ($L = 50$, Estándar de Torneos Competitivos)</h3>
+<p>A nivel 50, la fórmula reduce el producto a la mitad ($\frac{\dots \cdot 50}{100} = \frac{\dots}{2}$):<br />
+- <strong>Mínimo ($\text{IV} = 0, \; \text{EV} = 0$):</strong><br />
+  $$\text{PS}_{\min}(50) = \left\lfloor \frac{2 \cdot \text{BaseHP}}{2} \right\rfloor + 50 + 10 = \mathbf{\text{BaseHP} + 60}$$<br />
+- <strong>Máximo ($\text{IV} = 31, \; \text{EV} = 252$):</strong><br />
+  $$\text{PS}_{\max}(50) = \left\lfloor \frac{2 \cdot \text{BaseHP} + 31 + 63}{2} \right\rfloor + 60 = \left\lfloor \text{BaseHP} + 47 \right\rfloor + 60 = \mathbf{\text{BaseHP} + 107}$$</p>
+<hr />
+<h2 id="5-progresion-de-ps-en-18-lineas-evolutivas-representativas">5. Progresión de PS en 18 Líneas Evolutivas Representativas</h2>
+<p>Cuando un Pokémon evoluciona, su $\text{BaseHP}$ sufre un salto discreto denominado incremento de salud ($\Delta \text{PS} = \text{Base}_{\text{evolucionada}} - \text{Base}_{\text{previa}}$). A continuación se analizan 18 líneas canónicas que ilustran distintos patrones de progresión aritmética, geométrica y casos atípicos:</p>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">Línea Evolutiva</th>
+<th style="text-align: center;">Fase Básica (PS)</th>
+<th style="text-align: center;">Fase Intermedia (PS)</th>
+<th style="text-align: center;">Fase Final (PS)</th>
+<th style="text-align: center;">Incrementos ($\Delta \text{PS}$)</th>
+<th style="text-align: center;">Factor Crecimiento Total</th>
+<th style="text-align: left;">Patrón Matemático</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>Charmander</strong></td>
+<td style="text-align: center;">Charmander (39)</td>
+<td style="text-align: center;">Charmeleon (58)</td>
+<td style="text-align: center;">Charizard (78)</td>
+<td style="text-align: center;">$+19, \; +20$</td>
+<td style="text-align: center;">$78 / 39 = \mathbf{2,00\times}$</td>
+<td style="text-align: left;">Crecimiento equilibrado (duplica exactamente la base)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>Bulbasaur</strong></td>
+<td style="text-align: center;">Bulbasaur (45)</td>
+<td style="text-align: center;">Ivysaur (60)</td>
+<td style="text-align: center;">Venusaur (80)</td>
+<td style="text-align: center;">$+15, \; +20$</td>
+<td style="text-align: center;">$80 / 45 \approx \mathbf{1,78\times}$</td>
+<td style="text-align: left;">Incremento acelerado ($+15$ luego $+20$)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>Squirtle</strong></td>
+<td style="text-align: center;">Squirtle (44)</td>
+<td style="text-align: center;">Wartortle (59)</td>
+<td style="text-align: center;">Blastoise (79)</td>
+<td style="text-align: center;">$+15, \; +20$</td>
+<td style="text-align: center;">$79 / 44 \approx \mathbf{1,80\times}$</td>
+<td style="text-align: left;">Idénticos deltas a Bulbasaur ($+15, +20$) partiendo de 44</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;"><strong>Pichu</strong></td>
+<td style="text-align: center;">Pichu (20)</td>
+<td style="text-align: center;">Pikachu (35)</td>
+<td style="text-align: center;">Raichu (60)</td>
+<td style="text-align: center;">$+15, \; +25$</td>
+<td style="text-align: center;">$60 / 20 = \mathbf{3,00\times}$</td>
+<td style="text-align: left;">Salto triple en 3 fases</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>Magikarp</strong></td>
+<td style="text-align: center;">Magikarp (20)</td>
+<td style="text-align: center;"><em>(Evolución directa)</em></td>
+<td style="text-align: center;">Gyarados (95)</td>
+<td style="text-align: center;">$+75$</td>
+<td style="text-align: center;">$95 / 20 = \mathbf{4,75\times}$</td>
+<td style="text-align: left;"><strong>Salto Extremo:</strong> multiplicación casi por 5 en una sola evolución</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>6</strong></td>
+<td style="text-align: left;"><strong>Dratini</strong></td>
+<td style="text-align: center;">Dratini (41)</td>
+<td style="text-align: center;">Dragonair (61)</td>
+<td style="text-align: center;">Dragonite (91)</td>
+<td style="text-align: center;">$+20, \; +30$</td>
+<td style="text-align: center;">$91 / 41 \approx \mathbf{2,22\times}$</td>
+<td style="text-align: left;">Pseudo-legendario: deltas múltiplos de 10 ($+20, +30$)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>Gastly</strong></td>
+<td style="text-align: center;">Gastly (30)</td>
+<td style="text-align: center;">Haunter (45)</td>
+<td style="text-align: center;">Gengar (60)</td>
+<td style="text-align: center;">$+15, \; +15$</td>
+<td style="text-align: center;">$60 / 30 = \mathbf{2,00\times}$</td>
+<td style="text-align: left;"><strong>Progresión Aritmética Constante ($d = +15$)</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>8</strong></td>
+<td style="text-align: left;"><strong>Machop</strong></td>
+<td style="text-align: center;">Machop (70)</td>
+<td style="text-align: center;">Machoke (80)</td>
+<td style="text-align: center;">Machamp (90)</td>
+<td style="text-align: center;">$+10, \; +10$</td>
+<td style="text-align: center;">$90 / 70 \approx \mathbf{1,29\times}$</td>
+<td style="text-align: left;"><strong>Progresión Aritmética Constante ($d = +10$)</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>9</strong></td>
+<td style="text-align: left;"><strong>Beldum</strong></td>
+<td style="text-align: center;">Beldum (40)</td>
+<td style="text-align: center;">Metang (60)</td>
+<td style="text-align: center;">Metagross (80)</td>
+<td style="text-align: center;">$+20, \; +20$</td>
+<td style="text-align: center;">$80 / 40 = \mathbf{2,00\times}$</td>
+<td style="text-align: left;"><strong>Progresión Aritmética Constante ($d = +20$)</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>10</strong></td>
+<td style="text-align: left;"><strong>Caterpie</strong></td>
+<td style="text-align: center;">Caterpie (45)</td>
+<td style="text-align: center;">Metapod (50)</td>
+<td style="text-align: center;">Butterfree (60)</td>
+<td style="text-align: center;">$+5, \; +10$</td>
+<td style="text-align: center;">$60 / 45 \approx \mathbf{1,33\times}$</td>
+<td style="text-align: left;">Progresión temprana de insecto (incrementos suaves)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>11</strong></td>
+<td style="text-align: left;"><strong>Larvitar</strong></td>
+<td style="text-align: center;">Larvitar (50)</td>
+<td style="text-align: center;">Pupitar (70)</td>
+<td style="text-align: center;">Tyranitar (100)</td>
+<td style="text-align: center;">$+20, \; +30$</td>
+<td style="text-align: center;">$100 / 50 = \mathbf{2,00\times}$</td>
+<td style="text-align: left;">Línea pseudo-legendaria: alcanza exactamente 100 de base</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>12</strong></td>
+<td style="text-align: left;"><strong>Ralts</strong></td>
+<td style="text-align: center;">Ralts (28)</td>
+<td style="text-align: center;">Kirlia (38)</td>
+<td style="text-align: center;">Gardevoir (68)</td>
+<td style="text-align: center;">$+10, \; +30$</td>
+<td style="text-align: center;">$68 / 28 \approx \mathbf{2,43\times}$</td>
+<td style="text-align: left;">Salto final triplicado ($+10$ en fase 2 y $+30$ en fase 3)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>13</strong></td>
+<td style="text-align: left;"><strong>Bagon</strong></td>
+<td style="text-align: center;">Bagon (45)</td>
+<td style="text-align: center;">Shelgon (65)</td>
+<td style="text-align: center;">Salamence (95)</td>
+<td style="text-align: center;">$+20, \; +30$</td>
+<td style="text-align: center;">$95 / 45 \approx \mathbf{2,11\times}$</td>
+<td style="text-align: left;">Estructura gemela de incrementos ($+20, +30$)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>14</strong></td>
+<td style="text-align: left;"><strong>Gible</strong></td>
+<td style="text-align: center;">Gible (58)</td>
+<td style="text-align: center;">Gabite (68)</td>
+<td style="text-align: center;">Garchomp (108)</td>
+<td style="text-align: center;">$+10, \; +40$</td>
+<td style="text-align: center;">$108 / 58 \approx \mathbf{1,86\times}$</td>
+<td style="text-align: left;">Gran salto final ($+40$ en la fase 3) superando los 100 PS</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>15</strong></td>
+<td style="text-align: left;"><strong>Riolu</strong></td>
+<td style="text-align: center;">Riolu (40)</td>
+<td style="text-align: center;"><em>(Evolución directa)</em></td>
+<td style="text-align: center;">Lucario (70)</td>
+<td style="text-align: center;">$+30$</td>
+<td style="text-align: center;">$70 / 40 = \mathbf{1,75\times}$</td>
+<td style="text-align: left;">Evolución por amistad: salto directo de $+30$ PS</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>16</strong></td>
+<td style="text-align: left;"><strong>Happiny</strong></td>
+<td style="text-align: center;">Happiny (100)</td>
+<td style="text-align: center;">Chansey (250)</td>
+<td style="text-align: center;">Blissey (255)</td>
+<td style="text-align: center;">$+150, \; +5$</td>
+<td style="text-align: center;">$255 / 100 = \mathbf{2,55\times}$</td>
+<td style="text-align: left;"><strong>Récord Histórico de Tanques:</strong> Chansey suma $+150$ PS</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>17</strong></td>
+<td style="text-align: left;"><strong>Eevee</strong></td>
+<td style="text-align: center;">Eevee (55)</td>
+<td style="text-align: center;"><em>(8 Ramas)</em></td>
+<td style="text-align: center;"><em>(Ver tabla 5.1)</em></td>
+<td style="text-align: center;">Variable</td>
+<td style="text-align: center;">Hasta $\mathbf{2,36\times}$</td>
+<td style="text-align: left;"><strong>Matriz de Ramificación Múltiple (8 evoluciones)</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>18</strong></td>
+<td style="text-align: left;"><strong>Nincada</strong></td>
+<td style="text-align: center;">Nincada (31)</td>
+<td style="text-align: center;">Ninjask (61)</td>
+<td style="text-align: center;">Shedinja (1)</td>
+<td style="text-align: center;">Ninjask: $+30$<br>Shedinja: $-30$ ($\text{Fijo } 1$)</td>
+<td style="text-align: center;">Ninjask: $1,97\times$<br>Shedinja: $\mathbf{0,03\times}$</td>
+<td style="text-align: left;"><strong>Bifurcación Anómala:</strong> Ninjask duplica vida, Shedinja colapsa a 1</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h3 id="51-matriz-de-ramificacion-de-eevee-basehp-55">5.1 Matriz de Ramificación de Eevee (BaseHP = 55)</h3>
+<p>Eevee es el ejemplo paradigmático de divergencia estadística. A partir de una estadística base idéntica ($\text{BaseHP} = 55$), sus 8 evoluciones adoptan perfiles matemáticos totalmente distintos:</p>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table class="type-matrix">
+<thead>
+<tr>
+<th style="text-align: left;">Evolución</th>
+<th style="text-align: left;">Tipo Elemental</th>
+<th style="text-align: center;">PS Base</th>
+<th style="text-align: center;">Incremento ($\Delta \text{PS}$)</th>
+<th style="text-align: center;">Aumento Porcentual</th>
+<th style="text-align: left;">Arquetipo de Combate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Vaporeon</strong></td>
+<td style="text-align: left;">Agua</td>
+<td style="text-align: center;"><strong>130</strong></td>
+<td style="text-align: center;">$+75$</td>
+<td style="text-align: center;">$+136,4\%$</td>
+<td style="text-align: left;"><strong>Tanque de Salud Especializado</strong> (Mayor incremento)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Umbreon</strong></td>
+<td style="text-align: left;">Siniestro</td>
+<td style="text-align: center;"><strong>95</strong></td>
+<td style="text-align: center;">$+40$</td>
+<td style="text-align: center;">$+72,7\%$</td>
+<td style="text-align: left;">Muro Defensivo Mixto</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sylveon</strong></td>
+<td style="text-align: left;">Hada</td>
+<td style="text-align: center;"><strong>95</strong></td>
+<td style="text-align: center;">$+40$</td>
+<td style="text-align: center;">$+72,7\%$</td>
+<td style="text-align: left;">Muro Defensivo Especial</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Jolteon</strong></td>
+<td style="text-align: left;">Eléctrico</td>
+<td style="text-align: center;"><strong>65</strong></td>
+<td style="text-align: center;">$+10$</td>
+<td style="text-align: center;">$+18,2\%$</td>
+<td style="text-align: left;">Atacante Rápido (<em>Sweeper</em>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Flareon</strong></td>
+<td style="text-align: left;">Fuego</td>
+<td style="text-align: center;"><strong>65</strong></td>
+<td style="text-align: center;">$+10$</td>
+<td style="text-align: center;">$+18,2\%$</td>
+<td style="text-align: left;">Atacante Físico</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Espeon</strong></td>
+<td style="text-align: left;">Psíquico</td>
+<td style="text-align: center;"><strong>65</strong></td>
+<td style="text-align: center;">$+10$</td>
+<td style="text-align: center;">$+18,2\%$</td>
+<td style="text-align: left;">Atacante Especial Rápido</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Leafeon</strong></td>
+<td style="text-align: left;">Planta</td>
+<td style="text-align: center;"><strong>65</strong></td>
+<td style="text-align: center;">$+10$</td>
+<td style="text-align: center;">$+18,2\%$</td>
+<td style="text-align: left;">Defensor Físico</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Glaceon</strong></td>
+<td style="text-align: left;">Hielo</td>
+<td style="text-align: center;"><strong>65</strong></td>
+<td style="text-align: center;">$+10$</td>
+<td style="text-align: center;">$+18,2\%$</td>
+<td style="text-align: left;">Atacante Especial / Muro de Nieve</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Propiedad matemática:</em> Seis de las ocho evoluciones aumentan exactamente $+10$ PS (llegando a 65), dos aumentan $+40$ PS (llegando a 95) y una única evolución aumenta $+75$ PS (llegando a 130).</p>
+<hr />
+<h2 id="6-modelos-pedagogicos-de-escala-adaptados-a-primaria-lomloe-2o-a-6o">6. Modelos Pedagógicos de Escala Adaptados a Primaria (LOMLOE 2º a 6º)</h2>
+<p>Para conectar la matemática formal de Pokémon con el currículo de Primaria (Real Decreto 157/2022), se definen 5 modelos pedagógicos escalonados por curso escolar:</p>
+<hr />
+<h3 id="61-nivel-2o-de-primaria-aritmetica-de-barras-de-salud-0-a-100">6.1 Nivel 2º de Primaria: Aritmética de Barras de Salud (0 a 100)</h3>
+<ul>
+<li><strong>Marco Curricular:</strong> Sentido numérico, operaciones de suma y resta sin llevada y con llevada hasta el 100 o 999.</li>
+<li><strong>Modelo Didáctico:</strong> Se trabaja directamente con los PS en combate como una cantidad que sube y baja.</li>
+<li><strong>Fórmula de Aula:</strong><br />
+  $$\text{PS}_{\text{final}} = \text{PS}_{\text{actual}} - \text{Daño} + \text{Poción}$$</li>
+<li><strong>Ejemplo de Problema:</strong><br />
+<em>Pikachu tiene 45 PS máximos. Un Geodude le inflige 18 puntos de daño con Lanzarrocas. Luego, el entrenador usa una Poción que restaura 20 PS. ¿Cuántos PS le quedan a Pikachu?</em>  </li>
+<li>Operación 1: $45 - 18 = 27$ PS tras el ataque.  </li>
+<li>Operación 2: $27 + 20 = 47$, pero como su vida máxima es 45, se queda en $45$ PS.  </li>
+<li><strong>Resultado:</strong> <strong>45 PS</strong>.</li>
+</ul>
+<hr />
+<h3 id="62-nivel-3o-de-primaria-modelo-lineal-directo-por-nivel">6.2 Nivel 3º de Primaria: Modelo Lineal Directo por Nivel</h3>
+<ul>
+<li><strong>Marco Curricular:</strong> Multiplicación por una cifra (tablas 1 a 10), sumas reiteradas, iniciación a fracciones ($\frac{1}{2}$).</li>
+<li><strong>Modelo Didáctico:</strong> Para evitar la división compleja entre 100, se asume un crecimiento regular de <strong>2 PS por cada nivel subido</strong>, sumados a la base del Pokémon.</li>
+<li><strong>Fórmula Didáctica de 3º:</strong><br />
+  $$\text{PS}(L) = \text{BaseHP} + (2 \times L)$$</li>
+<li><strong>Ejemplo de Problema:</strong><br />
+<em>Un Bulbasaur tiene una estadística base de 45 PS. Si sube al Nivel 7, ¿cuántos PS máximos tendrá según el modelo de crecimiento directo?</em>  </li>
+<li>Operación: $\text{PS} = 45 + (2 \times 7) = 45 + 14 = 59$ PS.  </li>
+<li>¿Cuántos PS corresponden a la mitad de su vida (barra amarilla)? $59 \div 2 = 29$ con resto 1 ($29,5$ PS).  </li>
+<li><strong>Resultado:</strong> <strong>59 PS máximos</strong> (la mitad son <strong>29 PS</strong>).</li>
+</ul>
+<hr />
+<h3 id="63-nivel-4o-de-primaria-incrementos-evolutivos-math_token_140-y-division-con-resto">6.3 Nivel 4º de Primaria: Incrementos Evolutivos ($\Delta \text{PS}$) y División con Resto</h3>
+<ul>
+<li><strong>Marco Curricular:</strong> Multiplicación por 2 y 3 cifras, algoritmo de la división con resto ($D = d \cdot c + r$), fracciones sencillas ($\frac{1}{4}, \frac{1}{2}, \frac{3}{4}$).</li>
+<li><strong>Modelo Didáctico:</strong> Estudio de la diferencia absoluta entre evoluciones ($\Delta \text{PS}$) y cálculo de golpes necesarios para debilitar.</li>
+<li><strong>Fórmulas Didácticas de 4º:</strong><br />
+  $$\Delta \text{PS} = \text{Base}_{\text{evolucionada}} - \text{Base}_{\text{inicial}}$$<br />
+  $$\text{Turnos para debilitar} = \lceil \text{PS}_{\max} \div \text{Daño} \rceil$$</li>
+<li><strong>Ejemplo de Problema:</strong><br />
+<em>Charmander tiene 39 PS de base y evoluciona a Charizard (78 PS base). ¿Cuál es la ganancia total de PS? Si un rival causa 15 de daño por turno, ¿cuántos turnos enteros resiste Charizard a vida completa?</em>  </li>
+<li>Diferencia evolutiva: $78 - 39 = 39$ PS (se duplica).  </li>
+<li>Turnos de combate: $78 \div 15 = 5$ con resto $3$. Con 5 turnos recibe $5 \times 15 = 75$ de daño, sobreviviendo con 3 PS. Por tanto, resiste 5 ataques enteros y cae al $6^{\circ}$ ataque.  </li>
+<li><strong>Resultado:</strong> <strong>39 PS de ganancia; resiste 5 turnos enteros</strong>.</li>
+</ul>
+<hr />
+<h3 id="64-nivel-5o-de-primaria-modelo-canonico-simplificado-a-nivel-50-y-nivel-100">6.4 Nivel 5º de Primaria: Modelo Canónico Simplificado a Nivel 50 y Nivel 100</h3>
+<ul>
+<li><strong>Marco Curricular:</strong> Operaciones combinadas con jerarquía, multiplicación y división por 10 y 100, números decimales, porcentajes ($25\%, 50\%, 75\%$).</li>
+<li><strong>Modelo Didáctico:</strong> Uso de las fórmulas canónicas reducidas donde el nivel 50 y 100 simplifican algebraicamente la división.</li>
+<li><strong>Fórmulas Didácticas de 5º:</strong><br />
+  $$\text{PS}_{L=50} \approx \text{BaseHP} + 60$$<br />
+  $$\text{PS}_{L=100} \approx (2 \times \text{BaseHP}) + 110$$</li>
+<li><strong>Ejemplo de Problema:</strong><br />
+<em>Un Garchomp tiene una Base de 108 PS. Calcula sus PS a Nivel 50 y a Nivel 100 usando el modelo neutro. Si a Nivel 100 le queda el $25\%$ de vida, ¿cuántos PS tiene?</em>  </li>
+<li>A Nivel 50: $\text{PS}_{50} = 108 + 60 = 168$ PS.  </li>
+<li>A Nivel 100: $\text{PS}_{100} = (2 \times 108) + 110 = 216 + 110 = 326$ PS.  </li>
+<li>Cuarta parte ($25\%$ de 326): $326 \times 0,25 = 326 \div 4 = 81,5$ (o $81$ PS).  </li>
+<li><strong>Resultado:</strong> <strong>168 PS a nivel 50, 326 PS a nivel 100, y 81 PS al 25%</strong>.</li>
+</ul>
+<hr />
+<h3 id="65-nivel-6o-de-primaria-evaluacion-canonica-completa-con-funcion-suelo">6.5 Nivel 6º de Primaria: Evaluación Canónica Completa con Función Suelo</h3>
+<ul>
+<li><strong>Marco Curricular:</strong> Jerarquía formal de operaciones con corchetes y paréntesis anidados, potencias, números enteros, proporcionalidad y uso formal del redondeo por defecto ($\lfloor x \rfloor$).</li>
+<li><strong>Modelo Didáctico:</strong> Aplicación de la fórmula canónica completa de la saga principal con valores reales de IVs y EVs.</li>
+<li><strong>Fórmula de Aula de 6º:</strong><br />
+  $$\text{PS} = \left\lfloor \frac{(2 \cdot \text{BaseHP} + \text{IV} + \lfloor \frac{\text{EV}}{4} \rfloor) \cdot L}{100} \right\rfloor + L + 10$$</li>
+<li><strong>Ejemplo de Problema:</strong><br />
+<em>Calcula los PS exactos de un Snorlax a Nivel 42 ($L = 42$), sabiendo que tiene $\text{BaseHP} = 160$, genes $\text{IV} = 28$ y puntos de esfuerzo $\text{EV} = 76$.</em>  </li>
+<li>Paso 1 (EVs entre 4): $\lfloor 76 \div 4 \rfloor = 19$.  </li>
+<li>Paso 2 (Corchete interior): $(2 \times 160) + 28 + 19 = 320 + 28 + 19 = 367$.  </li>
+<li>Paso 3 (Multiplicación por Nivel): $367 \times 42 = 15.414$.  </li>
+<li>Paso 4 (División entre 100 y función suelo): $\lfloor 15.414 \div 100 \rfloor = \lfloor 154,14 \rfloor = 154$.  </li>
+<li>Paso 5 (Suma de constantes finales): $154 + 42 + 10 = 206$ PS.  </li>
+<li><strong>Resultado:</strong> <strong>206 PS</strong>.</li>
+</ul>
+<hr />
+<h2 id="7-tabla-de-consulta-rapida-ps-estandar-por-nivel-casos-emblematicos">7. Tabla de Consulta Rápida: PS Estándar por Nivel (Casos Emblemáticos)</h2>
+<p>La siguiente tabla recoge los PS exactos calculados bajo parámetros neutros estándar ($\text{IV} = 15, \; \text{EV} = 0$) a lo largo de los niveles clave de la aventura Pokémon:</p>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Pokémon</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Base HP</th>
+<th style="text-align: center;">Nivel 10</th>
+<th style="text-align: center;">Nivel 25</th>
+<th style="text-align: center;">Nivel 50</th>
+<th style="text-align: center;">Nivel 75</th>
+<th style="text-align: center;">Nivel 100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Pikachu</strong></td>
+<td style="text-align: left;">Eléctrico</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">56</td>
+<td style="text-align: center;">102</td>
+<td style="text-align: center;">148</td>
+<td style="text-align: center;">195</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Charmander</strong></td>
+<td style="text-align: left;">Fuego</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">58</td>
+<td style="text-align: center;">106</td>
+<td style="text-align: center;">154</td>
+<td style="text-align: center;">203</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Charizard</strong></td>
+<td style="text-align: left;">Fuego / Volador</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">77</td>
+<td style="text-align: center;">145</td>
+<td style="text-align: center;">213</td>
+<td style="text-align: center;">281</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bulbasaur</strong></td>
+<td style="text-align: left;">Planta / Veneno</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">61</td>
+<td style="text-align: center;">112</td>
+<td style="text-align: center;">163</td>
+<td style="text-align: center;">215</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Venusaur</strong></td>
+<td style="text-align: left;">Planta / Veneno</td>
+<td style="text-align: center;">80</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">147</td>
+<td style="text-align: center;">216</td>
+<td style="text-align: center;">285</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Squirtle</strong></td>
+<td style="text-align: left;">Agua</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">111</td>
+<td style="text-align: center;">162</td>
+<td style="text-align: center;">213</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Blastoise</strong></td>
+<td style="text-align: left;">Agua</td>
+<td style="text-align: center;">79</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">146</td>
+<td style="text-align: center;">214</td>
+<td style="text-align: center;">283</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gyarados</strong></td>
+<td style="text-align: left;">Agua / Volador</td>
+<td style="text-align: center;">95</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">86</td>
+<td style="text-align: center;">162</td>
+<td style="text-align: center;">238</td>
+<td style="text-align: center;">315</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gengar</strong></td>
+<td style="text-align: left;">Fantasma / Veneno</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">68</td>
+<td style="text-align: center;">127</td>
+<td style="text-align: center;">186</td>
+<td style="text-align: center;">245</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dragonite</strong></td>
+<td style="text-align: left;">Dragón / Volador</td>
+<td style="text-align: center;">91</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">158</td>
+<td style="text-align: center;">232</td>
+<td style="text-align: center;">307</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tyranitar</strong></td>
+<td style="text-align: left;">Roca / Siniestro</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">88</td>
+<td style="text-align: center;">167</td>
+<td style="text-align: center;">246</td>
+<td style="text-align: center;">325</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Garchomp</strong></td>
+<td style="text-align: left;">Dragón / Tierra</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">92</td>
+<td style="text-align: center;">175</td>
+<td style="text-align: center;">258</td>
+<td style="text-align: center;">341</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Lucario</strong></td>
+<td style="text-align: left;">Lucha / Acero</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">73</td>
+<td style="text-align: center;">137</td>
+<td style="text-align: center;">201</td>
+<td style="text-align: center;">265</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Vaporeon</strong></td>
+<td style="text-align: left;">Agua</td>
+<td style="text-align: center;">130</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">103</td>
+<td style="text-align: center;">197</td>
+<td style="text-align: center;">291</td>
+<td style="text-align: center;">385</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Chansey</strong></td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: center;">250</td>
+<td style="text-align: center;">71</td>
+<td style="text-align: center;">163</td>
+<td style="text-align: center;">317</td>
+<td style="text-align: center;">471</td>
+<td style="text-align: center;">625</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Blissey</strong></td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: center;">255</td>
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">166</td>
+<td style="text-align: center;">322</td>
+<td style="text-align: center;">478</td>
+<td style="text-align: center;">635</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Shedinja</strong></td>
+<td style="text-align: left;">Bicho / Fantasma</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="8-aviso-legal-y-atribucion-educativa">8. Aviso Legal y Atribución Educativa</h2>
+<p><strong>Aviso Legal y de Atribución Educativa:</strong><br />
+<em>Pokémon y todas las marcas, nombres de personajes, criaturas y mecánicas asociadas son marcas registradas y propiedad intelectual exclusiva de Nintendo Co., Ltd., Creatures Inc. y GAME FREAK Inc. Este material de referencia ha sido diseñado y redactado exclusivamente con fines educativos, formativos y de divulgación matemática curricular sin ningún ánimo de lucro, de conformidad con el Artículo 32.2 (Ilustración de la enseñanza) del Real Decreto Legislativo 1/1996, de 12 de abril (Ley de Propiedad Intelectual de España), y la doctrina internacional de Uso Legítimo (Fair Use, 17 U.S.C. § 107).</em></p>
+  </main>
+  
+  <script>
+    function toggleSolutions() {
+      const hidden = document.body.classList.toggle('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar solucionario y Ficha Oak' : 'Modo Alumno (solo ejercicios)';
+      }
+    }
+    function toggleWorkspaces() {
+      const hidden = document.body.classList.toggle('hide-workspaces');
+      const btn = document.getElementById('toggle-workspaces');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar cuadrículas' : 'Ocultar cuadrículas';
+      }
+    }
+  </script>
+
+</body>
+</html>
