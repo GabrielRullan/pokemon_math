@@ -45,15 +45,82 @@ body {
   top: 0;
   z-index: 50;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.55rem;
   padding: 0.7rem 1.25rem;
   background: #0f172a;
   color: #f8fafc;
   border-bottom: 3px solid var(--pk-yellow);
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+.toolbar-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.toolbar-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.filter-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.filter-select,
+.filter-input {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.filter-select {
+  max-width: 215px;
+}
+
+.filter-input {
+  width: 60px;
+}
+
+.filter-status {
+  margin-left: auto;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 203, 5, 0.18);
+  border: 1px solid rgba(255, 203, 5, 0.45);
+  color: #fde047;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.btn-preset {
+  background: rgba(16, 185, 129, 0.22);
+  border-color: rgba(110, 231, 183, 0.45);
+}
+
+.btn-preset:hover {
+  background: rgba(16, 185, 129, 0.38);
+}
+
+.is-filtered-hidden {
+  display: none !important;
 }
 
 .toolbar-left {
@@ -374,6 +441,58 @@ blockquote {
   color: #0f172a;
 }
 
+.problem-question p {
+  margin: 0.25rem 0;
+}
+
+.problem-question p:first-child {
+  margin-top: 0;
+}
+
+.problem-question p:last-child {
+  margin-bottom: 0;
+}
+
+.problem-question ul,
+.problem-question ol {
+  margin: 0.35rem 0 0.2rem 1.25rem;
+}
+
+.problem-diagram {
+  margin: 0.55rem 0 0.25rem;
+  padding: 0.4rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.problem-diagram svg {
+  max-width: 100%;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.rotom-hint {
+  margin-top: 0.5rem;
+  padding: 0.38rem 0.65rem;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.83rem;
+  color: #78350f;
+}
+
+body.hide-hints .rotom-hint {
+  display: none !important;
+}
+
 .workspace-box {
   margin-top: 0.65rem;
   height: 92px;
@@ -385,18 +504,39 @@ blockquote {
     linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
   background-size: 18px 18px;
   position: relative;
+  overflow: hidden;
 }
 
-.workspace-label {
-  position: absolute;
-  top: 4px;
-  left: 8px;
-  font-size: 0.72rem;
+body.grade-early .workspace-box,
+.page-container.grade-early .workspace-box {
+  height: 115px;
+}
+
+.workspace-columns {
+  display: grid;
+  grid-template-columns: 1fr 1.85fr 1.15fr;
+  height: 100%;
+  width: 100%;
+}
+
+.workspace-col {
+  border-right: 1px dashed #cbd5e1;
+  padding: 3px 6px;
+}
+
+.workspace-col:last-child {
+  border-right: 0;
+}
+
+.workspace-col-title {
+  display: inline-block;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #64748b;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   padding: 0 4px;
   border-radius: 3px;
+  border: 1px solid #e2e8f0;
 }
 
 body.hide-workspaces .workspace-box {
@@ -404,6 +544,17 @@ body.hide-workspaces .workspace-box {
 }
 
 /* Solucionario */
+.solutions-subcat-heading {
+  margin-top: 1.35rem;
+  margin-bottom: 0.65rem;
+  padding: 0.38rem 0.75rem;
+  font-size: 1.05rem;
+  color: #065f46;
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
+  border-radius: 0 6px 6px 0;
+}
+
 .solution-card {
   border: 1px solid var(--pk-border);
   border-radius: 8px;
@@ -420,6 +571,35 @@ body.hide-workspaces .workspace-box {
   padding-bottom: 0.25rem;
   border-bottom: 1px dashed var(--pk-border);
   color: var(--pk-green);
+}
+
+.sol-meta {
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  color: #1e293b;
+  background: #e2e8f0;
+  display: inline-block;
+  padding: 0.14rem 0.55rem;
+  border-radius: 6px;
+}
+
+.oak-details {
+  margin-top: 1rem;
+  background: #ffffff;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+}
+
+.oak-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.rubric-table td,
+.rubric-table th {
+  font-size: 0.82rem;
 }
 
 /* Ficha del Profesor Oak (para docentes y familias al final) */
@@ -647,8 +827,27 @@ table.type-matrix tbody td:first-child {
     height: 46px;
   }
 
+  .problem-diagram {
+    margin: 0.35rem 0 0.15rem;
+    padding: 0.25rem;
+  }
+
+  .problem-diagram svg {
+    max-height: 150px;
+  }
+
+  .rotom-hint {
+    padding: 0.25rem 0.5rem;
+    font-size: 8.5pt;
+  }
+
   .workspace-box {
     height: 70px;
+  }
+
+  body.grade-early .workspace-box,
+  .page-container.grade-early .workspace-box {
+    height: 95px;
   }
 
   h2 {
@@ -713,13 +912,15 @@ table.type-matrix tbody td:first-child {
 </head>
 <body>
   <header class="print-toolbar no-print">
-    <div class="toolbar-left">
-      <a class="btn" href="index.html">← Índice</a>
-      <span class="toolbar-title">Tabla de Tipos Pokémon y Multiplicadores de Daño</span>
-    </div>
-    <div class="toolbar-actions">
-      
-      <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+    <div class="toolbar-main">
+      <div class="toolbar-left">
+        <a class="btn" href="index.html">← Índice</a>
+        <span class="toolbar-title">Tabla de Tipos Pokémon y Multiplicadores de Daño</span>
+      </div>
+      <div class="toolbar-actions">
+        
+        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+      </div>
     </div>
   </header>
   <main class="page-container">
@@ -1727,6 +1928,8 @@ table.type-matrix tbody td:first-child {
   </main>
   
   <script>
+    let sessionLimit = null;
+
     function toggleSolutions() {
       const hidden = document.body.classList.toggle('hide-solutions');
       const btn = document.getElementById('toggle-solutions');
@@ -1735,6 +1938,7 @@ table.type-matrix tbody td:first-child {
         btn.textContent = hidden ? 'Mostrar solucionario y Ficha Oak' : 'Modo Alumno (solo ejercicios)';
       }
     }
+
     function toggleWorkspaces() {
       const hidden = document.body.classList.toggle('hide-workspaces');
       const btn = document.getElementById('toggle-workspaces');
@@ -1742,6 +1946,114 @@ table.type-matrix tbody td:first-child {
         btn.classList.toggle('active', hidden);
         btn.textContent = hidden ? 'Mostrar cuadrículas' : 'Ocultar cuadrículas';
       }
+    }
+
+    function toggleHints() {
+      const hidden = document.body.classList.toggle('hide-hints');
+      const btn = document.getElementById('toggle-hints');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar pistas' : 'Ocultar pistas';
+      }
+    }
+
+    function applyFilters() {
+      const subcatEl = document.getElementById('filter-subcat');
+      const senseEl = document.getElementById('filter-sense');
+      const fromEl = document.getElementById('filter-from');
+      const toEl = document.getElementById('filter-to');
+      if (!subcatEl || !senseEl || !fromEl || !toEl) return;
+
+      const subcatVal = subcatEl.value;
+      const senseVal = senseEl.value;
+      let fromNum = parseInt(fromEl.value, 10);
+      let toNum = parseInt(toEl.value, 10);
+      if (isNaN(fromNum) || fromNum < 1) fromNum = 1;
+      if (isNaN(toNum) || toNum > 120) toNum = 120;
+      if (fromNum > toNum) {
+        const tmp = fromNum;
+        fromNum = toNum;
+        toNum = tmp;
+      }
+
+      const problemCards = Array.from(document.querySelectorAll('.problem-card'));
+      const visibleNums = new Set();
+      let shownCount = 0;
+
+      problemCards.forEach((card) => {
+        const num = parseInt(card.dataset.num || '0', 10);
+        const kind = card.dataset.kind || '';
+        const subcat = card.dataset.subcat || '';
+        const senses = (card.dataset.sense || '').split('|').filter(Boolean);
+
+        const matchSubcat =
+          subcatVal === 'all' ||
+          (subcatVal === 'reto' ? (subcat === 'reto' || kind === 'reto') : subcat === subcatVal);
+        const matchSense = senseVal === 'all' || senses.includes(senseVal);
+        const matchRange = num >= fromNum && num <= toNum;
+
+        let show = matchSubcat && matchSense && matchRange;
+        if (show && sessionLimit !== null && shownCount >= sessionLimit) {
+          show = false;
+        }
+
+        card.classList.toggle('is-filtered-hidden', !show);
+        if (show) {
+          shownCount += 1;
+          visibleNums.add(String(num));
+        }
+      });
+
+      document.querySelectorAll('.solution-card').forEach((sol) => {
+        const num = sol.dataset.num || '';
+        sol.classList.toggle('is-filtered-hidden', !visibleNums.has(num));
+      });
+
+      document.querySelectorAll('.problem-section').forEach((sec) => {
+        const hasVisible = sec.querySelector('.problem-card:not(.is-filtered-hidden)') !== null;
+        sec.classList.toggle('is-filtered-hidden', !hasVisible);
+      });
+
+      document.querySelectorAll('.solutions-subcat-heading').forEach((hd) => {
+        let el = hd.nextElementSibling;
+        let hasVisibleSol = false;
+        while (el && !el.classList.contains('solutions-subcat-heading')) {
+          if (el.classList.contains('solution-card') && !el.classList.contains('is-filtered-hidden')) {
+            hasVisibleSol = true;
+            break;
+          }
+          el = el.nextElementSibling;
+        }
+        hd.classList.toggle('is-filtered-hidden', !hasVisibleSol);
+      });
+
+      const statusEl = document.getElementById('filter-status');
+      if (statusEl) {
+        statusEl.textContent = `${shownCount} / ${problemCards.length} ej.`;
+      }
+    }
+
+    function onFilterInputChange() {
+      sessionLimit = null;
+      applyFilters();
+    }
+
+    function applySessionPreset() {
+      sessionLimit = 5;
+      applyFilters();
+    }
+
+    function resetFilters() {
+      const subcatEl = document.getElementById('filter-subcat');
+      const senseEl = document.getElementById('filter-sense');
+      const fromEl = document.getElementById('filter-from');
+      const toEl = document.getElementById('filter-to');
+      if (subcatEl) subcatEl.value = 'all';
+      if (senseEl) senseEl.value = 'all';
+      if (fromEl) fromEl.value = '1';
+      if (toEl) toEl.value = '120';
+      sessionLimit = null;
+      applyFilters();
     }
   </script>
 

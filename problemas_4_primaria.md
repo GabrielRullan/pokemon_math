@@ -2,404 +2,404 @@
 
 ## Parte 1: Enunciados de los Problemas (1 al 100)
 
-### Problema 1
+### Problema 1: Puntos de clasificación de Héctor en la Liga de Sinnoh
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la sede de la Liga Pokémon de Sinnoh, el ordenador central registra los puntos de clasificación del Entrenador Guay Héctor, quien ha acumulado exactamente 48.725 puntos en la temporada oficial.
 **Pregunta**: Descompón el número 48.725 según el valor posicional de cada una de sus cifras (decenas de millar, unidades de millar, centenas, decenas y unidades) y calcula cuál es el valor en unidades de la cifra 8 y de la cifra 4.
 
-### Problema 2
+### Problema 2: Censo anual en los sectores del Parque Compi
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Los guardas forestales del Parque Compi han realizado un censo de avistamientos de Pokémon salvajes durante el último año en cuatro sectores: Sector Verde: 34.520 avistamientos; Sector Rocoso: 34.250; Sector Lago: 35.400; y Sector Bosque: 32.990.
 **Pregunta**: ¿Cuál es el orden de los sectores de menor a mayor cantidad de Pokémon avistados? Escribe la comparación utilizando los signos matemáticos pertinentes.
 
-### Problema 3
+### Problema 3: Producción de Poké Balls en Silph S.A. de Ciudad Azafrán
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: La fábrica Silph S.A. de Ciudad Azafrán ha fabricado 67.842 Poké Balls para abastecer a todas las tiendas de Kanto este trimestre.
 **Pregunta**: Redondea la cantidad de Poké Balls fabricadas (67.842) a la centena más próxima y a la unidad de millar más próxima.
 
-### Problema 4
+### Problema 4: Los huevos incubados en la Guardería de Pueblo Sosiego
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la Guardería Pokémon de Pueblo Sosiego hay 84 huevos incubándose en cunas térmicas especiales. La encargada de la guardería informa de que exactamente 1/2 de los huevos eclosionarán en Pokémon de tipo Normal y 1/4 eclosionarán en Pokémon de tipo Agua.
 **Pregunta**: ¿Cuántos huevos son de tipo Normal y cuántos huevos son de tipo Agua? ¿Cuántos huevos quedan pertenecientes a otros tipos?
 
-### Problema 5
+### Problema 5: La contraseña secreta del laboratorio del Profesor Serbal
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: ¡Alarma en el laboratorio del Profesor Serbal! Alguien ha cambiado la contraseña de la caja fuerte donde se guardan las Poké Balls de los Pokémon iniciales. El Rotom de la Pokédex solo recuerda estas cinco pistas sobre el número secreto: (1) Es un número de cinco cifras mayor que 30.000 y menor que 40.000. (2) La cifra de las unidades de millar es el doble de la cifra de las decenas de millar. (3) La cifra de las centenas vale cero. (4) La cifra de las decenas coincide con el número de la Pokédex Nacional de Charmander (n.º 4). (5) La cifra de las unidades es la mitad de la cifra de las unidades de millar.
 **Pregunta**: Descubre la contraseña cifra a cifra usando las pistas, escríbela con palabras y redondéala a la unidad de millar más próxima.
-### Problema 6
+### Problema 6: La energía de Aura de Lucario antes del combate
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Lucario está concentrando su energía espiritual antes de un combate. Su medidor de Aura indica una capacidad total de 90 unidades de energía. Durante su entrenamiento especial, Lucario gasta 2/3 de su energía total para dominar el movimiento Esfera Aural.
 **Pregunta**: ¿Cuántas unidades de energía de Aura ha consumido Lucario en el entrenamiento y cuántas unidades le quedan disponibles?
 
-### Problema 7
+### Problema 7: Inscripciones romanas de Unown en las Ruinas Sosiego
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En las Ruinas Sosiego, los misteriosos Unown se colocan formando letras y escriben números de la Pokédex Nacional en el sistema de numeración romano. En la pared aparecen tres inscripciones: CCI, CL y CDXLVIII. La arqueóloga explica que cada inscripción es el número de la Pokédex de un Pokémon famoso.
 **Pregunta**: Traduce las tres inscripciones a nuestro sistema decimal y averigua de qué Pokémon se trata sabiendo que Mewtwo es el n.º 150, Unown el n.º 201 y Lucario el n.º 448. Después, escribe con números romanos el número de Arceus (n.º 493) para completar el mural.
-### Problema 8
+### Problema 8: Comparando las barras de PS en el panel de Maya
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En el panel de combate de Maya aparecen tres barras de PS divididas en trozos de distinto tamaño: la barra de Pikachu está dividida en 4 trozos iguales y tiene 3 llenos; la de Eevee está dividida en 8 trozos y tiene 6 llenos; y la de Meowth está dividida en 12 trozos y tiene 8 llenos. Las tres barras tienen la misma longitud.
 **Pregunta**: Escribe la fracción de barra llena de cada Pokémon. ¿Qué dos barras están exactamente igual de llenas? Compara la barra de Meowth con la de Pikachu pasando ambas fracciones a doceavos y expresa la barra de Pikachu como número decimal con centésimas.
-### Problema 9
+### Problema 9: Las tartas de Baya Zidra de Eevee y Vaporeon
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En un pícnic campestre, un Eevee y su evolución Vaporeon reciben sendas tartas de Baya Zidra de idéntico tamaño. Eevee corta su tarta en 8 porciones iguales y se come 4 porciones. Vaporeon corta su tarta en 2 partes iguales y se come 1 porción.
 **Pregunta**: ¿Qué fracción de su tarta comió cada Pokémon? Demuestra matemáticamente si Eevee comió más, menos o la misma cantidad de tarta que Vaporeon comprobando si son fracciones equivalentes.
 
-### Problema 10
+### Problema 10: El peso en la báscula de Pikachu y Togepi
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la clínica del Centro Pokémon, la báscula digital registra el peso de dos pequeños Pokémon: Pikachu marca un peso exacto de 6,0 kg, mientras que el pequeño Togepi marca un peso de 1,5 kg.
 **Pregunta**: Expresa la parte decimal de cada peso en décimas. ¿Cuántas décimas de kilogramo pesa Pikachu, cuántas décimas pesa Togepi y por cuántas décimas de kilogramo supera Pikachu a Togepi?
 
-### Problema 11
+### Problema 11: Duelo de velocidad entre Jolteon y Raichu en el Pokéathlon
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la prueba de velocidad del Pokéathlon, el cronómetro electrónico de precisión registra los tiempos finales de dos velocistas eléctricos: Jolteon cruza la meta en 14,18 segundos, mientras que Raichu completa el recorrido en 14,25 segundos.
 **Pregunta**: Descompón ambos tiempos en unidades, décimas y centésimas de segundo. ¿Quién ganó la carrera por haber tardado menos tiempo y por cuántas centésimas de segundo de diferencia superó al rival?
 
-### Problema 12
+### Problema 12: Alturas de la Pokédex en el catálogo del Profesor Oak
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: El Profesor Oak está catalogando las alturas oficiales registradas en la Pokédex para cuatro Pokémon bípedos: Alakazam mide 1,52 metros; Gengar mide 1,5 metros; Machamp mide 1,6 metros; y Pinsir mide 1,48 metros.
 **Pregunta**: Iguala el número de cifras decimales añadiendo ceros a las centésimas y ordena las alturas de menor a mayor utilizando el signo menor que (<).
 
-### Problema 13
+### Problema 13: Niveles de PS en el Poké-Reloj de Maya
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: El Poké-Reloj de Maya mide el nivel de llenado de las barras de PS (Puntos de Salud) de sus Pokémon en fracciones y decimales. La barra de PS de Piplup se encuentra a 1/4 de su capacidad, la de Buneary a 0,5 de su capacidad y la de Pachirisu a 3/4 de su capacidad.
 **Pregunta**: Escribe cada una de las tres fracciones y decimales en sus dos formas equivalentes (fracción y número decimal con centésimas) e indica cuál de las tres barras de PS tiene el mayor nivel de salud.
 
-### Problema 14
+### Problema 14: El récord de pasos de Lucas en el Monte Corona
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: El contador digital de pasos de la aplicación Poké-Reloj de Lucas ha alcanzado la cifra récord de 154.320 pasos mientras exploraba el Monte Corona.
 **Pregunta**: Escribe con palabras cómo se lee el número 154.320 y descompónlo como suma de sus diferentes órdenes de unidades (centenas de millar, decenas de millar, unidades de millar, centenas y decenas).
 
-### Problema 15
+### Problema 15: Saltos de longitud de Buneary, Spoink y Lopunny
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la pista de salto de longitud de la Escuela Pokémon, la recta de salto está graduada de 0 a 2 metros con marcas en cada décima (0,1 m). Tres Pokémon registran sus saltos: Buneary salta a 0,7 metros, Spoink salta a 1,4 metros y Lopunny alcanza 1 1/2 metros (un metro y medio).
 **Pregunta**: Expresa la marca de Lopunny como número decimal con décimas y calcula cuántas décimas de metro separan el salto de Buneary del salto de Spoink, y el de Spoink del salto de Lopunny.
 
-### Problema 16
+### Problema 16: Lotes de Poké Balls en la Tienda de Ciudad Jubileo
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: La Tienda Pokémon central de Ciudad Jubileo atiende a 325 entrenadores durante la semana del Torneo Regional. Si cada uno de ellos compra un lote especial de 24 Poké Balls para sus expediciones.
 **Pregunta**: ¿Cuántas Poké Balls vende la tienda en total durante esa semana? Resuelve aplicando el algoritmo estándar de la multiplicación por dos cifras.
 
-### Problema 17
+### Problema 17: ¡Encuentra el error de James en el carguero S.S. Marea!
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: El carguero S.S. Marea transporta 1.450 cajas de Pociones y cada caja contiene 16 frascos. James, del Team Rocket, quiere calcular cuántos frascos podría robar y hace esta multiplicación en su libreta: 1.450 x 6 = 8.700; 1.450 x 1 = 1.450; 8.700 + 1.450 = 10.150 frascos. Meowth se ríe: «¡Eso está mal, James!».
 **Pregunta**: Encuentra el error que ha cometido James en el algoritmo de la multiplicación por dos cifras, explica por qué es un error y calcula el número correcto de frascos.
-### Problema 18
+### Problema 18: Los Magnemite de Lectro y la puerta del Gimnasio de Ciudad Marina
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: La puerta automática del Gimnasio de Ciudad Marina necesita al menos 3.000 vatios para abrirse. El Líder Lectro conecta 24 Magnemite al generador y cada uno aporta exactamente 135 vatios. Para calcularlo sin calculadora, Lectro dibuja el método de la cuadrícula (o del área): descompone 135 = 100 + 30 + 5 y 24 = 20 + 4.
 **Pregunta**: Completa los seis productos parciales de la cuadrícula, súmalos para obtener la potencia total de los 24 Magnemite y decide si la puerta se abre. ¿Cuántos vatios sobran o faltan respecto a los 3.000 necesarios?
-### Problema 19
+### Problema 19: Compras de Pociones y Superpociones de Ash en Ciudad Azulona
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Ash Ketchum entra en la tienda de Ciudad Azulona y compra 15 Pociones a 300 Pokécuartos cada una y 15 Superpociones a 700 Pokécuartos cada una.
 **Pregunta**: ¿Cuánto dinero gasta en total? Resuelve el cálculo de dos formas distintas aplicando la propiedad distributiva de la multiplicación respecto de la suma: a x (b + c) = (a x b) + (a x c).
 
-### Problema 20
+### Problema 20: Cosecha de Bayas Meloc en Pueblo Caelestis
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un huerto ecológico de bayas en Pueblo Caelestis cosecha 4.368 Bayas Meloc y las distribuye a partes iguales entre 6 Centros Pokémon de la región de Sinnoh.
 **Pregunta**: ¿Cuántas Bayas Meloc recibe exactamente cada Centro Pokémon? ¿Sobra alguna baya?
 
-### Problema 21
+### Problema 21: Tubos de Safari Balls en el almacén de Kanto
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En los almacenes de la Zona Safari de Kanto se han recibido 3.547 Safari Balls. Los empleados deben empaquetarlas en tubos herméticos donde caben exactamente 8 unidades por tubo.
 **Pregunta**: ¿Cuántos tubos completos de Safari Balls se pueden llenar y cuántas bolas sueltas sobran? Realiza la prueba completa de la división para comprobar el resultado.
 
-### Problema 22
+### Problema 22: Cajas de cápsulas Revivir en Devon S.A.
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: La corporación Devon S.A. ha fabricado 3.600 cápsulas de Revivir y debe enviarlas en cajas iguales. El almacén tiene tres modelos de caja: cajas de 35 cápsulas, cajas de 40 cápsulas y cajas de 45 cápsulas. El jefe exige dos condiciones: que no sobre ninguna cápsula suelta y usar el menor número de cajas posible.
 **Pregunta**: Divide 3.600 entre cada tamaño de caja (puedes suprimir ceros cuando sea posible) e indica qué modelo de caja cumple las dos condiciones y cuántas cajas se necesitan.
-### Problema 23
+### Problema 23: Paquetes de Caramelos Raros de la Profesora Encina
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: La Profesora Encina de Teselia ha reunido 1.580 Caramelos Raros para apoyar el entrenamiento inicial de los novatos. Los agrupa en paquetes de 12 unidades.
 **Pregunta**: ¿Cuántos paquetes completos de Caramelos Raros puede preparar y cuántos caramelos sueltos sobran? Realiza la prueba de la división (D = d x c + r).
 
-### Problema 24
+### Problema 24: El reparto de Poké Balls borrado por el Team Rocket
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un virus del Team Rocket ha borrado parte del ordenador de la Federación de la Liga Pokémon. Solo queda este dato del reparto de Poké Balls: «Se repartieron por igual entre los 25 estadios oficiales; cada estadio recibió 195 Poké Balls y sobraron 18 en el almacén».
 **Pregunta**: Reconstruye la división borrada: ¿cuántas Poké Balls había en total antes del reparto? Si la Federación quisiera dar 200 Poké Balls a cada estadio, ¿cuántas le faltarían?
-### Problema 25
+### Problema 25: El botiquín de Brock en el Bosque Verde
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Brock prepara el botiquín del equipo: compra 4 paquetes de Pociones con 12 frascos cada uno, y 3 paquetes de Antídotos con 8 frascos cada uno. Durante una difícil travesía por el Bosque Verde gasta 10 frascos de Poción curando a sus Pokémon de roca.
 **Pregunta**: ¿Cuántos frascos medicinales le quedan a Brock en el botiquín en total? Escribe una sola expresión matemática combinada con paréntesis y resuélvela respetando la jerarquía de las operaciones.
 
-### Problema 26
+### Problema 26: Miniaturas de Magmar en la tienda del Gimnasio Fuego
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la tienda de recuerdos del Gimnasio Fuego se ofrecen 398 miniaturas coleccionables de Magmar a un precio promocional de 19 monedas cada una.
 **Pregunta**: Primero, estima el dinero total aproximando cada factor al orden mayor (centenas y decenas más próximas). Luego, calcula el producto exacto y halla la diferencia entre la estimación y el resultado real.
 
-### Problema 27
+### Problema 27: Receta de Pokécubo energizante de Maya
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En el laboratorio de cocina culinaria Pokémon, Maya mezcla tres ingredientes para crear un Pokécubo energizante: 15,35 gramos de Baya Zidra pulverizada, 8,40 gramos de extracto de Baya Aranja y 12,25 gramos de polvo de Baya Safre.
 **Pregunta**: ¿Cuál es la masa total en gramos de la mezcla obtenida sumando las cantidades decimales?
 
-### Problema 28
+### Problema 28: El peso de Snorlax tras su hibernación en la Ruta 7
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un Snorlax dormilón pesaba exactamente 460,00 kg en la báscula de la Ruta 7 antes de iniciar su periodo de hibernación estacional. Al despertar tres meses después, la báscula marca 412,65 kg.
 **Pregunta**: ¿Cuántos kilogramos de peso corporal ha perdido Snorlax durante su hibernación?
 
-### Problema 29
+### Problema 29: Compras de Dawn en el Centro Pokémon
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Dawn dispone de un presupuesto de 50,00 € en su monedero digital. En el Centro Pokémon adquiere una Super Ball por 12,50 € y una Baya especial por 4,75 €.
 **Pregunta**: ¿Cuánto dinero ha gastado en total Dawn y cuánto saldo le queda disponible en su monedero tras las compras?
 
-### Problema 30
+### Problema 30: Botellas de Agua Fresca en el Centro Comercial de Ciudad Azulona
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la máquina de la azotea del Centro Comercial de Ciudad Azulona, una botella de Agua Fresca cuesta 2,25 € suelta, pero también se vende un pack de 6 botellas por 12,00 €. Lucas necesita exactamente 14 botellas para su equipo y puede comprar más si le sale más barato.
 **Pregunta**: Compara al menos tres formas de conseguir 14 botellas (o más). ¿Cuál es la compra más barata, cuánto cuesta y cuánto ahorra Lucas respecto a comprar las 14 botellas sueltas?
-### Problema 31
+### Problema 31: Frascos dosificadores de Éter medicinal
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un frasco dosificador de Éter medicinal contiene exactamente 0,25 litros de solución tónica para restaurar Puntos de Poder (PP).
 **Pregunta**: ¿Cuántos litros de solución contendrán 10 frascos, 100 frascos y 1.000 frascos de Éter respectivamente? Aplica la regla del desplazamiento de la coma al multiplicar decimales por potencias de diez.
 
-### Problema 32
+### Problema 32: Cuerda de rescate y cinta reflectante de los Montañeros
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En un curso de rescate de montaña, los Montañeros disponen de una cuerda elástica de 45 metros que deben cortar en 10 trozos iguales, y de una cinta reflectante de 125 centímetros que deben dividir en 100 tiras marcadoras idénticas.
 **Pregunta**: ¿Cuánto medirá cada trozo de cuerda en metros y cuánto medirá cada tira reflectante en centímetros? Expresa los resultados con números decimales aplicando la división entre 10 y 100.
 
-### Problema 33
+### Problema 33: La máquina de cálculo mental relámpago del Gimnasio
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la Escuela de Entrenadores, el Líder de Gimnasio propone una «máquina de cálculo mental relámpago». Se empieza con 250, que son los PS base de Chansey, y se aplican en orden estas cinco órdenes: (1) calcula el doble; (2) multiplica por 5 usando el truco «x10 y mitad»; (3) divide entre 100 quitando dos ceros; (4) suma 255, que son los PS base de Blissey; (5) calcula la mitad.
 **Pregunta**: Recorre la máquina paso a paso explicando la estrategia de cálculo mental de cada orden. ¿Qué número sale al final?
-### Problema 34
+### Problema 34: Las tres Pociones curativas de Lucas
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Lucas acude al mostrador del Centro Pokémon para comprar 3 Pociones curativas que valen 3,15 € cada una. Para abonar la compra, entrega a la cajera un billete de 20,00 €.
 **Pregunta**: ¿Cuánto importan en total las 3 Pociones y cuánto dinero exacto debe recibir Lucas de cambio?
 
-### Problema 35
+### Problema 35: Reparto de medallas de bronce en la Liga de Johto
 - **Subcategoría**: Subcategoría 2: Operaciones Aritméticas y Cálculo Mental
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: La directiva de la Liga de Johto dispone de 1.745 medallas de gimnasio de bronce para abastecer a 14 academias afiliadas de la región de manera equitativa.
 **Pregunta**: ¿Cuántas medallas recibe cada academia y cuántas medallas de reserva quedan en la sede central? Realiza la comprobación de la división inexacta.
 
-### Problema 36
+### Problema 36: La longitud corporal de Steelix en la Pokédex de Sinnoh
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: En los registros biométricos de la Pokédex de Sinnoh, un Steelix de roca y acero mide exactamente 9,2 metros de longitud corporal de la cabeza a la punta de la cola.
 **Pregunta**: ¿Cuál es la longitud de Steelix expresada en centímetros y cuál es su longitud expresada en milímetros? Muestra los factores de conversión de unidades del Sistema Métrico Decimal.
 
-### Problema 37
+### Problema 37: Tres rutas en bicicleta hacia Ciudad Vetusta
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: Para ir de Pueblo Arena a Ciudad Vetusta en bicicleta, el mapa de Sinnoh ofrece tres caminos: el Camino A por el viaducto de la Ruta 206 mide 4,75 km; el Camino B por la ladera del Monte Corona mide 3 km y 900 m; y el Camino C por la Cueva Extravío tiene dos tramos de 4.080 m y 650 m.
 **Pregunta**: Expresa los tres caminos en metros, ordénalos de más corto a más largo y calcula cuántos metros se ahorra un ciclista que elige el más corto en lugar del más largo.
-### Problema 38
+### Problema 38: La jornada de marcha por la Ruta 11 de Kanto
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: Durante una excursión de exploración por la Ruta 11 de Kanto, Ash y Pikachu caminan 2 kilómetros y 450 metros durante la mañana. Por la tarde, recorren 1.800 metros adicionales para llegar al refugio.
 **Pregunta**: ¿Cuántos metros recorrieron en total durante toda la jornada? Expresa también el resultado final en kilómetros utilizando un número decimal.
 
-### Problema 39
+### Problema 39: El ascensor de carga de la Torre Prisma para Brock
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: El ascensor de carga de la Torre Prisma soporta como máximo 500 kg. Brock quiere subir a la vez el mayor peso posible de Pokémon de tipo Roca para una exhibición, sin pasarse del límite y sin repetir ninguno. Sus candidatos y su peso oficial en la Pokédex son: Golem (300 kg), Onix (210 kg), Rhyhorn (115 kg), Graveler (105 kg) y Geodude (20 kg).
 **Pregunta**: ¿Qué grupo de Pokémon debe subir Brock para acercarse lo máximo posible a 500 kg sin superarlos? ¿Cuántos kilogramos sobran de capacidad? Expresa esa capacidad sobrante también en gramos.
-### Problema 40
+### Problema 40: La capacidad de la mochila de montaña de Lucas
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: La mochila ergonómica de montaña de Lucas tiene una capacidad máxima de carga autorizada de 8 kilogramos. Lucas ya ha guardado su tienda de campaña, herramientas y raciones, sumando un peso total de 5.350 gramos.
 **Pregunta**: ¿Cuántos gramos de capacidad libre le quedan en la mochila para llevar pociones y bayas? Expresa el resultado libre también en kilogramos con decimales.
 
-### Problema 41
+### Problema 41: El acertijo de las jarras de Agua Mística de la Enfermera Joy
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: La Enfermera Joy necesita exactamente 4 litros de Agua Mística para preparar un baño curativo, pero solo tiene una jarra de 5 litros, una jarra de 3 litros (ninguna tiene marcas intermedias) y un grifo. Puede llenar una jarra entera, vaciarla o trasvasar agua de una jarra a otra hasta que una se vacíe o la otra se llene.
 **Pregunta**: Describe una secuencia de pasos para conseguir exactamente 4 litros en la jarra grande. ¿Cuál es el menor número de pasos que has encontrado? ¿A cuántos mililitros equivalen los 4 litros?
-### Problema 42
+### Problema 42: El consumo de agua de Squirtle, Wartortle y Blastoise
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: En una jornada calurosa de verano, tres Pokémon acuáticos beben agua de un estanque: Squirtle bebe 1/2 litro, Wartortle bebe 3/4 de litro y el gigantesco Blastoise bebe 2 litros y cuarto (2 1/4 litros).
 **Pregunta**: ¿Cuántos mililitros bebe cada uno de los tres Pokémon y cuántos litros y mililitros de agua beben en total entre los tres?
 
-### Problema 43
+### Problema 43: El horario de entrenamiento de Machamp en el Dojo
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: El Machamp del Dojo de Kanto organiza la sesión de entrenamiento del sábado. Empieza a las 15:50 y tiene este horario por bloques, uno detrás de otro: calentamiento de 25 minutos, pausa de 10 minutos, combate de práctica de 1 hora y 20 minutos, pausa de 10 minutos y estiramientos de 35 minutos.
 **Pregunta**: Dibuja una línea del tiempo con la hora de inicio de cada bloque. ¿Cuántos minutos dura la sesión completa, cuántas horas y minutos son, y a qué hora termina?
-### Problema 44
+### Problema 44: Las tres etapas de vuelo de un Charizard mensajero
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: Un Charizard mensajero efectúa un vuelo de reparto interurbano dividido en tres etapas: la primera etapa dura 45 minutos, la segunda dura 50 minutos y la tercera etapa dura 35 minutos.
 **Pregunta**: ¿Cuántos minutos vuela Charizard en total? Expresa el tiempo total en horas y minutos simplificados.
 
-### Problema 45
+### Problema 45: El viaje del Magnetotrén de Ciudad Azafrán a Ciudad Trigal
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: El tren de alta velocidad Magnetotrén parte puntual de la estación central de Ciudad Azafrán a las 09:35 de la mañana con destino a Ciudad Trigal. La duración programada del viaje es de 1 hora y 45 minutos.
 **Pregunta**: ¿A qué hora exacta llegará el Magnetotrén a los andenes de Ciudad Trigal?
 
-### Problema 46
+### Problema 46: Duración del combate contra la Líder Gardenia
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: La gran final del Torneo de Gimnasio entre el retador y la Líder Gardenia en Ciudad Vetusta comienza oficialmente a las 16:48 de la tarde y concluye con la victoria final a las 17:23 de la tarde.
 **Pregunta**: ¿Cuántos minutos duró el combate de gimnasio y a cuántos segundos equivale ese tiempo transcurrido?
 
-### Problema 47
+### Problema 47: Las compras de Cintia en Ciudad Rocavelo
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: En los grandes almacenes de Ciudad Rocavelo, Cintia compra 2 Poké Balls a 2,00 € cada una, 3 Antídotos a 1,50 € cada uno y 1 Cuerda Huida reforzada por 5,50 €. Para pagar la compra, entrega al dependiente un billete de 20,00 €.
 **Pregunta**: ¿Cuál es el importe total de la compra y cuánto dinero exacto debe recibir Cintia de cambio?
 
-### Problema 48
+### Problema 48: El cambio exacto en el cajero del Centro Pokémon
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: Tras comprar provisiones en la tienda del Centro Pokémon, el cajero automático debe devolver a un entrenador la cantidad exacta de 8,65 € en efectivo.
 **Pregunta**: ¿Cuál es la combinación que utiliza el menor número posible de billetes de curso legal (5 €) y monedas (2 €, 1 €, 50 céntimos, 20 céntimos, 10 céntimos, 5 céntimos) para entregar los 8,65 € exactos? Detalla cada pieza.
 
-### Problema 49
+### Problema 49: La carrera de velocidad de Dodrio por la Ruta 17
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: Un Dodrio corre a una velocidad constante y uniforme de 60 kilómetros por hora (km/h) a lo largo de las llanuras abiertas de la Ruta 17.
 **Pregunta**: ¿Cuántos kilómetros recorrerá Dodrio si mantiene esa misma velocidad de carrera durante 3 horas y media (3,5 horas)?
 
-### Problema 50
+### Problema 50: Los depósitos de agua de los cañones de Blastoise
 - **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
 - **Sentido LOMLOE**: Sentido de la Medida
 - **Contexto Pokémon**: Sabiendo que 1 litro de Agua Fresca pura tiene una masa exacta de 1 kilogramo (1 l = 1 kg), un Blastoise está equipado con dos depósitos de cañón cilíndricos. Cada depósito vacío de aleación pesa 12,5 kg y tiene una capacidad interior de 15 litros.
 **Pregunta**: Si ambos depósitos se llenan completamente de agua al máximo de su capacidad, ¿cuál es la masa total combinada en kilogramos de los dos cañones con el agua incluida?
 
-### Problema 51
+### Problema 51: Ángulos de ataque de Venusaur, Hoothoot y Scyther
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: En la arena de entrenamiento del Gimnasio de Ciudad Canal, los entrenadores observan la apertura angular de tres técnicas Pokémon: el rayo solar de Venusaur se emite en línea recta rasante de 180°, la guardia defensiva de Hoothoot forma una esquina perfecta de 90°, y el corte veloz de Scyther abre sus cuchillas en un ángulo de 45°.
 **Pregunta**: Clasifica cada uno de los tres ángulos (45°, 90° y 180°) según su tipología geométrica (agudo, recto, obtuso, llano o completo).
 
-### Problema 52
+### Problema 52: Giros en vuelo de un Pidgeot de vigilancia aérea
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: Un Pidgeot de vigilancia aérea vuela orientado inicialmente hacia el Norte (0°). El radar detecta una ráfaga y Pidgeot gira en el sentido de las agujas del reloj un ángulo recto de 90° hacia el Este, y a continuación gira 45° más en el mismo sentido.
 **Pregunta**: ¿Cuántos grados ha girado en total Pidgeot desde su orientación inicial y qué tipo de ángulo representa ese giro acumulado respecto al Norte?
 
-### Problema 53
+### Problema 53: Los cuadrados en el suelo del Gimnasio de Ciudad Pirita
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: El suelo de la pista del Gimnasio de Ciudad Pirita es un gran cuadrado formado por 3 filas de 3 baldosas cuadradas iguales (9 baldosas en total). Roco, el Líder, reta a los visitantes: «Quien adivine cuántos cuadrados hay en el suelo, contando todos los tamaños, podrá enfrentarse a mí».
 **Pregunta**: ¿Cuántos cuadrados de cualquier tamaño (1 x 1, 2 x 2 y 3 x 3 baldosas) se pueden ver en la pista? ¿Cuántos ángulos rectos tiene cada cuadrado y cuánto suman sus ángulos interiores?
-### Problema 54
+### Problema 54: Simetría en las alas de un Butterfree
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: Un entomólogo Pokémon estudia las alas extendidas de un Butterfree posado en una flor y comprueba que posee simetría axial bilateral respecto a la línea central longitudinal de su cuerpo. En el ala izquierda tiene 3 manchas a distancias de 4 cm, 8 cm y 12 cm de la línea central.
 **Pregunta**: ¿A qué distancias de la línea central deben situarse las correspondientes manchas del ala derecha para mantener la simetría axial perfecta? Explica la propiedad fundamental del eje de simetría.
 
-### Problema 55
+### Problema 55: Ejes de simetría de las insignias de la Academia
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: En la vitrina de trofeos de la Academia Pokémon se exponen tres insignias poligonales regulares: una insignia con forma de triángulo equilátero, otra con forma de cuadrado y una tercera con forma de hexágono regular.
 **Pregunta**: ¿Cuántos ejes de simetría tiene cada una de las tres insignias poligonales regulares?
 
-### Problema 56
+### Problema 56: El nuevo tatami rectangular del Dojo Karateca
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: El maestro del Dojo Karateca tiene exactamente 60 metros de cinta para marcar el borde de un nuevo tatami rectangular. Quiere que los lados midan un número entero de metros, que el largo esté entre 15 y 20 metros (ambos incluidos) y que el largo nunca sea menor que el ancho.
 **Pregunta**: Este problema tiene varias soluciones: haz una tabla con todos los rectángulos posibles (largo, ancho y área). ¿Cuántas opciones hay y cuál de ellas da la mayor superficie para combatir?
-### Problema 57
+### Problema 57: El corral pentagonal de Mareep y Flaaffy en la Granja Mu-mu
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: El corral al aire libre donde pastan los Mareep y Flaaffy en la Granja Mu-mu tiene forma de pentágono irregular con cinco lados rectos que miden: 15 metros, 22 metros, 18 metros, 25 metros y 30 metros.
 **Pregunta**: ¿Cuántos metros lineales de valla protectora de madera se necesitan para cercar por completo el corral de los Mareep?
 
-### Problema 58
+### Problema 58: El plano cuadriculado del refugio del Team Galactic
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: El plano arquitectónico del refugio subterráneo del Team Galactic está trazado sobre una cuadrícula donde cada cuadrícula elemental representa una baldosa de 1 metro cuadrado (1 m²). La sala central de control ocupa un rectángulo de 8 baldosas de largo por 6 baldosas de ancho.
 **Pregunta**: ¿Cuál es el área total de la sala de control en metros cuadrados por recubrimiento de cuadrícula?
 
-### Problema 59
+### Problema 59: La piscina de Vaporeon y Buizel con su pasillo exterior
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: La piscina de entrenamiento de Vaporeon y Buizel en Ciudad Pradera es un rectángulo de 25 metros de largo por 14 metros de ancho. Alrededor de toda la piscina se va a construir un pasillo antideslizante de 2 metros de anchura, de manera que piscina y pasillo juntos forman un rectángulo más grande.
 **Pregunta**: Calcula el área de la superficie de agua, las medidas y el área del rectángulo grande (piscina + pasillo) y el área que ocupa solo el pasillo.
-### Problema 60
+### Problema 60: La plataforma de calibración de Poké Balls del Profesor Serbal
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: La plataforma de calibración de Poké Balls del laboratorio del Profesor Serbal es un cuadrado perfecto. Un Rapidash da una vuelta completa a su borde y recorre exactamente 64 metros. El profesor quiere cubrir la plataforma con baldosas cuadradas de 2 metros de lado.
 **Pregunta**: ¿Cuánto mide cada lado de la plataforma? ¿Cuál es su área? ¿Cuántas baldosas de 2 m x 2 m se necesitan para cubrirla entera?
-### Problema 61
+### Problema 61: Dos parcelas rectangulares en la huerta de bayas
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: En la huerta de cultivo de bayas, dos parcelas rectangulares diferentes están rodeadas por cercados: la Parcela A mide 10 metros de largo por 4 metros de ancho; la Parcela B mide 8 metros de largo por 6 metros de ancho.
 **Pregunta**: Calcula el perímetro y el área de cada una de las dos parcelas. ¿Tienen el mismo perímetro? ¿Cuál de las dos parcelas ofrece una mayor superficie de cultivo?
 
-### Problema 62
+### Problema 62: La zona de descanso en forma de L del Centro Pokémon
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: La zona de descanso del Centro Pokémon tiene forma de polígono en 'L', compuesta por dos rectángulos unidos sin solaparse: el Rectángulo 1 mide 6 metros de largo por 4 metros de ancho, y el Rectángulo 2 mide 4 metros de largo por 3 metros de ancho.
 **Pregunta**: ¿Cuál es el área total en metros cuadrados de la zona de descanso?
 
-### Problema 63
+### Problema 63: La arqueta de piedra de las Ruinas Alfa de Johto
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: En una expedición arqueológica a las Ruinas Alfa de Johto, un investigador descubre una antigua arqueta de piedra tallada con forma de prisma rectangular (ortoedro) que contenía tablas sagradas.
 **Pregunta**: ¿Cuántas caras, cuántos vértices y cuántas aristas tiene el prisma rectangular? Comprueba si se cumple la relación de Euler: Caras + Vértices = Aristas + 2.
 
-### Problema 64
+### Problema 64: Coordenadas de exploración en la caverna del Monte Corona
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: El mapa de la caverna subterránea de Monte Corona está cuadriculado con coordenadas numéricas cartesianas (eje horizontal X y eje vertical Y). El equipo explorador se encuentra en la posición (2, 3), un cofre con una Máquina Técnica (MT) está en (2, 8) y la salida hacia la cumbre se sitúa en (7, 8).
 **Pregunta**: ¿Cuántas unidades en línea recta vertical separan al equipo del cofre, y cuántas unidades en línea recta horizontal separan el cofre de la salida a la cumbre? ¿Cuántas unidades de desplazamiento total deben recorrer en esa ruta?
 
-### Problema 65
+### Problema 65: Traslaciones de Staryu en la cuadrícula marina
 - **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
 - **Sentido LOMLOE**: Sentido Espacial
 - **Contexto Pokémon**: Un Staryu acuático entrena en una cuadrícula marina desplazándose mediante traslaciones. Comienza en el punto de coordenadas (3, 2). En su primer movimiento, se traslada 5 cuadrículas hacia el Este (+5 en X). En su segundo movimiento, se traslada 6 cuadrículas hacia el Norte (+6 en Y).
 **Pregunta**: ¿Cuáles son las coordenadas de la posición intermedia tras el primer movimiento y cuáles son las coordenadas de su posición final en el plano cuadriculado?
 
-### Problema 66
+### Problema 66: El entrenamiento de amistad de Riolu día a día
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Riolu se ejercita diariamente para evolucionar en Lucario mediante el vínculo de amistad. Cada día de entrenamiento riguroso gana exactamente 12 puntos de afinidad adicionales según la siguiente secuencia: Día 1: 15 puntos; Día 2: 27 puntos; Día 3: 39 puntos; Día 4: 51 puntos...
 **Pregunta**: Identifica la regla del patrón aritmético y calcula cuántos puntos de afinidad acumulará Riolu en el Día 5, el Día 6 y el Día 7 de su plan de entrenamiento.
 
-### Problema 67
+### Problema 67: Pasos en el podómetro del Parque de la Concordia
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Un entrenador prueba una nueva pista circular en el Parque de la Concordia. Su podómetro registra los pasos acumulados tras cada vuelta completa: Vuelta 1: 30 pasos; Vuelta 2: 54 pasos; Vuelta 3: 78 pasos; Vuelta 4: 102 pasos...
 **Pregunta**: ¿Cuál es la regla del patrón de pasos por vuelta? ¿Cuántos pasos totales habrá registrado el podómetro al finalizar la Vuelta 6?
 
-### Problema 68
+### Problema 68: Consumo de memoria del simulador de Porygon
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Un programa simulador desarrollado por Silph S.A. para analizar los datos de Porygon duplica la memoria de procesamiento utilizada cada hora: Hora 1: 12 megabytes (MB); Hora 2: 24 MB; Hora 3: 48 MB; Hora 4: 96 MB...
 **Pregunta**: ¿Qué tipo de patrón sigue la secuencia y cuántos megabytes de memoria consumirá el programa en la Hora 6?
 
-### Problema 69
+### Problema 69: Los PS del muñeco Sustituto bajo el Rayo de Pikachu
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Un muñeco Sustituto de entrenamiento en el gimnasio comienza con una salud máxima de 250 PS (Puntos de Salud). Por cada impacto certero del ataque Rayo de Pikachu, los PS del muñeco disminuyen en 15 puntos fijos.
 **Pregunta**: Escribe la secuencia de PS tras los primeros 4 impactos y calcula cuántos PS le quedarán al muñeco Sustituto después de recibir exactamente 8 impactos seguidos.
 
-### Problema 70
+### Problema 70: El algoritmo táctico de combate de Alakazam
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Un entrenador programa un chip táctico para Alakazam con el siguiente algoritmo condicional de combate:
@@ -411,7 +411,7 @@ INICIO
 FIN
 **Pregunta**: Si en el turno actual Alakazam tiene exactamente 38 PS, ¿qué acción ejecuta el algoritmo según la condición evaluada y cuántos PS tendrá Alakazam inmediatamente después de realizar su acción?
 
-### Problema 71
+### Problema 71: El bucle de Fuerza de Machop frente a la puerta de piedra
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Para desbloquear una puerta de piedra que requiere desplazar una roca pesada 24 metros en línea recta mediante la técnica Fuerza, un Machop ejecuta el siguiente bucle de repetición:
@@ -421,33 +421,33 @@ REPETIR 4 VECES:
 FIN BUCLE
 **Pregunta**: Comprueba matemáticamente si al finalizar las 4 repeticiones del bucle la roca alcanza exactamente los 24 metros requeridos y calcula el tiempo total en segundos dedicado exclusivamente a descansar durante la ejecución del bucle.
 
-### Problema 72
+### Problema 72: Valores secretos en la máquina de pegatinas Pokémon
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: En la máquina de pegatinas del Centro Pokémon, cada Pokémon tiene un valor secreto en puntos. La pantalla muestra estas tres igualdades: Pikachu + Pikachu + Pikachu = 75; Pikachu + Eevee = 43; Eevee + Snorlax + Snorlax = 78.
 **Pregunta**: Averigua el valor secreto de cada Pokémon resolviendo las igualdades en el orden adecuado y calcula cuánto vale Pikachu + Eevee + Snorlax.
-### Problema 73
+### Problema 73: El truco de lectura mental de Kadabra con Cintia y Barry
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Kadabra presume de leer la mente. Le dice a Cintia: «Piensa un número. Multiplícalo por 3. Súmale 12. Divide el resultado entre 3. Por último, réstale el número que pensaste. ¡Ya sé tu resultado: es 4!». Cintia lo prueba con el 7 y Barry con el 25.
 **Pregunta**: Haz el truco con los números 7 y 25 escribiendo cada paso. ¿Sale siempre 4? Explica con operaciones inversas por qué el truco funciona con cualquier número.
-### Problema 74
+### Problema 74: Los Pokécuartos de Cintia al final de la jornada
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: Al final del día, Cintia tiene 280 Pokécuartos en su monedero. Recuerda lo que hizo durante la jornada, en este orden: primero ganó 500 Pokécuartos en un combate; después se gastó la mitad de todo lo que tenía en una MT; y por último compró 3 Pociones a 300 Pokécuartos cada una.
 **Pregunta**: Trabajando hacia atrás con las operaciones inversas, averigua cuántos Pokécuartos tenía Cintia al empezar el día. Comprueba tu respuesta haciendo el camino hacia delante.
-### Problema 75
+### Problema 75: Puntos de Batalla en la Torre Batalla de Sinnoh
 - **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
 - **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
 - **Contexto Pokémon**: En la Torre Batalla de Sinnoh, el sistema otorga Puntos de Batalla (PB) según la siguiente función de entrada y salida: cada victoria en combate otorga 3 PB, sumados a un bono fijo inicial de bienvenida de 5 PB (Fórmula: Puntos = 3 x Victorias + 5).
 **Pregunta**: Calcula los Puntos de Batalla correspondientes a 1, 2, 4 y 10 victorias, y averigua cuántos Puntos de Batalla acumulará un entrenador veterano que consiga una racha impecable de 15 victorias consecutivas.
 
-### Problema 76
+### Problema 76: El pictograma de capturas en la Ruta 201
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: Los guardaparques de la Ruta 201 han hecho un pictograma de las capturas de la semana. Clave: ● = 10 capturas y ◐ = 5 capturas. Starly: ● ● ◐. Bidoof: ● ● ● ●. Kricketot: ● ◐. Shinx: ● ● ●. Abra: ◐.
 **Pregunta**: Traduce el pictograma a números y calcula el total de capturas. ¿Cuántas veces más capturas tiene Bidoof que Abra? Si la semana siguiente se capturan 55 Budew, ¿cuántos símbolos de cada tipo habría que dibujar?
-### Problema 77
+### Problema 77: Avistamientos diurnos y nocturnos en el Bosque Vetusto
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: Un estudio ecológico en el Bosque Vetusto compara el número de avistamientos de 4 especies durante el Día y durante la Noche mediante un gráfico de barras dobles:
@@ -457,7 +457,7 @@ FIN BUCLE
 - Murkrow: 6 de día / 24 de noche.
 **Pregunta**: ¿Cuántos avistamientos nocturnos se produjeron en total en el bosque? ¿Qué especie presenta la mayor diferencia absoluta entre sus avistamientos diurnos y nocturnos?
 
-### Problema 78
+### Problema 78: Puntuaciones del Equipo Rojo y Equipo Azul en el Pokéathlon
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: En la final del Pokéathlon, el panel electrónico muestra un gráfico de barras dobles con los puntos cosechados por el Equipo Rojo y el Equipo Azul en cuatro disciplinas:
@@ -467,18 +467,18 @@ FIN BUCLE
 - Resistencia en Nieve: Rojo 70 puntos / Azul 60 puntos.
 **Pregunta**: ¿Cuál es la puntuación acumulada final de cada equipo y qué equipo se proclama campeón del torneo por tener el mayor puntaje total?
 
-### Problema 79
+### Problema 79: Votación del Pokémon inicial favorito en Pueblo Hojaverde
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: En la Escuela de Entrenadores de Pueblo Hojaverde, 24 alumnos votan su Pokémon inicial favorito y la profesora apunta los votos con marcas de recuento: Chimchar (Fuego): |||| |||| ||; Piplup (Agua): |||| |||; Turtwig (Planta): ||||.
 **Pregunta**: Construye la tabla de frecuencias, comprueba que suman 24 e indica la moda. ¿Qué fracción de la clase eligió cada inicial? Simplifica las fracciones.
-### Problema 80
+### Problema 80: El nivel medio del equipo del Entrenador Guay
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: El equipo principal que acompaña a un Entrenador Guay en su desafío a la Liga está compuesto por cinco Pokémon con los siguientes niveles de combate: Pikachu (Nivel 42), Bulbasaur (Nivel 38), Charizard (Nivel 45), Squirtle (Nivel 37) y Snorlax (Nivel 43).
 **Pregunta**: ¿Cuál es el nivel medio (media aritmética) del equipo de cinco Pokémon? Muestra el procedimiento de la suma total y la división entre el número de integrantes.
 
-### Problema 81
+### Problema 81: El baúl de premios opaco del Profesor Serbal
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: En un baúl de premios opaco del Profesor Serbal se han depositado 10 Poké Balls rojas y 5 Super Balls azules. No hay ningún otro objeto dentro del baúl. Un entrenador introduce la mano sin mirar para extraer un objeto al azar.
@@ -487,7 +487,7 @@ FIN BUCLE
 2. Suceso B: Sacar una Master Ball violeta.
 3. Suceso C: Sacar una Super Ball azul.
 
-### Problema 82
+### Problema 82: La bolsa de bayas de Munchlax
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: Una bolsa de tela contiene 12 Bayas Meloc (color rosa), 12 Bayas Safre (color verde) y 4 Bayas Zidra (color amarillo). Un Munchlax hambriento mete la garra y saca una baya al azar sin mirar.
@@ -496,104 +496,104 @@ FIN BUCLE
 2. Sacar una Baya Zidra respecto a sacar una Baya Safre.
 3. Sacar una Baya Meloc respecto a sacar una Baya Safre.
 
-### Problema 83
+### Problema 83: La ruleta de premios de la feria de Ciudad Rocavelo
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: En la feria de Ciudad Rocavelo hay una ruleta de premios dividida en 8 sectores circulares idénticos e iguales: 4 sectores conceden una Baya, 2 sectores conceden una Poción, 1 sector concede una Máquina Técnica (MT) y 1 sector concede una Piedra Trueno.
 **Pregunta**: ¿Cuál es la probabilidad fraccionaria elemental (casos favorables / casos posibles) de obtener cada uno de los cuatro premios al girar la ruleta una vez? ¿Qué premio tiene la mayor probabilidad y cuál es su fracción simplificada?
 
-### Problema 84
+### Problema 84: El dado del árbitro entre Lucario y Garchomp
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: Para decidir de forma neutral qué Pokémon inicia el combate de exhibición, el árbitro lanza un dado cúbico equilibrado de 6 caras numeradas del 1 al 6. Si sale un número par (2, 4 o 6), atacará primero Lucario. Si sale un número impar (1, 3 o 5), atacará primero Garchomp.
 **Pregunta**: ¿Cuántos casos posibles tiene el dado? ¿Cuántos casos favorables tiene Lucario y cuántos Garchomp? Expresa la probabilidad de cada uno en forma de fracción y razona si se trata de un juego equitativo y justo.
 
-### Problema 85
+### Problema 85: Registro médico de la Enfermera Joy en tabla doble
 - **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
 - **Sentido LOMLOE**: Sentido Estocástico
 - **Contexto Pokémon**: La Enfermera Joy registra en una tabla médica a 50 Pokémon examinados hoy: 30 de ellos son machos y 20 son hembras. El informe revela que exactamente 25 de los 50 Pokémon están completamente sanos, y entre los Pokémon que presentan problemas de estado hay 15 machos y 10 hembras.
 **Pregunta**: ¿Cuántos machos están completamente sanos y cuántas hembras están completamente sanas? Construye la tabla de doble entrada para responder.
 
-### Problema 86
+### Problema 86: La barra de experiencia de Lucario rumbo al Nivel 35
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Lucario está entrenando intensamente para alcanzar el Nivel 35, lo que requiere un total de 3.600 Puntos de Experiencia (EXP) en este intervalo de nivel. Su entrenador observa en la pantalla del Poké-Reloj que la barra gráfica de experiencia se encuentra exactamente llena hasta los 3/4 de su capacidad.
 **Pregunta**: ¿Cuántos Puntos de Experiencia (EXP) lleva acumulados Lucario y cuántos puntos le faltan exactamente para llenar la barra y subir al siguiente nivel?
 
-### Problema 87
+### Problema 87: Duelo de progreso en la Torre Perdida: Gengar y Haunter
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la Torre Perdida, un Gengar y un Haunter entrenan juntos. La barra de experiencia de Gengar necesita 4.500 Puntos de Experiencia (EXP) para subir de nivel y está llena en 2/3. La barra de Haunter necesita 3.000 EXP para subir de nivel y está llena en 4/5. Cada combate contra un entrenador de la torre les da 250 EXP a cada uno.
 **Pregunta**: ¿Cuántos EXP le faltan a cada uno para subir de nivel? ¿Cuántos combates necesita como mínimo cada uno (cuidado con el resto)? ¿Quién sube de nivel antes?
-### Problema 88
+### Problema 88: La tarde de combates de Torterra
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: La barra de experiencia de Torterra necesita 6.000 EXP para subir de nivel y está llena en 7/10. Esta tarde libra cuatro combates: dos contra Bidoof salvajes que dan 180 EXP cada uno, y dos contra Pokémon de entrenador cuya base salvaje es de 220 EXP, a la que se aplica el multiplicador de entrenador de 1,5x.
 **Pregunta**: Escribe el «ticket de combate» de la tarde: EXP de cada combate y total ganado. ¿Consigue Torterra subir de nivel? ¿Cuántos EXP le faltan aún o le sobran?
-### Problema 89
+### Problema 89: Bonificación de entrenador frente al Geodude de un Montañero
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En la mecánica oficial de combate Pokémon, vencer a un Pokémon perteneciente a un entrenador rival otorga un multiplicador de bonificación de 1,5x respecto a los puntos que otorgaría esa misma especie en estado salvaje (EXP_entrenador = EXP_salvaje x 1,5). Derrotar a un Geodude salvaje otorga 160 EXP.
 **Pregunta**: ¿Cuántos Puntos de Experiencia (EXP) obtendrá un Pokémon al derrotar al Geodude de un Montañero en un combate oficial de entrenadores?
 
-### Problema 90
+### Problema 90: El desafío triple del Entrenador Guay en la Ruta 214
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Durante el desafío de la Ruta 214, un Entrenador Guay desafía al protagonista con tres Pokémon seguidos. En estado salvaje, esos Pokémon otorgarían 120 EXP, 180 EXP y 240 EXP respectivamente. Por tratarse de un combate de entrenador, cada premio se multiplica por el factor reglamentario de 1,5x.
 **Pregunta**: ¿Cuánta experiencia rinde cada uno de los tres combates con el multiplicador 1,5x y cuántos Puntos de Experiencia (EXP) totales se ganan al vencer a los tres integrantes del equipo rival?
 
-### Problema 91
+### Problema 91: Batalla Doble de Pikachu y Monferno contra Steelix
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: En una Batalla Doble coordinada, Pikachu y Monferno luchan juntos y derrotan a un imponente Steelix, obteniendo un premio conjunto de 1.575 Puntos de Experiencia (EXP). Según las reglas de la Liga, los puntos enteros se reparten a partes iguales mediante división entera y el resto indivisible queda en la reserva.
 **Pregunta**: ¿Cuántos Puntos de Experiencia (EXP) enteros recibe cada uno de los dos Pokémon y cuántos puntos quedan de resto?
 
-### Problema 92
+### Problema 92: Victoria de Staravia, Buizel y Chimchar frente a Drapion
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Staravia, Buizel y Chimchar, del equipo de Ash, derrotan entre los tres a un Drapion salvaje en el Pantano Pastoria y ganan 2.845 Puntos de Experiencia (EXP). La regla del equipo es: se reparte a partes iguales y el resto se lo lleva el Pokémon que dio el golpe final, que fue Buizel. Staravia necesita 950 EXP para subir de nivel.
 **Pregunta**: ¿Cuántos EXP recibe cada Pokémon según la regla? ¿Consigue Staravia subir de nivel? Si no lo consigue, ¿cuántos EXP le faltan?
-### Problema 93
+### Problema 93: Reparto de experiencia frente a Gyarados en el Lago Valor
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un Gyarados enfurecido del Lago Valor es derrotado y otorga 3.450 Puntos de Experiencia (EXP), que se reparten a partes iguales entre los Pokémon que participan; el resto se pierde. El equipo de rescate duda entre luchar con 4 Pokémon o llamar a un quinto compañero.
 **Pregunta**: Calcula cuántos EXP recibe cada Pokémon y cuántos se pierden con 4 participantes y con 5 participantes. ¿Con cuántos participantes no se pierde ningún punto? ¿Cuántos EXP menos recibe cada Pokémon al añadir al quinto?
-### Problema 94
+### Problema 94: El Repartir Experiencia tras una incursión legendaria
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Tras una incursión contra un Pokémon Legendario, el dispositivo Repartir Experiencia distribuye 4.930 Puntos de Experiencia (EXP) entre los 6 miembros del equipo con una regla especial: el Pokémon que combatió recibe el doble de EXP que cada uno de los otros 5, que reciben todos lo mismo. Lo que no se pueda repartir en partes enteras sobra.
 **Pregunta**: Piensa en «partes iguales»: ¿en cuántas partes hay que dividir los 4.930 EXP? ¿Cuántos EXP recibe el Pokémon que combatió, cuántos recibe cada uno de los otros 5 y cuántos sobran? Comprueba el resultado.
-### Problema 95
+### Problema 95: El entrenamiento de Luxio en la Ruta 222 rumbo a Luxray
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un Luxio necesita acumular exactamente 1.440 Puntos de Experiencia (EXP) adicionales para alcanzar el Nivel 30 y evolucionar en Luxray. En la Ruta 222, cada Floatzel salvaje derrotado por Luxio otorga exactamente 180 EXP.
 **Pregunta**: ¿Cuántos combates exactos contra Floatzel debe vencer Luxio para alcanzar los 1.440 EXP requeridos?
 
-### Problema 96
+### Problema 96: Roselia entrena en Ciudad Marina para aprender Danza Pétalo
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un Roselia necesita ganar 1.250 Puntos de Experiencia (EXP) para aprender el movimiento Danza Pétalo. Entrenando en la costa marina de Ciudad Marina se enfrenta a varios Tentacool salvajes, cada uno de los cuales rinde 140 EXP.
 **Pregunta**: ¿Cuántos combates completos contra Tentacool debe vencer Roselia como mínimo para alcanzar o sobrepasar los 1.250 EXP? Explica por qué es necesario redondear el cociente al número entero superior debido al resto.
 
-### Problema 97
+### Problema 97: Gabite entrena en combates de Gimnasio hacia el Nivel 40
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Un Gabite necesita exactamente 2.160 Puntos de Experiencia (EXP) para subir al Nivel 40. Su entrenadora lo entrena en combates de Gimnasio contra entrenadores cuyos Pokémon otorgan una base salvaje de 240 EXP, a la cual se aplica el multiplicador reglamentario de 1,5x por ser combate de entrenador.
 **Pregunta**: ¿Cuánta experiencia (EXP) otorga cada combate de Gimnasio con el multiplicador aplicado y cuántos combates completos necesita ganar Gabite para alcanzar los 2.160 EXP necesarios?
 
-### Problema 98
+### Problema 98: La experiencia de Eevee entre el Nivel 10 y el Nivel 11
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Según la tabla oficial de crecimiento Medio Rápido (donde la experiencia requerida para alcanzar el nivel n es igual al cubo del nivel: EXP = n³), para alcanzar el Nivel 10 se necesitan 1.000 EXP (10 x 10 x 10 = 1.000) y para alcanzar el Nivel 11 se requieren 1.331 EXP (11 x 11 x 11 = 1.331).
 **Pregunta**: ¿Cuánta experiencia neta debe ganar un Eevee que acaba de subir al Nivel 10 para alcanzar el Nivel 11? Si en cada combate gana 85 EXP, ¿cuántos combates como mínimo deberá ganar para subir al Nivel 11?
 
-### Problema 99
+### Problema 99: La experiencia de Pikachu del Nivel 14 al Nivel 15
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: Continuando con la curva de crecimiento Medio Rápido (EXP = n³), para alcanzar el Nivel 14 se necesitan 2.744 EXP (14³ = 2.744) y para alcanzar el Nivel 15 se requieren 3.375 EXP (15³ = 3.375). Un Pikachu de Nivel 14 tiene actualmente 2.900 EXP acumulados en su historial.
 **Pregunta**: ¿Cuántos Puntos de Experiencia (EXP) le faltan a Pikachu para alcanzar el Nivel 15? Si lucha contra entrenadores que le otorgan 150 EXP por victoria, ¿cuántos combates debe ganar como mínimo para alcanzar el nuevo nivel?
 
-### Problema 100
+### Problema 100: Infernape en el Gimnasio Eléctrico frente al Líder Lectro
 - **Subcategoría**: Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: El Infernape de Ash se prepara para el combate decisivo en el Gimnasio Eléctrico de Ciudad Marina frente al Líder Lectro (Volkner). A Infernape le faltan exactamente 3.850 Puntos de Experiencia (EXP) para alcanzar el Nivel 55. En el recorrido del Gimnasio, Infernape derrota sucesivamente a tres entrenadores preliminares que otorgan 540 EXP, 660 EXP y 750 EXP respectivamente. Finalmente, derrota al equipo del Líder Lectro, cuya victoria otorga una base de 1.400 EXP con el multiplicador especial de Líder de Gimnasio de 1,5x.

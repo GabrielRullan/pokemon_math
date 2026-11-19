@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Genera la versión HTML lista para imprimir de todos los documentos Markdown
-del proyecto Matemáticas Primaria con Pokémon (LOMLOE 2º–6º Primaria),
-con estética de ficha infantil, imágenes locales de Pokémon, cuadrícula de
-operaciones y «Ficha del Profesor Oak» curricular al final.
+del proyecto Matemáticas Primaria con Pokémon (LOMLOE 1º–6º Primaria),
+con estética de ficha infantil, imágenes locales de Pokémon, diagramas SVG,
+andamiaje NEAE, filtros interactivos y «Ficha del Profesor Oak» curricular.
 """
 
 from __future__ import annotations
@@ -14,6 +14,11 @@ import re
 from collections import defaultdict
 from pathlib import Path
 import markdown
+
+try:
+    from svg_diagrams import generate_problem_svg
+except ImportError:
+    generate_problem_svg = None
 
 ROOT_DIR = Path(__file__).resolve().parent
 OUT_DIR = ROOT_DIR / "html"
@@ -26,8 +31,17 @@ DOCS = [
         "out": "README.html",
         "title": "Guía Maestra del Proyecto — Matemáticas Pokémon (LOMLOE)",
         "badge": "Índice y Guía",
-        "desc": "Visión general del proyecto, mapeo curricular LOMLOE (2º a 6º de Primaria) y estructura de materiales.",
+        "desc": "Visión general del proyecto, mapeo curricular LOMLOE (1º a 6º de Primaria) y estructura de materiales.",
         "is_problems": False,
+    },
+    {
+        "src": "problemas_1_primaria.md",
+        "out": "problemas_1_primaria.html",
+        "title": "Cuadernillo de Entrenador — 1º de Primaria",
+        "badge": "1º Primaria (6–7 años)",
+        "desc": "120 ejercicios (100 + 20 Retos Especiales): números hasta 99, sumas/restas sin llevada, formas 2D, horas en punto, monedas y EXP.",
+        "is_problems": True,
+        "grade": 1,
     },
     {
         "src": "problemas_2_primaria.md",
@@ -36,6 +50,7 @@ DOCS = [
         "badge": "2º Primaria (7–8 años)",
         "desc": "120 ejercicios (100 + 20 Retos Especiales): números hasta 999, sumas/restas, formas 2D, horas, euros y EXP.",
         "is_problems": True,
+        "grade": 2,
     },
     {
         "src": "problemas_3_primaria.md",
@@ -44,6 +59,7 @@ DOCS = [
         "badge": "3º Primaria (8–9 años)",
         "desc": "120 ejercicios (100 + 20 Retos Especiales): números hasta 9.999, tablas, división, medidas, gráficos y EXP.",
         "is_problems": True,
+        "grade": 3,
     },
     {
         "src": "problemas_4_primaria.md",
@@ -52,6 +68,7 @@ DOCS = [
         "badge": "4º Primaria (9–10 años)",
         "desc": "120 ejercicios (100 + 20 Retos Especiales): multiplicación 2 cifras, división, fracciones, decimales, áreas y EXP.",
         "is_problems": True,
+        "grade": 4,
     },
     {
         "src": "problemas_5_primaria.md",
@@ -60,6 +77,7 @@ DOCS = [
         "badge": "5º Primaria (10–11 años)",
         "desc": "120 ejercicios (100 + 20 Retos Especiales): fracciones, decimales, porcentajes, coordenadas, áreas y EXP.",
         "is_problems": True,
+        "grade": 5,
     },
     {
         "src": "problemas_6_primaria.md",
@@ -68,6 +86,7 @@ DOCS = [
         "badge": "6º Primaria (11–12 años)",
         "desc": "120 ejercicios (100 + 20 Retos Especiales): porcentajes, proporcionalidad, enteros, volúmenes, probabilidad y EXP.",
         "is_problems": True,
+        "grade": 6,
     },
     {
         "src": "referencia_tabla_tipos.md",
@@ -165,15 +184,82 @@ body {
   top: 0;
   z-index: 50;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.55rem;
   padding: 0.7rem 1.25rem;
   background: #0f172a;
   color: #f8fafc;
   border-bottom: 3px solid var(--pk-yellow);
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+.toolbar-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.toolbar-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.filter-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.filter-select,
+.filter-input {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.filter-select {
+  max-width: 215px;
+}
+
+.filter-input {
+  width: 60px;
+}
+
+.filter-status {
+  margin-left: auto;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 203, 5, 0.18);
+  border: 1px solid rgba(255, 203, 5, 0.45);
+  color: #fde047;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.btn-preset {
+  background: rgba(16, 185, 129, 0.22);
+  border-color: rgba(110, 231, 183, 0.45);
+}
+
+.btn-preset:hover {
+  background: rgba(16, 185, 129, 0.38);
+}
+
+.is-filtered-hidden {
+  display: none !important;
 }
 
 .toolbar-left {
@@ -494,6 +580,58 @@ blockquote {
   color: #0f172a;
 }
 
+.problem-question p {
+  margin: 0.25rem 0;
+}
+
+.problem-question p:first-child {
+  margin-top: 0;
+}
+
+.problem-question p:last-child {
+  margin-bottom: 0;
+}
+
+.problem-question ul,
+.problem-question ol {
+  margin: 0.35rem 0 0.2rem 1.25rem;
+}
+
+.problem-diagram {
+  margin: 0.55rem 0 0.25rem;
+  padding: 0.4rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.problem-diagram svg {
+  max-width: 100%;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.rotom-hint {
+  margin-top: 0.5rem;
+  padding: 0.38rem 0.65rem;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.83rem;
+  color: #78350f;
+}
+
+body.hide-hints .rotom-hint {
+  display: none !important;
+}
+
 .workspace-box {
   margin-top: 0.65rem;
   height: 92px;
@@ -505,18 +643,39 @@ blockquote {
     linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
   background-size: 18px 18px;
   position: relative;
+  overflow: hidden;
 }
 
-.workspace-label {
-  position: absolute;
-  top: 4px;
-  left: 8px;
-  font-size: 0.72rem;
+body.grade-early .workspace-box,
+.page-container.grade-early .workspace-box {
+  height: 115px;
+}
+
+.workspace-columns {
+  display: grid;
+  grid-template-columns: 1fr 1.85fr 1.15fr;
+  height: 100%;
+  width: 100%;
+}
+
+.workspace-col {
+  border-right: 1px dashed #cbd5e1;
+  padding: 3px 6px;
+}
+
+.workspace-col:last-child {
+  border-right: 0;
+}
+
+.workspace-col-title {
+  display: inline-block;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #64748b;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   padding: 0 4px;
   border-radius: 3px;
+  border: 1px solid #e2e8f0;
 }
 
 body.hide-workspaces .workspace-box {
@@ -524,6 +683,17 @@ body.hide-workspaces .workspace-box {
 }
 
 /* Solucionario */
+.solutions-subcat-heading {
+  margin-top: 1.35rem;
+  margin-bottom: 0.65rem;
+  padding: 0.38rem 0.75rem;
+  font-size: 1.05rem;
+  color: #065f46;
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
+  border-radius: 0 6px 6px 0;
+}
+
 .solution-card {
   border: 1px solid var(--pk-border);
   border-radius: 8px;
@@ -540,6 +710,35 @@ body.hide-workspaces .workspace-box {
   padding-bottom: 0.25rem;
   border-bottom: 1px dashed var(--pk-border);
   color: var(--pk-green);
+}
+
+.sol-meta {
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  color: #1e293b;
+  background: #e2e8f0;
+  display: inline-block;
+  padding: 0.14rem 0.55rem;
+  border-radius: 6px;
+}
+
+.oak-details {
+  margin-top: 1rem;
+  background: #ffffff;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+}
+
+.oak-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.rubric-table td,
+.rubric-table th {
+  font-size: 0.82rem;
 }
 
 /* Ficha del Profesor Oak (para docentes y familias al final) */
@@ -767,8 +966,27 @@ table.type-matrix tbody td:first-child {
     height: 46px;
   }
 
+  .problem-diagram {
+    margin: 0.35rem 0 0.15rem;
+    padding: 0.25rem;
+  }
+
+  .problem-diagram svg {
+    max-height: 150px;
+  }
+
+  .rotom-hint {
+    padding: 0.25rem 0.5rem;
+    font-size: 8.5pt;
+  }
+
   .workspace-box {
     height: 70px;
+  }
+
+  body.grade-early .workspace-box,
+  .page-container.grade-early .workspace-box {
+    height: 95px;
   }
 
   h2 {
@@ -921,12 +1139,359 @@ def format_problem_range(nums: list[int]) -> str:
     return ", ".join(ranges)
 
 
+CANONICAL_SENSE_RULES: list[tuple[str, str]] = [
+    (r"num[ée]ric", "Sentido Numérico"),
+    (r"medida", "Sentido de la Medida"),
+    (r"espacial|geom[ée]tr", "Sentido Espacial"),
+    (r"algebraic|computacional|patron", "Sentido Algebraico"),
+    (r"estoc[áa]stic|estad[íi]stic|azar|probabilidad", "Sentido Estocástico"),
+]
+
+# Reglas (patrón regex, pista sin revelar números de respuesta)
+ROTOM_HINT_RULES: list[tuple[str, str]] = [
+    (
+        r"cuadrado\s+m[áa]gico",
+        "Halla primero la suma mágica de una fila, columna o diagonal completa y úsala para deducir cada casilla que falta.",
+    ),
+    (
+        r"pir[áa]mide\s+(?:num[ée]rica|multiplicativa|de\s+(?:bayas|piedras))",
+        "En una pirámide numérica, cada casilla superior se calcula operando con las dos casillas situadas justo debajo.",
+    ),
+    (
+        r"\b(?:ecuaci[óo]n|inc[óo]gnita)\b|primer\s+grado",
+        "Despeja la incógnita paso a paso: traduce cada frase a una operación y comprueba tu solución sustituyendo.",
+    ),
+    (
+        r"f[óo]rmula\s+can[óo]nica|sustituye\s+los\s+valores",
+        "Sustituye cada letra por su valor numérico respetando la jerarquía de operaciones (paréntesis, multiplicaciones y divisiones antes que sumas).",
+    ),
+    (
+        r"\b(?:reloj|en\s+punto|y\s+media|y\s+cuarto|menos\s+cuarto)\b",
+        "Fíjate en la aguja corta (horas) y la aguja larga (minutos): cada marca grande equivale a 5 minutos.",
+    ),
+    (
+        r"\b(?:suceso\s+(?:seguro|posible|imposible)|seguro,\s*posible|posible\s+o\s+imposible)\b",
+        "Piensa si el suceso ocurre siempre (seguro), algunas veces (posible) o nunca (imposible) según los datos.",
+    ),
+    (
+        r"\b(?:probabilidad|al\s+azar|urna|ruleta|suceso\s+contrario|(?:lanzar|tirar)\s+(?:un|dos|varios)?\s*dados?)\b",
+        "Cuenta primero el total de casos posibles y después cuántos casos favorables cumplen la condición.",
+    ),
+    (
+        r"\b(?:media\s+aritm[ée]tica|calcula(?:r)?\s+la\s+media|halla(?:r)?\s+la\s+media|media,\s*mediana|promedio)\b",
+        "Para hallar la media, suma todos los valores obtenidos y divide el resultado entre el número total de datos.",
+    ),
+    (
+        r"\bmoda\b",
+        "La moda es el dato o categoría que se repite con mayor frecuencia.",
+    ),
+    (
+        r"\b(?:gr[áa]fico|pictograma|tabla\s+de\s+recuento|diagrama\s+de\s+sectores|encuesta|frecuencia)\b",
+        "Lee con atención los ejes, la leyenda o el valor de cada símbolo del gráfico antes de sumar o comparar.",
+    ),
+    (
+        r"\b(?:escala|maqueta)\b|\b1\s*:\s*\d+",
+        "Aplica la razón de la escala comparando la medida del plano o maqueta con la realidad en la misma unidad.",
+    ),
+    (
+        r"\b(?:hora|horas|minuto|minutos|segundo|segundos|calendario|semana|semanas)\b",
+        "Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.",
+    ),
+    (
+        r"(?:\bdescuento\b|\brebaja\b|\biva\b|\bporcentaje\b|\bpor\s+ciento\b|%)",
+        "Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.",
+    ),
+    (
+        r"(?:€|\beuros?\b|\bc[ée]ntimos?\b|\bmonedas?\b|\bbilletes?\b|\bpok[ée]d[óo]lar(?:es)?\b|\bpok[ée]monedas?\b|\bcambio\b|\bprecio\b|\bcuesta\b|\btienda\b)",
+        "Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.",
+    ),
+    (
+        r"(?:bajo\s+cero|°\s*c|bajo\s+el\s+nivel\s+del\s+mar|\bprofundidad\b|\baltitud\b|\bnegativo\b|\benteros?\b|\bprioridad\b)",
+        "Usa una recta con el 0 como referencia: mide por un lado el tramo negativo hasta 0 y súmale la parte positiva.",
+    ),
+    (
+        r"(?:\bpotencias?\b|\bc[uú]bic[ao]s?\b|cuadrado\s+perfecto|cuadrados\s+perfectos|ra[íi]z\s+cuadrada|\belevado\b|al\s+cuadrado|\btatamis?\b|\^\s*[23]|[²³])",
+        "Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.",
+    ),
+    (
+        r"(?:m\.c\.m|m\.c\.d|\bdivisible\b|\bdivisores?\b|\bm[uú]ltiplos?\b|\bprimos?\b|\bcompuestos?\b)",
+        "Aplica las reglas de divisibilidad o escribe de forma ordenada los múltiplos o divisores comunes.",
+    ),
+    (
+        r"\b(?:hect[áa]reas?|metros\s+cuadrados|m²|km²|cm²)\b",
+        "Pasa todas las unidades de superficie a la misma unidad (recuerda que en superficie cada salto multiplica o divide por 100).",
+    ),
+    (
+        r"\b(?:coordenadas?|cuadrantes?|plano\s+cartesiano)\b",
+        "Lee y escribe siempre primero la coordenada horizontal (X) y después la vertical (Y), cuidando los signos.",
+    ),
+    (
+        r"\bsimetr",
+        "Imagina doblar la figura por su eje de simetría y comprueba si los dos lados coinciden exactamente.",
+    ),
+    (
+        r"\b[áa]ngulos?\b|\d+\s*°(?!\s*c)",
+        "Recuerda las referencias clave: un ángulo recto mide 90°, uno llano 180° y la vuelta completa 360°.",
+    ),
+    (
+        r"\b(?:per[íi]metro|valla|contorno|rodear)\b",
+        "El perímetro se obtiene sumando las longitudes de todos los lados exteriores del contorno.",
+    ),
+    (
+        r"\b(?:[áa]rea|superficie)\b",
+        "Identifica la forma geométrica, anota sus dimensiones (base, altura o radio) y aplica su fórmula de área.",
+    ),
+    (
+        r"\b(?:fracci[óo]n|fracciones|numerador|denominador|irreducible|equivalente)\b|\d+/\d+",
+        "Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.",
+    ),
+    (
+        r"\b(?:volumen\s+(?:de\s+un|del)\s+(?:cubo|prisma|cilindro|cono)|cilindros?|conos?|poliedros?|aristas?|v[ée]rtices?|cuerpo\s+geom[ée]trico)\b",
+        "Identifica las caras, vértices o aristas de la figura, o multiplica sus tres dimensiones en las mismas unidades.",
+    ),
+    (
+        r"\b(?:km|hm|dam|m|dm|cm|mm|kg|hg|dag|g|mg|kl|hl|dal|l|dl|cl|ml|metros?|cent[íi]metros?|kil[óo]metros?|palmos?|pasos?)\b",
+        "Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.",
+    ),
+    (
+        r"\b(?:tri[áa]ngulos?|cuadrados?|rect[áa]ngulos?|c[íi]rculos?|circunferencias?|radios?|di[áa]metros?|pol[íi]gonos?)\b",
+        "Haz un boceto rápido en la cuadrícula señalando lados, vértices o el radio/diámetro antes de operar.",
+    ),
+    (
+        r"\b(?:decimales?|d[ée]cimas?|cent[ée]simas?|mil[ée]simas?)\b",
+        "Alinea bien las comas decimales al sumar o restar, y cuenta las cifras decimales totales al multiplicar.",
+    ),
+    (
+        r"\b(?:stab|multiplicador|s[uú]per\s+eficaz|eficaz|debilidad|resistencia)\b",
+        "Aplica el multiplicador de cada tipo del defensor y recuerda multiplicar por 1,5 si coincide con el tipo del atacante.",
+    ),
+    (
+        r"(?:puntos\s+de\s+salud|\bps\b|\bpoci[óo]n\b|\bpociones\b|baya\s+aranja|curaci[óo]n)",
+        "Sigue el orden de los turnos: resta el daño recibido y suma las curaciones sin superar el máximo.",
+    ),
+    (
+        r"(?:\bexp\b|experiencia|subir\s+de\s+nivel|curva\s+de\s+crecimiento|curva\s+media|huevo\s+suerte|caramelo\s+raro)",
+        "Compara la EXP acumulada o ganada por combate con el objetivo necesario para alcanzar el siguiente nivel.",
+    ),
+    (
+        r"\b(?:redondea|m[áa]s\s+cercan[ao]|recta\s+num[ée]rica)\b",
+        "Fíjate en la cifra siguiente al orden que redondeas: si es 5 o mayor sube, y si es menor que 5 se mantiene.",
+    ),
+    (
+        r"\b(?:decenas?|centenas?|unidades?|anterior|posterior|par|impar|ordinal|menor\s+a\s+mayor|mayor\s+a\s+menor)\b",
+        "Coloca cada cifra en su posición (UM, C, D, U) y compáralas ordenadamente de izquierda a derecha.",
+    ),
+    (
+        r"\b(?:serie|patr[óo]n|secuencia|pista|l[óo]gica|misterioso|adivina|deducci[óo]n)\b",
+        "Comprueba cuánto cambia de un paso al siguiente o ve descartando las opciones que incumplen cada pista.",
+    ),
+]
+
+SUBCAT_FALLBACK_HINTS: dict[str, str] = {
+    "1": "Descompón el número según el valor posicional de cada cifra antes de comparar u ordenar.",
+    "2": "Identifica si el problema pide juntar (sumar), comparar/quitar (restar), repetir (multiplicar) o repartir (dividir).",
+    "3": "Subraya la magnitud y su unidad de medida en cada dato antes de calcular.",
+    "4": "Dibuja un esquema sencillo de la figura o recorrido en la cuadrícula para visualizar los datos.",
+    "5": "Busca la regla o patrón que relaciona los datos y compruébala paso a paso.",
+    "6": "Organiza los datos en una pequeña tabla o lista ordenada antes de responder.",
+    "7": "Anota por separado los datos del combate (nivel, PS o EXP) y resuelve por pasos.",
+    "reto": "Divide este reto en pasos cortos, anota los datos de cada pista y revisa al final todas las preguntas.",
+}
+
+CYCLE_INFO: dict[int, tuple[str, str, list[tuple[str, str, str]]]] = {
+    1: (
+        "Primer Ciclo (1º–2º de Primaria)",
+        "1º–2º Prim.",
+        [
+            ("CE1 · Interpretar situaciones cotidianas matemáticamente", "1.1, 1.2 (1.er ciclo)", "Lectura comprensiva de historias Pokémon y extracción de datos en 1 o 2 pasos."),
+            ("CE2 · Resolver problemas aplicando estrategias y comprobación", "2.1, 2.2 (1.er ciclo)", "Uso de sumas, restas sin/con llevada, conteo visual y verificación de resultados."),
+            ("CE3 · Formular y comprobar conjeturas sencillas guiadas", "3.1, 3.2 (1.er ciclo)", "Adivinanzas de la Pokédex, estimación en recta numérica y retos lógicos 101–120."),
+            ("CE4 · Pensamiento computacional, patrones y algoritmos", "4.1, 4.2 (1.er ciclo)", "Series numéricas (+2, +5, +10), patrones de Poké Balls e instrucciones ordenadas."),
+            ("CE5 · Conexiones entre ideas matemáticas y entorno cercano", "5.1, 5.2 (1.er ciclo)", "Relación entre numeración, relojes analógicos, monedas de euro y puntos EXP."),
+            ("CE6 · Comunicar ideas y resultados con lenguaje adecuado", "6.1, 6.2 (1.er ciclo)", "Expresión escrita de la respuesta con unidad explícita en la zona guiada NEAE."),
+            ("CE7 · Autoconfianza y gestión emocional ante retos", "7.1, 7.2 (1.er ciclo)", "Andamiaje con pistas de Rotom Dex y progresión motivadora de rangos de Entrenador."),
+            ("CE8 · Trabajo cooperativo y respeto a la diversidad", "8.1, 8.2 (1.er ciclo)", "Resolución por parejas y puesta en común de distintas estrategias en clase."),
+        ],
+    ),
+    2: (
+        "Segundo Ciclo (3º–4º de Primaria)",
+        "3º–4º Prim.",
+        [
+            ("CE1 · Modelizar situaciones mediante representaciones", "1.1, 1.2 (2.º ciclo)", "Traducción de contextos Pokémon (tiendas, rutas, combates) a operaciones combinadas."),
+            ("CE2 · Resolver situaciones eligiendo estrategias eficaces", "2.1, 2.2 (2.º ciclo)", "Multiplicación multidígito, división entera con resto, fracciones simples y decimales."),
+            ("CE3 · Explorar, formular y argumentar conjeturas", "3.1, 3.2 (2.º ciclo)", "Comprobación de propiedades, rejillas lógicas y retos de optimización (101–120)."),
+            ("CE4 · Pensamiento computacional y generalización guiada", "4.1, 4.2 (2.º ciclo)", "Secuencias crecientes, reglas de multiplicadores y descomposición de retos en subpasos."),
+            ("CE5 · Conectar sentidos matemáticos entre sí y con la realidad", "5.1, 5.2 (2.º ciclo)", "Vínculo entre magnitudes métricas (cm/m, g/kg, ml/l), perímetros, áreas y EXP."),
+            ("CE6 · Comunicar y representar con precisión multimodal", "6.1, 6.2 (2.º ciclo)", "Interpretación de diagramas SVG, tablas de recuento, gráficos de barras y unidades."),
+            ("CE7 · Perseverancia, aceptación del error y autonomía", "7.1, 7.2 (2.º ciclo)", "Autorregulación con la estructura Datos–Operación–Respuesta y pistas opcionales."),
+            ("CE8 · Colaboración activa y valoración de estrategias ajenas", "8.1, 8.2 (2.º ciclo)", "Debate en pequeño grupo sobre métodos alternativos en el Gimnasio matemático."),
+        ],
+    ),
+    3: (
+        "Tercer Ciclo (5º–6º de Primaria)",
+        "5º–6º Prim.",
+        [
+            ("CE1 · Interpretar y modelizar situaciones complejas", "1.1, 1.2 (3.er ciclo)", "Análisis de enunciados multipaso con porcentajes, enteros, escalas y mecánicas oficiales."),
+            ("CE2 · Explorar vías de resolución y validar coherencia", "2.1, 2.2 (3.er ciclo)", "Operaciones con fracciones (m.c.m.), proporcionalidad, volúmenes y caza del error."),
+            ("CE3 · Formular hipótesis, justificar y refutar razonadamente", "3.1, 3.2 (3.er ciclo)", "Argumentación algebraica, divisibilidad, primos/compuestos y probabilidad de Laplace."),
+            ("CE4 · Pensamiento computacional, fórmulas y modelización", "4.1, 4.2 (3.er ciclo)", "Aplicación de fórmulas canónicas (PS, daño con STAB, curvas cúbicas L³ y Repartir EXP)."),
+            ("CE5 · Interrelacionar ideas matemáticas y contextos reales", "5.1, 5.2 (3.er ciclo)", "Integración de plano cartesiano (4 cuadrantes), porcentajes, estadística y geometría 3D."),
+            ("CE6 · Comunicar rigorosamente con lenguaje formal y gráfico", "6.1, 6.2 (3.er ciclo)", "Lectura e interpretación de gráficas SVG, notación fraccionaria/decimal y unidades exactas."),
+            ("CE7 · Autorregulación emocional ante la incertidumbre", "7.1, 7.2 (3.er ciclo)", "Gestión de retos avanzados sin pistas previas (Contenidos Específicos reservados al docente)."),
+            ("CE8 · Trabajo en equipo heterogéneo y respeto mutuo", "8.1, 8.2 (3.er ciclo)", "Co-evaluación mediante rúbrica competencial y resolución colaborativa de ligas/retos."),
+        ],
+    ),
+}
+
+
+def infer_subcat_code(prob_num: int, kind: str, raw_subcat: str) -> str:
+    """Devuelve '1'..'7' para problemas base o 'reto' para Retos Especiales."""
+    if kind.lower() == "reto" or prob_num > 100:
+        return "reto"
+    m = re.search(r"Subcategor[ií]a\s*([1-7])\b", raw_subcat, flags=re.I)
+    if m:
+        return m.group(1)
+    if 1 <= prob_num <= 15:
+        return "1"
+    if 16 <= prob_num <= 35:
+        return "2"
+    if 36 <= prob_num <= 50:
+        return "3"
+    if 51 <= prob_num <= 65:
+        return "4"
+    if 66 <= prob_num <= 75:
+        return "5"
+    if 76 <= prob_num <= 85:
+        return "6"
+    return "7"
+
+
+def infer_canonical_senses(prob_num: int, raw_sense: str, raw_subcat: str) -> list[str]:
+    """Infiere los Sentidos LOMLOE canónicos para etiquetar filtros y tarjetas."""
+    found: list[str] = []
+    for text in (raw_sense.lower(), raw_subcat.lower()):
+        for pat, canonical in CANONICAL_SENSE_RULES:
+            if re.search(pat, text) and canonical not in found:
+                found.append(canonical)
+        if found:
+            return found
+
+    if 36 <= prob_num <= 50:
+        return ["Sentido de la Medida"]
+    if 51 <= prob_num <= 65:
+        return ["Sentido Espacial"]
+    if 66 <= prob_num <= 75:
+        return ["Sentido Algebraico"]
+    if 76 <= prob_num <= 85:
+        return ["Sentido Estocástico"]
+    return ["Sentido Numérico"]
+
+
+def generate_rotom_hint(
+    subcat_code: str,
+    story_text: str,
+    question_text: str,
+    grade: int,
+) -> str:
+    """Genera una pista heurística sin spoilers para Rotom Dex."""
+    combined = f"{story_text} {question_text}".lower()
+    if grade in (1, 2) and re.search(r"\b(?:reloj|en\s+punto|y\s+media)\b", combined):
+        return "La aguja corta señala la hora y la aguja larga los minutos: arriba es «en punto» y abajo es «y media»."
+    for pat, hint_text in ROTOM_HINT_RULES:
+        if re.search(pat, combined):
+            return hint_text
+    return SUBCAT_FALLBACK_HINTS.get(subcat_code, SUBCAT_FALLBACK_HINTS["reto"])
+
+
+def build_lomloe_ce_table(grade: int) -> str:
+    """Construye la tabla de Competencias Específicas (CE1–CE8) y Criterios según el ciclo."""
+    cycle_num = 1 if grade <= 2 else (2 if grade <= 4 else 3)
+    cycle_title, cycle_short, rows = CYCLE_INFO[cycle_num]
+    rows_html = "".join(
+        f"<tr><td>{html.escape(ce)}</td><td>{html.escape(crit)}</td><td>{html.escape(conn)}</td></tr>"
+        for ce, crit, conn in rows
+    )
+    return f"""
+  <h3>Competencias Específicas (CE1–CE8) y Criterios de Evaluación — {html.escape(cycle_title)}</h3>
+  <div class="table-wrapper" tabindex="0" role="region" aria-label="Competencias Específicas LOMLOE">
+    <table>
+      <thead>
+        <tr>
+          <th>Competencia Específica (LOMLOE)</th>
+          <th>Criterios de Evaluación (RD 157/2022 · {html.escape(cycle_short)})</th>
+          <th>Aplicación en el Cuadernillo Pokémon</th>
+        </tr>
+      </thead>
+      <tbody>{rows_html}</tbody>
+    </table>
+  </div>
+"""
+
+
+def build_rubric_table() -> str:
+    """Construye la Rúbrica de Evaluación Competencial de 4 niveles para docentes."""
+    dimensions = [
+        (
+            "Comprensión y extracción de datos",
+            "Identifica datos aislados con ayuda directa; confunde magnitudes o la pregunta.",
+            "Extrae los datos principales en problemas simples, aunque omite algún matiz en enunciados largos.",
+            "Identifica con autonomía todos los datos relevantes y comprende exactamente qué se pregunta.",
+            "Sintetiza datos explícitos e implícitos (tablas, gráficas, pistas) y detecta información superflua.",
+        ),
+        (
+            "Estrategia y modelización",
+            "Elige la operación por ensayo-error sin un plan claro o sin esquema previo.",
+            "Aplica estrategias conocidas en ejercicios rutinarios con apoyo de pistas o andamiaje.",
+            "Selecciona y ordena adecuadamente las operaciones o fórmulas matemáticas necesarias.",
+            "Combina varias estrategias, valida alternativas y resuelve retos abiertos o multipaso con soltura.",
+        ),
+        (
+            "Cálculo y precisión",
+            "Comete errores frecuentes en el algoritmo básico o al operar con números/unidades.",
+            "Realiza cálculos básicos correctamente, con algún fallo puntual en llevadas, decimales o conversiones.",
+            "Ejecuta los cálculos numéricos, fraccionarios o geométricos con precisión y comprueba el resultado.",
+            "Calcula con agilidad y exactitud, verifica la coherencia del orden de magnitud y detecta errores.",
+        ),
+        (
+            "Comunicación y unidades",
+            "Escribe solo una cifra suelta sin explicar el proceso ni indicar las unidades.",
+            "Presenta parte del procedimiento en la cuadrícula, pero olvida unidades o redacta la respuesta incompleta.",
+            "Ordena Datos, Operación y Respuesta completa con las unidades físicas o del juego correctas.",
+            "Argumenta cada paso con vocabulario matemático preciso, gráficos claros y unidades impecables.",
+        ),
+    ]
+    rows_html = "".join(
+        f"<tr><td>{html.escape(dim)}</td><td>{html.escape(n1)}</td><td>{html.escape(n2)}</td>"
+        f"<td>{html.escape(n3)}</td><td>{html.escape(n4)}</td></tr>"
+        for dim, n1, n2, n3, n4 in dimensions
+    )
+    return f"""
+  <h3>Rúbrica de Evaluación Competencial (4 Niveles LOMLOE)</h3>
+  <div class="table-wrapper" tabindex="0" role="region" aria-label="Rúbrica de Evaluación Competencial">
+    <table class="rubric-table">
+      <thead>
+        <tr>
+          <th>Dimensión</th>
+          <th>1. En inicio</th>
+          <th>2. En desarrollo</th>
+          <th>3. Adquirido</th>
+          <th>4. Excelente</th>
+        </tr>
+      </thead>
+      <tbody>{rows_html}</tbody>
+    </table>
+  </div>
+"""
+
+
 def build_oak_dossier(
     intro_html: str,
     by_sense: dict[str, list[int]],
     by_subcat: dict[str, list[int]],
     total_problems: int,
     badge: str,
+    grade: int = 0,
+    by_contenido: list[tuple[int, str, str]] | None = None,
 ) -> str:
     sense_rows = "".join(
         f"<tr><td>{html.escape(sense)}</td><td>{len(nums)}</td><td>{format_problem_range(nums)}</td></tr>"
@@ -938,6 +1503,28 @@ def build_oak_dossier(
     )
 
     intro_block = f'<div class="oak-intro">{intro_html}</div>' if intro_html.strip() else ""
+    ce_block = build_lomloe_ce_table(grade)
+    rubric_block = build_rubric_table()
+
+    contenido_block = ""
+    if by_contenido:
+        cont_rows = "".join(
+            f"<tr><td>{num}</td><td>{html.escape(title)}</td><td>{html.escape(cont)}</td></tr>"
+            for num, title, cont in by_contenido
+        )
+        contenido_block = f"""
+  <details open class="oak-details">
+    <summary>Mapa de Contenidos Específicos por Ejercicio ({len(by_contenido)} ejercicios — oculto en las tarjetas del alumno)</summary>
+    <div class="table-wrapper" tabindex="0" role="region" aria-label="Contenidos Específicos por Ejercicio">
+      <table>
+        <thead>
+          <tr><th>N.º</th><th>Ejercicio</th><th>Contenido Específico (LOMLOE)</th></tr>
+        </thead>
+        <tbody>{cont_rows}</tbody>
+      </table>
+    </div>
+  </details>
+"""
 
     return f"""
 <section id="ficha-profesor-oak" class="prof-oak-dossier">
@@ -965,14 +1552,39 @@ def build_oak_dossier(
       <tbody>{subcat_rows}</tbody>
     </table>
   </div>
-  <p><strong>Recomendación de aula/casa:</strong> Se sugiere trabajar entre 2 y 3 ejercicios por sesión (o 1 Reto Especial los viernes), animando al alumno a escribir el planteamiento en la cuadrícula de libreta antes de comprobar el solucionario.</p>
+  {ce_block}
+  {rubric_block}
+  {contenido_block}
+  <p><strong>Recomendación de aula/casa:</strong> Se sugiere trabajar entre 2 y 3 ejercicios por sesión (o usar el botón <em>«Ficha de sesión (5 ej.)»</em>), animando al alumnado a organizar <em>Datos · Operación · Respuesta</em> en la cuadrícula NEAE antes de comprobar el solucionario.</p>
 </section>
 """
 
 
+def render_question_html(question_md: str, md: markdown.Markdown) -> str:
+    """Renderiza bloques **Pregunta**: de una o varias líneas sin romper etiquetas."""
+    if not question_md.strip():
+        return ""
+    prot_q, toks_q = protect_math(question_md.strip())
+    md.reset()
+    q_rendered = wrap_tables(restore_math(md.convert(prot_q), toks_q)).strip()
+    single_p = re.fullmatch(r"<p>([\s\S]*)</p>", q_rendered)
+    if single_p and "</p>" not in single_p.group(1):
+        return f'<div class="problem-question"><strong>Reto:</strong> {single_p.group(1)}</div>'
+    if q_rendered.startswith("<p>"):
+        q_rendered = q_rendered.replace("<p>", "<p><strong>Reto:</strong> ", 1)
+    else:
+        q_rendered = f"<strong>Reto:</strong> {q_rendered}"
+    return f'<div class="problem-question">{q_rendered}</div>'
+
+
 def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, species_map: dict[str, int]) -> str:
-    """Construye la ficha infantil: cabecera de entrenador, problemas con imágenes y cuadrícula,
-    solucionario separado y Ficha del Profesor Oak al final."""
+    """Construye la ficha infantil: cabecera de entrenador, problemas con imágenes, SVG,
+    pistas Rotom Dex, cuadrícula NEAE 3 zonas, Ficha del Profesor Oak y solucionario."""
+    grade = doc.get("grade") or 0
+    if not grade:
+        m_g = re.search(r"problemas_(\d+)_primaria", doc["src"])
+        grade = int(m_g.group(1)) if m_g else 0
+
     # Separar Parte 2 (Solucionario)
     sol_split = re.split(r"(?=^## Parte 2:)", raw_md, maxsplit=1, flags=re.M)
     part1_raw = sol_split[0]
@@ -982,20 +1594,19 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
     p1_split = re.split(r"(?=^## Parte 1:)", part1_raw, maxsplit=1, flags=re.M)
     intro_raw = ""
     if len(p1_split) > 1:
-        # Quitar el H1 principal de intro_raw para quedarnos solo con las secciones introductorias
         intro_candidate = re.sub(r"^#\s+.*$", "", p1_split[0], count=1, flags=re.M).strip()
         intro_raw = intro_candidate
         part1_body = p1_split[1]
     else:
         part1_body = part1_raw
 
-    # Extraer bloques de Parte 1 y Parte 1B
     by_sense: dict[str, list[int]] = defaultdict(list)
     by_subcat: dict[str, list[int]] = defaultdict(list)
+    by_contenido: list[tuple[int, str, str]] = []
+    problem_meta: dict[int, dict[str, str]] = {}
     total_problems = 0
 
-    # Dividir por secciones ## Parte 1 y ## Parte 1B
-    sections = re.split(r"(?=^## Parte 1[B]?:)", part1_body, flags=re.M)
+    sections = re.split(r"(?=^## Parte 1B?\b)", part1_body, flags=re.M)
     rendered_sections: list[str] = []
 
     for sec in sections:
@@ -1007,6 +1618,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
         is_reto_sec = "Parte 1B" in sec_heading or "Retos Especiales" in sec_heading
         heading_class = ' class="special-challenges-title"' if is_reto_sec else ""
         sec_title_text = re.sub(r"^##\s+", "", sec_heading).strip()
+        sec_kind = "reto" if is_reto_sec else "problema"
         rendered_cards: list[str] = [f"<h2{heading_class}>{html.escape(sec_title_text)}</h2>"]
 
         rest_sec = "\n".join(sec_lines[1:])
@@ -1015,7 +1627,6 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
             blk = blk.strip()
             m_head = re.match(r"^### (Problema|Reto) (\d+)(?::\s*(.+))?$", blk, flags=re.M)
             if not m_head:
-                # Texto introductorio breve de Parte 1B, etc.
                 cleaned = blk.strip()
                 if cleaned and cleaned != "---":
                     prot, toks = protect_math(cleaned)
@@ -1029,42 +1640,77 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
             heading_label = f"{kind} {num}: {ptitle}" if ptitle else f"{kind} {num}"
             total_problems += 1
 
-            # Extraer metadatos para la Ficha del Profesor Oak y ocultarlos de la tarjeta infantil
-            m_sub = re.search(r"^- \*\*Subcategoría\*\*:\s*(.+)$", blk, flags=re.M)
-            m_sen = re.search(r"^- \*\*Sentido LOMLOE\*\*:\s*(.+)$", blk, flags=re.M)
-            if m_sub:
-                by_subcat[m_sub.group(1).strip()].append(num)
-            if m_sen:
-                by_sense[m_sen.group(1).strip()].append(num)
+            # Extraer metadatos docentes (nunca mostrar Contenido Específico al alumno)
+            m_sub = re.search(r"^(?:-\s*)?\*\*Subcategoría\*\*:\s*(.+)$", blk, flags=re.M)
+            m_sen = re.search(r"^(?:-\s*)?\*\*Sentido LOMLOE\*\*:\s*(.+)$", blk, flags=re.M)
+            m_cont = re.search(r"^(?:-\s*)?\*\*Contenido Específico\*\*:\s*(.+)$", blk, flags=re.M)
+            subcat_raw = m_sub.group(1).strip() if m_sub else ""
+            sense_raw = m_sen.group(1).strip() if m_sen else ""
+            cont_raw = m_cont.group(1).strip() if m_cont else ""
 
-            # Quitar cabecera ###, Subcategoría y Sentido LOMLOE del cuerpo visible para el niño
+            if subcat_raw:
+                by_subcat[subcat_raw].append(num)
+            if sense_raw:
+                by_sense[sense_raw].append(num)
+            if cont_raw:
+                by_contenido.append((num, ptitle or f"{kind} {num}", cont_raw))
+
+            kind_attr = kind.lower()
+            subcat_code = infer_subcat_code(num, kind, subcat_raw)
+            senses_list = infer_canonical_senses(num, sense_raw, subcat_raw)
+            sense_attr = "|".join(senses_list)
+
+            problem_meta[num] = {
+                "kind": kind_attr,
+                "subcat": subcat_code,
+                "sense": sense_attr,
+                "contenido": cont_raw,
+            }
+
+            # Quitar cabecera ###, Subcategoría, Sentido LOMLOE y Contenido Específico
             body_lines = []
             for line in blk.splitlines()[1:]:
-                if re.match(r"^- \*\*(?:Subcategoría|Sentido LOMLOE)\*\*:", line.strip()):
+                stripped = line.strip()
+                if re.match(r"^(?:-\s*)?\*\*(?:Subcategoría|Sentido LOMLOE|Contenido Específico)\*\*:", stripped):
                     continue
-                if line.strip() == "---":
+                if stripped == "---":
                     continue
-                # Limpiar prefijo "- **Contexto Pokémon**: " para que fluya como una historia natural
-                line = re.sub(r"^- \*\*Contexto Pokémon\*\*:\s*", "", line)
+                line = re.sub(r"^(?:-\s*)?\*\*Contexto Pokémon\*\*:\s*", "", line)
                 body_lines.append(line)
 
             clean_md = "\n".join(body_lines).strip()
-            # Separar la línea **Pregunta**: si existe para destacarla
-            q_match = re.search(r"^\*\*Pregunta\*\*:\s*(.+)$", clean_md, flags=re.M)
-            story_md = re.sub(r"^\*\*Pregunta\*\*:\s*.+$", "", clean_md, flags=re.M).strip()
+            # Extraer **Pregunta**: aunque ocupe varias líneas (ej. 5º y 6º con a), b), c) o tablas)
+            q_split = re.split(r"^\*\*Pregunta\*\*:\s*", clean_md, maxsplit=1, flags=re.M)
+            if len(q_split) == 2:
+                story_md = q_split[0].strip()
+                question_md = q_split[1].strip()
+            else:
+                story_md = clean_md
+                question_md = ""
 
             prot_story, toks_story = protect_math(story_md)
             md.reset()
             story_html = wrap_tables(restore_math(md.convert(prot_story), toks_story))
+            question_html = render_question_html(question_md, md)
 
-            question_html = ""
-            if q_match:
-                prot_q, toks_q = protect_math(q_match.group(1).strip())
-                md.reset()
-                q_rendered = restore_math(md.convert(prot_q), toks_q)
-                # Quitar <p> exterior si es un único párrafo
-                q_rendered = re.sub(r"^<p>([\s\S]*)</p>$", r"\1", q_rendered.strip())
-                question_html = f'<div class="problem-question"><strong>Reto:</strong> {q_rendered}</div>'
+            # Diagrama SVG opcional de svg_diagrams.py
+            diagram_html = ""
+            if generate_problem_svg is not None:
+                try:
+                    svg_out = generate_problem_svg(
+                        num, kind, ptitle, subcat_raw, sense_raw, story_md, question_md, grade
+                    )
+                    if svg_out and svg_out.strip():
+                        diagram_html = svg_out.strip()
+                except Exception:
+                    diagram_html = ""
+
+            # Pista no-spoiler de Rotom Dex
+            hint_text = generate_rotom_hint(subcat_code, story_md, question_md, grade)
+            hint_html = (
+                f'<div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> '
+                f'{html.escape(hint_text)}</div>'
+            )
 
             # Buscar Pokémon asociados y generar sus sprites locales
             pokes = find_pokemon_in_block(blk, num, species_map)
@@ -1081,7 +1727,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
 
             reto_cls = " is-reto" if kind == "Reto" else ""
             card_html = f"""
-<article class="problem-card{reto_cls}">
+<article class="problem-card{reto_cls}" data-num="{num}" data-kind="{html.escape(kind_attr)}" data-subcat="{html.escape(subcat_code)}" data-sense="{html.escape(sense_attr)}">
   <div class="problem-card-header">
     <h3>{html.escape(heading_label)}</h3>
     {pill_label}
@@ -1093,14 +1739,24 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
       {question_html}
     </div>
   </div>
+  {diagram_html}
+  {hint_html}
   <div class="workspace-box" aria-label="Espacio para operaciones">
-    <span class="workspace-label">Operaciones y respuesta</span>
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
   </div>
 </article>
 """
             rendered_cards.append(card_html)
 
-        rendered_sections.append("\n".join(rendered_cards))
+        rendered_sections.append(
+            f'<section class="problem-section" data-section-kind="{sec_kind}">\n'
+            + "\n".join(rendered_cards)
+            + "\n</section>"
+        )
 
     # Renderizar Parte 2 (Solucionario)
     sol_html = ""
@@ -1108,7 +1764,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
         prot_sol, toks_sol = protect_math(part2_raw)
         md.reset()
         sol_converted = wrap_tables(restore_math(md.convert(prot_sol), toks_sol))
-        sol_converted = wrap_cards(sol_converted, "solution-card")
+        sol_converted = wrap_cards(sol_converted, "solution-card", problem_meta=problem_meta)
         sol_html = f'\n<section id="solucionario" class="solutions-section">\n{sol_converted}\n</section>'
 
     # Renderizar intro curricular dentro de la Ficha del Profesor Oak
@@ -1118,7 +1774,15 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
         md.reset()
         intro_html = wrap_tables(restore_math(md.convert(prot_intro), toks_intro))
 
-    oak_html = build_oak_dossier(intro_html, by_sense, by_subcat, total_problems, doc["badge"])
+    oak_html = build_oak_dossier(
+        intro_html=intro_html,
+        by_sense=by_sense,
+        by_subcat=by_subcat,
+        total_problems=total_problems,
+        badge=doc["badge"],
+        grade=grade,
+        by_contenido=by_contenido,
+    )
 
     trainer_header = f"""
 <section class="header-box">
@@ -1140,14 +1804,18 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
   </div>
 </section>
 <div class="kid-welcome">
-  <strong>¡Misión de Entrenamiento!</strong> Lee cada historia con atención, haz tus cálculos en la cuadrícula de libreta y suma <strong>+1 EXP</strong> por cada reto superado.
+  <strong>¡Misión de Entrenamiento!</strong> Lee cada historia con atención, organiza <em>Datos · Operación · Respuesta</em> en la cuadrícula y suma <strong>+1 EXP</strong> por cada reto superado.
 </div>
 """
 
     return trainer_header + "\n".join(rendered_sections) + oak_html + sol_html
 
 
-def wrap_cards(chunk: str, css_class: str) -> str:
+def wrap_cards(
+    chunk: str,
+    css_class: str,
+    problem_meta: dict[int, dict[str, str]] | None = None,
+) -> str:
     tokens = re.split(r"(<h3[^>]*>[\s\S]*?</h3>)", chunk)
     if len(tokens) <= 1:
         return chunk
@@ -1157,25 +1825,107 @@ def wrap_cards(chunk: str, css_class: str) -> str:
     while i < len(tokens):
         h3 = tokens[i]
         body = tokens[i + 1] if i + 1 < len(tokens) else ""
+        h3_text = re.sub(r"<[^>]+>", "", h3).strip()
+        m_sol = re.match(r"^Soluci[óo]n\s+(Problema|al\s+Reto)\s+(\d+)\b", h3_text, flags=re.I)
+
+        # No envolver encabezados divisorios de sección (ej. "### Soluciones — Subcategoría...")
+        if not m_sol:
+            if 'class="' in h3:
+                styled_h3 = re.sub(r'class="([^"]*)"', r'class="\1 solutions-subcat-heading"', h3, count=1)
+            else:
+                styled_h3 = re.sub(r"^<h3\b", '<h3 class="solutions-subcat-heading"', h3, count=1)
+            out.append(f"{styled_h3}{body}")
+            i += 2
+            continue
+
+        num = int(m_sol.group(2))
+        meta = (problem_meta or {}).get(num, {})
+        kind_default = "reto" if "reto" in m_sol.group(1).lower() or num > 100 else "problema"
+        meta_kind = meta.get("kind", kind_default)
+        meta_subcat = meta.get("subcat", infer_subcat_code(num, meta_kind, ""))
+        meta_sense = meta.get("sense", "|".join(infer_canonical_senses(num, "", "")))
+        meta_cont = meta.get("contenido", "")
+
         split_end = re.split(r"(<h2[^>]*>|<hr\s*/?>)", body, maxsplit=1)
         card_body = split_end[0]
         trailing = "".join(split_end[1:]) if len(split_end) > 1 else ""
-        out.append(f'<article class="{css_class}">\n{h3}{card_body}\n</article>{trailing}')
+
+        contenido_html = ""
+        if meta_cont:
+            contenido_html = (
+                f'\n<p class="sol-meta"><strong>Contenido específico:</strong> '
+                f'{html.escape(meta_cont)}</p>'
+            )
+        reto_cls = " is-reto" if meta_kind == "reto" else ""
+        attrs = (
+            f'data-num="{num}" data-kind="{html.escape(meta_kind)}" '
+            f'data-subcat="{html.escape(meta_subcat)}" data-sense="{html.escape(meta_sense)}"'
+        )
+        out.append(
+            f'<article class="{css_class}{reto_cls}" {attrs}>\n'
+            f'{h3}{contenido_html}{card_body}\n</article>{trailing}'
+        )
         i += 2
     return "".join(out)
 
 
-def render_page(title: str, body_html: str, is_problems: bool, is_index: bool = False) -> str:
+def render_page(
+    title: str,
+    body_html: str,
+    is_problems: bool,
+    is_index: bool = False,
+    grade: int = 0,
+) -> str:
     toggle_btns = ""
+    filter_bar = ""
     if is_problems:
         toggle_btns = (
             '<button type="button" id="toggle-solutions" class="btn btn-toggle" '
             'onclick="toggleSolutions()">Modo Alumno (solo ejercicios)</button>'
             '<button type="button" id="toggle-workspaces" class="btn btn-toggle" '
             'onclick="toggleWorkspaces()">Ocultar cuadrículas</button>'
+            '<button type="button" id="toggle-hints" class="btn btn-toggle" '
+            'onclick="toggleHints()">Ocultar pistas</button>'
         )
+        filter_bar = """
+    <div class="toolbar-filters">
+      <label class="filter-group">Subcategoría:
+        <select id="filter-subcat" class="filter-select" onchange="onFilterInputChange()">
+          <option value="all">Todas (1–120)</option>
+          <option value="1">1. Numeración y valor posicional</option>
+          <option value="2">2. Operaciones y cálculo</option>
+          <option value="3">3. Medida, tiempo y dinero</option>
+          <option value="4">4. Geometría y espacio</option>
+          <option value="5">5. Patrones y álgebra</option>
+          <option value="6">6. Datos, gráficos y azar</option>
+          <option value="7">7. Combate, nivel y EXP</option>
+          <option value="reto">Retos Especiales (101–120)</option>
+        </select>
+      </label>
+      <label class="filter-group">Sentido LOMLOE:
+        <select id="filter-sense" class="filter-select" onchange="onFilterInputChange()">
+          <option value="all">Todos los sentidos</option>
+          <option value="Sentido Numérico">Sentido Numérico</option>
+          <option value="Sentido de la Medida">Sentido de la Medida</option>
+          <option value="Sentido Espacial">Sentido Espacial</option>
+          <option value="Sentido Algebraico">Sentido Algebraico</option>
+          <option value="Sentido Estocástico">Sentido Estocástico</option>
+        </select>
+      </label>
+      <label class="filter-group">Desde:
+        <input type="number" id="filter-from" class="filter-input" min="1" max="120" value="1" oninput="onFilterInputChange()">
+      </label>
+      <label class="filter-group">Hasta:
+        <input type="number" id="filter-to" class="filter-input" min="1" max="120" value="120" oninput="onFilterInputChange()">
+      </label>
+      <button type="button" id="btn-session-preset" class="btn btn-preset" onclick="applySessionPreset()">Ficha de sesión (5 ej.)</button>
+      <button type="button" id="btn-filter-reset" class="btn" onclick="resetFilters()">Restablecer</button>
+      <span id="filter-status" class="filter-status">120 / 120 ej.</span>
+    </div>"""
 
     back_btn = "" if is_index else '<a class="btn" href="index.html">← Índice</a>'
+    early_cls = " grade-early" if (is_problems and grade in (1, 2, 3)) else ""
+    body_cls = ' class="grade-early"' if (is_problems and grade in (1, 2, 3)) else ""
 
     katex_head = """
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
@@ -1186,6 +1936,8 @@ def render_page(title: str, body_html: str, is_problems: bool, is_index: bool = 
 
     script_js = """
   <script>
+    let sessionLimit = null;
+
     function toggleSolutions() {
       const hidden = document.body.classList.toggle('hide-solutions');
       const btn = document.getElementById('toggle-solutions');
@@ -1194,6 +1946,7 @@ def render_page(title: str, body_html: str, is_problems: bool, is_index: bool = 
         btn.textContent = hidden ? 'Mostrar solucionario y Ficha Oak' : 'Modo Alumno (solo ejercicios)';
       }
     }
+
     function toggleWorkspaces() {
       const hidden = document.body.classList.toggle('hide-workspaces');
       const btn = document.getElementById('toggle-workspaces');
@@ -1201,6 +1954,114 @@ def render_page(title: str, body_html: str, is_problems: bool, is_index: bool = 
         btn.classList.toggle('active', hidden);
         btn.textContent = hidden ? 'Mostrar cuadrículas' : 'Ocultar cuadrículas';
       }
+    }
+
+    function toggleHints() {
+      const hidden = document.body.classList.toggle('hide-hints');
+      const btn = document.getElementById('toggle-hints');
+      if (btn) {
+        btn.classList.toggle('active', hidden);
+        btn.textContent = hidden ? 'Mostrar pistas' : 'Ocultar pistas';
+      }
+    }
+
+    function applyFilters() {
+      const subcatEl = document.getElementById('filter-subcat');
+      const senseEl = document.getElementById('filter-sense');
+      const fromEl = document.getElementById('filter-from');
+      const toEl = document.getElementById('filter-to');
+      if (!subcatEl || !senseEl || !fromEl || !toEl) return;
+
+      const subcatVal = subcatEl.value;
+      const senseVal = senseEl.value;
+      let fromNum = parseInt(fromEl.value, 10);
+      let toNum = parseInt(toEl.value, 10);
+      if (isNaN(fromNum) || fromNum < 1) fromNum = 1;
+      if (isNaN(toNum) || toNum > 120) toNum = 120;
+      if (fromNum > toNum) {
+        const tmp = fromNum;
+        fromNum = toNum;
+        toNum = tmp;
+      }
+
+      const problemCards = Array.from(document.querySelectorAll('.problem-card'));
+      const visibleNums = new Set();
+      let shownCount = 0;
+
+      problemCards.forEach((card) => {
+        const num = parseInt(card.dataset.num || '0', 10);
+        const kind = card.dataset.kind || '';
+        const subcat = card.dataset.subcat || '';
+        const senses = (card.dataset.sense || '').split('|').filter(Boolean);
+
+        const matchSubcat =
+          subcatVal === 'all' ||
+          (subcatVal === 'reto' ? (subcat === 'reto' || kind === 'reto') : subcat === subcatVal);
+        const matchSense = senseVal === 'all' || senses.includes(senseVal);
+        const matchRange = num >= fromNum && num <= toNum;
+
+        let show = matchSubcat && matchSense && matchRange;
+        if (show && sessionLimit !== null && shownCount >= sessionLimit) {
+          show = false;
+        }
+
+        card.classList.toggle('is-filtered-hidden', !show);
+        if (show) {
+          shownCount += 1;
+          visibleNums.add(String(num));
+        }
+      });
+
+      document.querySelectorAll('.solution-card').forEach((sol) => {
+        const num = sol.dataset.num || '';
+        sol.classList.toggle('is-filtered-hidden', !visibleNums.has(num));
+      });
+
+      document.querySelectorAll('.problem-section').forEach((sec) => {
+        const hasVisible = sec.querySelector('.problem-card:not(.is-filtered-hidden)') !== null;
+        sec.classList.toggle('is-filtered-hidden', !hasVisible);
+      });
+
+      document.querySelectorAll('.solutions-subcat-heading').forEach((hd) => {
+        let el = hd.nextElementSibling;
+        let hasVisibleSol = false;
+        while (el && !el.classList.contains('solutions-subcat-heading')) {
+          if (el.classList.contains('solution-card') && !el.classList.contains('is-filtered-hidden')) {
+            hasVisibleSol = true;
+            break;
+          }
+          el = el.nextElementSibling;
+        }
+        hd.classList.toggle('is-filtered-hidden', !hasVisibleSol);
+      });
+
+      const statusEl = document.getElementById('filter-status');
+      if (statusEl) {
+        statusEl.textContent = `${shownCount} / ${problemCards.length} ej.`;
+      }
+    }
+
+    function onFilterInputChange() {
+      sessionLimit = null;
+      applyFilters();
+    }
+
+    function applySessionPreset() {
+      sessionLimit = 5;
+      applyFilters();
+    }
+
+    function resetFilters() {
+      const subcatEl = document.getElementById('filter-subcat');
+      const senseEl = document.getElementById('filter-sense');
+      const fromEl = document.getElementById('filter-from');
+      const toEl = document.getElementById('filter-to');
+      if (subcatEl) subcatEl.value = 'all';
+      if (senseEl) senseEl.value = 'all';
+      if (fromEl) fromEl.value = '1';
+      if (toEl) toEl.value = '120';
+      sessionLimit = null;
+      applyFilters();
     }
   </script>
 """
@@ -1214,18 +2075,20 @@ def render_page(title: str, body_html: str, is_problems: bool, is_index: bool = 
   <style>{SHARED_CSS}</style>
   {"" if is_index else katex_head}
 </head>
-<body>
+<body{body_cls}>
   <header class="print-toolbar no-print">
-    <div class="toolbar-left">
-      {back_btn}
-      <span class="toolbar-title">{html.escape(title)}</span>
-    </div>
-    <div class="toolbar-actions">
-      {toggle_btns}
-      <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
-    </div>
+    <div class="toolbar-main">
+      <div class="toolbar-left">
+        {back_btn}
+        <span class="toolbar-title">{html.escape(title)}</span>
+      </div>
+      <div class="toolbar-actions">
+        {toggle_btns}
+        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+      </div>
+    </div>{filter_bar}
   </header>
-  <main class="page-container">
+  <main class="page-container{early_cls}">
     {body_html}
   </main>
   {script_js}
@@ -1257,27 +2120,27 @@ def build_index() -> str:
     <section class="header-box">
       <div class="header-title-row">
         <h1>Matemáticas Primaria con Pokémon — Cuadernillos Imprimibles</h1>
-        <span class="badge-grade">2º a 6º Primaria</span>
+        <span class="badge-grade">1º a 6º Primaria</span>
       </div>
     </section>
-    <p>Accede a cualquiera de los cuadernillos de entrenador (120 ejercicios ilustrados por curso con cuadrícula de operaciones, <strong>Ficha del Profesor Oak</strong> para docentes/familias y solucionario paso a paso) o a las tablas de referencia.</p>
+    <p>Accede a cualquiera de los cuadernillos de entrenador (120 ejercicios ilustrados por curso con diagramas SVG, pistas opcionales de Rotom Dex, cuadrícula de operaciones NEAE, <strong>Ficha del Profesor Oak</strong> con rúbrica LOMLOE CE1–CE8 y solucionario paso a paso) o a las tablas de referencia.</p>
     <blockquote>
-      <strong>Consejo de impresión:</strong> En cada cuadernillo puedes activar el <em>«Modo Alumno (solo ejercicios)»</em> para imprimir únicamente las páginas del niño (sin solucionario ni Ficha del Profesor Oak), o imprimirlo completo con saltos de página automáticos.
+      <strong>Consejo de impresión:</strong> En cada cuadernillo puedes filtrar por subcategoría, sentido LOMLOE o rango (<em>«Ficha de sesión (5 ej.)»</em>), ocultar las pistas o activar el <em>«Modo Alumno (solo ejercicios)»</em> para imprimir fichas personalizadas en A4.
     </blockquote>
 
-    <h2>Cuadernillos de Entrenador (600 ejercicios ilustrados)</h2>
+    <h2>Cuadernillos de Entrenador (720 ejercicios ilustrados)</h2>
     <div class="grid-cards">
-      {"".join(cards[:5])}
+      {"".join(cards[:6])}
     </div>
 
     <h2>Tablas de Referencia y Recursos</h2>
     <div class="grid-cards">
-      {"".join(cards[5:])}
+      {"".join(cards[6:])}
       <div class="doc-card">
         <div>
           <span class="doc-badge">Índice y Guía</span>
           <h3>Guía Maestra del Proyecto (README)</h3>
-          <p>Mapeo curricular LOMLOE completo, estructura de carpetas y resumen pedagógico.</p>
+          <p>Mapeo curricular LOMLOE completo (1º a 6º de Primaria), estructura de carpetas y resumen pedagógico.</p>
         </div>
         <div class="doc-card-actions">
           <a class="btn-outline" href="README.html">Abrir guía maestra</a>
@@ -1309,7 +2172,12 @@ def main() -> None:
             html_body = restore_math(html_body, math_tokens)
             html_body = wrap_tables(html_body)
 
-        full_html = render_page(doc["title"], html_body, is_problems=doc["is_problems"])
+        full_html = render_page(
+            doc["title"],
+            html_body,
+            is_problems=doc["is_problems"],
+            grade=doc.get("grade", 0),
+        )
         out_path = OUT_DIR / doc["out"]
         out_path.write_text(full_html, encoding="utf-8")
         print(f"[OK] {out_path.name} ({out_path.stat().st_size // 1024} KB)")
