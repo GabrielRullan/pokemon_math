@@ -262,6 +262,239 @@ body {
   display: none !important;
 }
 
+.btn-print-student {
+  background: #0284c7;
+  border-color: #0284c7;
+}
+
+.btn-print-student:hover {
+  background: #0369a1;
+}
+
+.btn-pdf-link {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+/* Portada anual e índice del cuadernillo */
+.workbook-cover {
+  border: 3px solid var(--pk-red);
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #fffdf5 0%, #ffffff 55%, #eff6ff 100%);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  text-align: center;
+}
+
+.cover-top-badge {
+  display: inline-block;
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  background: var(--pk-blue);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.workbook-cover h1.cover-title {
+  margin: 0.25rem 0 0.35rem;
+  padding: 0;
+  border: 0;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--pk-blue);
+}
+
+.cover-subtitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pk-red);
+  margin: 0 0 1rem;
+}
+
+.cover-sprites-trio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1rem auto 1.25rem;
+  padding: 0.85rem 1rem;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  max-width: 560px;
+}
+
+.cover-sprite-img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.cover-student-box {
+  text-align: left;
+  background: #ffffff;
+  border: 2px solid #94a3b8;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.cover-student-box h2 {
+  margin: 0 0 0.7rem;
+  padding: 0 0 0.35rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--pk-yellow);
+  border-radius: 0;
+  font-size: 1.05rem;
+  color: var(--pk-blue);
+}
+
+.cover-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cover-field-row {
+  border-bottom: 2px dotted #94a3b8;
+  padding: 0.3rem 0 0.25rem;
+}
+
+.cover-field-row.full-span {
+  grid-column: 1 / -1;
+}
+
+.passport-box {
+  text-align: left;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.95rem 1.15rem;
+}
+
+.passport-box h3 {
+  margin: 0 0 0.65rem;
+  font-size: 0.98rem;
+  color: var(--pk-blue);
+  text-align: center;
+}
+
+.medals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.55rem;
+}
+
+.medal-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.28rem;
+  padding: 0.5rem 0.35rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.medal-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px dashed #94a3b8;
+  background: #fffdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.workbook-toc {
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.5rem;
+  background: #ffffff;
+}
+
+.workbook-toc h2 {
+  margin-top: 0;
+}
+
+.toc-progress-box {
+  display: inline-block;
+  width: 58px;
+  height: 18px;
+  border-bottom: 1.5px solid #64748b;
+  vertical-align: middle;
+}
+
+.chapter-banner {
+  margin: 1.35rem 0 0.95rem;
+  padding: 0.75rem 1.05rem;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #eff6ff 0%, #f8fafc 100%);
+  border: 2px solid var(--pk-blue-mid);
+  border-left: 8px solid var(--pk-blue);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.chapter-banner.is-reto-chapter {
+  background: linear-gradient(90deg, #fff7ed 0%, #fffbeb 100%);
+  border-color: #ea580c;
+  border-left-color: #c2410c;
+}
+
+.chapter-banner-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--pk-blue);
+}
+
+.chapter-banner.is-reto-chapter .chapter-banner-title {
+  color: #9a3412;
+}
+
+.chapter-banner-meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.chapter-banner-stamp {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+  background: #ffffff;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  border: 1px dashed #94a3b8;
+}
+
+body.is-filtered-worksheet .workbook-cover,
+body.is-filtered-worksheet .workbook-toc {
+  display: none !important;
+}
+
 .toolbar-left {
   display: flex;
   align-items: center;
@@ -936,6 +1169,36 @@ table.type-matrix tbody td:first-child {
     display: none !important;
   }
 
+  body:not(.is-filtered-worksheet) .header-box {
+    display: none !important;
+  }
+
+  .workbook-cover {
+    box-shadow: none;
+    margin: 0;
+    padding: 1.4rem 1.4rem 1.2rem;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .workbook-toc {
+    margin: 0;
+    padding: 1rem 1.15rem;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  body:not(.is-filtered-worksheet) .chapter-banner:not(.is-first-chapter) {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .chapter-banner {
+    margin-top: 0.35rem;
+    margin-bottom: 0.65rem;
+    padding: 0.55rem 0.85rem;
+  }
+
   .page-container {
     max-width: none;
     margin: 0;
@@ -1484,6 +1747,133 @@ def build_rubric_table() -> str:
 """
 
 
+WORKBOOK_CHAPTERS: list[tuple[str, str, str, str, str]] = [
+    ("1", "Gimnasio 1 · Numeración, Descomposición y Valor Posicional", "1–15", "Sentido Numérico", "Medalla Roca"),
+    ("2", "Gimnasio 2 · Operaciones Aritméticas y Cálculo Mental", "16–35", "Sentido Numérico", "Medalla Cascada"),
+    ("3", "Gimnasio 3 · Magnitudes, Unidades de Medida, Tiempo y Dinero", "36–50", "Sentido de la Medida", "Medalla Trueno"),
+    ("4", "Gimnasio 4 · Geometría, Formas, Perímetros, Áreas y Espacio", "51–65", "Sentido Espacial", "Medalla Arcoíris"),
+    ("5", "Gimnasio 5 · Patrones, Álgebra y Pensamiento Computacional", "66–75", "Sentido Algebraico", "Medalla Alma"),
+    ("6", "Gimnasio 6 · Tratamiento de Datos, Gráficos y Probabilidad", "76–85", "Sentido Estocástico", "Medalla Pantano"),
+    ("7", "Gimnasio 7 · Combate, Nivel y Experiencia (EXP)", "86–100", "Sentido Numérico", "Medalla Volcán"),
+    ("reto", "Liga Pokémon · Retos Especiales de Ampliación", "101–120", "Todos los Sentidos", "Medalla Tierra"),
+]
+
+COVER_TRIOS: dict[int, list[tuple[int, str]]] = {
+    1: [(1, "Bulbasaur"), (4, "Charmander"), (7, "Squirtle")],
+    2: [(25, "Pikachu"), (133, "Eevee"), (175, "Togepi")],
+    3: [(393, "Piplup"), (448, "Lucario"), (25, "Pikachu")],
+    4: [(133, "Eevee"), (448, "Lucario"), (94, "Gengar")],
+    5: [(143, "Snorlax"), (448, "Lucario"), (25, "Pikachu")],
+    6: [(6, "Charizard"), (9, "Blastoise"), (448, "Lucario")],
+}
+
+
+def build_workbook_cover(doc: dict, grade: int, total_problems: int) -> str:
+    """Construye la portada anual imprimible con pasaporte de 8 medallas."""
+    cycle_num = 1 if grade <= 2 else (2 if grade <= 4 else 3)
+    cycle_title = CYCLE_INFO[cycle_num][0]
+    trio = COVER_TRIOS.get(grade, [(1, "Bulbasaur"), (4, "Charmander"), (7, "Squirtle")])
+    trio_imgs = []
+    for pid, pname in trio:
+        if (IMG_DIR / f"{pid}.png").exists():
+            trio_imgs.append(
+                f'<img src="assets/images/{pid}.png" alt="{html.escape(pname)}" class="cover-sprite-img">'
+            )
+    sprites_block = (
+        f'<div class="cover-sprites-trio">{"".join(trio_imgs)}</div>' if trio_imgs else ""
+    )
+
+    medals_html = "".join(
+        f"""
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>{html.escape(medal)}</span>
+        <small style="font-weight:600;color:#64748b;">Ej. {html.escape(rng)}</small>
+      </div>"""
+        for _, _, rng, _, medal in WORKBOOK_CHAPTERS
+    )
+
+    grade_label = f"{grade}º de Primaria" if grade else doc["title"]
+    return f"""
+<section class="workbook-cover">
+  <span class="cover-top-badge">Curso Escolar · Educación Primaria LOMLOE (RD 157/2022)</span>
+  <h1 class="cover-title">Cuadernillo Anual de Matemáticas Pokémon</h1>
+  <p class="cover-subtitle">{html.escape(grade_label)} · {html.escape(doc["badge"])} · {html.escape(cycle_title)}</p>
+  {sprites_block}
+  <div class="cover-student-box">
+    <h2>Datos del Entrenador / de la Entrenadora</h2>
+    <div class="cover-fields-grid">
+      <div class="cover-field-row full-span">Nombre y apellidos:</div>
+      <div class="cover-field-row">Curso y grupo:</div>
+      <div class="cover-field-row">Año escolar: 20____ / 20____</div>
+      <div class="cover-field-row">Centro educativo:</div>
+      <div class="cover-field-row">Docente:</div>
+      <div class="cover-field-row full-span">Puntos EXP totales acumulados: ________ / {total_problems} EXP · Rango alcanzado: ________________________</div>
+    </div>
+  </div>
+  <div class="passport-box">
+    <h3>Pasaporte de Medallas de Gimnasio (8 Bloques Anuales — Colorea al completar cada bloque)</h3>
+    <div class="medals-grid">{medals_html}</div>
+  </div>
+</section>
+"""
+
+
+def build_workbook_toc() -> str:
+    """Construye el índice anual del cuadernillo con registro de progreso."""
+    rows_html = "".join(
+        f"""
+        <tr>
+          <td>{html.escape(title)}</td>
+          <td>{html.escape(rng)}</td>
+          <td>{html.escape(sense)}</td>
+          <td><span class="toc-progress-box"></span> / {15 if code in ('1','3','4','7') else (20 if code in ('2','reto') else 10)} EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>"""
+        for code, title, rng, sense, _ in WORKBOOK_CHAPTERS
+    )
+    return f"""
+<section class="workbook-toc">
+  <h2>Índice del Cuadernillo y Registro de Progreso Anual</h2>
+  <p>Este cuadernillo anual reúne <strong>120 retos matemáticos</strong> organizados en 7 Gimnasios temáticos y la Liga Pokémon final. Anota tu puntuación EXP y consigue la firma o sello de cada bloque.</p>
+  <div class="table-wrapper" tabindex="0" role="region" aria-label="Índice del Cuadernillo Anual">
+    <table>
+      <thead>
+        <tr>
+          <th>Bloque / Gimnasio</th>
+          <th>Ejercicios</th>
+          <th>Sentido LOMLOE</th>
+          <th>Progreso (EXP)</th>
+          <th>Sello / Firma</th>
+        </tr>
+      </thead>
+      <tbody>{rows_html}</tbody>
+    </table>
+  </div>
+</section>
+"""
+
+
+def build_chapter_banner(subcat_code: str, is_first: bool = False) -> str:
+    """Genera el separador visual de capítulo/gimnasio al inicio de cada bloque."""
+    chapter_map = {code: (title, rng, sense, medal) for code, title, rng, sense, medal in WORKBOOK_CHAPTERS}
+    title, rng, sense, medal = chapter_map.get(
+        subcat_code,
+        ("Bloque de Entrenamiento", "", "Sentidos LOMLOE", "Medalla"),
+    )
+    first_cls = " is-first-chapter" if is_first else ""
+    reto_cls = " is-reto-chapter" if subcat_code == "reto" else ""
+    return f"""
+<div class="chapter-banner{first_cls}{reto_cls}" data-subcat="{html.escape(subcat_code)}">
+  <div>
+    <div class="chapter-banner-title">{html.escape(title)}</div>
+    <div class="chapter-banner-meta">Ejercicios {html.escape(rng)} · {html.escape(sense)} · Objetivo: {html.escape(medal)}</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
+"""
+
+
 def build_oak_dossier(
     intro_html: str,
     by_sense: dict[str, list[int]],
@@ -1608,6 +1998,8 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
 
     sections = re.split(r"(?=^## Parte 1B?\b)", part1_body, flags=re.M)
     rendered_sections: list[str] = []
+    seen_chapters: set[str] = set()
+    first_chapter_emitted = False
 
     for sec in sections:
         sec = sec.strip()
@@ -1659,6 +2051,11 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
             subcat_code = infer_subcat_code(num, kind, subcat_raw)
             senses_list = infer_canonical_senses(num, sense_raw, subcat_raw)
             sense_attr = "|".join(senses_list)
+
+            if subcat_code not in seen_chapters:
+                seen_chapters.add(subcat_code)
+                rendered_cards.append(build_chapter_banner(subcat_code, is_first=not first_chapter_emitted))
+                first_chapter_emitted = True
 
             problem_meta[num] = {
                 "kind": kind_attr,
@@ -1784,6 +2181,9 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
         by_contenido=by_contenido,
     )
 
+    cover_html = build_workbook_cover(doc, grade, total_problems)
+    toc_html = build_workbook_toc()
+
     trainer_header = f"""
 <section class="header-box">
   <div class="header-title-row">
@@ -1808,7 +2208,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
 </div>
 """
 
-    return trainer_header + "\n".join(rendered_sections) + oak_html + sol_html
+    return cover_html + toc_html + trainer_header + "\n".join(rendered_sections) + oak_html + sol_html
 
 
 def wrap_cards(
@@ -1878,6 +2278,7 @@ def render_page(
 ) -> str:
     toggle_btns = ""
     filter_bar = ""
+    print_actions = '<button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>'
     if is_problems:
         toggle_btns = (
             '<button type="button" id="toggle-solutions" class="btn btn-toggle" '
@@ -1886,6 +2287,19 @@ def render_page(
             'onclick="toggleWorkspaces()">Ocultar cuadrículas</button>'
             '<button type="button" id="toggle-hints" class="btn btn-toggle" '
             'onclick="toggleHints()">Ocultar pistas</button>'
+        )
+        pdf_links = ""
+        if grade:
+            pdf_links = (
+                f'<a class="btn btn-pdf-link" href="pdf/cuadernillo_{grade}_primaria_alumno.pdf" download>📄 PDF Alumno</a>'
+                f'<a class="btn btn-pdf-link" href="pdf/cuadernillo_{grade}_primaria_docente.pdf" download>📘 PDF Docente</a>'
+            )
+        print_actions = (
+            '<button type="button" class="btn btn-print-student" onclick="printStudentWorkbook()">'
+            '🖨️ Imprimir Cuadernillo Alumno</button>'
+            '<button type="button" class="btn btn-primary" onclick="window.print()">'
+            '🖨️ Imprimir Actual / Docente</button>'
+            + pdf_links
         )
         filter_bar = """
     <div class="toolbar-filters">
@@ -1986,6 +2400,7 @@ def render_page(
 
       const problemCards = Array.from(document.querySelectorAll('.problem-card'));
       const visibleNums = new Set();
+      const visibleSubcats = new Set();
       let shownCount = 0;
 
       problemCards.forEach((card) => {
@@ -2009,7 +2424,15 @@ def render_page(
         if (show) {
           shownCount += 1;
           visibleNums.add(String(num));
+          if (subcat) visibleSubcats.add(subcat);
         }
+      });
+
+      document.body.classList.toggle('is-filtered-worksheet', shownCount < problemCards.length);
+
+      document.querySelectorAll('.chapter-banner').forEach((banner) => {
+        const sub = banner.dataset.subcat || '';
+        banner.classList.toggle('is-filtered-hidden', !visibleSubcats.has(sub));
       });
 
       document.querySelectorAll('.solution-card').forEach((sol) => {
@@ -2063,6 +2486,27 @@ def render_page(
       sessionLimit = null;
       applyFilters();
     }
+
+    function printStudentWorkbook() {
+      resetFilters();
+      document.body.classList.add('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.add('active');
+        btn.textContent = 'Mostrar solucionario y Ficha Oak';
+      }
+      window.print();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.body.classList.contains('hide-solutions')) {
+        const btn = document.getElementById('toggle-solutions');
+        if (btn) {
+          btn.classList.add('active');
+          btn.textContent = 'Mostrar solucionario y Ficha Oak';
+        }
+      }
+    });
   </script>
 """
 
@@ -2076,6 +2520,11 @@ def render_page(
   {"" if is_index else katex_head}
 </head>
 <body{body_cls}>
+  <script>
+    if (new URLSearchParams(window.location.search).get('mode') === 'alumno') {{
+      document.body.classList.add('hide-solutions');
+    }}
+  </script>
   <header class="print-toolbar no-print">
     <div class="toolbar-main">
       <div class="toolbar-left">
@@ -2084,7 +2533,7 @@ def render_page(
       </div>
       <div class="toolbar-actions">
         {toggle_btns}
-        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+        {print_actions}
       </div>
     </div>{filter_bar}
   </header>
@@ -2102,6 +2551,15 @@ def build_index() -> str:
     for doc in DOCS:
         if doc["src"] == "README.md":
             continue
+        if doc["is_problems"] and doc.get("grade"):
+            g = doc["grade"]
+            actions_html = (
+                f'<a class="btn-outline" href="{doc["out"]}">Abrir cuadernillo interactivo</a>'
+                f'<a class="btn-outline" href="pdf/cuadernillo_{g}_primaria_alumno.pdf" download>📄 PDF Cuadernillo Alumno</a>'
+                f'<a class="btn-outline" href="pdf/cuadernillo_{g}_primaria_docente.pdf" download>📘 PDF Libro Docente</a>'
+            )
+        else:
+            actions_html = f'<a class="btn-outline" href="{doc["out"]}">Abrir ficha imprimible</a>'
         cards.append(
             f"""
       <div class="doc-card">
@@ -2111,7 +2569,7 @@ def build_index() -> str:
           <p>{html.escape(doc["desc"])}</p>
         </div>
         <div class="doc-card-actions">
-          <a class="btn-outline" href="{doc["out"]}">Abrir ficha imprimible</a>
+          {actions_html}
         </div>
       </div>"""
         )

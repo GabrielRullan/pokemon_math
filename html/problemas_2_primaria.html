@@ -123,6 +123,239 @@ body {
   display: none !important;
 }
 
+.btn-print-student {
+  background: #0284c7;
+  border-color: #0284c7;
+}
+
+.btn-print-student:hover {
+  background: #0369a1;
+}
+
+.btn-pdf-link {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+/* Portada anual e índice del cuadernillo */
+.workbook-cover {
+  border: 3px solid var(--pk-red);
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #fffdf5 0%, #ffffff 55%, #eff6ff 100%);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  text-align: center;
+}
+
+.cover-top-badge {
+  display: inline-block;
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  background: var(--pk-blue);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.workbook-cover h1.cover-title {
+  margin: 0.25rem 0 0.35rem;
+  padding: 0;
+  border: 0;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--pk-blue);
+}
+
+.cover-subtitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pk-red);
+  margin: 0 0 1rem;
+}
+
+.cover-sprites-trio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1rem auto 1.25rem;
+  padding: 0.85rem 1rem;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  max-width: 560px;
+}
+
+.cover-sprite-img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.cover-student-box {
+  text-align: left;
+  background: #ffffff;
+  border: 2px solid #94a3b8;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.cover-student-box h2 {
+  margin: 0 0 0.7rem;
+  padding: 0 0 0.35rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--pk-yellow);
+  border-radius: 0;
+  font-size: 1.05rem;
+  color: var(--pk-blue);
+}
+
+.cover-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cover-field-row {
+  border-bottom: 2px dotted #94a3b8;
+  padding: 0.3rem 0 0.25rem;
+}
+
+.cover-field-row.full-span {
+  grid-column: 1 / -1;
+}
+
+.passport-box {
+  text-align: left;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.95rem 1.15rem;
+}
+
+.passport-box h3 {
+  margin: 0 0 0.65rem;
+  font-size: 0.98rem;
+  color: var(--pk-blue);
+  text-align: center;
+}
+
+.medals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.55rem;
+}
+
+.medal-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.28rem;
+  padding: 0.5rem 0.35rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.medal-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px dashed #94a3b8;
+  background: #fffdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.workbook-toc {
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.5rem;
+  background: #ffffff;
+}
+
+.workbook-toc h2 {
+  margin-top: 0;
+}
+
+.toc-progress-box {
+  display: inline-block;
+  width: 58px;
+  height: 18px;
+  border-bottom: 1.5px solid #64748b;
+  vertical-align: middle;
+}
+
+.chapter-banner {
+  margin: 1.35rem 0 0.95rem;
+  padding: 0.75rem 1.05rem;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #eff6ff 0%, #f8fafc 100%);
+  border: 2px solid var(--pk-blue-mid);
+  border-left: 8px solid var(--pk-blue);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.chapter-banner.is-reto-chapter {
+  background: linear-gradient(90deg, #fff7ed 0%, #fffbeb 100%);
+  border-color: #ea580c;
+  border-left-color: #c2410c;
+}
+
+.chapter-banner-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--pk-blue);
+}
+
+.chapter-banner.is-reto-chapter .chapter-banner-title {
+  color: #9a3412;
+}
+
+.chapter-banner-meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.chapter-banner-stamp {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+  background: #ffffff;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  border: 1px dashed #94a3b8;
+}
+
+body.is-filtered-worksheet .workbook-cover,
+body.is-filtered-worksheet .workbook-toc {
+  display: none !important;
+}
+
 .toolbar-left {
   display: flex;
   align-items: center;
@@ -797,6 +1030,36 @@ table.type-matrix tbody td:first-child {
     display: none !important;
   }
 
+  body:not(.is-filtered-worksheet) .header-box {
+    display: none !important;
+  }
+
+  .workbook-cover {
+    box-shadow: none;
+    margin: 0;
+    padding: 1.4rem 1.4rem 1.2rem;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .workbook-toc {
+    margin: 0;
+    padding: 1rem 1.15rem;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  body:not(.is-filtered-worksheet) .chapter-banner:not(.is-first-chapter) {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .chapter-banner {
+    margin-top: 0.35rem;
+    margin-bottom: 0.65rem;
+    padding: 0.55rem 0.85rem;
+  }
+
   .page-container {
     max-width: none;
     margin: 0;
@@ -911,6 +1174,11 @@ table.type-matrix tbody td:first-child {
 
 </head>
 <body class="grade-early">
+  <script>
+    if (new URLSearchParams(window.location.search).get('mode') === 'alumno') {
+      document.body.classList.add('hide-solutions');
+    }
+  </script>
   <header class="print-toolbar no-print">
     <div class="toolbar-main">
       <div class="toolbar-left">
@@ -919,7 +1187,7 @@ table.type-matrix tbody td:first-child {
       </div>
       <div class="toolbar-actions">
         <button type="button" id="toggle-solutions" class="btn btn-toggle" onclick="toggleSolutions()">Modo Alumno (solo ejercicios)</button><button type="button" id="toggle-workspaces" class="btn btn-toggle" onclick="toggleWorkspaces()">Ocultar cuadrículas</button><button type="button" id="toggle-hints" class="btn btn-toggle" onclick="toggleHints()">Ocultar pistas</button>
-        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+        <button type="button" class="btn btn-print-student" onclick="printStudentWorkbook()">🖨️ Imprimir Cuadernillo Alumno</button><button type="button" class="btn btn-primary" onclick="window.print()">🖨️ Imprimir Actual / Docente</button><a class="btn btn-pdf-link" href="pdf/cuadernillo_2_primaria_alumno.pdf" download>📄 PDF Alumno</a><a class="btn btn-pdf-link" href="pdf/cuadernillo_2_primaria_docente.pdf" download>📘 PDF Docente</a>
       </div>
     </div>
     <div class="toolbar-filters">
@@ -959,6 +1227,143 @@ table.type-matrix tbody td:first-child {
   </header>
   <main class="page-container grade-early">
     
+<section class="workbook-cover">
+  <span class="cover-top-badge">Curso Escolar · Educación Primaria LOMLOE (RD 157/2022)</span>
+  <h1 class="cover-title">Cuadernillo Anual de Matemáticas Pokémon</h1>
+  <p class="cover-subtitle">2º de Primaria · 2º Primaria (7–8 años) · Primer Ciclo (1º–2º de Primaria)</p>
+  <div class="cover-sprites-trio"><img src="assets/images/25.png" alt="Pikachu" class="cover-sprite-img"><img src="assets/images/133.png" alt="Eevee" class="cover-sprite-img"><img src="assets/images/175.png" alt="Togepi" class="cover-sprite-img"></div>
+  <div class="cover-student-box">
+    <h2>Datos del Entrenador / de la Entrenadora</h2>
+    <div class="cover-fields-grid">
+      <div class="cover-field-row full-span">Nombre y apellidos:</div>
+      <div class="cover-field-row">Curso y grupo:</div>
+      <div class="cover-field-row">Año escolar: 20____ / 20____</div>
+      <div class="cover-field-row">Centro educativo:</div>
+      <div class="cover-field-row">Docente:</div>
+      <div class="cover-field-row full-span">Puntos EXP totales acumulados: ________ / 120 EXP · Rango alcanzado: ________________________</div>
+    </div>
+  </div>
+  <div class="passport-box">
+    <h3>Pasaporte de Medallas de Gimnasio (8 Bloques Anuales — Colorea al completar cada bloque)</h3>
+    <div class="medals-grid">
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Roca</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 1–15</small>
+      </div>
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Cascada</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 16–35</small>
+      </div>
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Trueno</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 36–50</small>
+      </div>
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Arcoíris</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 51–65</small>
+      </div>
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Alma</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 66–75</small>
+      </div>
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Pantano</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 76–85</small>
+      </div>
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Volcán</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 86–100</small>
+      </div>
+      <div class="medal-slot">
+        <div class="medal-circle">✓</div>
+        <span>Medalla Tierra</span>
+        <small style="font-weight:600;color:#64748b;">Ej. 101–120</small>
+      </div></div>
+  </div>
+</section>
+
+<section class="workbook-toc">
+  <h2>Índice del Cuadernillo y Registro de Progreso Anual</h2>
+  <p>Este cuadernillo anual reúne <strong>120 retos matemáticos</strong> organizados en 7 Gimnasios temáticos y la Liga Pokémon final. Anota tu puntuación EXP y consigue la firma o sello de cada bloque.</p>
+  <div class="table-wrapper" tabindex="0" role="region" aria-label="Índice del Cuadernillo Anual">
+    <table>
+      <thead>
+        <tr>
+          <th>Bloque / Gimnasio</th>
+          <th>Ejercicios</th>
+          <th>Sentido LOMLOE</th>
+          <th>Progreso (EXP)</th>
+          <th>Sello / Firma</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gimnasio 1 · Numeración, Descomposición y Valor Posicional</td>
+          <td>1–15</td>
+          <td>Sentido Numérico</td>
+          <td><span class="toc-progress-box"></span> / 15 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>
+        <tr>
+          <td>Gimnasio 2 · Operaciones Aritméticas y Cálculo Mental</td>
+          <td>16–35</td>
+          <td>Sentido Numérico</td>
+          <td><span class="toc-progress-box"></span> / 20 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>
+        <tr>
+          <td>Gimnasio 3 · Magnitudes, Unidades de Medida, Tiempo y Dinero</td>
+          <td>36–50</td>
+          <td>Sentido de la Medida</td>
+          <td><span class="toc-progress-box"></span> / 15 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>
+        <tr>
+          <td>Gimnasio 4 · Geometría, Formas, Perímetros, Áreas y Espacio</td>
+          <td>51–65</td>
+          <td>Sentido Espacial</td>
+          <td><span class="toc-progress-box"></span> / 15 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>
+        <tr>
+          <td>Gimnasio 5 · Patrones, Álgebra y Pensamiento Computacional</td>
+          <td>66–75</td>
+          <td>Sentido Algebraico</td>
+          <td><span class="toc-progress-box"></span> / 10 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>
+        <tr>
+          <td>Gimnasio 6 · Tratamiento de Datos, Gráficos y Probabilidad</td>
+          <td>76–85</td>
+          <td>Sentido Estocástico</td>
+          <td><span class="toc-progress-box"></span> / 10 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>
+        <tr>
+          <td>Gimnasio 7 · Combate, Nivel y Experiencia (EXP)</td>
+          <td>86–100</td>
+          <td>Sentido Numérico</td>
+          <td><span class="toc-progress-box"></span> / 15 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr>
+        <tr>
+          <td>Liga Pokémon · Retos Especiales de Ampliación</td>
+          <td>101–120</td>
+          <td>Todos los Sentidos</td>
+          <td><span class="toc-progress-box"></span> / 20 EXP</td>
+          <td><span class="toc-progress-box"></span></td>
+        </tr></tbody>
+    </table>
+  </div>
+</section>
+
 <section class="header-box">
   <div class="header-title-row">
     <h1>Cuadernillo de Entrenador — 2º de Primaria</h1>
@@ -982,6 +1387,15 @@ table.type-matrix tbody td:first-child {
 </div>
 <section class="problem-section" data-section-kind="problema">
 <h2>Parte 1: Enunciados de los Problemas (1 al 100)</h2>
+
+<div class="chapter-banner is-first-chapter" data-subcat="1">
+  <div>
+    <div class="chapter-banner-title">Gimnasio 1 · Numeración, Descomposición y Valor Posicional</div>
+    <div class="chapter-banner-meta">Ejercicios 1–15 · Sentido Numérico · Objetivo: Medalla Roca</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
+
 
 <article class="problem-card" data-num="1" data-kind="problema" data-subcat="1" data-sense="Sentido Numérico">
   <div class="problem-card-header">
@@ -1341,6 +1755,15 @@ table.type-matrix tbody td:first-child {
     </div>
   </div>
 </article>
+
+
+<div class="chapter-banner" data-subcat="2">
+  <div>
+    <div class="chapter-banner-title">Gimnasio 2 · Operaciones Aritméticas y Cálculo Mental</div>
+    <div class="chapter-banner-meta">Ejercicios 16–35 · Sentido Numérico · Objetivo: Medalla Cascada</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
 
 
 <article class="problem-card" data-num="16" data-kind="problema" data-subcat="2" data-sense="Sentido Numérico">
@@ -1829,6 +2252,15 @@ table.type-matrix tbody td:first-child {
 </article>
 
 
+<div class="chapter-banner" data-subcat="3">
+  <div>
+    <div class="chapter-banner-title">Gimnasio 3 · Magnitudes, Unidades de Medida, Tiempo y Dinero</div>
+    <div class="chapter-banner-meta">Ejercicios 36–50 · Sentido de la Medida · Objetivo: Medalla Trueno</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
+
+
 <article class="problem-card" data-num="36" data-kind="problema" data-subcat="3" data-sense="Sentido de la Medida">
   <div class="problem-card-header">
     <h3>Problema 36: Midiendo la altura de Bellsprout y Oddish en centímetros</h3>
@@ -2187,6 +2619,15 @@ table.type-matrix tbody td:first-child {
     </div>
   </div>
 </article>
+
+
+<div class="chapter-banner" data-subcat="4">
+  <div>
+    <div class="chapter-banner-title">Gimnasio 4 · Geometría, Formas, Perímetros, Áreas y Espacio</div>
+    <div class="chapter-banner-meta">Ejercicios 51–65 · Sentido Espacial · Objetivo: Medalla Arcoíris</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
 
 
 <article class="problem-card" data-num="51" data-kind="problema" data-subcat="4" data-sense="Sentido Espacial">
@@ -2549,6 +2990,15 @@ table.type-matrix tbody td:first-child {
 </article>
 
 
+<div class="chapter-banner" data-subcat="5">
+  <div>
+    <div class="chapter-banner-title">Gimnasio 5 · Patrones, Álgebra y Pensamiento Computacional</div>
+    <div class="chapter-banner-meta">Ejercicios 66–75 · Sentido Algebraico · Objetivo: Medalla Alma</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
+
+
 <article class="problem-card" data-num="66" data-kind="problema" data-subcat="5" data-sense="Sentido Algebraico">
   <div class="problem-card-header">
     <h3>Problema 66: El sendero de huellas de Pikachu</h3>
@@ -2812,6 +3262,15 @@ table.type-matrix tbody td:first-child {
     </div>
   </div>
 </article>
+
+
+<div class="chapter-banner" data-subcat="6">
+  <div>
+    <div class="chapter-banner-title">Gimnasio 6 · Tratamiento de Datos, Gráficos y Probabilidad</div>
+    <div class="chapter-banner-meta">Ejercicios 76–85 · Sentido Estocástico · Objetivo: Medalla Pantano</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
 
 
 <article class="problem-card" data-num="76" data-kind="problema" data-subcat="6" data-sense="Sentido Estocástico">
@@ -3131,6 +3590,15 @@ table.type-matrix tbody td:first-child {
     </div>
   </div>
 </article>
+
+
+<div class="chapter-banner" data-subcat="7">
+  <div>
+    <div class="chapter-banner-title">Gimnasio 7 · Combate, Nivel y Experiencia (EXP)</div>
+    <div class="chapter-banner-meta">Ejercicios 86–100 · Sentido Numérico · Objetivo: Medalla Volcán</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
 
 
 <article class="problem-card" data-num="86" data-kind="problema" data-subcat="7" data-sense="Sentido Numérico">
@@ -3539,6 +4007,15 @@ table.type-matrix tbody td:first-child {
 </section>
 <section class="problem-section" data-section-kind="reto">
 <h2 class="special-challenges-title">Parte 1B: Retos Especiales (101 al 120)</h2>
+
+<div class="chapter-banner is-reto-chapter" data-subcat="reto">
+  <div>
+    <div class="chapter-banner-title">Liga Pokémon · Retos Especiales de Ampliación</div>
+    <div class="chapter-banner-meta">Ejercicios 101–120 · Todos los Sentidos · Objetivo: Medalla Tierra</div>
+  </div>
+  <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
+</div>
+
 
 <article class="problem-card is-reto" data-num="101" data-kind="reto" data-subcat="reto" data-sense="Sentido Numérico">
   <div class="problem-card-header">
@@ -5634,6 +6111,7 @@ A las 10:15 está entre 10:00 y 10:30 → está curando al equipo de Brock.</li>
 
       const problemCards = Array.from(document.querySelectorAll('.problem-card'));
       const visibleNums = new Set();
+      const visibleSubcats = new Set();
       let shownCount = 0;
 
       problemCards.forEach((card) => {
@@ -5657,7 +6135,15 @@ A las 10:15 está entre 10:00 y 10:30 → está curando al equipo de Brock.</li>
         if (show) {
           shownCount += 1;
           visibleNums.add(String(num));
+          if (subcat) visibleSubcats.add(subcat);
         }
+      });
+
+      document.body.classList.toggle('is-filtered-worksheet', shownCount < problemCards.length);
+
+      document.querySelectorAll('.chapter-banner').forEach((banner) => {
+        const sub = banner.dataset.subcat || '';
+        banner.classList.toggle('is-filtered-hidden', !visibleSubcats.has(sub));
       });
 
       document.querySelectorAll('.solution-card').forEach((sol) => {
@@ -5711,6 +6197,27 @@ A las 10:15 está entre 10:00 y 10:30 → está curando al equipo de Brock.</li>
       sessionLimit = null;
       applyFilters();
     }
+
+    function printStudentWorkbook() {
+      resetFilters();
+      document.body.classList.add('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.add('active');
+        btn.textContent = 'Mostrar solucionario y Ficha Oak';
+      }
+      window.print();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.body.classList.contains('hide-solutions')) {
+        const btn = document.getElementById('toggle-solutions');
+        if (btn) {
+          btn.classList.add('active');
+          btn.textContent = 'Mostrar solucionario y Ficha Oak';
+        }
+      }
+    });
   </script>
 
 </body>

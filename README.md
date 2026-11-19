@@ -39,8 +39,10 @@ El repositorio está organizado como un sistema modular que combina bancos de pr
 | **Tabla de Tipos** | [`referencia_tabla_tipos.md`](referencia_tabla_tipos.md) | **Matriz 18×18 completa**: 324 interacciones elementales, 11 multiplicadores canónicos (0x a 6x con STAB), tipos duales e Inverted Battles. |
 | **Fórmulas de PS** | [`referencia_ps_evoluciones.md`](referencia_ps_evoluciones.md) | **Mecánicas de Puntos de Salud**: Fórmula canónica Gen III-IX, delta constante de 94 PS a nivel 100, anomalía de Shedinja, 18 líneas evolutivas y Eevee. |
 | **Guía de Recursos** | [`guia_recursos_activos.md`](guia_recursos_activos.md) | **Fuentes y APIs oficiales**: PokeAPI REST v2, repositorios CDN de sprites y artwork oficial, Pokémon Showdown, base de datos Veekun CSV y guía legal. |
-| **Cuadernillos HTML** | [`html/index.html`](html/index.html) | **Versión web e imprimible A4**: Cuadernillos HTML de 1º a 6º Primaria (720 ejercicios) con sprites locales, diagramas SVG, filtros interactivos, andamiaje NEAE y rúbrica docente. |
-| **Generador HTML** | [`build_html.py`](build_html.py) | **Script de compilación**: Convierte todos los Markdown en fichas imprimibles en `html/`, integra diagramas SVG, pistas Rotom Dex, filtros docentes y la Ficha del Profesor Oak. |
+| **Cuadernillos HTML** | [`html/index.html`](html/index.html) | **Versión web e imprimible A4**: Cuadernillos anuales HTML de 1º a 6º Primaria (720 ejercicios) con portada, pasaporte de 8 medallas, índice, separadores de capítulo, diagramas SVG, filtros interactivos, andamiaje NEAE y rúbrica docente. |
+| **Cuadernillos PDF** | [`html/pdf/`](html/pdf/) | **12 libros A4 listos para imprimir**: Edición Alumno (solo ejercicios) y Edición Docente (con Ficha del Profesor Oak y 120 soluciones) para cada curso de 1º a 6º de Primaria. |
+| **Generador HTML** | [`build_html.py`](build_html.py) | **Script de compilación**: Convierte todos los Markdown en cuadernillos imprimibles en `html/`, integra diagramas SVG, pistas Rotom Dex, filtros docentes y la Ficha del Profesor Oak. |
+| **Generador PDF** | [`build_pdfs.py`](build_pdfs.py) | **Exportador A4 headless**: Genera los 12 PDF anuales (`cuadernillo_X_primaria_alumno.pdf` y `cuadernillo_X_primaria_docente.pdf`) mediante Chrome/Edge en `html/pdf/`. |
 | **Diagramas SVG** | [`svg_diagrams.py`](svg_diagrams.py) | **Motor gráfico vectorial**: Genera ilustraciones SVG en línea (`relojes analógicos`, `polígonos/3D/cuadrículas`, `gráficos estadísticos/urnas` y `rectas numéricas/termómetros`). |
 | **Descarga de Activos** | [`download_assets.py`](download_assets.py) | **Caché offline de PokeAPI**: Descarga nombres/IDs en [`data/pokemon_species.json`](data/pokemon_species.json) y artworks PNG oficiales en `html/assets/images/`. |
 | **Generador 1º Prim.** | [`generate_problemas_1.py`](generate_problemas_1.py) | **Script generador**: Script en Python utilizado para construir el banco de problemas de 1º de Primaria (`problemas_1_primaria.md`). |
@@ -180,11 +182,15 @@ Los documentos de referencia proporcionan el marco formal y las tablas de consul
 
 ## 6. Cuadernillos HTML, Herramientas Docentes y Batería de Pruebas (Pytest)
 
-### 6.1 Uso Rápido y Funcionalidades Docentes en HTML (`html/index.html`)
+### 6.1 Uso Rápido y Cuadernillos Anuales Imprimibles (`html/index.html` y `html/pdf/`)
 No necesitas instalar nada para empezar a usar los cuadernillos:
-1. Abre [`html/index.html`](html/index.html) directamente en cualquier navegador web.
-2. Selecciona el curso (**1º a 6º de Primaria**, 720 ejercicios en total) o el documento de referencia que quieras consultar.
+1. **Descarga directa en PDF A4 (`html/pdf/`)**: En [`html/index.html`](html/index.html) o en [`html/pdf/`](html/pdf/) dispones de **12 cuadernillos anuales listos para imprimir o encuadernar** (dos por curso, de 1º a 6º de Primaria):
+   - **Edición Alumno (`cuadernillo_X_primaria_alumno.pdf`)**: Portada escolar, Pasaporte de 8 Medallas de Gimnasio, índice de progreso anual, 8 separadores de capítulo por bloque y los 120 retos con cuadrícula NEAE (sin solucionario).
+   - **Edición Docente (`cuadernillo_X_primaria_docente.pdf`)**: Cuadernillo completo más la *Ficha del Profesor Oak* (mapeo CE1–CE8 y rúbrica LOMLOE) y el solucionario completo paso a paso.
+2. **Cuadernillos interactivos HTML (`html/index.html`)**: Abre [`html/index.html`](html/index.html) en cualquier navegador web y selecciona el curso (**1º a 6º de Primaria**, 720 ejercicios en total) o el documento de referencia que quieras consultar.
 3. Aprovecha las herramientas integradas en la barra superior (ocultas automáticamente al imprimir con `Ctrl+P`):
+   - **Impresión directa de cuadernillo anual o ficha**: Botones **«🖨️ Imprimir Cuadernillo Alumno»** (activa el modo sin soluciones y restablece los 120 ejercicios) y **«🖨️ Imprimir Actual / Docente»**, además de enlaces directos de descarga PDF y soporte de parámetro `?mode=alumno`.
+   - **Maquetación de libro anual A4**: Cada curso incluye portada imprimible (`.workbook-cover`), índice con registro de progreso (`.workbook-toc`) y separadores por bloque (`.chapter-banner`, *Gimnasios 1–7 + Liga Pokémon*) con saltos de página automáticos por capítulo; al filtrar una ficha suelta, la portada y el índice se ocultan automáticamente para imprimir hojas de sesión limpias.
    - **Filtro interactivo de fichas imprimibles**: Filtra en tiempo real por **Subcategoría** (`1..7` o `Retos Especiales 101–120`), **Sentido LOMLOE**, rango **Desde–Hasta** (`1..120`), o utiliza el acceso rápido **«Ficha de sesión (5 ej.)»** y **«Restablecer»**. Oculta y muestra de forma sincronizada tanto los enunciados como sus soluciones asociadas para imprimir sesiones de una página en formato A4.
    - **Diagramas matemáticos SVG en línea (`svg_diagrams.py`)**: Ilustraciones vectoriales impresas a color con límite seguro para A4 (`max-height: 150px`) generadas según el enunciado: relojes analógicos, figuras geométricas 2D/3D y planos cartesianos, gráficos estadísticos/urnas de probabilidad y rectas numéricas o escalas termométricas.
    - **Andamiaje para Atención a la Diversidad (NEAE)**:
@@ -193,15 +199,18 @@ No necesitas instalar nada para empezar a usar los cuadernillos:
    - **Tarjetas de 5º y 6º sin spoilers ni cortes**: El metadato `- **Contenido Específico**:` se extrae de la tarjeta del alumno y se traslada a las tarjetas del solucionario y a la *Ficha del Profesor Oak*; los bloques multi-línea de `**Pregunta**:` (incluidos apartados `a), b), c)` o tablas) y `**Contexto Pokémon**:` se renderizan íntegramente, y los encabezados de sección del solucionario (`### Soluciones — ...`) se muestran fuera de las tarjetas.
    - **Ficha del Profesor Oak con Mapeo CE1–CE8 y Rúbrica LOMLOE**: Incluye la tabla específica por ciclo (*Primer Ciclo 1º–2º*, *Segundo Ciclo 3º–4º*, *Tercer Ciclo 5º–6º*) vinculada a las **8 Competencias Específicas (CE1–CE8)** y **Criterios de Evaluación (RD 157/2022)**, junto con una **Rúbrica de Evaluación Competencial de 4 niveles** (*1. En inicio*, *2. En desarrollo*, *3. Adquirido*, *4. Excelente*) en cuatro dimensiones (*Comprensión y extracción de datos*, *Estrategia y modelización*, *Cálculo y precisión*, *Comunicación y unidades*).
 
-### 6.2 Regeneración de Activos y HTML
-Si modificas algún archivo Markdown y quieres regenerar la versión HTML o actualizar la caché de imágenes:
-- **Requisitos**: Python 3.10+ y la librería `markdown` (`pip install markdown`).
+### 6.2 Regeneración de Activos, HTML y PDFs
+Si modificas algún archivo Markdown y quieres regenerar la versión HTML, actualizar la caché de imágenes o volver a exportar los 12 PDF:
+- **Requisitos**: Python 3.10+, la librería `markdown` (`pip install markdown`) y Google Chrome o Microsoft Edge instalado para la exportación PDF.
 ```powershell
 # (Opcional) Descargar/actualizar artworks oficiales y datos de especies en local
 python download_assets.py
 
-# Compilar todos los Markdown a HTML (con diagramas SVG) en la carpeta html/
+# Compilar todos los Markdown a HTML (con portadas, índices y diagramas SVG) en html/
 python build_html.py
+
+# Exportar los 12 cuadernillos anuales A4 en PDF (Alumno y Docente) en html/pdf/
+python build_pdfs.py
 ```
 
 ### 6.3 Requisitos y Ejecución de Pruebas Automatizadas

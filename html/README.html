@@ -123,6 +123,239 @@ body {
   display: none !important;
 }
 
+.btn-print-student {
+  background: #0284c7;
+  border-color: #0284c7;
+}
+
+.btn-print-student:hover {
+  background: #0369a1;
+}
+
+.btn-pdf-link {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+/* Portada anual e índice del cuadernillo */
+.workbook-cover {
+  border: 3px solid var(--pk-red);
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #fffdf5 0%, #ffffff 55%, #eff6ff 100%);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  text-align: center;
+}
+
+.cover-top-badge {
+  display: inline-block;
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  background: var(--pk-blue);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.workbook-cover h1.cover-title {
+  margin: 0.25rem 0 0.35rem;
+  padding: 0;
+  border: 0;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--pk-blue);
+}
+
+.cover-subtitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pk-red);
+  margin: 0 0 1rem;
+}
+
+.cover-sprites-trio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1rem auto 1.25rem;
+  padding: 0.85rem 1rem;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  max-width: 560px;
+}
+
+.cover-sprite-img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.cover-student-box {
+  text-align: left;
+  background: #ffffff;
+  border: 2px solid #94a3b8;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.cover-student-box h2 {
+  margin: 0 0 0.7rem;
+  padding: 0 0 0.35rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--pk-yellow);
+  border-radius: 0;
+  font-size: 1.05rem;
+  color: var(--pk-blue);
+}
+
+.cover-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cover-field-row {
+  border-bottom: 2px dotted #94a3b8;
+  padding: 0.3rem 0 0.25rem;
+}
+
+.cover-field-row.full-span {
+  grid-column: 1 / -1;
+}
+
+.passport-box {
+  text-align: left;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.95rem 1.15rem;
+}
+
+.passport-box h3 {
+  margin: 0 0 0.65rem;
+  font-size: 0.98rem;
+  color: var(--pk-blue);
+  text-align: center;
+}
+
+.medals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.55rem;
+}
+
+.medal-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.28rem;
+  padding: 0.5rem 0.35rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.medal-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px dashed #94a3b8;
+  background: #fffdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.workbook-toc {
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.5rem;
+  background: #ffffff;
+}
+
+.workbook-toc h2 {
+  margin-top: 0;
+}
+
+.toc-progress-box {
+  display: inline-block;
+  width: 58px;
+  height: 18px;
+  border-bottom: 1.5px solid #64748b;
+  vertical-align: middle;
+}
+
+.chapter-banner {
+  margin: 1.35rem 0 0.95rem;
+  padding: 0.75rem 1.05rem;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #eff6ff 0%, #f8fafc 100%);
+  border: 2px solid var(--pk-blue-mid);
+  border-left: 8px solid var(--pk-blue);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.chapter-banner.is-reto-chapter {
+  background: linear-gradient(90deg, #fff7ed 0%, #fffbeb 100%);
+  border-color: #ea580c;
+  border-left-color: #c2410c;
+}
+
+.chapter-banner-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--pk-blue);
+}
+
+.chapter-banner.is-reto-chapter .chapter-banner-title {
+  color: #9a3412;
+}
+
+.chapter-banner-meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.chapter-banner-stamp {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+  background: #ffffff;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  border: 1px dashed #94a3b8;
+}
+
+body.is-filtered-worksheet .workbook-cover,
+body.is-filtered-worksheet .workbook-toc {
+  display: none !important;
+}
+
 .toolbar-left {
   display: flex;
   align-items: center;
@@ -797,6 +1030,36 @@ table.type-matrix tbody td:first-child {
     display: none !important;
   }
 
+  body:not(.is-filtered-worksheet) .header-box {
+    display: none !important;
+  }
+
+  .workbook-cover {
+    box-shadow: none;
+    margin: 0;
+    padding: 1.4rem 1.4rem 1.2rem;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .workbook-toc {
+    margin: 0;
+    padding: 1rem 1.15rem;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  body:not(.is-filtered-worksheet) .chapter-banner:not(.is-first-chapter) {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .chapter-banner {
+    margin-top: 0.35rem;
+    margin-bottom: 0.65rem;
+    padding: 0.55rem 0.85rem;
+  }
+
   .page-container {
     max-width: none;
     margin: 0;
@@ -911,6 +1174,11 @@ table.type-matrix tbody td:first-child {
 
 </head>
 <body>
+  <script>
+    if (new URLSearchParams(window.location.search).get('mode') === 'alumno') {
+      document.body.classList.add('hide-solutions');
+    }
+  </script>
   <header class="print-toolbar no-print">
     <div class="toolbar-main">
       <div class="toolbar-left">
@@ -1003,12 +1271,22 @@ table.type-matrix tbody td:first-child {
 <tr>
 <td><strong>Cuadernillos HTML</strong></td>
 <td><a href="html/index.html"><code>html/index.html</code></a></td>
-<td><strong>Versión web e imprimible A4</strong>: Cuadernillos HTML de 1º a 6º Primaria (720 ejercicios) con sprites locales, diagramas SVG, filtros interactivos, andamiaje NEAE y rúbrica docente.</td>
+<td><strong>Versión web e imprimible A4</strong>: Cuadernillos anuales HTML de 1º a 6º Primaria (720 ejercicios) con portada, pasaporte de 8 medallas, índice, separadores de capítulo, diagramas SVG, filtros interactivos, andamiaje NEAE y rúbrica docente.</td>
+</tr>
+<tr>
+<td><strong>Cuadernillos PDF</strong></td>
+<td><a href="html/pdf/"><code>html/pdf/</code></a></td>
+<td><strong>12 libros A4 listos para imprimir</strong>: Edición Alumno (solo ejercicios) y Edición Docente (con Ficha del Profesor Oak y 120 soluciones) para cada curso de 1º a 6º de Primaria.</td>
 </tr>
 <tr>
 <td><strong>Generador HTML</strong></td>
 <td><a href="build_html.py"><code>build_html.py</code></a></td>
-<td><strong>Script de compilación</strong>: Convierte todos los Markdown en fichas imprimibles en <code>html/</code>, integra diagramas SVG, pistas Rotom Dex, filtros docentes y la Ficha del Profesor Oak.</td>
+<td><strong>Script de compilación</strong>: Convierte todos los Markdown en cuadernillos imprimibles en <code>html/</code>, integra diagramas SVG, pistas Rotom Dex, filtros docentes y la Ficha del Profesor Oak.</td>
+</tr>
+<tr>
+<td><strong>Generador PDF</strong></td>
+<td><a href="build_pdfs.py"><code>build_pdfs.py</code></a></td>
+<td><strong>Exportador A4 headless</strong>: Genera los 12 PDF anuales (<code>cuadernillo_X_primaria_alumno.pdf</code> y <code>cuadernillo_X_primaria_docente.pdf</code>) mediante Chrome/Edge en <code>html/pdf/</code>.</td>
 </tr>
 <tr>
 <td><strong>Diagramas SVG</strong></td>
@@ -1158,11 +1436,15 @@ table.type-matrix tbody td:first-child {
 </ul>
 <hr />
 <h2 id="6-cuadernillos-html-herramientas-docentes-y-bateria-de-pruebas-pytest">6. Cuadernillos HTML, Herramientas Docentes y Batería de Pruebas (Pytest)</h2>
-<h3 id="61-uso-rapido-y-funcionalidades-docentes-en-html-htmlindexhtml">6.1 Uso Rápido y Funcionalidades Docentes en HTML (<code>html/index.html</code>)</h3>
+<h3 id="61-uso-rapido-y-cuadernillos-anuales-imprimibles-htmlindexhtml-y-htmlpdf">6.1 Uso Rápido y Cuadernillos Anuales Imprimibles (<code>html/index.html</code> y <code>html/pdf/</code>)</h3>
 <p>No necesitas instalar nada para empezar a usar los cuadernillos:<br />
-1. Abre <a href="html/index.html"><code>html/index.html</code></a> directamente en cualquier navegador web.<br />
-2. Selecciona el curso (<strong>1º a 6º de Primaria</strong>, 720 ejercicios en total) o el documento de referencia que quieras consultar.<br />
+1. <strong>Descarga directa en PDF A4 (<code>html/pdf/</code>)</strong>: En <a href="html/index.html"><code>html/index.html</code></a> o en <a href="html/pdf/"><code>html/pdf/</code></a> dispones de <strong>12 cuadernillos anuales listos para imprimir o encuadernar</strong> (dos por curso, de 1º a 6º de Primaria):<br />
+   - <strong>Edición Alumno (<code>cuadernillo_X_primaria_alumno.pdf</code>)</strong>: Portada escolar, Pasaporte de 8 Medallas de Gimnasio, índice de progreso anual, 8 separadores de capítulo por bloque y los 120 retos con cuadrícula NEAE (sin solucionario).<br />
+   - <strong>Edición Docente (<code>cuadernillo_X_primaria_docente.pdf</code>)</strong>: Cuadernillo completo más la <em>Ficha del Profesor Oak</em> (mapeo CE1–CE8 y rúbrica LOMLOE) y el solucionario completo paso a paso.<br />
+2. <strong>Cuadernillos interactivos HTML (<code>html/index.html</code>)</strong>: Abre <a href="html/index.html"><code>html/index.html</code></a> en cualquier navegador web y selecciona el curso (<strong>1º a 6º de Primaria</strong>, 720 ejercicios en total) o el documento de referencia que quieras consultar.<br />
 3. Aprovecha las herramientas integradas en la barra superior (ocultas automáticamente al imprimir con <code>Ctrl+P</code>):<br />
+   - <strong>Impresión directa de cuadernillo anual o ficha</strong>: Botones <strong>«🖨️ Imprimir Cuadernillo Alumno»</strong> (activa el modo sin soluciones y restablece los 120 ejercicios) y <strong>«🖨️ Imprimir Actual / Docente»</strong>, además de enlaces directos de descarga PDF y soporte de parámetro <code>?mode=alumno</code>.<br />
+   - <strong>Maquetación de libro anual A4</strong>: Cada curso incluye portada imprimible (<code>.workbook-cover</code>), índice con registro de progreso (<code>.workbook-toc</code>) y separadores por bloque (<code>.chapter-banner</code>, <em>Gimnasios 1–7 + Liga Pokémon</em>) con saltos de página automáticos por capítulo; al filtrar una ficha suelta, la portada y el índice se ocultan automáticamente para imprimir hojas de sesión limpias.<br />
    - <strong>Filtro interactivo de fichas imprimibles</strong>: Filtra en tiempo real por <strong>Subcategoría</strong> (<code>1..7</code> o <code>Retos Especiales 101–120</code>), <strong>Sentido LOMLOE</strong>, rango <strong>Desde–Hasta</strong> (<code>1..120</code>), o utiliza el acceso rápido <strong>«Ficha de sesión (5 ej.)»</strong> y <strong>«Restablecer»</strong>. Oculta y muestra de forma sincronizada tanto los enunciados como sus soluciones asociadas para imprimir sesiones de una página en formato A4.<br />
    - <strong>Diagramas matemáticos SVG en línea (<code>svg_diagrams.py</code>)</strong>: Ilustraciones vectoriales impresas a color con límite seguro para A4 (<code>max-height: 150px</code>) generadas según el enunciado: relojes analógicos, figuras geométricas 2D/3D y planos cartesianos, gráficos estadísticos/urnas de probabilidad y rectas numéricas o escalas termométricas.<br />
    - <strong>Andamiaje para Atención a la Diversidad (NEAE)</strong>:<br />
@@ -1170,14 +1452,17 @@ table.type-matrix tbody td:first-child {
      * <strong>Pistas de Rotom Dex (<code>💡 Pista de Rotom Dex</code>)</strong>: Orientaciones heurísticas sin revelar resultados numéricos, con botón <strong>«Ocultar/Mostrar pistas»</strong> (<code>toggleHints()</code>).<br />
    - <strong>Tarjetas de 5º y 6º sin spoilers ni cortes</strong>: El metadato <code>- **Contenido Específico**:</code> se extrae de la tarjeta del alumno y se traslada a las tarjetas del solucionario y a la <em>Ficha del Profesor Oak</em>; los bloques multi-línea de <code>**Pregunta**:</code> (incluidos apartados <code>a), b), c)</code> o tablas) y <code>**Contexto Pokémon**:</code> se renderizan íntegramente, y los encabezados de sección del solucionario (<code>### Soluciones — ...</code>) se muestran fuera de las tarjetas.<br />
    - <strong>Ficha del Profesor Oak con Mapeo CE1–CE8 y Rúbrica LOMLOE</strong>: Incluye la tabla específica por ciclo (<em>Primer Ciclo 1º–2º</em>, <em>Segundo Ciclo 3º–4º</em>, <em>Tercer Ciclo 5º–6º</em>) vinculada a las <strong>8 Competencias Específicas (CE1–CE8)</strong> y <strong>Criterios de Evaluación (RD 157/2022)</strong>, junto con una <strong>Rúbrica de Evaluación Competencial de 4 niveles</strong> (<em>1. En inicio</em>, <em>2. En desarrollo</em>, <em>3. Adquirido</em>, <em>4. Excelente</em>) en cuatro dimensiones (<em>Comprensión y extracción de datos</em>, <em>Estrategia y modelización</em>, <em>Cálculo y precisión</em>, <em>Comunicación y unidades</em>).</p>
-<h3 id="62-regeneracion-de-activos-y-html">6.2 Regeneración de Activos y HTML</h3>
-<p>Si modificas algún archivo Markdown y quieres regenerar la versión HTML o actualizar la caché de imágenes:<br />
-- <strong>Requisitos</strong>: Python 3.10+ y la librería <code>markdown</code> (<code>pip install markdown</code>).</p>
+<h3 id="62-regeneracion-de-activos-html-y-pdfs">6.2 Regeneración de Activos, HTML y PDFs</h3>
+<p>Si modificas algún archivo Markdown y quieres regenerar la versión HTML, actualizar la caché de imágenes o volver a exportar los 12 PDF:<br />
+- <strong>Requisitos</strong>: Python 3.10+, la librería <code>markdown</code> (<code>pip install markdown</code>) y Google Chrome o Microsoft Edge instalado para la exportación PDF.</p>
 <pre><code class="language-powershell"># (Opcional) Descargar/actualizar artworks oficiales y datos de especies en local
 python download_assets.py
 
-# Compilar todos los Markdown a HTML (con diagramas SVG) en la carpeta html/
+# Compilar todos los Markdown a HTML (con portadas, índices y diagramas SVG) en html/
 python build_html.py
+
+# Exportar los 12 cuadernillos anuales A4 en PDF (Alumno y Docente) en html/pdf/
+python build_pdfs.py
 </code></pre>
 <h3 id="63-requisitos-y-ejecucion-de-pruebas-automatizadas">6.3 Requisitos y Ejecución de Pruebas Automatizadas</h3>
 <p>El proyecto cuenta con un arnés de pruebas automatizadas independiente en Python (<code>pytest</code>) que valida de forma continua la integridad matemática, la estructura de los archivos Markdown y el cumplimiento curricular.</p>
@@ -1291,6 +1576,7 @@ python -m pytest tests/test_tier5_adversarial.py -v
 
       const problemCards = Array.from(document.querySelectorAll('.problem-card'));
       const visibleNums = new Set();
+      const visibleSubcats = new Set();
       let shownCount = 0;
 
       problemCards.forEach((card) => {
@@ -1314,7 +1600,15 @@ python -m pytest tests/test_tier5_adversarial.py -v
         if (show) {
           shownCount += 1;
           visibleNums.add(String(num));
+          if (subcat) visibleSubcats.add(subcat);
         }
+      });
+
+      document.body.classList.toggle('is-filtered-worksheet', shownCount < problemCards.length);
+
+      document.querySelectorAll('.chapter-banner').forEach((banner) => {
+        const sub = banner.dataset.subcat || '';
+        banner.classList.toggle('is-filtered-hidden', !visibleSubcats.has(sub));
       });
 
       document.querySelectorAll('.solution-card').forEach((sol) => {
@@ -1368,6 +1662,27 @@ python -m pytest tests/test_tier5_adversarial.py -v
       sessionLimit = null;
       applyFilters();
     }
+
+    function printStudentWorkbook() {
+      resetFilters();
+      document.body.classList.add('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.add('active');
+        btn.textContent = 'Mostrar solucionario y Ficha Oak';
+      }
+      window.print();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.body.classList.contains('hide-solutions')) {
+        const btn = document.getElementById('toggle-solutions');
+        if (btn) {
+          btn.classList.add('active');
+          btn.textContent = 'Mostrar solucionario y Ficha Oak';
+        }
+      }
+    });
   </script>
 
 </body>
