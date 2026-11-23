@@ -599,7 +599,7 @@ FIN BUCLE
 - **Contexto Pokémon**: El Infernape de Ash se prepara para el combate decisivo en el Gimnasio Eléctrico de Ciudad Marina frente al Líder Lectro (Volkner). A Infernape le faltan exactamente 3.850 Puntos de Experiencia (EXP) para alcanzar el Nivel 55. En el recorrido del Gimnasio, Infernape derrota sucesivamente a tres entrenadores preliminares que otorgan 540 EXP, 660 EXP y 750 EXP respectivamente. Finalmente, derrota al equipo del Líder Lectro, cuya victoria otorga una base de 1.400 EXP con el multiplicador especial de Líder de Gimnasio de 1,5x.
 **Pregunta**: ¿Cuánta experiencia (EXP) otorga la victoria frente al Líder Lectro? ¿Cuántos Puntos de Experiencia (EXP) gana Infernape en total en el conjunto del Gimnasio? ¿Consigue alcanzar el Nivel 55 y cuántos puntos de experiencia de sobra acumula hacia el Nivel 56?
 
-## Parte 1B: Retos Especiales (101 al 120)
+## Parte 1B: Retos Especiales y Nivel TIMSS (101 al 130)
 
 ### Reto 101: El Pokédex misterioso
 - **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
@@ -720,6 +720,66 @@ FIN BUCLE
 - **Sentido LOMLOE**: Sentido Numérico
 - **Contexto Pokémon**: El Gible de Cintia necesita 2.470 EXP más para llegar al nivel 24 y evolucionar en Gabite. En la Ruta 206 hay Pokémon salvajes ilimitados que dan 95 EXP cada uno, y en la Cueva Extravío hay solo 3 entrenadores, cuyos Pokémon tienen una base salvaje de 130 EXP con el multiplicador de entrenador x1,5.
 **Pregunta**: ¿Cuántos EXP da cada combate de entrenador? ¿Cuál es el menor número total de combates para que Gible evolucione (cuidado con el resto)? ¿Cuántos combates se ahorra respecto a luchar solo contra Pokémon salvajes?
+
+### Reto 121: Múltiplos secretos en la Pokédex (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
+- **Sentido LOMLOE**: Sentido Numérico
+- **Contexto Pokémon**: El Profesor Serbal propone dos acertijos numéricos con la Pokédex Nacional. En el primero busca un número que cumpla estas tres condiciones a la vez: (1) es mayor que 24 y menor que 42; (2) es múltiplo de 9; (3) es un número par. En el segundo acertijo busca cuál de estos cuatro números —21, 24, 42 o 77— es a la vez par y múltiplo de 7.
+**Pregunta**: ¿Qué número de la Pokédex (correspondiente a Clefable) cumple las tres condiciones del primer acertijo? ¿Y cuál de las cuatro opciones del segundo acertijo (correspondiente a Golbat) es par y múltiplo de 7? Explica por qué descartas los demás.
+
+### Reto 122: Desigualdades y signos ocultos en el PC de Helio (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
+- **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
+- **Contexto Pokémon**: Para desbloquear el ordenador del Equipo Galaxia, Maya tiene cuatro tarjetas con los números 3, 5, 7 y 8 y debe colocar una tarjeta en cada casilla para que las dos desigualdades sean ciertas: «5 + ☐ es mayor que 12» y «20 − ☐ es mayor que 15». En la segunda pantalla aparece la igualdad «9 ☐ 3 = 32 − 5» y falta el signo de operación (+, −, × o ÷).
+**Pregunta**: ¿Qué número de las tarjetas {3, 5, 7, 8} debe colocarse en cada casilla de las dos desigualdades? ¿Qué signo de operación (+, −, × o ÷) hace cierta la igualdad «9 ☐ 3 = 32 − 5»? Compruébalo paso a paso.
+
+### Reto 123: Expresiones con paréntesis y ecuaciones de la Liga (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
+- **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
+- **Contexto Pokémon**: (A) El entrenador de la Tienda Pokémon debe guardar 40 Poké Balls y 10 Super Balls en bolsas. En cada bolsa caben 8 Poké Balls o 2 Super Balls. Propone cuatro expresiones para calcular el número total de bolsas: I) 40 + (10 ÷ 2); II) (40 ÷ 2) + (10 ÷ 8); III) (40 + 8) ÷ (10 + 2); IV) (40 ÷ 8) + (10 ÷ 2). (B) Además, en el Torneo de Sinnoh hay 120 jugadores repartidos en 8 equipos con «j» jugadores en cada equipo.
+**Pregunta**: En el apartado A, ¿qué expresión (I, II, III o IV) calcula correctamente el total de bolsas y cuántas bolsas son? En el apartado B, escribe la ecuación con la letra «j» que representa la situación (elige entre 8 × j = 120, 8 ÷ j = 120, j = 8 × 120 o j = 120 + 8) y calcula el valor de j.
+
+### Reto 124: La altura de la Torre Silph y los pasos en el Gimnasio (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero
+- **Sentido LOMLOE**: Sentido de la Medida
+- **Contexto Pokémon**: (A) Frente al Centro Pokémon de Ciudad Azafrán, que mide 60 metros de altura, se levanta la Torre Silph, que visualmente es exactamente 3 veces más alta que el Centro Pokémon. (B) Dentro del gimnasio, Pikachu y Eevee miden la pista caminando paso a paso sin dejar huecos: cada paso de Pikachu mide 20 cm y da 40 pasos a lo largo de la pista; la pista mide 600 cm de ancho y cada paso de Eevee mide 25 cm.
+**Pregunta**: ¿Cuál es la altura aproximada de la Torre Silph en metros? ¿Cuántos centímetros mide de largo la pista medida por Pikachu y cuántos pasos necesita Eevee para cruzarla a lo ancho?
+
+### Reto 125: Las tres balanzas equilibradas del Laboratorio (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional
+- **Sentido LOMLOE**: Sentido Algebraico y Pensamiento Computacional
+- **Contexto Pokémon**: En el laboratorio del Profesor Serbal hay tres balanzas de platillos perfectamente equilibradas: en la balanza 1, una pesa de 1 kg junto con una pesa de 2 kg equilibran a una Baya Piña; en la balanza 2, una Baya Piña junto con una pesa de 2 kg equilibran a un bloque de hierro; en la balanza 3, el bloque de hierro junto con una pesa de 1 kg equilibran a una Poké-Sandía gigante para Snorlax.
+**Pregunta**: Razonando paso a paso de una balanza a la siguiente, calcula cuánto pesa la Baya Piña, cuánto pesa el bloque de hierro y cuál es el peso exacto de la Poké-Sandía gigante en kilogramos.
+
+### Reto 126: Caminos paralelos y clasificación de ángulos en la cuadrícula (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
+- **Sentido LOMLOE**: Sentido Espacial
+- **Contexto Pokémon**: (A) En el Parque Compi, Pikachu camina por un sendero horizontal recto sobre la línea de fila 2 de una cuadrícula. En la fila 5, tres casillas más arriba, hay una estrella dorada ★ donde espera Eevee, y se quiere trazar un segundo sendero paralelo al de Pikachu que pase exactamente por ★. (B) Junto al parque hay un estadio con forma de pentágono (como una casa): sus dos esquinas inferiores (ángulos A y E) forman esquinas cuadradas exactas de la cuadrícula; el tejado tiene una punta superior aguda (ángulo C) y dos hombros laterales más abiertos que una esquina cuadrada (ángulos B y D).
+**Pregunta**: (A) ¿Por qué línea horizontal de la cuadrícula debe pasar el sendero paralelo al de Pikachu y a cuántas unidades de distancia se mantiene siempre? (B) Clasifica los cinco ángulos del estadio (A, B, C, D y E) indicando cuáles son ángulos rectos (90°), cuáles son menores que un ángulo recto (agudos) y cuáles son mayores que un ángulo recto (obtusos).
+
+### Reto 127: Comparación de pentágonos y desarrollo plano de una caja prismática (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio
+- **Sentido LOMLOE**: Sentido Espacial
+- **Contexto Pokémon**: (A) Dos medallas de gimnasio tienen forma de polígono: la Figura A tiene 5 lados que miden 2 cm, 2 cm, 4 cm, 4 cm y 3 cm; la Figura B es un pentágono regular cuyos 5 lados miden 3 cm cada uno. (B) Además, Maya quiere construir una caja con forma de prisma hexagonal (2 bases hexagonales y 6 caras laterales rectangulares) doblando una plantilla de cartón (desarrollo plano): la plantilla 1 tiene 6 rectángulos en fila y los 2 hexágonos pegados en el mismo lado; la plantilla 2 tiene 6 rectángulos en fila con 1 hexágono arriba y 1 hexágono abajo; la plantilla 3 tiene solo 5 rectángulos en fila con 1 hexágono arriba y 1 abajo.
+**Pregunta**: (A) Indica si cada propiedad corresponde a la Figura A, a la Figura B o a las dos figuras: «tiene 5 lados», «todos sus lados miden lo mismo» y «su perímetro es de 15 cm». (B) ¿Cuál de las tres plantillas (1, 2 o 3) permite construir el prisma hexagonal sin que falten ni se solapen caras? Explica por qué fallan las otras dos.
+
+### Reto 128: ¡Cuidado con la escala! La nieve del Monte Corona (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
+- **Sentido LOMLOE**: Sentido Estocástico
+- **Contexto Pokémon**: Dos gráficos de barras muestran la nieve caída en el Monte Corona en dos inviernos distintos. En el gráfico de 1893, el eje vertical va de 0 a 30 cm (de 5 en 5) y la barra de febrero llega hasta 25 cm (casi tocando el techo del gráfico). En el gráfico de 2017, el eje vertical va de 0 a 50 cm (de 5 en 5) y la barra de febrero llega hasta 30 cm (un poco por encima de la mitad del dibujo). Al ver los dos dibujos juntos, Julia afirma: «Cayó más nieve en febrero de 1893 porque su barra azul es más alta en el papel».
+**Pregunta**: ¿Tiene razón Julia o está equivocada? Explica con claridad matemática por qué la altura visual de las barras engaña al comparar estos dos gráficos e indica en qué año cayó más nieve y por cuántos centímetros de diferencia.
+
+### Reto 129: Estrategia de cartas sin repetición y suma de fracciones de zumo (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 1: Numeración, Descomposición y Valor Posicional
+- **Sentido LOMLOE**: Sentido Numérico
+- **Contexto Pokémon**: (A) Ash y Brock juegan con 8 cartas numeradas del 1 al 8 boca abajo sin devolverlas. Cada jugador saca 2 cartas y gana quien obtenga la suma más grande. Ash saca el 8 y el 2 (suma 10). La primera carta que saca Brock es el 4. (B) Tras la partida, celebran con zumo de bayas: Misty tiene 1/2 litro de zumo de Baya Aranja y Maya tiene 3/4 de litro.
+**Pregunta**: (A) ¿Puede ganar Brock todavía? Responde Sí o No y explica qué carta o cartas disponibles del mazo le permitirían superar los 10 puntos de Ash. (B) ¿Cuántos litros de zumo tienen Misty y Maya juntas expresado como fracción impropia y como número mixto?
+
+### Reto 130: El camino inverso de Shellos y el pictograma escalado de bayas (Nivel TIMSS)
+- **Subcategoría**: Subcategoría 6: Tratamiento de Datos, Gráficos y Azar
+- **Sentido LOMLOE**: Sentido Estocástico
+- **Contexto Pokémon**: (A) En un sendero de puntos numerados del 0 al 15 separados por 1 unidad, Shellos empieza en el punto 7 y avanza 4 unidades hacia la derecha; mientras tanto, Gastrodon termina en el punto 6 después de haberse movido 6 unidades hacia la izquierda. (B) En la frutería Pokémon del lunes, un pictograma donde cada dibujo representa 10 unidades muestra: 6 dibujos de Baya Aranja, 3 dibujos de Baya Meloc y 4 dibujos de Baya Zidra. El martes el tendero anuncia: «Hoy he vendido el doble de Bayas Aranja que el lunes».
+**Pregunta**: (A) ¿En qué punto termina Shellos y en qué punto había empezado Gastrodon? (B) ¿Cuántas bayas en total vendió la frutería el lunes y cuántas Bayas Aranja vendió el martes?
 
 ## Parte 2: Solucionario y Respuestas Razonadas (1 al 100)
 
@@ -1898,3 +1958,72 @@ FIN BUCLE
   4. Total: 3 + 20 = 23 combates.
   5. Solo salvajes: 2.470 / 95 = 26 combates exactos (95 x 26 = 2.470). Ahorro: 26 - 23 = 3 combates.
 - **Respuesta Final**: Cada combate de entrenador da **195 EXP**; el mínimo es **23 combates** (3 de entrenador + 20 salvajes) y se ahorra **3 combates** frente a los 26 de solo salvajes.
+
+### Solución al Reto 121
+- **Datos identificados**: Acertijo 1: rango entre 24 y 42, múltiplo de 9, par. Acertijo 2: opciones {21, 24, 42, 77}, par y múltiplo de 7.
+- **Planteamiento y Operaciones**: 1. Múltiplos de 9 entre 24 y 42: 27 (9 x 3) y 36 (9 x 4). Como debe ser par, descartamos 27 y elegimos 36.
+  2. En {21, 24, 42, 77}: 21 y 77 son impares (descartados); 24 es par pero no es múltiplo de 7 (7 x 3 = 21, 7 x 4 = 28); 42 es par y 7 x 6 = 42.
+- **Respuesta Final**: El primer número es **36** (Clefable) y el segundo número es **42** (Golbat).
+
+### Solución al Reto 122
+- **Datos identificados**: Tarjetas disponibles: {3, 5, 7, 8}; Desigualdades: 5 + ☐ > 12 y 20 - ☐ > 15; Igualdad: 9 ☐ 3 = 32 - 5.
+- **Planteamiento y Operaciones**: 1. Para 5 + ☐ > 12 necesitamos un número mayor que 7 (pues 5 + 7 = 12 no es mayor que 12). La única tarjeta válida es 8 (5 + 8 = 13 > 12).
+  2. Para 20 - ☐ > 15 necesitamos un número menor que 5 (pues 20 - 5 = 15 no es mayor que 15). La única tarjeta válida es 3 (20 - 3 = 17 > 15).
+  3. En 9 ☐ 3 = 32 - 5: primero calculamos el lado derecho: 32 - 5 = 27. Probamos operaciones con 9 y 3: 9 x 3 = 27.
+- **Respuesta Final**: En la primera casilla va **8**, en la segunda va **3**, y el signo que completa la igualdad es **×** (multiplicación, pues 9 × 3 = 27).
+
+### Solución al Reto 123
+- **Datos identificados**: (A) 40 Poké Balls (8 por bolsa), 10 Super Balls (2 por bolsa). (B) 120 jugadores, 8 equipos, j jugadores por equipo.
+- **Planteamiento y Operaciones**: 1. Bolsas de Poké Balls: 40 ÷ 8 = 5 bolsas. Bolsas de Super Balls: 10 ÷ 2 = 5 bolsas. Total de bolsas: (40 ÷ 8) + (10 ÷ 2) = 5 + 5 = 10 bolsas (expresión IV).
+  2. Si hay 8 equipos con j jugadores cada uno y suman 120, el producto es 8 x j = 120. Despejando: j = 120 ÷ 8 = 15 jugadores por equipo.
+- **Respuesta Final**: La expresión correcta es **IV: (40 ÷ 8) + (10 ÷ 2) = 10 bolsas**, la ecuación del torneo es **8 × j = 120** y cada equipo tiene **15 jugadores**.
+
+### Solución al Reto 124
+- **Datos identificados**: (A) Centro Pokémon = 60 m; Torre Silph ≈ 3 veces más alta. (B) Paso Pikachu = 20 cm, 40 pasos; ancho = 600 cm, paso Eevee = 25 cm.
+- **Planteamiento y Operaciones**: 1. Altura aproximada de la Torre Silph: 60 m x 3 = 180 m.
+  2. Largo de la pista: 20 cm x 40 = 800 cm (8 metros).
+  3. Pasos de Eevee a lo ancho: 600 ÷ 25 = 24 pasos (comprobación: 24 x 25 = 600).
+- **Respuesta Final**: La Torre Silph mide aproximadamente **180 metros**, la pista mide **800 cm** de largo y Eevee necesita **24 pasos** para cruzarla a lo ancho.
+
+### Solución al Reto 125
+- **Datos identificados**: Balanza 1: 1 kg + 2 kg = Baya Piña; Balanza 2: Baya Piña + 2 kg = Bloque; Balanza 3: Bloque + 1 kg = Poké-Sandía.
+- **Planteamiento y Operaciones**: 1. De la balanza 1: Baya Piña = 1 + 2 = 3 kg.
+  2. Sustituimos en la balanza 2: Bloque de hierro = 3 + 2 = 5 kg.
+  3. Sustituimos en la balanza 3: Poké-Sandía = 5 + 1 = 6 kg.
+- **Respuesta Final**: La Baya Piña pesa **3 kg**, el bloque de hierro pesa **5 kg** y la Poké-Sandía gigante pesa **6 kg**.
+
+### Solución al Reto 126
+- **Datos identificados**: (A) Sendero horizontal en fila 2; estrella ★ en fila 5. (B) Pentágono casa con esquinas inferiores A y E cuadradas, punta superior C cerrada y hombros B y D abiertos.
+- **Planteamiento y Operaciones**: 1. Dos líneas paralelas en una cuadrícula mantienen siempre la misma dirección y distancia: el nuevo sendero es horizontal por la fila 5, a 5 - 2 = 3 unidades de distancia constante del sendero de Pikachu.
+  2. Clasificación de ángulos: A y E coinciden con las esquinas de la cuadrícula (90°, ángulos rectos); C es más cerrado que 90° (ángulo agudo); B y D son más abiertos que 90° (ángulos obtusos).
+- **Respuesta Final**: El sendero paralelo pasa por la **fila 5** a **3 unidades** de distancia. En el estadio, **A y E son ángulos rectos**, **C es agudo (< 90°)** y **B y D son obtusos (> 90°)**.
+
+### Solución al Reto 127
+- **Datos identificados**: (A) Figura A: lados 2, 2, 4, 4, 3 cm; Figura B: 5 lados de 3 cm. (B) Prisma hexagonal: necesita 2 bases hexagonales en lados opuestos de una tira de 6 rectángulos.
+- **Planteamiento y Operaciones**: 1. Propiedad «5 lados»: ambas figuras tienen 5 lados (las 2 figuras).
+  2. Propiedad «todos los lados iguales»: solo la Figura B (todos miden 3 cm).
+  3. Propiedad «perímetro de 15 cm»: Figura A = 2 + 2 + 4 + 4 + 3 = 15 cm; Figura B = 5 x 3 = 15 cm (las 2 figuras).
+  4. Desarrollo plano: la plantilla 1 falla porque al doblar, los dos hexágonos quedarían en la misma tapa y el fondo quedaría abierto; la plantilla 3 falla porque un prisma hexagonal necesita 6 caras laterales rectangulares y solo tiene 5; la plantilla 2 tiene 6 rectángulos y 1 hexágono en cada extremo opuesto.
+- **Respuesta Final**: 5 lados: **las 2 figuras**; lados iguales: **Figura B**; perímetro de 15 cm: **las 2 figuras**. La plantilla correcta para el prisma hexagonal es la **plantilla 2**.
+
+### Solución al Reto 128
+- **Datos identificados**: Gráfico 1893: escala 0–30 cm, febrero = 25 cm. Gráfico 2017: escala 0–50 cm, febrero = 30 cm.
+- **Planteamiento y Operaciones**: 1. Julia compara solo el tamaño visual de las barras sin leer los números del eje vertical.
+  2. Como los dos gráficos tienen escalas distintas (uno llega hasta 30 cm y el otro hasta 50 cm), una barra de 25 cm parece casi llena en el primero mientras que una de 30 cm parece más baja en el segundo.
+  3. Comparando los valores reales: 30 cm > 25 cm. Diferencia: 30 - 25 = 5 cm.
+- **Respuesta Final**: **Julia está equivocada** porque los dos gráficos usan **escalas diferentes en el eje vertical**; en realidad cayó más nieve en **febrero de 2017 (30 cm frente a 25 cm)**, con una diferencia de **5 cm**.
+
+### Solución al Reto 129
+- **Datos identificados**: (A) Cartas {1, 2, 3, 4, 5, 6, 7, 8}; Ash tiene 8 y 2 (suma 10); Brock tiene 4. (B) Zumo: 1/2 L y 3/4 L.
+- **Planteamiento y Operaciones**: 1. Cartas ya usadas: 2, 4 y 8. Cartas disponibles en el mazo: {1, 3, 5, 6, 7}.
+  2. Para superar 10 teniendo ya un 4, Brock necesita sacar un número mayor que 6 (4 + 6 = 10 sería empate). Como el 7 sigue disponible, 4 + 7 = 11 > 10: sí puede ganar.
+  3. Suma de fracciones pasando a denominador común 4: 1/2 = 2/4. Entonces 2/4 + 3/4 = 5/4 de litro = 1 litro y 1/4 (1 1/4 L).
+- **Respuesta Final**: **Sí**, Brock puede ganar si saca la carta **7** (4 + 7 = 11 > 10). Entre Misty y Maya tienen **5/4 de litro** (**1 1/4 litros**) de zumo.
+
+### Solución al Reto 130
+- **Datos identificados**: (A) Shellos: inicio 7, +4 derecha. Gastrodon: final 6 tras moverse 6 a la izquierda. (B) Pictograma (1 dibujo = 10): 6 Aranja, 3 Meloc, 4 Zidra; martes = doble de Aranja.
+- **Planteamiento y Operaciones**: 1. Posición final de Shellos: 7 + 4 = 11.
+  2. Posición inicial de Gastrodon (operación inversa: si fue 6 a la izquierda para llegar a 6, empezaba 6 a la derecha): 6 + 6 = 12.
+  3. Lunes: Aranja = 6 x 10 = 60; Meloc = 3 x 10 = 30; Zidra = 4 x 10 = 40. Total lunes = 60 + 30 + 40 = 130 bayas (también (6 + 3 + 4) x 10 = 130).
+  4. Martes (doble de Aranja): 60 x 2 = 120 Bayas Aranja.
+- **Respuesta Final**: Shellos termina en el punto **11** y Gastrodon había empezado en el punto **12**. El lunes se vendieron **130 bayas** en total y el martes se vendieron **120 Bayas Aranja**.

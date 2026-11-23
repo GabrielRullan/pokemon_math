@@ -66,7 +66,7 @@ DOCS = [
         "out": "problemas_4_primaria.html",
         "title": "Cuadernillo de Entrenador — 4º de Primaria",
         "badge": "4º Primaria (9–10 años)",
-        "desc": "120 ejercicios (100 + 20 Retos Especiales): multiplicación 2 cifras, división, fracciones, decimales, áreas y EXP.",
+        "desc": "130 ejercicios (100 + 30 Retos Especiales y Nivel TIMSS): multiplicación 2 cifras, división, fracciones, decimales, áreas, balanzas, desarrollos planos y EXP.",
         "is_problems": True,
         "grade": 4,
     },
@@ -745,7 +745,7 @@ blockquote {
 
 .problem-card-header h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--pk-blue);
 }
 
@@ -786,29 +786,31 @@ blockquote {
 }
 
 .poke-sprite {
-  width: 82px;
-  height: 82px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   display: block;
 }
 
 .poke-sprite-secondary {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
 }
 
 .problem-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 0.96rem;
+  font-size: 0.82rem;
+  line-height: 1.42;
 }
 
 .problem-question {
-  margin-top: 0.5rem;
-  padding: 0.45rem 0.65rem;
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.55rem;
   background: #eff6ff;
   border-left: 4px solid var(--pk-blue-mid);
   border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #0f172a;
 }
@@ -851,13 +853,13 @@ blockquote {
 }
 
 .rotom-hint {
-  margin-top: 0.5rem;
-  padding: 0.38rem 0.65rem;
+  margin-top: 0.4rem;
+  padding: 0.3rem 0.55rem;
   background: #fffbeb;
   border: 1px solid #fcd34d;
   border-left: 4px solid #f59e0b;
   border-radius: 0 6px 6px 0;
-  font-size: 0.83rem;
+  font-size: 0.74rem;
   color: #78350f;
 }
 
@@ -867,7 +869,7 @@ body.hide-hints .rotom-hint {
 
 .workspace-box {
   margin-top: 0.65rem;
-  height: 92px;
+  height: 185px;
   border: 1.5px dashed #94a3b8;
   border-radius: 8px;
   background-color: #ffffff;
@@ -881,7 +883,7 @@ body.hide-hints .rotom-hint {
 
 body.grade-early .workspace-box,
 .page-container.grade-early .workspace-box {
-  height: 115px;
+  height: 230px;
 }
 
 .workspace-columns {
@@ -1214,42 +1216,64 @@ table.type-matrix tbody td:first-child {
   }
 
   .problem-card {
-    padding: 0.55rem 0.75rem;
-    margin-bottom: 0.65rem;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.6rem;
     box-shadow: none;
   }
 
+  .problem-card-header {
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .problem-card-header h3 {
+    font-size: 8.6pt;
+  }
+
+  .problem-text {
+    font-size: 8pt;
+    line-height: 1.28;
+  }
+
+  .problem-question {
+    font-size: 8pt;
+    padding: 0.25rem 0.45rem;
+    margin-top: 0.35rem;
+  }
+
   .poke-sprite {
-    width: 64px;
-    height: 64px;
+    width: 50px;
+    height: 50px;
   }
 
   .poke-sprite-secondary {
-    width: 46px;
-    height: 46px;
+    width: 36px;
+    height: 36px;
   }
 
   .problem-diagram {
-    margin: 0.35rem 0 0.15rem;
-    padding: 0.25rem;
+    margin: 0.3rem 0 0.15rem;
+    padding: 0.2rem;
   }
 
   .problem-diagram svg {
-    max-height: 150px;
+    max-height: 140px;
   }
 
   .rotom-hint {
-    padding: 0.25rem 0.5rem;
-    font-size: 8.5pt;
+    margin-top: 0.3rem;
+    padding: 0.2rem 0.45rem;
+    font-size: 7.2pt;
   }
 
   .workspace-box {
-    height: 70px;
+    margin-top: 0.45rem;
+    height: 145px;
   }
 
   body.grade-early .workspace-box,
   .page-container.grade-early .workspace-box {
-    height: 95px;
+    height: 190px;
   }
 
   h2 {
@@ -1788,9 +1812,9 @@ def build_workbook_cover(doc: dict, grade: int, total_problems: int) -> str:
       <div class="medal-slot">
         <div class="medal-circle">✓</div>
         <span>{html.escape(medal)}</span>
-        <small style="font-weight:600;color:#64748b;">Ej. {html.escape(rng)}</small>
+        <small style="font-weight:600;color:#64748b;">Ej. {html.escape(f'101–{total_problems}' if code == 'reto' else rng)}</small>
       </div>"""
-        for _, _, rng, _, medal in WORKBOOK_CHAPTERS
+        for code, _, rng, _, medal in WORKBOOK_CHAPTERS
     )
 
     grade_label = f"{grade}º de Primaria" if grade else doc["title"]
@@ -1819,15 +1843,16 @@ def build_workbook_cover(doc: dict, grade: int, total_problems: int) -> str:
 """
 
 
-def build_workbook_toc() -> str:
+def build_workbook_toc(total_problems: int = 120) -> str:
     """Construye el índice anual del cuadernillo con registro de progreso."""
+    retos_count = max(20, total_problems - 100)
     rows_html = "".join(
         f"""
         <tr>
           <td>{html.escape(title)}</td>
-          <td>{html.escape(rng)}</td>
+          <td>{html.escape(f'101–{total_problems}' if code == 'reto' else rng)}</td>
           <td>{html.escape(sense)}</td>
-          <td><span class="toc-progress-box"></span> / {15 if code in ('1','3','4','7') else (20 if code in ('2','reto') else 10)} EXP</td>
+          <td><span class="toc-progress-box"></span> / {15 if code in ('1','3','4','7') else (retos_count if code == 'reto' else (20 if code == '2' else 10))} EXP</td>
           <td><span class="toc-progress-box"></span></td>
         </tr>"""
         for code, title, rng, sense, _ in WORKBOOK_CHAPTERS
@@ -1835,7 +1860,7 @@ def build_workbook_toc() -> str:
     return f"""
 <section class="workbook-toc">
   <h2>Índice del Cuadernillo y Registro de Progreso Anual</h2>
-  <p>Este cuadernillo anual reúne <strong>120 retos matemáticos</strong> organizados en 7 Gimnasios temáticos y la Liga Pokémon final. Anota tu puntuación EXP y consigue la firma o sello de cada bloque.</p>
+  <p>Este cuadernillo anual reúne <strong>{total_problems} retos matemáticos</strong> organizados en 7 Gimnasios temáticos y la Liga Pokémon final. Anota tu puntuación EXP y consigue la firma o sello de cada bloque.</p>
   <div class="table-wrapper" tabindex="0" role="region" aria-label="Índice del Cuadernillo Anual">
     <table>
       <thead>
@@ -1854,13 +1879,15 @@ def build_workbook_toc() -> str:
 """
 
 
-def build_chapter_banner(subcat_code: str, is_first: bool = False) -> str:
+def build_chapter_banner(subcat_code: str, is_first: bool = False, total_problems: int = 120) -> str:
     """Genera el separador visual de capítulo/gimnasio al inicio de cada bloque."""
     chapter_map = {code: (title, rng, sense, medal) for code, title, rng, sense, medal in WORKBOOK_CHAPTERS}
     title, rng, sense, medal = chapter_map.get(
         subcat_code,
         ("Bloque de Entrenamiento", "", "Sentidos LOMLOE", "Medalla"),
     )
+    if subcat_code == "reto":
+        rng = f"101–{total_problems}"
     first_cls = " is-first-chapter" if is_first else ""
     reto_cls = " is-reto-chapter" if subcat_code == "reto" else ""
     return f"""
@@ -1996,6 +2023,9 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
     problem_meta: dict[int, dict[str, str]] = {}
     total_problems = 0
 
+    # Calcular total real de ejercicios antes de emitir banners de capítulo
+    expected_total = len(re.findall(r"^### (?:Problema|Reto) \d+(?::|\s*$)", part1_body, flags=re.M))
+
     sections = re.split(r"(?=^## Parte 1B?\b)", part1_body, flags=re.M)
     rendered_sections: list[str] = []
     seen_chapters: set[str] = set()
@@ -2054,7 +2084,13 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
 
             if subcat_code not in seen_chapters:
                 seen_chapters.add(subcat_code)
-                rendered_cards.append(build_chapter_banner(subcat_code, is_first=not first_chapter_emitted))
+                rendered_cards.append(
+                    build_chapter_banner(
+                        subcat_code,
+                        is_first=not first_chapter_emitted,
+                        total_problems=expected_total or 120,
+                    )
+                )
                 first_chapter_emitted = True
 
             problem_meta[num] = {
@@ -2182,7 +2218,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
     )
 
     cover_html = build_workbook_cover(doc, grade, total_problems)
-    toc_html = build_workbook_toc()
+    toc_html = build_workbook_toc(total_problems)
 
     trainer_header = f"""
 <section class="header-box">
@@ -2195,7 +2231,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
     <span>26–50 EXP: Entrenador</span>
     <span>51–80 EXP: As de Gimnasio</span>
     <span>81–100 EXP: Líder</span>
-    <span>101–120 EXP: Maestro Pokémon</span>
+    <span>101–{total_problems} EXP: Maestro Pokémon</span>
   </div>
   <div class="student-fields">
     <div class="student-field-line">Entrenador/a:</div>
@@ -2208,7 +2244,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
 </div>
 """
 
-    return cover_html + toc_html + trainer_header + "\n".join(rendered_sections) + oak_html + sol_html
+    return cover_html + toc_html + trainer_header + "\n".join(rendered_sections) + oak_html + sol_html, total_problems
 
 
 def wrap_cards(
@@ -2275,6 +2311,7 @@ def render_page(
     is_problems: bool,
     is_index: bool = False,
     grade: int = 0,
+    total_problems: int = 120,
 ) -> str:
     toggle_btns = ""
     filter_bar = ""
@@ -2301,11 +2338,11 @@ def render_page(
             '🖨️ Imprimir Actual / Docente</button>'
             + pdf_links
         )
-        filter_bar = """
+        filter_bar = f"""
     <div class="toolbar-filters">
       <label class="filter-group">Subcategoría:
         <select id="filter-subcat" class="filter-select" onchange="onFilterInputChange()">
-          <option value="all">Todas (1–120)</option>
+          <option value="all">Todas (1–{total_problems})</option>
           <option value="1">1. Numeración y valor posicional</option>
           <option value="2">2. Operaciones y cálculo</option>
           <option value="3">3. Medida, tiempo y dinero</option>
@@ -2313,7 +2350,7 @@ def render_page(
           <option value="5">5. Patrones y álgebra</option>
           <option value="6">6. Datos, gráficos y azar</option>
           <option value="7">7. Combate, nivel y EXP</option>
-          <option value="reto">Retos Especiales (101–120)</option>
+          <option value="reto">Retos Especiales (101–{total_problems})</option>
         </select>
       </label>
       <label class="filter-group">Sentido LOMLOE:
@@ -2327,14 +2364,14 @@ def render_page(
         </select>
       </label>
       <label class="filter-group">Desde:
-        <input type="number" id="filter-from" class="filter-input" min="1" max="120" value="1" oninput="onFilterInputChange()">
+        <input type="number" id="filter-from" class="filter-input" min="1" max="{total_problems}" value="1" oninput="onFilterInputChange()">
       </label>
       <label class="filter-group">Hasta:
-        <input type="number" id="filter-to" class="filter-input" min="1" max="120" value="120" oninput="onFilterInputChange()">
+        <input type="number" id="filter-to" class="filter-input" min="1" max="{total_problems}" value="{total_problems}" oninput="onFilterInputChange()">
       </label>
       <button type="button" id="btn-session-preset" class="btn btn-preset" onclick="applySessionPreset()">Ficha de sesión (5 ej.)</button>
       <button type="button" id="btn-filter-reset" class="btn" onclick="resetFilters()">Restablecer</button>
-      <span id="filter-status" class="filter-status">120 / 120 ej.</span>
+      <span id="filter-status" class="filter-status">{total_problems} / {total_problems} ej.</span>
     </div>"""
 
     back_btn = "" if is_index else '<a class="btn" href="index.html">← Índice</a>'
@@ -2386,12 +2423,13 @@ def render_page(
       const toEl = document.getElementById('filter-to');
       if (!subcatEl || !senseEl || !fromEl || !toEl) return;
 
+      const maxProb = parseInt(toEl.max || '120', 10) || 120;
       const subcatVal = subcatEl.value;
       const senseVal = senseEl.value;
       let fromNum = parseInt(fromEl.value, 10);
       let toNum = parseInt(toEl.value, 10);
       if (isNaN(fromNum) || fromNum < 1) fromNum = 1;
-      if (isNaN(toNum) || toNum > 120) toNum = 120;
+      if (isNaN(toNum) || toNum > maxProb) toNum = maxProb;
       if (fromNum > toNum) {
         const tmp = fromNum;
         fromNum = toNum;
@@ -2482,7 +2520,7 @@ def render_page(
       if (subcatEl) subcatEl.value = 'all';
       if (senseEl) senseEl.value = 'all';
       if (fromEl) fromEl.value = '1';
-      if (toEl) toEl.value = '120';
+      if (toEl) toEl.value = toEl.max || '120';
       sessionLimit = null;
       applyFilters();
     }
@@ -2586,7 +2624,7 @@ def build_index() -> str:
       <strong>Consejo de impresión:</strong> En cada cuadernillo puedes filtrar por subcategoría, sentido LOMLOE o rango (<em>«Ficha de sesión (5 ej.)»</em>), ocultar las pistas o activar el <em>«Modo Alumno (solo ejercicios)»</em> para imprimir fichas personalizadas en A4.
     </blockquote>
 
-    <h2>Cuadernillos de Entrenador (720 ejercicios ilustrados)</h2>
+    <h2>Cuadernillos de Entrenador (730 ejercicios ilustrados)</h2>
     <div class="grid-cards">
       {"".join(cards[:6])}
     </div>
@@ -2621,8 +2659,9 @@ def main() -> None:
             continue
 
         raw_md = src_path.read_text(encoding="utf-8")
+        total_probs = 120
         if doc["is_problems"]:
-            html_body = build_kid_problem_document(raw_md, doc, md, species_map)
+            html_body, total_probs = build_kid_problem_document(raw_md, doc, md, species_map)
         else:
             protected_md, math_tokens = protect_math(raw_md)
             md.reset()
@@ -2635,6 +2674,7 @@ def main() -> None:
             html_body,
             is_problems=doc["is_problems"],
             grade=doc.get("grade", 0),
+            total_problems=total_probs,
         )
         out_path = OUT_DIR / doc["out"]
         out_path.write_text(full_html, encoding="utf-8")

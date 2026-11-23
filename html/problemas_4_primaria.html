@@ -606,7 +606,7 @@ blockquote {
 
 .problem-card-header h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--pk-blue);
 }
 
@@ -647,29 +647,31 @@ blockquote {
 }
 
 .poke-sprite {
-  width: 82px;
-  height: 82px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   display: block;
 }
 
 .poke-sprite-secondary {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
 }
 
 .problem-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 0.96rem;
+  font-size: 0.82rem;
+  line-height: 1.42;
 }
 
 .problem-question {
-  margin-top: 0.5rem;
-  padding: 0.45rem 0.65rem;
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.55rem;
   background: #eff6ff;
   border-left: 4px solid var(--pk-blue-mid);
   border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #0f172a;
 }
@@ -712,13 +714,13 @@ blockquote {
 }
 
 .rotom-hint {
-  margin-top: 0.5rem;
-  padding: 0.38rem 0.65rem;
+  margin-top: 0.4rem;
+  padding: 0.3rem 0.55rem;
   background: #fffbeb;
   border: 1px solid #fcd34d;
   border-left: 4px solid #f59e0b;
   border-radius: 0 6px 6px 0;
-  font-size: 0.83rem;
+  font-size: 0.74rem;
   color: #78350f;
 }
 
@@ -728,7 +730,7 @@ body.hide-hints .rotom-hint {
 
 .workspace-box {
   margin-top: 0.65rem;
-  height: 92px;
+  height: 185px;
   border: 1.5px dashed #94a3b8;
   border-radius: 8px;
   background-color: #ffffff;
@@ -742,7 +744,7 @@ body.hide-hints .rotom-hint {
 
 body.grade-early .workspace-box,
 .page-container.grade-early .workspace-box {
-  height: 115px;
+  height: 230px;
 }
 
 .workspace-columns {
@@ -1075,42 +1077,64 @@ table.type-matrix tbody td:first-child {
   }
 
   .problem-card {
-    padding: 0.55rem 0.75rem;
-    margin-bottom: 0.65rem;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.6rem;
     box-shadow: none;
   }
 
+  .problem-card-header {
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .problem-card-header h3 {
+    font-size: 8.6pt;
+  }
+
+  .problem-text {
+    font-size: 8pt;
+    line-height: 1.28;
+  }
+
+  .problem-question {
+    font-size: 8pt;
+    padding: 0.25rem 0.45rem;
+    margin-top: 0.35rem;
+  }
+
   .poke-sprite {
-    width: 64px;
-    height: 64px;
+    width: 50px;
+    height: 50px;
   }
 
   .poke-sprite-secondary {
-    width: 46px;
-    height: 46px;
+    width: 36px;
+    height: 36px;
   }
 
   .problem-diagram {
-    margin: 0.35rem 0 0.15rem;
-    padding: 0.25rem;
+    margin: 0.3rem 0 0.15rem;
+    padding: 0.2rem;
   }
 
   .problem-diagram svg {
-    max-height: 150px;
+    max-height: 140px;
   }
 
   .rotom-hint {
-    padding: 0.25rem 0.5rem;
-    font-size: 8.5pt;
+    margin-top: 0.3rem;
+    padding: 0.2rem 0.45rem;
+    font-size: 7.2pt;
   }
 
   .workspace-box {
-    height: 70px;
+    margin-top: 0.45rem;
+    height: 145px;
   }
 
   body.grade-early .workspace-box,
   .page-container.grade-early .workspace-box {
-    height: 95px;
+    height: 190px;
   }
 
   h2 {
@@ -1193,7 +1217,7 @@ table.type-matrix tbody td:first-child {
     <div class="toolbar-filters">
       <label class="filter-group">Subcategoría:
         <select id="filter-subcat" class="filter-select" onchange="onFilterInputChange()">
-          <option value="all">Todas (1–120)</option>
+          <option value="all">Todas (1–130)</option>
           <option value="1">1. Numeración y valor posicional</option>
           <option value="2">2. Operaciones y cálculo</option>
           <option value="3">3. Medida, tiempo y dinero</option>
@@ -1201,7 +1225,7 @@ table.type-matrix tbody td:first-child {
           <option value="5">5. Patrones y álgebra</option>
           <option value="6">6. Datos, gráficos y azar</option>
           <option value="7">7. Combate, nivel y EXP</option>
-          <option value="reto">Retos Especiales (101–120)</option>
+          <option value="reto">Retos Especiales (101–130)</option>
         </select>
       </label>
       <label class="filter-group">Sentido LOMLOE:
@@ -1215,14 +1239,14 @@ table.type-matrix tbody td:first-child {
         </select>
       </label>
       <label class="filter-group">Desde:
-        <input type="number" id="filter-from" class="filter-input" min="1" max="120" value="1" oninput="onFilterInputChange()">
+        <input type="number" id="filter-from" class="filter-input" min="1" max="130" value="1" oninput="onFilterInputChange()">
       </label>
       <label class="filter-group">Hasta:
-        <input type="number" id="filter-to" class="filter-input" min="1" max="120" value="120" oninput="onFilterInputChange()">
+        <input type="number" id="filter-to" class="filter-input" min="1" max="130" value="130" oninput="onFilterInputChange()">
       </label>
       <button type="button" id="btn-session-preset" class="btn btn-preset" onclick="applySessionPreset()">Ficha de sesión (5 ej.)</button>
       <button type="button" id="btn-filter-reset" class="btn" onclick="resetFilters()">Restablecer</button>
-      <span id="filter-status" class="filter-status">120 / 120 ej.</span>
+      <span id="filter-status" class="filter-status">130 / 130 ej.</span>
     </div>
   </header>
   <main class="page-container">
@@ -1240,7 +1264,7 @@ table.type-matrix tbody td:first-child {
       <div class="cover-field-row">Año escolar: 20____ / 20____</div>
       <div class="cover-field-row">Centro educativo:</div>
       <div class="cover-field-row">Docente:</div>
-      <div class="cover-field-row full-span">Puntos EXP totales acumulados: ________ / 120 EXP · Rango alcanzado: ________________________</div>
+      <div class="cover-field-row full-span">Puntos EXP totales acumulados: ________ / 130 EXP · Rango alcanzado: ________________________</div>
     </div>
   </div>
   <div class="passport-box">
@@ -1284,14 +1308,14 @@ table.type-matrix tbody td:first-child {
       <div class="medal-slot">
         <div class="medal-circle">✓</div>
         <span>Medalla Tierra</span>
-        <small style="font-weight:600;color:#64748b;">Ej. 101–120</small>
+        <small style="font-weight:600;color:#64748b;">Ej. 101–130</small>
       </div></div>
   </div>
 </section>
 
 <section class="workbook-toc">
   <h2>Índice del Cuadernillo y Registro de Progreso Anual</h2>
-  <p>Este cuadernillo anual reúne <strong>120 retos matemáticos</strong> organizados en 7 Gimnasios temáticos y la Liga Pokémon final. Anota tu puntuación EXP y consigue la firma o sello de cada bloque.</p>
+  <p>Este cuadernillo anual reúne <strong>130 retos matemáticos</strong> organizados en 7 Gimnasios temáticos y la Liga Pokémon final. Anota tu puntuación EXP y consigue la firma o sello de cada bloque.</p>
   <div class="table-wrapper" tabindex="0" role="region" aria-label="Índice del Cuadernillo Anual">
     <table>
       <thead>
@@ -1355,9 +1379,9 @@ table.type-matrix tbody td:first-child {
         </tr>
         <tr>
           <td>Liga Pokémon · Retos Especiales de Ampliación</td>
-          <td>101–120</td>
+          <td>101–130</td>
           <td>Todos los Sentidos</td>
-          <td><span class="toc-progress-box"></span> / 20 EXP</td>
+          <td><span class="toc-progress-box"></span> / 30 EXP</td>
           <td><span class="toc-progress-box"></span></td>
         </tr></tbody>
     </table>
@@ -1374,12 +1398,12 @@ table.type-matrix tbody td:first-child {
     <span>26–50 EXP: Entrenador</span>
     <span>51–80 EXP: As de Gimnasio</span>
     <span>81–100 EXP: Líder</span>
-    <span>101–120 EXP: Maestro Pokémon</span>
+    <span>101–130 EXP: Maestro Pokémon</span>
   </div>
   <div class="student-fields">
     <div class="student-field-line">Entrenador/a:</div>
     <div class="student-field-line">Fecha:</div>
-    <div class="student-field-line">Puntos EXP: ____ / 120</div>
+    <div class="student-field-line">Puntos EXP: ____ / 130</div>
   </div>
 </section>
 <div class="kid-welcome">
@@ -3876,12 +3900,12 @@ FIN BUCLE</p>
 
 </section>
 <section class="problem-section" data-section-kind="reto">
-<h2 class="special-challenges-title">Parte 1B: Retos Especiales (101 al 120)</h2>
+<h2 class="special-challenges-title">Parte 1B: Retos Especiales y Nivel TIMSS (101 al 130)</h2>
 
 <div class="chapter-banner is-reto-chapter" data-subcat="reto">
   <div>
     <div class="chapter-banner-title">Liga Pokémon · Retos Especiales de Ampliación</div>
-    <div class="chapter-banner-meta">Ejercicios 101–120 · Todos los Sentidos · Objetivo: Medalla Tierra</div>
+    <div class="chapter-banner-meta">Ejercicios 101–130 · Todos los Sentidos · Objetivo: Medalla Tierra</div>
   </div>
   <div class="chapter-banner-stamp">Fecha: ____/____/____ · EXP del bloque: ____</div>
 </div>
@@ -4366,11 +4390,251 @@ FIN BUCLE</p>
   </div>
 </article>
 
+
+<article class="problem-card is-reto" data-num="121" data-kind="reto" data-subcat="reto" data-sense="Sentido Numérico">
+  <div class="problem-card-header">
+    <h3>Reto 121: Múltiplos secretos en la Pokédex (Nivel TIMSS)</h3>
+    <span class="poke-pill">#036 Clefable</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/36.png" alt="Clefable" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>El Profesor Serbal propone dos acertijos numéricos con la Pokédex Nacional. En el primero busca un número que cumpla estas tres condiciones a la vez: (1) es mayor que 24 y menor que 42; (2) es múltiplo de 9; (3) es un número par. En el segundo acertijo busca cuál de estos cuatro números —21, 24, 42 o 77— es a la vez par y múltiplo de 7.</p>
+      <div class="problem-question"><strong>Reto:</strong> ¿Qué número de la Pokédex (correspondiente a Clefable) cumple las tres condiciones del primer acertijo? ¿Y cuál de las cuatro opciones del segundo acertijo (correspondiente a Golbat) es par y múltiplo de 7? Explica por qué descartas los demás.</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="122" data-kind="reto" data-subcat="reto" data-sense="Sentido Algebraico">
+  <div class="problem-card-header">
+    <h3>Reto 122: Desigualdades y signos ocultos en el PC de Helio (Nivel TIMSS)</h3>
+    <span class="poke-pill">#001 Bulbasaur</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/1.png" alt="Bulbasaur" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>Para desbloquear el ordenador del Equipo Galaxia, Maya tiene cuatro tarjetas con los números 3, 5, 7 y 8 y debe colocar una tarjeta en cada casilla para que las dos desigualdades sean ciertas: «5 + ☐ es mayor que 12» y «20 − ☐ es mayor que 15». En la segunda pantalla aparece la igualdad «9 ☐ 3 = 32 − 5» y falta el signo de operación (+, −, × o ÷).</p>
+      <div class="problem-question"><strong>Reto:</strong> ¿Qué número de las tarjetas {3, 5, 7, 8} debe colocarse en cada casilla de las dos desigualdades? ¿Qué signo de operación (+, −, × o ÷) hace cierta la igualdad «9 ☐ 3 = 32 − 5»? Compruébalo paso a paso.</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="123" data-kind="reto" data-subcat="reto" data-sense="Sentido Algebraico">
+  <div class="problem-card-header">
+    <h3>Reto 123: Expresiones con paréntesis y ecuaciones de la Liga (Nivel TIMSS)</h3>
+    <span class="poke-pill">#004 Charmander</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/4.png" alt="Charmander" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>(A) El entrenador de la Tienda Pokémon debe guardar 40 Poké Balls y 10 Super Balls en bolsas. En cada bolsa caben 8 Poké Balls o 2 Super Balls. Propone cuatro expresiones para calcular el número total de bolsas: I) 40 + (10 ÷ 2); II) (40 ÷ 2) + (10 ÷ 8); III) (40 + 8) ÷ (10 + 2); IV) (40 ÷ 8) + (10 ÷ 2). (B) Además, en el Torneo de Sinnoh hay 120 jugadores repartidos en 8 equipos con «j» jugadores en cada equipo.</p>
+      <div class="problem-question"><strong>Reto:</strong> En el apartado A, ¿qué expresión (I, II, III o IV) calcula correctamente el total de bolsas y cuántas bolsas son? En el apartado B, escribe la ecuación con la letra «j» que representa la situación (elige entre 8 × j = 120, 8 ÷ j = 120, j = 8 × 120 o j = 120 + 8) y calcula el valor de j.</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Despeja la incógnita paso a paso: traduce cada frase a una operación y comprueba tu solución sustituyendo.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="124" data-kind="reto" data-subcat="reto" data-sense="Sentido de la Medida">
+  <div class="problem-card-header">
+    <h3>Reto 124: La altura de la Torre Silph y los pasos en el Gimnasio (Nivel TIMSS)</h3>
+    <span class="poke-pill">#025 Pikachu</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/25.png" alt="Pikachu" class="poke-sprite" loading="lazy"><img src="assets/images/133.png" alt="Eevee" class="poke-sprite poke-sprite-secondary" loading="lazy"></div>
+    <div class="problem-text">
+      <p>(A) Frente al Centro Pokémon de Ciudad Azafrán, que mide 60 metros de altura, se levanta la Torre Silph, que visualmente es exactamente 3 veces más alta que el Centro Pokémon. (B) Dentro del gimnasio, Pikachu y Eevee miden la pista caminando paso a paso sin dejar huecos: cada paso de Pikachu mide 20 cm y da 40 pasos a lo largo de la pista; la pista mide 600 cm de ancho y cada paso de Eevee mide 25 cm.</p>
+      <div class="problem-question"><strong>Reto:</strong> ¿Cuál es la altura aproximada de la Torre Silph en metros? ¿Cuántos centímetros mide de largo la pista medida por Pikachu y cuántos pasos necesita Eevee para cruzarla a lo ancho?</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="125" data-kind="reto" data-subcat="reto" data-sense="Sentido Algebraico">
+  <div class="problem-card-header">
+    <h3>Reto 125: Las tres balanzas equilibradas del Laboratorio (Nivel TIMSS)</h3>
+    <span class="poke-pill">#143 Snorlax</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/143.png" alt="Snorlax" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>En el laboratorio del Profesor Serbal hay tres balanzas de platillos perfectamente equilibradas: en la balanza 1, una pesa de 1 kg junto con una pesa de 2 kg equilibran a una Baya Piña; en la balanza 2, una Baya Piña junto con una pesa de 2 kg equilibran a un bloque de hierro; en la balanza 3, el bloque de hierro junto con una pesa de 1 kg equilibran a una Poké-Sandía gigante para Snorlax.</p>
+      <div class="problem-question"><strong>Reto:</strong> Razonando paso a paso de una balanza a la siguiente, calcula cuánto pesa la Baya Piña, cuánto pesa el bloque de hierro y cuál es el peso exacto de la Poké-Sandía gigante en kilogramos.</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="126" data-kind="reto" data-subcat="reto" data-sense="Sentido Espacial">
+  <div class="problem-card-header">
+    <h3>Reto 126: Caminos paralelos y clasificación de ángulos en la cuadrícula (Nivel TIMSS)</h3>
+    <span class="poke-pill">#025 Pikachu</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/25.png" alt="Pikachu" class="poke-sprite" loading="lazy"><img src="assets/images/133.png" alt="Eevee" class="poke-sprite poke-sprite-secondary" loading="lazy"></div>
+    <div class="problem-text">
+      <p>(A) En el Parque Compi, Pikachu camina por un sendero horizontal recto sobre la línea de fila 2 de una cuadrícula. En la fila 5, tres casillas más arriba, hay una estrella dorada ★ donde espera Eevee, y se quiere trazar un segundo sendero paralelo al de Pikachu que pase exactamente por ★. (B) Junto al parque hay un estadio con forma de pentágono (como una casa): sus dos esquinas inferiores (ángulos A y E) forman esquinas cuadradas exactas de la cuadrícula; el tejado tiene una punta superior aguda (ángulo C) y dos hombros laterales más abiertos que una esquina cuadrada (ángulos B y D).</p>
+      <div class="problem-question"><strong>Reto:</strong> (A) ¿Por qué línea horizontal de la cuadrícula debe pasar el sendero paralelo al de Pikachu y a cuántas unidades de distancia se mantiene siempre? (B) Clasifica los cinco ángulos del estadio (A, B, C, D y E) indicando cuáles son ángulos rectos (90°), cuáles son menores que un ángulo recto (agudos) y cuáles son mayores que un ángulo recto (obtusos).</div>
+    </div>
+  </div>
+  <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 145" width="210" height="145" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Diagrama de ángulos geométricos"><line x1="52.5" y1="104.0" x2="104.5" y2="104.0" stroke="#1e3a8a" stroke-width="2.4" stroke-linecap="round"/><line x1="52.5" y1="104.0" x2="52.5" y2="52.0" stroke="#e3350d" stroke-width="2.4" stroke-linecap="round"/><rect x="52.5" y="93.0" width="11" height="11" fill="none" stroke="#047857" stroke-width="1.5"/><circle cx="52.5" cy="104.0" r="3" fill="#0f172a"/><text x="64.5" y="124.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">90°</text></svg></div>
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="127" data-kind="reto" data-subcat="reto" data-sense="Sentido Espacial">
+  <div class="problem-card-header">
+    <h3>Reto 127: Comparación de pentágonos y desarrollo plano de una caja prismática (Nivel TIMSS)</h3>
+    <span class="poke-pill">#448 Lucario</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/448.png" alt="Lucario" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>(A) Dos medallas de gimnasio tienen forma de polígono: la Figura A tiene 5 lados que miden 2 cm, 2 cm, 4 cm, 4 cm y 3 cm; la Figura B es un pentágono regular cuyos 5 lados miden 3 cm cada uno. (B) Además, Maya quiere construir una caja con forma de prisma hexagonal (2 bases hexagonales y 6 caras laterales rectangulares) doblando una plantilla de cartón (desarrollo plano): la plantilla 1 tiene 6 rectángulos en fila y los 2 hexágonos pegados en el mismo lado; la plantilla 2 tiene 6 rectángulos en fila con 1 hexágono arriba y 1 hexágono abajo; la plantilla 3 tiene solo 5 rectángulos en fila con 1 hexágono arriba y 1 abajo.</p>
+      <div class="problem-question"><strong>Reto:</strong> (A) Indica si cada propiedad corresponde a la Figura A, a la Figura B o a las dos figuras: «tiene 5 lados», «todos sus lados miden lo mismo» y «su perímetro es de 15 cm». (B) ¿Cuál de las tres plantillas (1, 2 o 3) permite construir el prisma hexagonal sin que falten ni se solapen caras? Explica por qué fallan las otras dos.</div>
+    </div>
+  </div>
+  <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 148" width="230" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Prisma rectangular tridimensional"><line x1="86.0" y1="28.0" x2="86.0" y2="82.0" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/><line x1="52.0" y1="106.0" x2="86.0" y2="82.0" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/><line x1="86.0" y1="82.0" x2="180.0" y2="82.0" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/><polygon points="52.0,52.0 146.0,52.0 180.0,28.0 86.0,28.0" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.8"/><polygon points="146.0,52.0 180.0,28.0 180.0,82.0 146.0,106.0" fill="#dbeafe" stroke="#1e3a8a" stroke-width="1.8"/><rect x="52.0" y="52.0" width="94.0" height="54.0" fill="#ffffff" fill-opacity="0.78" stroke="#1e3a8a" stroke-width="2"/></svg></div>
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> El perímetro se obtiene sumando las longitudes de todos los lados exteriores del contorno.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="128" data-kind="reto" data-subcat="reto" data-sense="Sentido Estocástico">
+  <div class="problem-card-header">
+    <h3>Reto 128: ¡Cuidado con la escala! La nieve del Monte Corona (Nivel TIMSS)</h3>
+    <span class="poke-pill">#393 Piplup</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/393.png" alt="Piplup" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>Dos gráficos de barras muestran la nieve caída en el Monte Corona en dos inviernos distintos. En el gráfico de 1893, el eje vertical va de 0 a 30 cm (de 5 en 5) y la barra de febrero llega hasta 25 cm (casi tocando el techo del gráfico). En el gráfico de 2017, el eje vertical va de 0 a 50 cm (de 5 en 5) y la barra de febrero llega hasta 30 cm (un poco por encima de la mitad del dibujo). Al ver los dos dibujos juntos, Julia afirma: «Cayó más nieve en febrero de 1893 porque su barra azul es más alta en el papel».</p>
+      <div class="problem-question"><strong>Reto:</strong> ¿Tiene razón Julia o está equivocada? Explica con claridad matemática por qué la altura visual de las barras engaña al comparar estos dos gráficos e indica en qué año cayó más nieve y por cuántos centímetros de diferencia.</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Lee con atención los ejes, la leyenda o el valor de cada símbolo del gráfico antes de sumar o comparar.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="129" data-kind="reto" data-subcat="reto" data-sense="Sentido Numérico">
+  <div class="problem-card-header">
+    <h3>Reto 129: Estrategia de cartas sin repetición y suma de fracciones de zumo (Nivel TIMSS)</h3>
+    <span class="poke-pill">#074 Geodude</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/74.png" alt="Geodude" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>(A) Ash y Brock juegan con 8 cartas numeradas del 1 al 8 boca abajo sin devolverlas. Cada jugador saca 2 cartas y gana quien obtenga la suma más grande. Ash saca el 8 y el 2 (suma 10). La primera carta que saca Brock es el 4. (B) Tras la partida, celebran con zumo de bayas: Misty tiene 1/2 litro de zumo de Baya Aranja y Maya tiene 3/4 de litro.</p>
+      <div class="problem-question"><strong>Reto:</strong> (A) ¿Puede ganar Brock todavía? Responde Sí o No y explica qué carta o cartas disponibles del mazo le permitirían superar los 10 puntos de Ash. (B) ¿Cuántos litros de zumo tienen Misty y Maya juntas expresado como fracción impropia y como número mixto?</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
+
+<article class="problem-card is-reto" data-num="130" data-kind="reto" data-subcat="reto" data-sense="Sentido Estocástico">
+  <div class="problem-card-header">
+    <h3>Reto 130: El camino inverso de Shellos y el pictograma escalado de bayas (Nivel TIMSS)</h3>
+    <span class="poke-pill">#025 Pikachu</span>
+  </div>
+  <div class="problem-body-grid">
+    <div class="problem-sprites"><img src="assets/images/25.png" alt="Pikachu" class="poke-sprite" loading="lazy"></div>
+    <div class="problem-text">
+      <p>(A) En un sendero de puntos numerados del 0 al 15 separados por 1 unidad, Shellos empieza en el punto 7 y avanza 4 unidades hacia la derecha; mientras tanto, Gastrodon termina en el punto 6 después de haberse movido 6 unidades hacia la izquierda. (B) En la frutería Pokémon del lunes, un pictograma donde cada dibujo representa 10 unidades muestra: 6 dibujos de Baya Aranja, 3 dibujos de Baya Meloc y 4 dibujos de Baya Zidra. El martes el tendero anuncia: «Hoy he vendido el doble de Bayas Aranja que el lunes».</p>
+      <div class="problem-question"><strong>Reto:</strong> (A) ¿En qué punto termina Shellos y en qué punto había empezado Gastrodon? (B) ¿Cuántas bayas en total vendió la frutería el lunes y cuántas Bayas Aranja vendió el martes?</div>
+    </div>
+  </div>
+  
+  <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Lee con atención los ejes, la leyenda o el valor de cada símbolo del gráfico antes de sumar o comparar.</div>
+  <div class="workspace-box" aria-label="Espacio para operaciones">
+    <div class="workspace-columns">
+      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
+      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
+    </div>
+  </div>
+</article>
+
 </section>
 <section id="ficha-profesor-oak" class="prof-oak-dossier">
   <div class="prof-oak-header">
     <h2>Ficha del Profesor Oak — Guía Curricular y LOMLOE (Docentes y Familias)</h2>
-    <span class="prof-oak-badge">4º Primaria (9–10 años) · 120 ejercicios</span>
+    <span class="prof-oak-badge">4º Primaria (9–10 años) · 130 ejercicios</span>
   </div>
   <p>Esta sección está pensada exclusivamente para <strong>profesorado y familias</strong> (se oculta automáticamente en el <em>Modo Alumno</em>). Resume la alineación de este cuadernillo con el currículo oficial de Primaria (<strong>LOMLOE — Real Decreto 157/2022</strong>).</p>
   
@@ -4380,7 +4644,7 @@ FIN BUCLE</p>
       <thead>
         <tr><th>Sentido Matemático (RD 157/2022)</th><th>N.º ejercicios</th><th>Ejercicios</th></tr>
       </thead>
-      <tbody><tr><td>Sentido Numérico</td><td>59</td><td>1–35, 86–101, 103, 107, 110–111, 113, 115, 119–120</td></tr><tr><td>Sentido de la Medida</td><td>18</td><td>36–50, 104, 116, 118</td></tr><tr><td>Sentido Espacial</td><td>17</td><td>51–65, 106, 117</td></tr><tr><td>Sentido Algebraico y Pensamiento Computacional</td><td>13</td><td>66–75, 102, 105, 109</td></tr><tr><td>Sentido Estocástico</td><td>13</td><td>76–85, 108, 112, 114</td></tr></tbody>
+      <tbody><tr><td>Sentido Numérico</td><td>61</td><td>1–35, 86–101, 103, 107, 110–111, 113, 115, 119–121, 129</td></tr><tr><td>Sentido de la Medida</td><td>19</td><td>36–50, 104, 116, 118, 124</td></tr><tr><td>Sentido Espacial</td><td>19</td><td>51–65, 106, 117, 126–127</td></tr><tr><td>Sentido Algebraico y Pensamiento Computacional</td><td>16</td><td>66–75, 102, 105, 109, 122–123, 125</td></tr><tr><td>Sentido Estocástico</td><td>15</td><td>76–85, 108, 112, 114, 128, 130</td></tr></tbody>
     </table>
   </div>
   <h3>Desglose por Subcategorías</h3>
@@ -4389,7 +4653,7 @@ FIN BUCLE</p>
       <thead>
         <tr><th>Subcategoría</th><th>N.º ejercicios</th><th>Ejercicios</th></tr>
       </thead>
-      <tbody><tr><td>Subcategoría 1: Numeración, Descomposición y Valor Posicional</td><td>18</td><td>1–15, 101, 111, 115</td></tr><tr><td>Subcategoría 2: Operaciones Aritméticas y Cálculo Mental</td><td>23</td><td>16–35, 107, 110, 119</td></tr><tr><td>Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero</td><td>18</td><td>36–50, 104, 116, 118</td></tr><tr><td>Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio</td><td>17</td><td>51–65, 106, 117</td></tr><tr><td>Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional</td><td>13</td><td>66–75, 102, 105, 109</td></tr><tr><td>Subcategoría 6: Tratamiento de Datos, Gráficos y Azar</td><td>13</td><td>76–85, 108, 112, 114</td></tr><tr><td>Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)</td><td>18</td><td>86–100, 103, 113, 120</td></tr></tbody>
+      <tbody><tr><td>Subcategoría 1: Numeración, Descomposición y Valor Posicional</td><td>20</td><td>1–15, 101, 111, 115, 121, 129</td></tr><tr><td>Subcategoría 2: Operaciones Aritméticas y Cálculo Mental</td><td>23</td><td>16–35, 107, 110, 119</td></tr><tr><td>Subcategoría 3: Magnitudes, Unidades de Medida, Tiempo y Dinero</td><td>19</td><td>36–50, 104, 116, 118, 124</td></tr><tr><td>Subcategoría 4: Geometría, Formas, Perímetros, Áreas y Espacio</td><td>19</td><td>51–65, 106, 117, 126–127</td></tr><tr><td>Subcategoría 5: Patrones, Secuencias y Pensamiento Computacional</td><td>16</td><td>66–75, 102, 105, 109, 122–123, 125</td></tr><tr><td>Subcategoría 6: Tratamiento de Datos, Gráficos y Azar</td><td>15</td><td>76–85, 108, 112, 114, 128, 130</td></tr><tr><td>Subcategoría 7: Mecánicas de Combate, Nivel y Experiencia (EXP)</td><td>18</td><td>86–100, 103, 113, 120</td></tr></tbody>
     </table>
   </div>
   
@@ -6086,6 +6350,105 @@ FIN BUCLE</p>
   5. Solo salvajes: 2.470 / 95 = 26 combates exactos (95 x 26 = 2.470). Ahorro: 26 - 23 = 3 combates.</li>
 <li><strong>Respuesta Final</strong>: Cada combate de entrenador da <strong>195 EXP</strong>; el mínimo es <strong>23 combates</strong> (3 de entrenador + 20 salvajes) y se ahorra <strong>3 combates</strong> frente a los 26 de solo salvajes.</li>
 </ul>
+
+</article><article class="solution-card is-reto" data-num="121" data-kind="reto" data-subcat="reto" data-sense="Sentido Numérico">
+<h3 id="solucion-al-reto-121">Solución al Reto 121</h3>
+<ul>
+<li><strong>Datos identificados</strong>: Acertijo 1: rango entre 24 y 42, múltiplo de 9, par. Acertijo 2: opciones {21, 24, 42, 77}, par y múltiplo de 7.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Múltiplos de 9 entre 24 y 42: 27 (9 x 3) y 36 (9 x 4). Como debe ser par, descartamos 27 y elegimos 36.<br />
+  2. En {21, 24, 42, 77}: 21 y 77 son impares (descartados); 24 es par pero no es múltiplo de 7 (7 x 3 = 21, 7 x 4 = 28); 42 es par y 7 x 6 = 42.</li>
+<li><strong>Respuesta Final</strong>: El primer número es <strong>36</strong> (Clefable) y el segundo número es <strong>42</strong> (Golbat).</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="122" data-kind="reto" data-subcat="reto" data-sense="Sentido Algebraico">
+<h3 id="solucion-al-reto-122">Solución al Reto 122</h3>
+<ul>
+<li><strong>Datos identificados</strong>: Tarjetas disponibles: {3, 5, 7, 8}; Desigualdades: 5 + ☐ &gt; 12 y 20 - ☐ &gt; 15; Igualdad: 9 ☐ 3 = 32 - 5.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Para 5 + ☐ &gt; 12 necesitamos un número mayor que 7 (pues 5 + 7 = 12 no es mayor que 12). La única tarjeta válida es 8 (5 + 8 = 13 &gt; 12).<br />
+  2. Para 20 - ☐ &gt; 15 necesitamos un número menor que 5 (pues 20 - 5 = 15 no es mayor que 15). La única tarjeta válida es 3 (20 - 3 = 17 &gt; 15).<br />
+  3. En 9 ☐ 3 = 32 - 5: primero calculamos el lado derecho: 32 - 5 = 27. Probamos operaciones con 9 y 3: 9 x 3 = 27.</li>
+<li><strong>Respuesta Final</strong>: En la primera casilla va <strong>8</strong>, en la segunda va <strong>3</strong>, y el signo que completa la igualdad es <strong>×</strong> (multiplicación, pues 9 × 3 = 27).</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="123" data-kind="reto" data-subcat="reto" data-sense="Sentido Algebraico">
+<h3 id="solucion-al-reto-123">Solución al Reto 123</h3>
+<ul>
+<li><strong>Datos identificados</strong>: (A) 40 Poké Balls (8 por bolsa), 10 Super Balls (2 por bolsa). (B) 120 jugadores, 8 equipos, j jugadores por equipo.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Bolsas de Poké Balls: 40 ÷ 8 = 5 bolsas. Bolsas de Super Balls: 10 ÷ 2 = 5 bolsas. Total de bolsas: (40 ÷ 8) + (10 ÷ 2) = 5 + 5 = 10 bolsas (expresión IV).<br />
+  2. Si hay 8 equipos con j jugadores cada uno y suman 120, el producto es 8 x j = 120. Despejando: j = 120 ÷ 8 = 15 jugadores por equipo.</li>
+<li><strong>Respuesta Final</strong>: La expresión correcta es <strong>IV: (40 ÷ 8) + (10 ÷ 2) = 10 bolsas</strong>, la ecuación del torneo es <strong>8 × j = 120</strong> y cada equipo tiene <strong>15 jugadores</strong>.</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="124" data-kind="reto" data-subcat="reto" data-sense="Sentido de la Medida">
+<h3 id="solucion-al-reto-124">Solución al Reto 124</h3>
+<ul>
+<li><strong>Datos identificados</strong>: (A) Centro Pokémon = 60 m; Torre Silph ≈ 3 veces más alta. (B) Paso Pikachu = 20 cm, 40 pasos; ancho = 600 cm, paso Eevee = 25 cm.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Altura aproximada de la Torre Silph: 60 m x 3 = 180 m.<br />
+  2. Largo de la pista: 20 cm x 40 = 800 cm (8 metros).<br />
+  3. Pasos de Eevee a lo ancho: 600 ÷ 25 = 24 pasos (comprobación: 24 x 25 = 600).</li>
+<li><strong>Respuesta Final</strong>: La Torre Silph mide aproximadamente <strong>180 metros</strong>, la pista mide <strong>800 cm</strong> de largo y Eevee necesita <strong>24 pasos</strong> para cruzarla a lo ancho.</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="125" data-kind="reto" data-subcat="reto" data-sense="Sentido Algebraico">
+<h3 id="solucion-al-reto-125">Solución al Reto 125</h3>
+<ul>
+<li><strong>Datos identificados</strong>: Balanza 1: 1 kg + 2 kg = Baya Piña; Balanza 2: Baya Piña + 2 kg = Bloque; Balanza 3: Bloque + 1 kg = Poké-Sandía.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. De la balanza 1: Baya Piña = 1 + 2 = 3 kg.<br />
+  2. Sustituimos en la balanza 2: Bloque de hierro = 3 + 2 = 5 kg.<br />
+  3. Sustituimos en la balanza 3: Poké-Sandía = 5 + 1 = 6 kg.</li>
+<li><strong>Respuesta Final</strong>: La Baya Piña pesa <strong>3 kg</strong>, el bloque de hierro pesa <strong>5 kg</strong> y la Poké-Sandía gigante pesa <strong>6 kg</strong>.</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="126" data-kind="reto" data-subcat="reto" data-sense="Sentido Espacial">
+<h3 id="solucion-al-reto-126">Solución al Reto 126</h3>
+<ul>
+<li><strong>Datos identificados</strong>: (A) Sendero horizontal en fila 2; estrella ★ en fila 5. (B) Pentágono casa con esquinas inferiores A y E cuadradas, punta superior C cerrada y hombros B y D abiertos.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Dos líneas paralelas en una cuadrícula mantienen siempre la misma dirección y distancia: el nuevo sendero es horizontal por la fila 5, a 5 - 2 = 3 unidades de distancia constante del sendero de Pikachu.<br />
+  2. Clasificación de ángulos: A y E coinciden con las esquinas de la cuadrícula (90°, ángulos rectos); C es más cerrado que 90° (ángulo agudo); B y D son más abiertos que 90° (ángulos obtusos).</li>
+<li><strong>Respuesta Final</strong>: El sendero paralelo pasa por la <strong>fila 5</strong> a <strong>3 unidades</strong> de distancia. En el estadio, <strong>A y E son ángulos rectos</strong>, <strong>C es agudo (&lt; 90°)</strong> y <strong>B y D son obtusos (&gt; 90°)</strong>.</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="127" data-kind="reto" data-subcat="reto" data-sense="Sentido Espacial">
+<h3 id="solucion-al-reto-127">Solución al Reto 127</h3>
+<ul>
+<li><strong>Datos identificados</strong>: (A) Figura A: lados 2, 2, 4, 4, 3 cm; Figura B: 5 lados de 3 cm. (B) Prisma hexagonal: necesita 2 bases hexagonales en lados opuestos de una tira de 6 rectángulos.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Propiedad «5 lados»: ambas figuras tienen 5 lados (las 2 figuras).<br />
+  2. Propiedad «todos los lados iguales»: solo la Figura B (todos miden 3 cm).<br />
+  3. Propiedad «perímetro de 15 cm»: Figura A = 2 + 2 + 4 + 4 + 3 = 15 cm; Figura B = 5 x 3 = 15 cm (las 2 figuras).<br />
+  4. Desarrollo plano: la plantilla 1 falla porque al doblar, los dos hexágonos quedarían en la misma tapa y el fondo quedaría abierto; la plantilla 3 falla porque un prisma hexagonal necesita 6 caras laterales rectangulares y solo tiene 5; la plantilla 2 tiene 6 rectángulos y 1 hexágono en cada extremo opuesto.</li>
+<li><strong>Respuesta Final</strong>: 5 lados: <strong>las 2 figuras</strong>; lados iguales: <strong>Figura B</strong>; perímetro de 15 cm: <strong>las 2 figuras</strong>. La plantilla correcta para el prisma hexagonal es la <strong>plantilla 2</strong>.</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="128" data-kind="reto" data-subcat="reto" data-sense="Sentido Estocástico">
+<h3 id="solucion-al-reto-128">Solución al Reto 128</h3>
+<ul>
+<li><strong>Datos identificados</strong>: Gráfico 1893: escala 0–30 cm, febrero = 25 cm. Gráfico 2017: escala 0–50 cm, febrero = 30 cm.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Julia compara solo el tamaño visual de las barras sin leer los números del eje vertical.<br />
+  2. Como los dos gráficos tienen escalas distintas (uno llega hasta 30 cm y el otro hasta 50 cm), una barra de 25 cm parece casi llena en el primero mientras que una de 30 cm parece más baja en el segundo.<br />
+  3. Comparando los valores reales: 30 cm &gt; 25 cm. Diferencia: 30 - 25 = 5 cm.</li>
+<li><strong>Respuesta Final</strong>: <strong>Julia está equivocada</strong> porque los dos gráficos usan <strong>escalas diferentes en el eje vertical</strong>; en realidad cayó más nieve en <strong>febrero de 2017 (30 cm frente a 25 cm)</strong>, con una diferencia de <strong>5 cm</strong>.</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="129" data-kind="reto" data-subcat="reto" data-sense="Sentido Numérico">
+<h3 id="solucion-al-reto-129">Solución al Reto 129</h3>
+<ul>
+<li><strong>Datos identificados</strong>: (A) Cartas {1, 2, 3, 4, 5, 6, 7, 8}; Ash tiene 8 y 2 (suma 10); Brock tiene 4. (B) Zumo: 1/2 L y 3/4 L.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Cartas ya usadas: 2, 4 y 8. Cartas disponibles en el mazo: {1, 3, 5, 6, 7}.<br />
+  2. Para superar 10 teniendo ya un 4, Brock necesita sacar un número mayor que 6 (4 + 6 = 10 sería empate). Como el 7 sigue disponible, 4 + 7 = 11 &gt; 10: sí puede ganar.<br />
+  3. Suma de fracciones pasando a denominador común 4: 1/2 = 2/4. Entonces 2/4 + 3/4 = 5/4 de litro = 1 litro y 1/4 (1 1/4 L).</li>
+<li><strong>Respuesta Final</strong>: <strong>Sí</strong>, Brock puede ganar si saca la carta <strong>7</strong> (4 + 7 = 11 &gt; 10). Entre Misty y Maya tienen <strong>5/4 de litro</strong> (<strong>1 1/4 litros</strong>) de zumo.</li>
+</ul>
+
+</article><article class="solution-card is-reto" data-num="130" data-kind="reto" data-subcat="reto" data-sense="Sentido Estocástico">
+<h3 id="solucion-al-reto-130">Solución al Reto 130</h3>
+<ul>
+<li><strong>Datos identificados</strong>: (A) Shellos: inicio 7, +4 derecha. Gastrodon: final 6 tras moverse 6 a la izquierda. (B) Pictograma (1 dibujo = 10): 6 Aranja, 3 Meloc, 4 Zidra; martes = doble de Aranja.</li>
+<li><strong>Planteamiento y Operaciones</strong>: 1. Posición final de Shellos: 7 + 4 = 11.<br />
+  2. Posición inicial de Gastrodon (operación inversa: si fue 6 a la izquierda para llegar a 6, empezaba 6 a la derecha): 6 + 6 = 12.<br />
+  3. Lunes: Aranja = 6 x 10 = 60; Meloc = 3 x 10 = 30; Zidra = 4 x 10 = 40. Total lunes = 60 + 30 + 40 = 130 bayas (también (6 + 3 + 4) x 10 = 130).<br />
+  4. Martes (doble de Aranja): 60 x 2 = 120 Bayas Aranja.</li>
+<li><strong>Respuesta Final</strong>: Shellos termina en el punto <strong>11</strong> y Gastrodon había empezado en el punto <strong>12</strong>. El lunes se vendieron <strong>130 bayas</strong> en total y el martes se vendieron <strong>120 Bayas Aranja</strong>.</li>
+</ul>
 </article>
 </section>
   </main>
@@ -6127,12 +6490,13 @@ FIN BUCLE</p>
       const toEl = document.getElementById('filter-to');
       if (!subcatEl || !senseEl || !fromEl || !toEl) return;
 
+      const maxProb = parseInt(toEl.max || '120', 10) || 120;
       const subcatVal = subcatEl.value;
       const senseVal = senseEl.value;
       let fromNum = parseInt(fromEl.value, 10);
       let toNum = parseInt(toEl.value, 10);
       if (isNaN(fromNum) || fromNum < 1) fromNum = 1;
-      if (isNaN(toNum) || toNum > 120) toNum = 120;
+      if (isNaN(toNum) || toNum > maxProb) toNum = maxProb;
       if (fromNum > toNum) {
         const tmp = fromNum;
         fromNum = toNum;
@@ -6223,7 +6587,7 @@ FIN BUCLE</p>
       if (subcatEl) subcatEl.value = 'all';
       if (senseEl) senseEl.value = 'all';
       if (fromEl) fromEl.value = '1';
-      if (toEl) toEl.value = '120';
+      if (toEl) toEl.value = toEl.max || '120';
       sessionLimit = null;
       applyFilters();
     }

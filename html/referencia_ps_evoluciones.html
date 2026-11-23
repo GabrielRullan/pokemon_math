@@ -606,7 +606,7 @@ blockquote {
 
 .problem-card-header h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--pk-blue);
 }
 
@@ -647,29 +647,31 @@ blockquote {
 }
 
 .poke-sprite {
-  width: 82px;
-  height: 82px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   display: block;
 }
 
 .poke-sprite-secondary {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
 }
 
 .problem-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 0.96rem;
+  font-size: 0.82rem;
+  line-height: 1.42;
 }
 
 .problem-question {
-  margin-top: 0.5rem;
-  padding: 0.45rem 0.65rem;
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.55rem;
   background: #eff6ff;
   border-left: 4px solid var(--pk-blue-mid);
   border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #0f172a;
 }
@@ -712,13 +714,13 @@ blockquote {
 }
 
 .rotom-hint {
-  margin-top: 0.5rem;
-  padding: 0.38rem 0.65rem;
+  margin-top: 0.4rem;
+  padding: 0.3rem 0.55rem;
   background: #fffbeb;
   border: 1px solid #fcd34d;
   border-left: 4px solid #f59e0b;
   border-radius: 0 6px 6px 0;
-  font-size: 0.83rem;
+  font-size: 0.74rem;
   color: #78350f;
 }
 
@@ -728,7 +730,7 @@ body.hide-hints .rotom-hint {
 
 .workspace-box {
   margin-top: 0.65rem;
-  height: 92px;
+  height: 185px;
   border: 1.5px dashed #94a3b8;
   border-radius: 8px;
   background-color: #ffffff;
@@ -742,7 +744,7 @@ body.hide-hints .rotom-hint {
 
 body.grade-early .workspace-box,
 .page-container.grade-early .workspace-box {
-  height: 115px;
+  height: 230px;
 }
 
 .workspace-columns {
@@ -1075,42 +1077,64 @@ table.type-matrix tbody td:first-child {
   }
 
   .problem-card {
-    padding: 0.55rem 0.75rem;
-    margin-bottom: 0.65rem;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.6rem;
     box-shadow: none;
   }
 
+  .problem-card-header {
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .problem-card-header h3 {
+    font-size: 8.6pt;
+  }
+
+  .problem-text {
+    font-size: 8pt;
+    line-height: 1.28;
+  }
+
+  .problem-question {
+    font-size: 8pt;
+    padding: 0.25rem 0.45rem;
+    margin-top: 0.35rem;
+  }
+
   .poke-sprite {
-    width: 64px;
-    height: 64px;
+    width: 50px;
+    height: 50px;
   }
 
   .poke-sprite-secondary {
-    width: 46px;
-    height: 46px;
+    width: 36px;
+    height: 36px;
   }
 
   .problem-diagram {
-    margin: 0.35rem 0 0.15rem;
-    padding: 0.25rem;
+    margin: 0.3rem 0 0.15rem;
+    padding: 0.2rem;
   }
 
   .problem-diagram svg {
-    max-height: 150px;
+    max-height: 140px;
   }
 
   .rotom-hint {
-    padding: 0.25rem 0.5rem;
-    font-size: 8.5pt;
+    margin-top: 0.3rem;
+    padding: 0.2rem 0.45rem;
+    font-size: 7.2pt;
   }
 
   .workspace-box {
-    height: 70px;
+    margin-top: 0.45rem;
+    height: 145px;
   }
 
   body.grade-early .workspace-box,
   .page-container.grade-early .workspace-box {
-    height: 95px;
+    height: 190px;
   }
 
   h2 {
@@ -1886,12 +1910,13 @@ $$0 \le \text{PS}_{\text{actual}} \le \text{PS}_{\max}$$</p>
       const toEl = document.getElementById('filter-to');
       if (!subcatEl || !senseEl || !fromEl || !toEl) return;
 
+      const maxProb = parseInt(toEl.max || '120', 10) || 120;
       const subcatVal = subcatEl.value;
       const senseVal = senseEl.value;
       let fromNum = parseInt(fromEl.value, 10);
       let toNum = parseInt(toEl.value, 10);
       if (isNaN(fromNum) || fromNum < 1) fromNum = 1;
-      if (isNaN(toNum) || toNum > 120) toNum = 120;
+      if (isNaN(toNum) || toNum > maxProb) toNum = maxProb;
       if (fromNum > toNum) {
         const tmp = fromNum;
         fromNum = toNum;
@@ -1982,7 +2007,7 @@ $$0 \le \text{PS}_{\text{actual}} \le \text{PS}_{\max}$$</p>
       if (subcatEl) subcatEl.value = 'all';
       if (senseEl) senseEl.value = 'all';
       if (fromEl) fromEl.value = '1';
-      if (toEl) toEl.value = '120';
+      if (toEl) toEl.value = toEl.max || '120';
       sessionLimit = null;
       applyFilters();
     }
