@@ -239,7 +239,52 @@ body {
   background: #f8fafc;
   border: 2px solid #cbd5e1;
   border-radius: 12px;
-  padding: 0.95rem 1.15rem;
+  padding: 0.85rem 1.05rem;
+}
+
+.cover-answer-format {
+  text-align: left;
+  background: #fefce8;
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 0.8rem 1.05rem;
+  margin-top: 0.9rem;
+}
+
+.cover-answer-format h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.94rem;
+  color: #92400e;
+}
+
+.cover-answer-format p {
+  margin: 0 0 0.45rem;
+  font-size: 0.85rem;
+  color: #1e293b;
+}
+
+.answer-examples-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 0.6rem;
+}
+
+.answer-example-bad {
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+  border-radius: 8px;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.82rem;
+  color: #991b1b;
+}
+
+.answer-example-good {
+  background: #ecfdf5;
+  border: 1.5px solid #6ee7b7;
+  border-radius: 8px;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.82rem;
+  color: #065f46;
 }
 
 .passport-box h3 {
@@ -1100,9 +1145,47 @@ table.type-matrix tbody td:first-child {
   .workbook-cover {
     box-shadow: none;
     margin: 0;
-    padding: 1.25rem 1.25rem 1rem;
+    padding: 0.95rem 1.1rem 0.85rem;
     break-after: page;
     page-break-after: always;
+  }
+
+  .workbook-cover h1.cover-title {
+    font-size: 1.7rem;
+  }
+
+  .cover-sprites-trio {
+    margin: 0.65rem auto 0.85rem;
+    padding: 0.55rem 0.8rem;
+  }
+
+  .cover-sprite-img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .cover-student-box {
+    padding: 0.75rem 1rem;
+    margin: 0.7rem 0 0.85rem;
+  }
+
+  .passport-box {
+    padding: 0.7rem 0.9rem;
+  }
+
+  .cover-answer-format {
+    margin-top: 0.7rem;
+    padding: 0.65rem 0.9rem;
+  }
+
+  .cover-answer-format h3 {
+    font-size: 9.5pt;
+  }
+
+  .cover-answer-format p,
+  .answer-example-bad,
+  .answer-example-good {
+    font-size: 8.2pt;
   }
 
   .workbook-toc {
@@ -1199,117 +1282,6 @@ table.type-matrix tbody td:first-child {
     height: 235px;
   }
 
-  /* Ajustes compactos para impresión A5 (cuadernillo doblado en A4) */
-  body.layout-a5 {
-    font-size: 7.5pt;
-    line-height: 1.24;
-  }
-
-  body.layout-a5 .workbook-cover {
-    padding: 0.7rem 0.75rem;
-    border-width: 2px;
-  }
-
-  body.layout-a5 .workbook-cover h1.cover-title {
-    font-size: 1.35rem;
-  }
-
-  body.layout-a5 .cover-subtitle {
-    font-size: 0.82rem;
-    margin-bottom: 0.5rem;
-  }
-
-  body.layout-a5 .cover-sprites-trio {
-    margin: 0.5rem auto 0.65rem;
-    padding: 0.45rem 0.6rem;
-    gap: 0.7rem;
-  }
-
-  body.layout-a5 .cover-sprite-img {
-    width: 62px;
-    height: 62px;
-  }
-
-  body.layout-a5 .cover-student-box {
-    padding: 0.55rem 0.7rem;
-    margin: 0.55rem 0 0.65rem;
-  }
-
-  body.layout-a5 .cover-fields-grid {
-    font-size: 7.2pt;
-    gap: 0.4rem 0.7rem;
-  }
-
-  body.layout-a5 .passport-box {
-    padding: 0.5rem 0.6rem;
-  }
-
-  body.layout-a5 .medals-grid {
-    gap: 0.35rem;
-  }
-
-  body.layout-a5 .medal-slot {
-    padding: 0.3rem 0.2rem;
-    font-size: 6.2pt;
-  }
-
-  body.layout-a5 .medal-circle {
-    width: 20px;
-    height: 20px;
-    font-size: 6pt;
-  }
-
-  body.layout-a5 .workbook-toc {
-    padding: 0.55rem 0.65rem;
-  }
-
-  body.layout-a5 .workbook-toc table {
-    font-size: 6.8pt;
-  }
-
-  body.layout-a5 .problem-card {
-    padding: 0.32rem 0.48rem;
-    margin-bottom: 0.4rem;
-  }
-
-  body.layout-a5 .problem-card-header h3 {
-    font-size: 7.4pt;
-  }
-
-  body.layout-a5 .problem-text,
-  body.layout-a5 .problem-question {
-    font-size: 6.8pt;
-    line-height: 1.2;
-  }
-
-  body.layout-a5 .poke-sprite {
-    width: 36px;
-    height: 36px;
-  }
-
-  body.layout-a5 .poke-sprite-secondary {
-    width: 26px;
-    height: 26px;
-  }
-
-  body.layout-a5 .problem-diagram svg {
-    max-height: 95px;
-  }
-
-  body.layout-a5 .rotom-hint {
-    font-size: 6.3pt;
-  }
-
-  body.layout-a5 .workspace-box {
-    height: 145px;
-    background-size: 14px 14px;
-  }
-
-  body.layout-a5.grade-early .workspace-box,
-  body.layout-a5 .page-container.grade-early .workspace-box {
-    height: 175px;
-  }
-
   h2 {
     font-size: 12pt;
     break-after: avoid;
@@ -1373,20 +1345,11 @@ table.type-matrix tbody td:first-child {
 <body>
   <script>
     (function () {
-      const params = new URLSearchParams(window.location.search);
-      const mode = params.get('mode');
-      const size = params.get('size');
+      const mode = new URLSearchParams(window.location.search).get('mode');
       if (mode === 'alumno') {
         document.body.classList.add('hide-solutions');
       } else if (mode === 'docente') {
         document.body.classList.add('teacher-appendix-only');
-      }
-      if (size === 'a5') {
-        document.body.classList.add('layout-a5');
-        const st = document.createElement('style');
-        st.id = 'a5-page-style';
-        st.textContent = '@page { size: A5 portrait; margin: 9mm 9mm 11mm 13mm; } @page :left { margin: 9mm 13mm 11mm 9mm; } @page :right { margin: 9mm 9mm 11mm 13mm; }';
-        document.head.appendChild(st);
       }
     })();
   </script>
@@ -2199,38 +2162,8 @@ $$0 \le \text{PS}_{\text{actual}} \le \text{PS}_{\max}$$</p>
       applyFilters();
     }
 
-    function setA5PageRule(enabled) {
-      let styleEl = document.getElementById('a5-page-style');
-      if (enabled) {
-        if (!styleEl) {
-          styleEl = document.createElement('style');
-          styleEl.id = 'a5-page-style';
-          styleEl.textContent = '@page { size: A5 portrait; margin: 9mm 9mm 11mm 13mm; } @page :left { margin: 9mm 13mm 11mm 9mm; } @page :right { margin: 9mm 9mm 11mm 13mm; }';
-          document.head.appendChild(styleEl);
-        }
-        document.body.classList.add('layout-a5');
-      } else {
-        if (styleEl) styleEl.remove();
-        document.body.classList.remove('layout-a5');
-      }
-    }
-
     function printStudentWorkbook() {
       resetFilters();
-      setA5PageRule(false);
-      document.body.classList.remove('teacher-appendix-only');
-      document.body.classList.add('hide-solutions');
-      const btn = document.getElementById('toggle-solutions');
-      if (btn) {
-        btn.classList.add('active');
-        btn.textContent = 'Mostrar solucionario y Ficha Oak';
-      }
-      window.print();
-    }
-
-    function printA5Workbook() {
-      resetFilters();
-      setA5PageRule(true);
       document.body.classList.remove('teacher-appendix-only');
       document.body.classList.add('hide-solutions');
       const btn = document.getElementById('toggle-solutions');
@@ -2243,7 +2176,6 @@ $$0 \le \text{PS}_{\text{actual}} \le \text{PS}_{\max}$$</p>
 
     function printTeacherAppendix() {
       resetFilters();
-      setA5PageRule(false);
       document.body.classList.remove('hide-solutions');
       document.body.classList.add('teacher-appendix-only');
       window.print();
