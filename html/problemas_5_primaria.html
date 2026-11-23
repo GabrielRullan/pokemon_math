@@ -606,7 +606,7 @@ blockquote {
 
 .problem-card-header h3 {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: var(--pk-blue);
 }
 
@@ -647,31 +647,31 @@ blockquote {
 }
 
 .poke-sprite {
-  width: 68px;
-  height: 68px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   display: block;
 }
 
 .poke-sprite-secondary {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
 }
 
 .problem-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 0.82rem;
-  line-height: 1.42;
+  font-size: 0.76rem;
+  line-height: 1.35;
 }
 
 .problem-question {
-  margin-top: 0.4rem;
-  padding: 0.35rem 0.55rem;
+  margin-top: 0.35rem;
+  padding: 0.3rem 0.5rem;
   background: #eff6ff;
   border-left: 4px solid var(--pk-blue-mid);
   border-radius: 0 6px 6px 0;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 600;
   color: #0f172a;
 }
@@ -714,13 +714,13 @@ blockquote {
 }
 
 .rotom-hint {
-  margin-top: 0.4rem;
-  padding: 0.3rem 0.55rem;
+  margin-top: 0.35rem;
+  padding: 0.25rem 0.5rem;
   background: #fffbeb;
   border: 1px solid #fcd34d;
   border-left: 4px solid #f59e0b;
   border-radius: 0 6px 6px 0;
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   color: #78350f;
 }
 
@@ -729,8 +729,8 @@ body.hide-hints .rotom-hint {
 }
 
 .workspace-box {
-  margin-top: 0.65rem;
-  height: 185px;
+  margin-top: 0.55rem;
+  height: 220px;
   border: 1.5px dashed #94a3b8;
   border-radius: 8px;
   background-color: #ffffff;
@@ -744,7 +744,49 @@ body.hide-hints .rotom-hint {
 
 body.grade-early .workspace-box,
 .page-container.grade-early .workspace-box {
-  height: 230px;
+  height: 260px;
+}
+
+.teacher-appendix-cover {
+  display: none;
+  border: 2px solid #047857;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+}
+
+.teacher-appendix-cover h1 {
+  margin: 0 0 0.25rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.45rem;
+  color: #065f46;
+}
+
+.teacher-appendix-cover p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #334155;
+}
+
+body.teacher-appendix-only .workbook-cover,
+body.teacher-appendix-only .workbook-toc,
+body.teacher-appendix-only .header-box,
+body.teacher-appendix-only .kid-welcome,
+body.teacher-appendix-only .problem-section,
+body.teacher-appendix-only .chapter-banner {
+  display: none !important;
+}
+
+body.teacher-appendix-only .teacher-appendix-cover {
+  display: block;
+}
+
+body.teacher-appendix-only .prof-oak-dossier {
+  margin-top: 0.5rem;
+  break-before: auto !important;
+  page-break-before: auto !important;
 }
 
 .workspace-columns {
@@ -1010,10 +1052,29 @@ table.type-matrix tbody td:first-child {
   background: var(--pk-blue-soft);
 }
 
-/* Reglas de impresión A4 */
+/* Reglas de impresión A4 con márgenes de encuadernación (lomo alterno) */
 @page {
-  size: A4;
-  margin: 12mm 12mm;
+  size: A4 portrait;
+  margin: 12mm 12mm 14mm 18mm;
+  @bottom-center {
+    content: "— " counter(page) " —";
+    font-size: 8pt;
+    color: #64748b;
+  }
+}
+
+@page :left {
+  margin: 12mm 18mm 14mm 12mm;
+}
+
+@page :right {
+  margin: 12mm 12mm 14mm 18mm;
+}
+
+@page :first {
+  @bottom-center {
+    content: none;
+  }
 }
 
 @media print {
@@ -1024,8 +1085,8 @@ table.type-matrix tbody td:first-child {
 
   body {
     background: #ffffff;
-    font-size: 10pt;
-    line-height: 1.38;
+    font-size: 9pt;
+    line-height: 1.32;
   }
 
   .no-print {
@@ -1039,14 +1100,14 @@ table.type-matrix tbody td:first-child {
   .workbook-cover {
     box-shadow: none;
     margin: 0;
-    padding: 1.4rem 1.4rem 1.2rem;
+    padding: 1.25rem 1.25rem 1rem;
     break-after: page;
     page-break-after: always;
   }
 
   .workbook-toc {
     margin: 0;
-    padding: 1rem 1.15rem;
+    padding: 0.9rem 1rem;
     break-after: page;
     page-break-after: always;
   }
@@ -1057,9 +1118,9 @@ table.type-matrix tbody td:first-child {
   }
 
   .chapter-banner {
-    margin-top: 0.35rem;
-    margin-bottom: 0.65rem;
-    padding: 0.55rem 0.85rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding: 0.45rem 0.75rem;
   }
 
   .page-container {
@@ -1072,69 +1133,181 @@ table.type-matrix tbody td:first-child {
   }
 
   .header-box {
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.6rem;
   }
 
   .problem-card {
-    padding: 0.5rem 0.7rem;
-    margin-bottom: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.55rem;
     box-shadow: none;
   }
 
   .problem-card-header {
-    padding-bottom: 0.3rem;
-    margin-bottom: 0.4rem;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
   }
 
   .problem-card-header h3 {
-    font-size: 8.6pt;
+    font-size: 8pt;
   }
 
   .problem-text {
-    font-size: 8pt;
-    line-height: 1.28;
+    font-size: 7.3pt;
+    line-height: 1.24;
   }
 
   .problem-question {
-    font-size: 8pt;
-    padding: 0.25rem 0.45rem;
-    margin-top: 0.35rem;
+    font-size: 7.3pt;
+    padding: 0.2rem 0.4rem;
+    margin-top: 0.28rem;
   }
 
   .poke-sprite {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
   }
 
   .poke-sprite-secondary {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
 
   .problem-diagram {
-    margin: 0.3rem 0 0.15rem;
-    padding: 0.2rem;
+    margin: 0.25rem 0 0.1rem;
+    padding: 0.18rem;
   }
 
   .problem-diagram svg {
-    max-height: 140px;
+    max-height: 125px;
   }
 
   .rotom-hint {
-    margin-top: 0.3rem;
-    padding: 0.2rem 0.45rem;
-    font-size: 7.2pt;
+    margin-top: 0.25rem;
+    padding: 0.18rem 0.4rem;
+    font-size: 6.8pt;
   }
 
   .workspace-box {
-    margin-top: 0.45rem;
-    height: 145px;
+    margin-top: 0.4rem;
+    height: 195px;
+    background-size: 16px 16px;
   }
 
   body.grade-early .workspace-box,
   .page-container.grade-early .workspace-box {
-    height: 190px;
+    height: 235px;
+  }
+
+  /* Ajustes compactos para impresión A5 (cuadernillo doblado en A4) */
+  body.layout-a5 {
+    font-size: 7.5pt;
+    line-height: 1.24;
+  }
+
+  body.layout-a5 .workbook-cover {
+    padding: 0.7rem 0.75rem;
+    border-width: 2px;
+  }
+
+  body.layout-a5 .workbook-cover h1.cover-title {
+    font-size: 1.35rem;
+  }
+
+  body.layout-a5 .cover-subtitle {
+    font-size: 0.82rem;
+    margin-bottom: 0.5rem;
+  }
+
+  body.layout-a5 .cover-sprites-trio {
+    margin: 0.5rem auto 0.65rem;
+    padding: 0.45rem 0.6rem;
+    gap: 0.7rem;
+  }
+
+  body.layout-a5 .cover-sprite-img {
+    width: 62px;
+    height: 62px;
+  }
+
+  body.layout-a5 .cover-student-box {
+    padding: 0.55rem 0.7rem;
+    margin: 0.55rem 0 0.65rem;
+  }
+
+  body.layout-a5 .cover-fields-grid {
+    font-size: 7.2pt;
+    gap: 0.4rem 0.7rem;
+  }
+
+  body.layout-a5 .passport-box {
+    padding: 0.5rem 0.6rem;
+  }
+
+  body.layout-a5 .medals-grid {
+    gap: 0.35rem;
+  }
+
+  body.layout-a5 .medal-slot {
+    padding: 0.3rem 0.2rem;
+    font-size: 6.2pt;
+  }
+
+  body.layout-a5 .medal-circle {
+    width: 20px;
+    height: 20px;
+    font-size: 6pt;
+  }
+
+  body.layout-a5 .workbook-toc {
+    padding: 0.55rem 0.65rem;
+  }
+
+  body.layout-a5 .workbook-toc table {
+    font-size: 6.8pt;
+  }
+
+  body.layout-a5 .problem-card {
+    padding: 0.32rem 0.48rem;
+    margin-bottom: 0.4rem;
+  }
+
+  body.layout-a5 .problem-card-header h3 {
+    font-size: 7.4pt;
+  }
+
+  body.layout-a5 .problem-text,
+  body.layout-a5 .problem-question {
+    font-size: 6.8pt;
+    line-height: 1.2;
+  }
+
+  body.layout-a5 .poke-sprite {
+    width: 36px;
+    height: 36px;
+  }
+
+  body.layout-a5 .poke-sprite-secondary {
+    width: 26px;
+    height: 26px;
+  }
+
+  body.layout-a5 .problem-diagram svg {
+    max-height: 95px;
+  }
+
+  body.layout-a5 .rotom-hint {
+    font-size: 6.3pt;
+  }
+
+  body.layout-a5 .workspace-box {
+    height: 145px;
+    background-size: 14px 14px;
+  }
+
+  body.layout-a5.grade-early .workspace-box,
+  body.layout-a5 .page-container.grade-early .workspace-box {
+    height: 175px;
   }
 
   h2 {
@@ -1199,9 +1372,23 @@ table.type-matrix tbody td:first-child {
 </head>
 <body>
   <script>
-    if (new URLSearchParams(window.location.search).get('mode') === 'alumno') {
-      document.body.classList.add('hide-solutions');
-    }
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get('mode');
+      const size = params.get('size');
+      if (mode === 'alumno') {
+        document.body.classList.add('hide-solutions');
+      } else if (mode === 'docente') {
+        document.body.classList.add('teacher-appendix-only');
+      }
+      if (size === 'a5') {
+        document.body.classList.add('layout-a5');
+        const st = document.createElement('style');
+        st.id = 'a5-page-style';
+        st.textContent = '@page { size: A5 portrait; margin: 9mm 9mm 11mm 13mm; } @page :left { margin: 9mm 13mm 11mm 9mm; } @page :right { margin: 9mm 9mm 11mm 13mm; }';
+        document.head.appendChild(st);
+      }
+    })();
   </script>
   <header class="print-toolbar no-print">
     <div class="toolbar-main">
@@ -1211,7 +1398,7 @@ table.type-matrix tbody td:first-child {
       </div>
       <div class="toolbar-actions">
         <button type="button" id="toggle-solutions" class="btn btn-toggle" onclick="toggleSolutions()">Modo Alumno (solo ejercicios)</button><button type="button" id="toggle-workspaces" class="btn btn-toggle" onclick="toggleWorkspaces()">Ocultar cuadrículas</button><button type="button" id="toggle-hints" class="btn btn-toggle" onclick="toggleHints()">Ocultar pistas</button>
-        <button type="button" class="btn btn-print-student" onclick="printStudentWorkbook()">🖨️ Imprimir Cuadernillo Alumno</button><button type="button" class="btn btn-primary" onclick="window.print()">🖨️ Imprimir Actual / Docente</button><a class="btn btn-pdf-link" href="pdf/cuadernillo_5_primaria_alumno.pdf" download>📄 PDF Alumno</a><a class="btn btn-pdf-link" href="pdf/cuadernillo_5_primaria_docente.pdf" download>📘 PDF Docente</a>
+        <button type="button" class="btn btn-print-student" onclick="printStudentWorkbook()">🖨️ Imprimir A4 Alumno</button><button type="button" class="btn btn-preset" onclick="printA5Workbook()">📖 Imprimir A5</button><button type="button" class="btn btn-primary" onclick="printTeacherAppendix()">📘 Imprimir Apéndice Docente</button><a class="btn btn-pdf-link" href="pdf/cuadernillo_5_primaria_alumno.pdf" download>📄 PDF A4 Alumno</a><a class="btn btn-pdf-link" href="pdf/cuadernillo_5_primaria_alumno_a5_folleto.pdf" download>📖 PDF A5 Folleto</a><a class="btn btn-pdf-link" href="pdf/apendice_5_primaria_docente.pdf" download>📘 Apéndice Docente</a>
       </div>
     </div>
     <div class="toolbar-filters">
@@ -1407,7 +1594,7 @@ table.type-matrix tbody td:first-child {
   </div>
 </section>
 <div class="kid-welcome">
-  <strong>¡Misión de Entrenamiento!</strong> Lee cada historia con atención, organiza <em>Datos · Operación · Respuesta</em> en la cuadrícula y suma <strong>+1 EXP</strong> por cada reto superado.
+  <strong>¡Misión de Entrenamiento!</strong> Lee cada historia con atención, resuelve el reto en la cuadrícula y suma <strong>+1 EXP</strong> por cada reto superado.
 </div>
 <section class="problem-section" data-section-kind="problema">
 <h2>Parte 1: Enunciados de los Problemas (1 al 100)</h2>
@@ -1435,13 +1622,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Coloca cada cifra en su posición (UM, C, D, U) y compáralas ordenadamente de izquierda a derecha.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1459,13 +1640,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1483,13 +1658,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1507,13 +1676,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1531,13 +1694,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Coloca cada cifra en su posición (UM, C, D, U) y compáralas ordenadamente de izquierda a derecha.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1555,13 +1712,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Recta numérica de aproximación"><text x="150.0" y="16.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#1e3a8a" text-anchor="middle">Recta numérica de aproximación</text><line x1="18.0" y1="68.0" x2="282.0" y2="68.0" stroke="#334155" stroke-width="2.2"/><polygon points="14.0,68.0 21.0,64.0 21.0,72.0" fill="#334155"/><polygon points="286.0,68.0 279.0,64.0 279.0,72.0" fill="#334155"/><line x1="26.0" y1="60.0" x2="26.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="26.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">4.000.000</text><line x1="50.8" y1="63.0" x2="50.8" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="75.6" y1="63.0" x2="75.6" y2="73.0" stroke="#334155" stroke-width="1"/><text x="75.6" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">4.200.000</text><line x1="100.4" y1="63.0" x2="100.4" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="125.2" y1="63.0" x2="125.2" y2="73.0" stroke="#334155" stroke-width="1"/><text x="125.2" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">4.400.000</text><line x1="150.0" y1="60.0" x2="150.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="150.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">4.500.000</text><line x1="174.8" y1="63.0" x2="174.8" y2="73.0" stroke="#334155" stroke-width="1"/><text x="174.8" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">4.600.000</text><line x1="199.6" y1="63.0" x2="199.6" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="224.4" y1="63.0" x2="224.4" y2="73.0" stroke="#334155" stroke-width="1"/><text x="224.4" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">4.800.000</text><line x1="249.2" y1="63.0" x2="249.2" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="274.0" y1="60.0" x2="274.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="274.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">5.000.000</text><line x1="216.6" y1="68.0" x2="216.6" y2="55.0" stroke="#e3350d" stroke-width="1.2" stroke-dasharray="2,2"/><circle cx="216.6" cy="68.0" r="4.5" fill="#e3350d" stroke="#ffffff" stroke-width="1.5"/><text x="216.6" y="50.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#e3350d" text-anchor="middle">4.768.420</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1579,13 +1730,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica las reglas de divisibilidad o escribe de forma ordenada los múltiplos o divisores comunes.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1603,13 +1748,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica las reglas de divisibilidad o escribe de forma ordenada los múltiplos o divisores comunes.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1627,13 +1766,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1651,13 +1784,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica las reglas de divisibilidad o escribe de forma ordenada los múltiplos o divisores comunes.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1675,13 +1802,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1699,13 +1820,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1723,13 +1838,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1747,13 +1856,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1771,13 +1874,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Recta numérica de aproximación"><text x="150.0" y="16.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#1e3a8a" text-anchor="middle">Recta numérica de aproximación</text><line x1="18.0" y1="68.0" x2="282.0" y2="68.0" stroke="#334155" stroke-width="2.2"/><polygon points="14.0,68.0 21.0,64.0 21.0,72.0" fill="#334155"/><polygon points="286.0,68.0 279.0,64.0 279.0,72.0" fill="#334155"/><line x1="26.0" y1="60.0" x2="26.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="26.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">6,4</text><line x1="50.8" y1="63.0" x2="50.8" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="75.6" y1="63.0" x2="75.6" y2="73.0" stroke="#334155" stroke-width="1"/><text x="75.6" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">6,42</text><line x1="100.4" y1="63.0" x2="100.4" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="125.2" y1="63.0" x2="125.2" y2="73.0" stroke="#334155" stroke-width="1"/><text x="125.2" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">6,44</text><line x1="150.0" y1="60.0" x2="150.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="150.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">6,45</text><line x1="174.8" y1="63.0" x2="174.8" y2="73.0" stroke="#334155" stroke-width="1"/><text x="174.8" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">6,46</text><line x1="199.6" y1="63.0" x2="199.6" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="224.4" y1="63.0" x2="224.4" y2="73.0" stroke="#334155" stroke-width="1"/><text x="224.4" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">6,48</text><line x1="249.2" y1="63.0" x2="249.2" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="274.0" y1="60.0" x2="274.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="274.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">6,5</text><line x1="241.8" y1="68.0" x2="241.8" y2="55.0" stroke="#e3350d" stroke-width="1.2" stroke-dasharray="2,2"/><circle cx="241.8" cy="68.0" r="4.5" fill="#e3350d" stroke="#ffffff" stroke-width="1.5"/><text x="241.8" y="50.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#e3350d" text-anchor="middle">6,487</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Alinea bien las comas decimales al sumar o restar, y cuenta las cifras decimales totales al multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1804,13 +1901,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1828,13 +1919,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1852,13 +1937,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1876,13 +1955,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1900,13 +1973,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1924,13 +1991,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1948,13 +2009,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1972,13 +2027,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -1996,13 +2045,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2020,13 +2063,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2044,13 +2081,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2068,13 +2099,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2092,13 +2117,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2116,13 +2135,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2140,13 +2153,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2164,13 +2171,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2188,13 +2189,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Identifica si el problema pide juntar (sumar), comparar/quitar (restar), repetir (multiplicar) o repartir (dividir).</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2212,13 +2207,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2236,13 +2225,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2260,13 +2243,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2293,13 +2270,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2317,13 +2288,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2341,13 +2306,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2365,13 +2324,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2389,13 +2342,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2413,13 +2360,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2437,13 +2378,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2461,13 +2396,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2485,13 +2414,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2509,13 +2432,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2533,13 +2450,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 142" width="230" height="142" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Rectángulo de 15 por 8 m"><rect x="44" y="26" width="132" height="78" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2.2"/><text x="110.0" y="122.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#1e3a8a" text-anchor="middle">15 m</text><text x="184.0" y="68.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#e3350d" text-anchor="start">8 m</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2557,13 +2468,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2581,13 +2486,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2605,13 +2504,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2629,13 +2522,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2662,13 +2549,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 140" width="270" height="140" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Comparación entre pista cuadrada y rectangular"><rect x="26" y="28" width="76" height="76" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2"/><text x="64.0" y="70.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">25 m</text><text x="64.0" y="120.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">Diseño cuadrado</text><rect x="140" y="36" width="106" height="60" fill="#ecfdf5" stroke="#047857" stroke-width="2"/><text x="193.0" y="109.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#047857" text-anchor="middle">32 m × 18 m</text><text x="193.0" y="124.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">Diseño rectangular</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2686,13 +2567,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 150" width="230" height="150" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Plano cartesiano con puntos de coordenadas"><rect x="26.0" y="12.0" width="190.0" height="116.0" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/><line x1="26.0" y1="12.0" x2="26.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="26.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">0</text><line x1="41.8" y1="12.0" x2="41.8" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="57.7" y1="12.0" x2="57.7" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="57.7" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">2</text><line x1="73.5" y1="12.0" x2="73.5" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="89.3" y1="12.0" x2="89.3" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="89.3" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">4</text><line x1="105.2" y1="12.0" x2="105.2" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="121.0" y1="12.0" x2="121.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="121.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">6</text><line x1="136.8" y1="12.0" x2="136.8" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="152.7" y1="12.0" x2="152.7" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="152.7" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">8</text><line x1="168.5" y1="12.0" x2="168.5" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="184.3" y1="12.0" x2="184.3" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="184.3" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">10</text><line x1="200.2" y1="12.0" x2="200.2" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="216.0" y1="12.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="216.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">12</text><line x1="26.0" y1="128.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="130.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">0</text><line x1="26.0" y1="115.1" x2="216.0" y2="115.1" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="102.2" x2="216.0" y2="102.2" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="104.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">2</text><line x1="26.0" y1="89.3" x2="216.0" y2="89.3" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="76.4" x2="216.0" y2="76.4" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="78.9" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">4</text><line x1="26.0" y1="63.6" x2="216.0" y2="63.6" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="50.7" x2="216.0" y2="50.7" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="53.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">6</text><line x1="26.0" y1="37.8" x2="216.0" y2="37.8" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="24.9" x2="216.0" y2="24.9" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="27.4" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">8</text><line x1="26.0" y1="12.0" x2="216.0" y2="12.0" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="128.0" x2="220.0" y2="128.0" stroke="#334155" stroke-width="1.6"/><line x1="26.0" y1="128.0" x2="26.0" y2="8.0" stroke="#334155" stroke-width="1.6"/><text x="222.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">X</text><text x="32.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">Y</text><polygon points="57.7,115.1 184.3,115.1 121.0,37.8" fill="#dbeafe" fill-opacity="0.45" stroke="#1e3a8a" stroke-width="1.6" stroke-dasharray="3,2"/><circle cx="57.7" cy="115.1" r="3.8" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="63.7" y="110.1" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="start">A(2,1)</text><circle cx="184.3" cy="115.1" r="3.8" fill="#047857" stroke="#ffffff" stroke-width="1.2"/><text x="178.3" y="110.1" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="end">B(10,1)</text><circle cx="121.0" cy="37.8" r="3.8" fill="#1e3a8a" stroke="#ffffff" stroke-width="1.2"/><text x="127.0" y="32.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="start">C(6,7)</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las unidades de superficie a la misma unidad (recuerda que en superficie cada salto multiplica o divide por 100).</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2710,13 +2585,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 142" width="240" height="142" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Romboide con base y altura"><polygon points="68,30 198,30 170,106 40,106" fill="#ecfdf5" stroke="#047857" stroke-width="2"/><line x1="68" y1="30" x2="68" y2="106" stroke="#e3350d" stroke-width="1.6" stroke-dasharray="4,2"/><rect x="68" y="96" width="10" height="10" fill="none" stroke="#e3350d" stroke-width="1.2"/><text x="74.0" y="72.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#e3350d" text-anchor="start">h = 12 m</text><text x="105.0" y="124.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#047857" text-anchor="middle">b = 28 m</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las unidades de superficie a la misma unidad (recuerda que en superficie cada salto multiplica o divide por 100).</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2734,13 +2603,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 145" width="230" height="145" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Rombo inscrito en un rectángulo"><rect x="40" y="24" width="150" height="92" fill="#fef2f2" stroke="#e3350d" stroke-width="2"/><polygon points="115,24 190,70 115,116 40,70" fill="#dbeafe" stroke="#1e3a8a" stroke-width="2"/><line x1="40" y1="70" x2="190" y2="70" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/><line x1="115" y1="24" x2="115" y2="116" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/><text x="115.0" y="134.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">16 m × 10 m</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Identifica la forma geométrica, anota sus dimensiones (base, altura o radio) y aplica su fórmula de área.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2758,13 +2621,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 148" width="230" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Pentágono con longitudes de lados"><polygon points="115.0,26.0 160.7,59.2 143.2,112.8 86.8,112.8 69.3,59.2" fill="#ecfdf5" stroke="#047857" stroke-width="2"/><text x="145.1" y="35.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">45 m</text><text x="163.8" y="92.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">38 m</text><text x="115.0" y="128.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">52 m</text><text x="66.2" y="92.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">30 m</text><text x="84.9" y="35.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">25 m</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2782,13 +2639,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 145" width="230" height="145" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Hexágono regular"><polygon points="154.8,91.0 115.0,114.0 75.2,91.0 75.2,45.0 115.0,22.0 154.8,45.0" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><line x1="115" y1="68" x2="115" y2="107.8" stroke="#e3350d" stroke-width="1.8" stroke-dasharray="3,2"/><text x="170.0" y="64.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="start">ap = 12,1 m</text><text x="115.0" y="134.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">lado = 14 m</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> El perímetro se obtiene sumando las longitudes de todos los lados exteriores del contorno.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2806,13 +2657,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 140" width="260" height="140" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Rectángulo con triángulo adosado"><rect x="34" y="34" width="110" height="68" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2"/><polygon points="144,34 196,68 144,102" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="89.0" y="72.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">20 × 12 m</text><text x="166.0" y="120.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#b45309" text-anchor="middle">b=12, h=7 m</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Identifica la forma geométrica, anota sus dimensiones (base, altura o radio) y aplica su fórmula de área.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2830,13 +2675,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 150" width="230" height="150" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Plano cartesiano con puntos de coordenadas"><rect x="26.0" y="12.0" width="190.0" height="116.0" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/><line x1="26.0" y1="12.0" x2="26.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="26.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">0</text><line x1="39.6" y1="12.0" x2="39.6" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="53.1" y1="12.0" x2="53.1" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="53.1" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">2</text><line x1="66.7" y1="12.0" x2="66.7" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="80.3" y1="12.0" x2="80.3" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="80.3" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">4</text><line x1="93.9" y1="12.0" x2="93.9" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="107.4" y1="12.0" x2="107.4" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="107.4" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">6</text><line x1="121.0" y1="12.0" x2="121.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="134.6" y1="12.0" x2="134.6" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="134.6" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">8</text><line x1="148.1" y1="12.0" x2="148.1" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="161.7" y1="12.0" x2="161.7" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="161.7" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">10</text><line x1="175.3" y1="12.0" x2="175.3" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="188.9" y1="12.0" x2="188.9" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="188.9" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">12</text><line x1="202.4" y1="12.0" x2="202.4" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="216.0" y1="12.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="216.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">14</text><line x1="26.0" y1="128.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="130.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">0</text><line x1="26.0" y1="113.5" x2="216.0" y2="113.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="116.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">1</text><line x1="26.0" y1="99.0" x2="216.0" y2="99.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="101.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">2</text><line x1="26.0" y1="84.5" x2="216.0" y2="84.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="87.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">3</text><line x1="26.0" y1="70.0" x2="216.0" y2="70.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="72.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">4</text><line x1="26.0" y1="55.5" x2="216.0" y2="55.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="58.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">5</text><line x1="26.0" y1="41.0" x2="216.0" y2="41.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="43.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">6</text><line x1="26.0" y1="26.5" x2="216.0" y2="26.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="29.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">7</text><line x1="26.0" y1="12.0" x2="216.0" y2="12.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="14.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">8</text><line x1="26.0" y1="128.0" x2="220.0" y2="128.0" stroke="#334155" stroke-width="1.6"/><line x1="26.0" y1="128.0" x2="26.0" y2="8.0" stroke="#334155" stroke-width="1.6"/><text x="222.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">X</text><text x="32.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">Y</text><circle cx="66.7" cy="99.0" r="3.8" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="72.7" y="94.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="start">A(3,2)</text><circle cx="188.9" cy="41.0" r="3.8" fill="#047857" stroke="#ffffff" stroke-width="1.2"/><text x="182.9" y="36.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="end">M(12,6)</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Lee y escribe siempre primero la coordenada horizontal (X) y después la vertical (Y), cuidando los signos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2854,13 +2693,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 150" width="230" height="150" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Plano cartesiano con puntos de coordenadas"><rect x="26.0" y="12.0" width="190.0" height="116.0" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/><line x1="26.0" y1="12.0" x2="26.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="26.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">0</text><line x1="43.3" y1="12.0" x2="43.3" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="60.5" y1="12.0" x2="60.5" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="60.5" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">2</text><line x1="77.8" y1="12.0" x2="77.8" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="95.1" y1="12.0" x2="95.1" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="95.1" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">4</text><line x1="112.4" y1="12.0" x2="112.4" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="129.6" y1="12.0" x2="129.6" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="129.6" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">6</text><line x1="146.9" y1="12.0" x2="146.9" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="164.2" y1="12.0" x2="164.2" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="164.2" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">8</text><line x1="181.5" y1="12.0" x2="181.5" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="198.7" y1="12.0" x2="198.7" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="198.7" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">10</text><line x1="216.0" y1="12.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="128.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="130.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">0</text><line x1="26.0" y1="116.4" x2="216.0" y2="116.4" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="104.8" x2="216.0" y2="104.8" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="107.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">2</text><line x1="26.0" y1="93.2" x2="216.0" y2="93.2" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="81.6" x2="216.0" y2="81.6" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="84.1" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">4</text><line x1="26.0" y1="70.0" x2="216.0" y2="70.0" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="58.4" x2="216.0" y2="58.4" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="60.9" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">6</text><line x1="26.0" y1="46.8" x2="216.0" y2="46.8" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="35.2" x2="216.0" y2="35.2" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="37.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">8</text><line x1="26.0" y1="23.6" x2="216.0" y2="23.6" stroke="#e2e8f0" stroke-width="1"/><line x1="26.0" y1="12.0" x2="216.0" y2="12.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="14.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">10</text><line x1="26.0" y1="128.0" x2="220.0" y2="128.0" stroke="#334155" stroke-width="1.6"/><line x1="26.0" y1="128.0" x2="26.0" y2="8.0" stroke="#334155" stroke-width="1.6"/><text x="222.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">X</text><text x="32.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">Y</text><circle cx="60.5" cy="116.4" r="3.8" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="66.5" y="111.4" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="start">P(2,1)</text><circle cx="181.5" cy="35.2" r="3.8" fill="#047857" stroke="#ffffff" stroke-width="1.2"/><text x="175.5" y="30.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="end">Q(9,8)</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2878,13 +2711,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 138" width="280" height="138" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Tres terrenos triangulares"><polygon points="48,26 16,94 80,94" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.8"/><text x="48.0" y="112.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">10, 10, 10 m</text><text x="48.0" y="125.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="600" fill="#334155" text-anchor="middle">60°</text><polygon points="140,46 98,94 186,94" fill="#fef3c7" stroke="#b45309" stroke-width="1.8"/><text x="142.0" y="112.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#b45309" text-anchor="middle">8, 8, 12 m</text><text x="142.0" y="125.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="600" fill="#334155" text-anchor="middle">110°</text><polygon points="212,26 212,94 264,94" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/><rect x="212" y="84" width="9" height="10" fill="none" stroke="#047857" stroke-width="1.2"/><text x="238.0" y="112.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="middle">6, 8, 10 m</text><text x="238.0" y="125.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="600" fill="#334155" text-anchor="middle">90°</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica la razón de la escala comparando la medida del plano o maqueta con la realidad en la misma unidad.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2902,13 +2729,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 145" width="280" height="145" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Diagrama de ángulos geométricos"><line x1="23.3" y1="104.0" x2="59.3" y2="104.0" stroke="#1e3a8a" stroke-width="2.4" stroke-linecap="round"/><line x1="23.3" y1="104.0" x2="51.7" y2="81.8" stroke="#e3350d" stroke-width="2.4" stroke-linecap="round"/><path d="M 41.3,104.0 A 18.0,18.0 0 0 0 37.5,92.9" fill="#fef3c7" fill-opacity="0.7" stroke="#f59e0b" stroke-width="1.8"/><circle cx="23.3" cy="104.0" r="3" fill="#0f172a"/><text x="35.3" y="124.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">38°</text><line x1="116.7" y1="104.0" x2="152.7" y2="104.0" stroke="#1e3a8a" stroke-width="2.4" stroke-linecap="round"/><line x1="116.7" y1="104.0" x2="116.7" y2="68.0" stroke="#e3350d" stroke-width="2.4" stroke-linecap="round"/><rect x="116.7" y="93.0" width="11" height="11" fill="none" stroke="#047857" stroke-width="1.5"/><circle cx="116.7" cy="104.0" r="3" fill="#0f172a"/><text x="128.7" y="124.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">90°</text><line x1="233.3" y1="104.0" x2="269.3" y2="104.0" stroke="#1e3a8a" stroke-width="2.4" stroke-linecap="round"/><line x1="233.3" y1="104.0" x2="197.3" y2="104.0" stroke="#e3350d" stroke-width="2.4" stroke-linecap="round"/><path d="M 251.3,104.0 A 18.0,18.0 0 0 0 215.3,104.0" fill="#fef3c7" fill-opacity="0.7" stroke="#f59e0b" stroke-width="1.8"/><circle cx="233.3" cy="104.0" r="3" fill="#0f172a"/><text x="233.3" y="124.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">180°</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Usa una recta con el 0 como referencia: mide por un lado el tramo negativo hasta 0 y súmale la parte positiva.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2926,13 +2747,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 150" width="230" height="150" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Plano cartesiano con puntos de coordenadas"><rect x="26.0" y="12.0" width="190.0" height="116.0" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/><line x1="26.0" y1="12.0" x2="26.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="26.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">0</text><line x1="41.8" y1="12.0" x2="41.8" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="57.7" y1="12.0" x2="57.7" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="57.7" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">2</text><line x1="73.5" y1="12.0" x2="73.5" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="89.3" y1="12.0" x2="89.3" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="89.3" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">4</text><line x1="105.2" y1="12.0" x2="105.2" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="121.0" y1="12.0" x2="121.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="121.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">6</text><line x1="136.8" y1="12.0" x2="136.8" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="152.7" y1="12.0" x2="152.7" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="152.7" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">8</text><line x1="168.5" y1="12.0" x2="168.5" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="184.3" y1="12.0" x2="184.3" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="184.3" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">10</text><line x1="200.2" y1="12.0" x2="200.2" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><line x1="216.0" y1="12.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="216.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">12</text><line x1="26.0" y1="128.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="130.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">0</text><line x1="26.0" y1="113.5" x2="216.0" y2="113.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="116.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">1</text><line x1="26.0" y1="99.0" x2="216.0" y2="99.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="101.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">2</text><line x1="26.0" y1="84.5" x2="216.0" y2="84.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="87.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">3</text><line x1="26.0" y1="70.0" x2="216.0" y2="70.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="72.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">4</text><line x1="26.0" y1="55.5" x2="216.0" y2="55.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="58.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">5</text><line x1="26.0" y1="41.0" x2="216.0" y2="41.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="43.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">6</text><line x1="26.0" y1="26.5" x2="216.0" y2="26.5" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="29.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">7</text><line x1="26.0" y1="12.0" x2="216.0" y2="12.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="14.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">8</text><line x1="26.0" y1="128.0" x2="220.0" y2="128.0" stroke="#334155" stroke-width="1.6"/><line x1="26.0" y1="128.0" x2="26.0" y2="8.0" stroke="#334155" stroke-width="1.6"/><text x="222.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">X</text><text x="32.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">Y</text><line x1="184.3" y1="12.0" x2="184.3" y2="128.0" stroke="#047857" stroke-width="1.6" stroke-dasharray="4,3"/><text x="187.3" y="22.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="start">x=10</text><circle cx="89.3" cy="41.0" r="3.8" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="95.3" y="36.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="start">V₁(4,6)</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Lee y escribe siempre primero la coordenada horizontal (X) y después la vertical (Y), cuidando los signos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2950,13 +2765,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 142" width="230" height="142" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Rectángulo de 14 por 6 cm"><rect x="44" y="26" width="132" height="78" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2.2"/><text x="110.0" y="122.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#1e3a8a" text-anchor="middle">14 cm</text><text x="184.0" y="68.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#e3350d" text-anchor="start">6 cm</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica la razón de la escala comparando la medida del plano o maqueta con la realidad en la misma unidad.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2974,13 +2783,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 145" width="240" height="145" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Rectángulo exterior con recinto interior"><rect x="35" y="18" width="170" height="102" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><rect x="65" y="38" width="110" height="62" fill="#dbeafe" stroke="#1e3a8a" stroke-width="2"/><text x="120.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Zona interior</text><text x="120.0" y="136.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#334155" text-anchor="middle">Recinto exterior + interior</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -2998,13 +2801,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 140" width="260" height="140" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Tarima triangular sobre explanada rectangular"><rect x="34" y="20" width="192" height="96" fill="#ecfdf5" stroke="#047857" stroke-width="2"/><polygon points="130,36 86,98 174,98" fill="#fef3c7" stroke="#b45309" stroke-width="1.8"/><text x="130.0" y="130.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Explanada 50 × 30 m (tarima b=20, h=14)</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las unidades de superficie a la misma unidad (recuerda que en superficie cada salto multiplica o divide por 100).</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3031,13 +2828,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3055,13 +2846,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3079,13 +2864,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3103,13 +2882,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3127,13 +2900,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si los denominadores son iguales; si no lo son, busca primero un denominador común equivalente.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3151,13 +2918,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Sigue el orden de los turnos: resta el daño recibido y suma las curaciones sin superar el máximo.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3175,13 +2936,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica la razón de la escala comparando la medida del plano o maqueta con la realidad en la misma unidad.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3199,13 +2954,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3223,13 +2972,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Despeja la incógnita paso a paso: traduce cada frase a una operación y comprueba tu solución sustituyendo.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3247,13 +2990,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Coloca cada cifra en su posición (UM, C, D, U) y compáralas ordenadamente de izquierda a derecha.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3280,13 +3017,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Valores registrados"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Valores registrados</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">52,5</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">105</text><rect x="44.0" y="40.3" width="32.7" height="77.7" rx="3" fill="#1e3a8a"/><text x="60.4" y="36.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">85</text><text x="60.4" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#1</text><rect x="96.8" y="33.9" width="32.7" height="84.1" rx="3" fill="#e3350d"/><text x="113.2" y="29.9" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">92</text><text x="113.2" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#2</text><rect x="149.6" y="46.7" width="32.7" height="71.3" rx="3" fill="#047857"/><text x="166.0" y="42.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="middle">78</text><text x="166.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#3</text><rect x="202.4" y="22.0" width="32.7" height="96.0" rx="3" fill="#f59e0b"/><text x="218.8" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#f59e0b" text-anchor="middle">105</text><text x="218.8" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#4</text><rect x="255.2" y="50.8" width="32.7" height="67.2" rx="3" fill="#fef3c7" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3,2"/><text x="271.6" y="88.4" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="13" font-weight="800" fill="#e3350d" text-anchor="middle">?</text><text x="271.6" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">#5</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Organiza los datos en una pequeña tabla o lista ordenada antes de responder.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3304,13 +3035,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Datos del problema"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Datos del problema</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">51</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">102</text><rect x="44.0" y="22.0" width="32.7" height="96.0" rx="3" fill="#1e3a8a"/><text x="60.4" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">102</text><text x="60.4" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Garchomp</text><rect x="96.8" y="33.3" width="32.7" height="84.7" rx="3" fill="#e3350d"/><text x="113.2" y="29.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">90</text><text x="113.2" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Lucario</text><rect x="149.6" y="33.3" width="32.7" height="84.7" rx="3" fill="#047857"/><text x="166.0" y="29.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="middle">90</text><text x="166.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Roserade</text><rect x="202.4" y="42.7" width="32.7" height="75.3" rx="3" fill="#f59e0b"/><text x="218.8" y="38.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#f59e0b" text-anchor="middle">80</text><text x="218.8" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Togekiss</text><rect x="255.2" y="41.8" width="32.7" height="76.2" rx="3" fill="#2563eb"/><text x="271.6" y="37.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#2563eb" text-anchor="middle">81</text><text x="271.6" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Milotic</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Alinea bien las comas decimales al sumar o restar, y cuenta las cifras decimales totales al multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3328,13 +3053,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Valores registrados"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Valores registrados</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">2,5</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">5</text><rect x="44.0" y="60.4" width="32.7" height="57.6" rx="3" fill="#1e3a8a"/><text x="60.4" y="56.4" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">3</text><text x="60.4" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#1</text><rect x="96.8" y="22.0" width="32.7" height="96.0" rx="3" fill="#e3350d"/><text x="113.2" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">5</text><text x="113.2" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#2</text><rect x="149.6" y="79.6" width="32.7" height="38.4" rx="3" fill="#047857"/><text x="166.0" y="75.6" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="middle">2</text><text x="166.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#3</text><rect x="202.4" y="41.2" width="32.7" height="76.8" rx="3" fill="#f59e0b"/><text x="218.8" y="37.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#f59e0b" text-anchor="middle">4</text><text x="218.8" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#4</text><rect x="255.2" y="60.4" width="32.7" height="57.6" rx="3" fill="#2563eb"/><text x="271.6" y="56.4" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#2563eb" text-anchor="middle">3</text><text x="271.6" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#5</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> La moda es el dato o categoría que se repite con mayor frecuencia.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3352,13 +3071,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Valores registrados"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Valores registrados</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">2.300</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">4.600</text><rect x="44.0" y="22.0" width="32.7" height="96.0" rx="3" fill="#1e3a8a"/><text x="60.4" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">4.600</text><text x="60.4" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#1</text><rect x="96.8" y="107.7" width="32.7" height="10.3" rx="3" fill="#e3350d"/><text x="113.2" y="103.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">495</text><text x="113.2" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#2</text><rect x="149.6" y="108.9" width="32.7" height="9.1" rx="3" fill="#047857"/><text x="166.0" y="104.9" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="middle">435</text><text x="166.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#3</text><rect x="202.4" y="107.4" width="32.7" height="10.6" rx="3" fill="#f59e0b"/><text x="218.8" y="103.4" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#f59e0b" text-anchor="middle">510</text><text x="218.8" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#4</text><rect x="255.2" y="108.0" width="32.7" height="10.0" rx="3" fill="#2563eb"/><text x="271.6" y="104.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#2563eb" text-anchor="middle">480</text><text x="271.6" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#5</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3376,13 +3089,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Valores registrados"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Valores registrados</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">100</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">200</text><rect x="44.0" y="41.2" width="32.7" height="76.8" rx="3" fill="#1e3a8a"/><text x="60.4" y="37.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">160</text><text x="60.4" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#1</text><rect x="96.8" y="31.6" width="32.7" height="86.4" rx="3" fill="#e3350d"/><text x="113.2" y="27.6" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">180</text><text x="113.2" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#2</text><rect x="149.6" y="41.2" width="32.7" height="76.8" rx="3" fill="#047857"/><text x="166.0" y="37.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="middle">160</text><text x="166.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#3</text><rect x="202.4" y="22.0" width="32.7" height="96.0" rx="3" fill="#f59e0b"/><text x="218.8" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#f59e0b" text-anchor="middle">200</text><text x="218.8" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#4</text><rect x="255.2" y="46.0" width="32.7" height="72.0" rx="3" fill="#2563eb"/><text x="271.6" y="42.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#2563eb" text-anchor="middle">150</text><text x="271.6" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">#5</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Para hallar la media, suma todos los valores obtenidos y divide el resultado entre el número total de datos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3400,13 +3107,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 145" width="300" height="145" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Gráfico de líneas"><text x="150.0" y="13.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Gráfico de líneas</text><line x1="34.0" y1="22.0" x2="34.0" y2="117.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="117.0" x2="280.0" y2="117.0" stroke="#334155" stroke-width="1.5"/><polyline points="34.0,91.1 95.5,78.1 157.0,60.9 218.5,39.3 280.0,22.0" fill="none" stroke="#1e3a8a" stroke-width="2.4"/><circle cx="34.0" cy="91.1" r="4" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="34.0" y="84.1" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">30</text><text x="34.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">Mes 1</text><circle cx="95.5" cy="78.1" r="4" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="95.5" y="71.1" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">45</text><text x="95.5" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">Mes 2</text><circle cx="157.0" cy="60.9" r="4" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="157.0" y="53.9" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">65</text><text x="157.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">Mes 3</text><circle cx="218.5" cy="39.3" r="4" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="218.5" y="32.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">90</text><text x="218.5" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">Mes 4</text><circle cx="280.0" cy="22.0" r="4" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="280.0" y="15.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">110</text><text x="280.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">Mes 5</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Lee con atención los ejes, la leyenda o el valor de cada símbolo del gráfico antes de sumar o comparar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3424,13 +3125,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Datos del problema"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Datos del problema</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">10</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">20</text><rect x="48.0" y="46.0" width="38.0" height="72.0" rx="3" fill="#1e3a8a"/><text x="67.0" y="42.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">15</text><text x="67.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Tipo Fuego</text><rect x="114.0" y="22.0" width="38.0" height="96.0" rx="3" fill="#e3350d"/><text x="133.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">20</text><text x="133.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Tipo Agua</text><rect x="180.0" y="70.0" width="38.0" height="48.0" rx="3" fill="#047857"/><text x="199.0" y="66.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="middle">10</text><text x="199.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Tipo Planta</text><rect x="246.0" y="94.0" width="38.0" height="24.0" rx="3" fill="#f59e0b"/><text x="265.0" y="90.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#f59e0b" text-anchor="middle">5</text><text x="265.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Tipo Eléct…</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Lee con atención los ejes, la leyenda o el valor de cada símbolo del gráfico antes de sumar o comparar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3448,13 +3143,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 148" width="300" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Contenido para extracción al azar"><text x="150.0" y="13.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Contenido para extracción al azar</text><rect x="24" y="24" width="110" height="110" rx="14" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/><line x1="36" y1="24" x2="122" y2="24" stroke="#e3350d" stroke-width="3" stroke-dasharray="5,3"/><circle cx="42" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="60" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="78" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="96" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="114" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="46" cy="98" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="64" cy="98" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="82" cy="98" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="100" cy="98" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.2"/><circle cx="118" cy="98" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.2"/><circle cx="42" cy="78" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.2"/><circle cx="60" cy="78" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.2"/><circle cx="156" cy="41" r="6" fill="#e3350d"/><text x="168.0" y="44.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="start">8 × Pociones</text><circle cx="156" cy="63" r="6" fill="#2563eb"/><text x="168.0" y="66.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="start">4 × Antídotos</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Cuenta primero el total de casos posibles y después cuántos casos favorables cumplen la condición.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3472,13 +3161,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 148" width="300" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Contenido para extracción al azar"><text x="150.0" y="13.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Contenido para extracción al azar</text><rect x="24" y="24" width="110" height="110" rx="14" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/><line x1="36" y1="24" x2="122" y2="24" stroke="#e3350d" stroke-width="3" stroke-dasharray="5,3"/><circle cx="42" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="60" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="78" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="96" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="114" cy="118" r="7" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><circle cx="46" cy="98" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.2"/><circle cx="64" cy="98" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.2"/><circle cx="82" cy="98" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.2"/><circle cx="100" cy="98" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/><circle cx="118" cy="98" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/><circle cx="156" cy="41" r="6" fill="#e3350d"/><text x="168.0" y="44.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="start">5 × Bayas Zidra</text><circle cx="156" cy="63" r="6" fill="#2563eb"/><text x="168.0" y="66.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="start">3 × Bayas Aranja</text><circle cx="156" cy="85" r="6" fill="#f59e0b"/><text x="168.0" y="88.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="start">2 × Bayas Caqui</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Cuenta primero el total de casos posibles y después cuántos casos favorables cumplen la condición.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3496,13 +3179,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Notas y pesos porcentuales"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Notas y pesos porcentuales</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">4,5</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">9</text><rect x="81.0" y="32.7" width="38.0" height="85.3" rx="3" fill="#1e3a8a"/><text x="100.0" y="28.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">8</text><text x="100.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Teoría (40…</text><rect x="213.0" y="22.0" width="38.0" height="96.0" rx="3" fill="#e3350d"/><text x="232.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">9</text><text x="232.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Práctica (…</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3529,13 +3206,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3553,13 +3224,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Compara la EXP acumulada o ganada por combate con el objetivo necesario para alcanzar el siguiente nivel.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3577,13 +3242,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3601,13 +3260,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3625,13 +3278,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica el multiplicador de cada tipo del defensor y recuerda multiplicar por 1,5 si coincide con el tipo del atacante.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3649,13 +3296,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Compara la EXP acumulada o ganada por combate con el objetivo necesario para alcanzar el siguiente nivel.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3673,13 +3314,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3697,13 +3332,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Pasa todas las medidas a la misma unidad antes de comparar, sumar o multiplicar.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3721,13 +3350,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Despeja la incógnita paso a paso: traduce cada frase a una operación y comprueba tu solución sustituyendo.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3745,13 +3368,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3769,13 +3386,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Fíjate en la aguja corta (horas) y la aguja larga (minutos): cada marca grande equivale a 5 minutos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3793,13 +3404,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3817,13 +3422,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3841,13 +3440,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Compara la EXP acumulada o ganada por combate con el objetivo necesario para alcanzar el siguiente nivel.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3865,13 +3458,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 </section>
@@ -3901,13 +3488,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica las reglas de divisibilidad o escribe de forma ordenada los múltiplos o divisores comunes.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3925,13 +3506,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 150" width="180" height="150" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Reloj analógico marcando las 18:00"><circle cx="90.0" cy="68.0" r="58.0" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2.5"/><circle cx="90.0" cy="68.0" r="54.0" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/><line x1="90.0" y1="21.0" x2="90.0" y2="15.0" stroke="#1e3a8a" stroke-width="2"/><line x1="95.3" y1="17.8" x2="95.5" y2="15.3" stroke="#94a3b8" stroke-width="1"/><line x1="100.5" y1="18.6" x2="101.0" y2="16.2" stroke="#94a3b8" stroke-width="1"/><line x1="105.6" y1="20.0" x2="106.4" y2="17.6" stroke="#94a3b8" stroke-width="1"/><line x1="110.5" y1="21.9" x2="111.6" y2="19.6" stroke="#94a3b8" stroke-width="1"/><line x1="113.5" y1="27.3" x2="116.5" y2="22.1" stroke="#1e3a8a" stroke-width="2"/><line x1="119.7" y1="27.1" x2="121.2" y2="25.1" stroke="#94a3b8" stroke-width="1"/><line x1="123.8" y1="30.5" x2="125.5" y2="28.6" stroke="#94a3b8" stroke-width="1"/><line x1="127.5" y1="34.2" x2="129.4" y2="32.5" stroke="#94a3b8" stroke-width="1"/><line x1="130.9" y1="38.3" x2="132.9" y2="36.8" stroke="#94a3b8" stroke-width="1"/><line x1="130.7" y1="44.5" x2="135.9" y2="41.5" stroke="#1e3a8a" stroke-width="2"/><line x1="136.1" y1="47.5" x2="138.4" y2="46.4" stroke="#94a3b8" stroke-width="1"/><line x1="138.0" y1="52.4" x2="140.4" y2="51.6" stroke="#94a3b8" stroke-width="1"/><line x1="139.4" y1="57.5" x2="141.8" y2="57.0" stroke="#94a3b8" stroke-width="1"/><line x1="140.2" y1="62.7" x2="142.7" y2="62.5" stroke="#94a3b8" stroke-width="1"/><line x1="137.0" y1="68.0" x2="143.0" y2="68.0" stroke="#1e3a8a" stroke-width="2"/><line x1="140.2" y1="73.3" x2="142.7" y2="73.5" stroke="#94a3b8" stroke-width="1"/><line x1="139.4" y1="78.5" x2="141.8" y2="79.0" stroke="#94a3b8" stroke-width="1"/><line x1="138.0" y1="83.6" x2="140.4" y2="84.4" stroke="#94a3b8" stroke-width="1"/><line x1="136.1" y1="88.5" x2="138.4" y2="89.6" stroke="#94a3b8" stroke-width="1"/><line x1="130.7" y1="91.5" x2="135.9" y2="94.5" stroke="#1e3a8a" stroke-width="2"/><line x1="130.9" y1="97.7" x2="132.9" y2="99.2" stroke="#94a3b8" stroke-width="1"/><line x1="127.5" y1="101.8" x2="129.4" y2="103.5" stroke="#94a3b8" stroke-width="1"/><line x1="123.8" y1="105.5" x2="125.5" y2="107.4" stroke="#94a3b8" stroke-width="1"/><line x1="119.7" y1="108.9" x2="121.2" y2="110.9" stroke="#94a3b8" stroke-width="1"/><line x1="113.5" y1="108.7" x2="116.5" y2="113.9" stroke="#1e3a8a" stroke-width="2"/><line x1="110.5" y1="114.1" x2="111.6" y2="116.4" stroke="#94a3b8" stroke-width="1"/><line x1="105.6" y1="116.0" x2="106.4" y2="118.4" stroke="#94a3b8" stroke-width="1"/><line x1="100.5" y1="117.4" x2="101.0" y2="119.8" stroke="#94a3b8" stroke-width="1"/><line x1="95.3" y1="118.2" x2="95.5" y2="120.7" stroke="#94a3b8" stroke-width="1"/><line x1="90.0" y1="115.0" x2="90.0" y2="121.0" stroke="#1e3a8a" stroke-width="2"/><line x1="84.7" y1="118.2" x2="84.5" y2="120.7" stroke="#94a3b8" stroke-width="1"/><line x1="79.5" y1="117.4" x2="79.0" y2="119.8" stroke="#94a3b8" stroke-width="1"/><line x1="74.4" y1="116.0" x2="73.6" y2="118.4" stroke="#94a3b8" stroke-width="1"/><line x1="69.5" y1="114.1" x2="68.4" y2="116.4" stroke="#94a3b8" stroke-width="1"/><line x1="66.5" y1="108.7" x2="63.5" y2="113.9" stroke="#1e3a8a" stroke-width="2"/><line x1="60.3" y1="108.9" x2="58.8" y2="110.9" stroke="#94a3b8" stroke-width="1"/><line x1="56.2" y1="105.5" x2="54.5" y2="107.4" stroke="#94a3b8" stroke-width="1"/><line x1="52.5" y1="101.8" x2="50.6" y2="103.5" stroke="#94a3b8" stroke-width="1"/><line x1="49.1" y1="97.7" x2="47.1" y2="99.2" stroke="#94a3b8" stroke-width="1"/><line x1="49.3" y1="91.5" x2="44.1" y2="94.5" stroke="#1e3a8a" stroke-width="2"/><line x1="43.9" y1="88.5" x2="41.6" y2="89.6" stroke="#94a3b8" stroke-width="1"/><line x1="42.0" y1="83.6" x2="39.6" y2="84.4" stroke="#94a3b8" stroke-width="1"/><line x1="40.6" y1="78.5" x2="38.2" y2="79.0" stroke="#94a3b8" stroke-width="1"/><line x1="39.8" y1="73.3" x2="37.3" y2="73.5" stroke="#94a3b8" stroke-width="1"/><line x1="43.0" y1="68.0" x2="37.0" y2="68.0" stroke="#1e3a8a" stroke-width="2"/><line x1="39.8" y1="62.7" x2="37.3" y2="62.5" stroke="#94a3b8" stroke-width="1"/><line x1="40.6" y1="57.5" x2="38.2" y2="57.0" stroke="#94a3b8" stroke-width="1"/><line x1="42.0" y1="52.4" x2="39.6" y2="51.6" stroke="#94a3b8" stroke-width="1"/><line x1="43.9" y1="47.5" x2="41.6" y2="46.4" stroke="#94a3b8" stroke-width="1"/><line x1="49.3" y1="44.5" x2="44.1" y2="41.5" stroke="#1e3a8a" stroke-width="2"/><line x1="49.1" y1="38.3" x2="47.1" y2="36.8" stroke="#94a3b8" stroke-width="1"/><line x1="52.5" y1="34.2" x2="50.6" y2="32.5" stroke="#94a3b8" stroke-width="1"/><line x1="56.2" y1="30.5" x2="54.5" y2="28.6" stroke="#94a3b8" stroke-width="1"/><line x1="60.3" y1="27.1" x2="58.8" y2="25.1" stroke="#94a3b8" stroke-width="1"/><line x1="66.5" y1="27.3" x2="63.5" y2="22.1" stroke="#1e3a8a" stroke-width="2"/><line x1="69.5" y1="21.9" x2="68.4" y2="19.6" stroke="#94a3b8" stroke-width="1"/><line x1="74.4" y1="20.0" x2="73.6" y2="17.6" stroke="#94a3b8" stroke-width="1"/><line x1="79.5" y1="18.6" x2="79.0" y2="16.2" stroke="#94a3b8" stroke-width="1"/><line x1="84.7" y1="17.8" x2="84.5" y2="15.3" stroke="#94a3b8" stroke-width="1"/><text x="109.8" y="37.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">1</text><text x="124.2" y="51.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">2</text><text x="129.5" y="71.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">3</text><text x="124.2" y="91.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">4</text><text x="109.8" y="105.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">5</text><text x="90.0" y="111.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">6</text><text x="70.2" y="105.7" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">7</text><text x="55.8" y="91.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">8</text><text x="50.5" y="71.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">9</text><text x="55.8" y="51.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">10</text><text x="70.2" y="37.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">11</text><text x="90.0" y="32.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">12</text><line x1="90.0" y1="68.0" x2="90.0" y2="29.0" stroke="#1e3a8a" stroke-width="2.6" stroke-linecap="round"/><line x1="90.0" y1="68.0" x2="90.0" y2="95.0" stroke="#e3350d" stroke-width="3.8" stroke-linecap="round"/><circle cx="90.0" cy="68.0" r="3.8" fill="#f59e0b" stroke="#1e3a8a" stroke-width="1.5"/><rect x="52" y="128" width="76" height="17" rx="8" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1"/><text x="90.0" y="140.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Reloj: 18:00</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba si debes pasar horas a minutos (× 60) o minutos a segundos antes de sumar o restar tiempos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3949,13 +3524,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica el multiplicador de cada tipo del defensor y recuerda multiplicar por 1,5 si coincide con el tipo del atacante.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3973,13 +3542,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -3997,13 +3560,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4021,13 +3578,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Cuenta primero el total de casos posibles y después cuántos casos favorables cumplen la condición.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4045,13 +3596,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4069,13 +3614,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 150" width="230" height="150" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Plano cartesiano con puntos de coordenadas"><rect x="26.0" y="12.0" width="190.0" height="116.0" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/><line x1="26.0" y1="12.0" x2="26.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="26.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">0</text><line x1="45.0" y1="12.0" x2="45.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="45.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">1</text><line x1="64.0" y1="12.0" x2="64.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="64.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">2</text><line x1="83.0" y1="12.0" x2="83.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="83.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">3</text><line x1="102.0" y1="12.0" x2="102.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="102.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">4</text><line x1="121.0" y1="12.0" x2="121.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="121.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">5</text><line x1="140.0" y1="12.0" x2="140.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="140.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">6</text><line x1="159.0" y1="12.0" x2="159.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="159.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">7</text><line x1="178.0" y1="12.0" x2="178.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="178.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">8</text><line x1="197.0" y1="12.0" x2="197.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="197.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">9</text><line x1="216.0" y1="12.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="216.0" y="139.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">10</text><line x1="26.0" y1="128.0" x2="216.0" y2="128.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="130.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">0</text><line x1="26.0" y1="108.7" x2="216.0" y2="108.7" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="111.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">1</text><line x1="26.0" y1="89.3" x2="216.0" y2="89.3" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="91.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">2</text><line x1="26.0" y1="70.0" x2="216.0" y2="70.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="72.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">3</text><line x1="26.0" y1="50.7" x2="216.0" y2="50.7" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="53.2" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">4</text><line x1="26.0" y1="31.3" x2="216.0" y2="31.3" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="33.8" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">5</text><line x1="26.0" y1="12.0" x2="216.0" y2="12.0" stroke="#e2e8f0" stroke-width="1"/><text x="21.0" y="14.5" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">6</text><line x1="26.0" y1="128.0" x2="220.0" y2="128.0" stroke="#334155" stroke-width="1.6"/><line x1="26.0" y1="128.0" x2="26.0" y2="8.0" stroke="#334155" stroke-width="1.6"/><text x="222.0" y="131.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">X</text><text x="32.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="start">Y</text><line x1="178.0" y1="12.0" x2="178.0" y2="128.0" stroke="#047857" stroke-width="1.6" stroke-dasharray="4,3"/><text x="181.0" y="22.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#047857" text-anchor="start">x=8</text><circle cx="64.0" cy="70.0" r="3.8" fill="#e3350d" stroke="#ffffff" stroke-width="1.2"/><text x="70.0" y="65.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="start">n(2,3)</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Lee y escribe siempre primero la coordenada horizontal (X) y después la vertical (Y), cuidando los signos.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4093,13 +3632,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica la razón de la escala comparando la medida del plano o maqueta con la realidad en la misma unidad.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4117,13 +3650,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Comprueba cuánto cambia de un paso al siguiente o ve descartando las opciones que incumplen cada pista.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4141,13 +3668,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Divide este reto en pasos cortos, anota los datos de cada pista y revisa al final todas las preguntas.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4165,13 +3686,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4189,13 +3704,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica las reglas de divisibilidad o escribe de forma ordenada los múltiplos o divisores comunes.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4213,13 +3722,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4237,13 +3740,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 136" width="220" height="136" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Estadio rectangular de 240 metros cuadrados"><rect x="46" y="26" width="128" height="78" fill="#ecfdf5" stroke="#047857" stroke-width="2.2"/><text x="110.0" y="69.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">Área = 240 m²</text><text x="110.0" y="120.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#334155" text-anchor="middle">b × h = 240</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Usa una recta con el 0 como referencia: mide por un lado el tramo negativo hasta 0 y súmale la parte positiva.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4261,13 +3758,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Recta numérica de aproximación"><text x="150.0" y="16.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#1e3a8a" text-anchor="middle">Recta numérica de aproximación</text><line x1="18.0" y1="68.0" x2="282.0" y2="68.0" stroke="#334155" stroke-width="2.2"/><polygon points="14.0,68.0 21.0,64.0 21.0,72.0" fill="#334155"/><polygon points="286.0,68.0 279.0,64.0 279.0,72.0" fill="#334155"/><line x1="26.0" y1="60.0" x2="26.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="26.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">140.000</text><line x1="50.8" y1="63.0" x2="50.8" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="75.6" y1="63.0" x2="75.6" y2="73.0" stroke="#334155" stroke-width="1"/><text x="75.6" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">142.000</text><line x1="100.4" y1="63.0" x2="100.4" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="125.2" y1="63.0" x2="125.2" y2="73.0" stroke="#334155" stroke-width="1"/><text x="125.2" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">144.000</text><line x1="150.0" y1="60.0" x2="150.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="150.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">145.000</text><line x1="174.8" y1="63.0" x2="174.8" y2="73.0" stroke="#334155" stroke-width="1"/><text x="174.8" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">146.000</text><line x1="199.6" y1="63.0" x2="199.6" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="224.4" y1="63.0" x2="224.4" y2="73.0" stroke="#334155" stroke-width="1"/><text x="224.4" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="500" fill="#334155" text-anchor="middle">148.000</text><line x1="249.2" y1="63.0" x2="249.2" y2="73.0" stroke="#334155" stroke-width="1"/><line x1="274.0" y1="60.0" x2="274.0" y2="76.0" stroke="#334155" stroke-width="1.8"/><text x="274.0" y="89.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#334155" text-anchor="middle">150.000</text><line x1="247.2" y1="68.0" x2="247.2" y2="55.0" stroke="#e3350d" stroke-width="1.2" stroke-dasharray="2,2"/><circle cx="247.2" cy="68.0" r="4.5" fill="#e3350d" stroke="#ffffff" stroke-width="1.5"/><text x="247.2" y="50.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#e3350d" text-anchor="middle">148.920</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Anota el precio de cada artículo que compras y, si te piden el cambio, réstaselo al dinero entregado.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4285,13 +3776,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 148" width="310" height="148" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Datos del problema"><text x="155.0" y="14.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#1e3a8a" text-anchor="middle">Datos del problema</text><line x1="34.0" y1="22.0" x2="34.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="118.0" x2="298.0" y2="118.0" stroke="#334155" stroke-width="1.5"/><line x1="34.0" y1="70.0" x2="298.0" y2="70.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="73.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">45</text><line x1="34.0" y1="22.0" x2="298.0" y2="22.0" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/><text x="30.0" y="25.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="7" font-weight="600" fill="#64748b" text-anchor="end">90</text><rect x="81.0" y="59.3" width="38.0" height="58.7" rx="3" fill="#1e3a8a"/><text x="100.0" y="55.3" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#1e3a8a" text-anchor="middle">55</text><text x="100.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Ataque</text><rect x="213.0" y="22.0" width="38.0" height="96.0" rx="3" fill="#e3350d"/><text x="232.0" y="18.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#e3350d" text-anchor="middle">90</text><text x="232.0" y="132.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="8" font-weight="700" fill="#0f172a" text-anchor="middle">Velocidad</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Sigue el orden de los turnos: resta el daño recibido y suma las curaciones sin superar el máximo.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4309,13 +3794,7 @@ table.type-matrix tbody td:first-child {
   </div>
   <div class="problem-diagram" aria-label="Ilustración matemática"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 145" width="230" height="145" style="max-height:150px;max-width:100%;height:auto;display:block;" role="img" aria-label="Polígono compuesto en forma de L"><polygon points="48,22 108,22 108,68 182,68 182,118 48,118" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2.2"/><line x1="108" y1="68" x2="108" y2="118" stroke="#e3350d" stroke-width="1.3" stroke-dasharray="3,2"/><text x="115.0" y="136.0" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#334155" text-anchor="middle">Figura compuesta en forma de L</text></svg></div>
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Recuerda que una potencia multiplica la base por sí misma y la raíz cuadrada busca qué número al cuadrado da el total.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4333,13 +3812,7 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Aplica el multiplicador de cada tipo del defensor y recuerda multiplicar por 1,5 si coincide con el tipo del atacante.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 
@@ -4357,16 +3830,15 @@ table.type-matrix tbody td:first-child {
   </div>
   
   <div class="rotom-hint"><strong>💡 Pista de Rotom Dex:</strong> Calcula primero la parte correspondiente al tanto por ciento (multiplica y divide entre 100) antes del paso final.</div>
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 
 </section>
+<section class="teacher-appendix-cover">
+  <h1>Apéndice del Docente — 5º Primaria (10–11 años)</h1>
+  <p>Guía curricular LOMLOE (Ficha del Profesor Oak, Competencias Específicas CE1–CE8, rúbrica de evaluación) y solucionario completo paso a paso de los 120 ejercicios (sin páginas del alumno).</p>
+</section>
+
 <section id="ficha-profesor-oak" class="prof-oak-dossier">
   <div class="prof-oak-header">
     <h2>Ficha del Profesor Oak — Guía Curricular y LOMLOE (Docentes y Familias)</h2>
@@ -6455,8 +5927,26 @@ table.type-matrix tbody td:first-child {
       applyFilters();
     }
 
+    function setA5PageRule(enabled) {
+      let styleEl = document.getElementById('a5-page-style');
+      if (enabled) {
+        if (!styleEl) {
+          styleEl = document.createElement('style');
+          styleEl.id = 'a5-page-style';
+          styleEl.textContent = '@page { size: A5 portrait; margin: 9mm 9mm 11mm 13mm; } @page :left { margin: 9mm 13mm 11mm 9mm; } @page :right { margin: 9mm 9mm 11mm 13mm; }';
+          document.head.appendChild(styleEl);
+        }
+        document.body.classList.add('layout-a5');
+      } else {
+        if (styleEl) styleEl.remove();
+        document.body.classList.remove('layout-a5');
+      }
+    }
+
     function printStudentWorkbook() {
       resetFilters();
+      setA5PageRule(false);
+      document.body.classList.remove('teacher-appendix-only');
       document.body.classList.add('hide-solutions');
       const btn = document.getElementById('toggle-solutions');
       if (btn) {
@@ -6464,6 +5954,30 @@ table.type-matrix tbody td:first-child {
         btn.textContent = 'Mostrar solucionario y Ficha Oak';
       }
       window.print();
+    }
+
+    function printA5Workbook() {
+      resetFilters();
+      setA5PageRule(true);
+      document.body.classList.remove('teacher-appendix-only');
+      document.body.classList.add('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.add('active');
+        btn.textContent = 'Mostrar solucionario y Ficha Oak';
+      }
+      window.print();
+    }
+
+    function printTeacherAppendix() {
+      resetFilters();
+      setA5PageRule(false);
+      document.body.classList.remove('hide-solutions');
+      document.body.classList.add('teacher-appendix-only');
+      window.print();
+      window.addEventListener('afterprint', () => {
+        document.body.classList.remove('teacher-appendix-only');
+      }, { once: true });
     }
 
     document.addEventListener('DOMContentLoaded', () => {

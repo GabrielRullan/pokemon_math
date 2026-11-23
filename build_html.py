@@ -745,7 +745,7 @@ blockquote {
 
 .problem-card-header h3 {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: var(--pk-blue);
 }
 
@@ -786,31 +786,31 @@ blockquote {
 }
 
 .poke-sprite {
-  width: 68px;
-  height: 68px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   display: block;
 }
 
 .poke-sprite-secondary {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
 }
 
 .problem-text {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 0.82rem;
-  line-height: 1.42;
+  font-size: 0.76rem;
+  line-height: 1.35;
 }
 
 .problem-question {
-  margin-top: 0.4rem;
-  padding: 0.35rem 0.55rem;
+  margin-top: 0.35rem;
+  padding: 0.3rem 0.5rem;
   background: #eff6ff;
   border-left: 4px solid var(--pk-blue-mid);
   border-radius: 0 6px 6px 0;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 600;
   color: #0f172a;
 }
@@ -853,13 +853,13 @@ blockquote {
 }
 
 .rotom-hint {
-  margin-top: 0.4rem;
-  padding: 0.3rem 0.55rem;
+  margin-top: 0.35rem;
+  padding: 0.25rem 0.5rem;
   background: #fffbeb;
   border: 1px solid #fcd34d;
   border-left: 4px solid #f59e0b;
   border-radius: 0 6px 6px 0;
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   color: #78350f;
 }
 
@@ -868,8 +868,8 @@ body.hide-hints .rotom-hint {
 }
 
 .workspace-box {
-  margin-top: 0.65rem;
-  height: 185px;
+  margin-top: 0.55rem;
+  height: 220px;
   border: 1.5px dashed #94a3b8;
   border-radius: 8px;
   background-color: #ffffff;
@@ -883,7 +883,49 @@ body.hide-hints .rotom-hint {
 
 body.grade-early .workspace-box,
 .page-container.grade-early .workspace-box {
-  height: 230px;
+  height: 260px;
+}
+
+.teacher-appendix-cover {
+  display: none;
+  border: 2px solid #047857;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+}
+
+.teacher-appendix-cover h1 {
+  margin: 0 0 0.25rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.45rem;
+  color: #065f46;
+}
+
+.teacher-appendix-cover p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #334155;
+}
+
+body.teacher-appendix-only .workbook-cover,
+body.teacher-appendix-only .workbook-toc,
+body.teacher-appendix-only .header-box,
+body.teacher-appendix-only .kid-welcome,
+body.teacher-appendix-only .problem-section,
+body.teacher-appendix-only .chapter-banner {
+  display: none !important;
+}
+
+body.teacher-appendix-only .teacher-appendix-cover {
+  display: block;
+}
+
+body.teacher-appendix-only .prof-oak-dossier {
+  margin-top: 0.5rem;
+  break-before: auto !important;
+  page-break-before: auto !important;
 }
 
 .workspace-columns {
@@ -1149,10 +1191,29 @@ table.type-matrix tbody td:first-child {
   background: var(--pk-blue-soft);
 }
 
-/* Reglas de impresión A4 */
+/* Reglas de impresión A4 con márgenes de encuadernación (lomo alterno) */
 @page {
-  size: A4;
-  margin: 12mm 12mm;
+  size: A4 portrait;
+  margin: 12mm 12mm 14mm 18mm;
+  @bottom-center {
+    content: "— " counter(page) " —";
+    font-size: 8pt;
+    color: #64748b;
+  }
+}
+
+@page :left {
+  margin: 12mm 18mm 14mm 12mm;
+}
+
+@page :right {
+  margin: 12mm 12mm 14mm 18mm;
+}
+
+@page :first {
+  @bottom-center {
+    content: none;
+  }
 }
 
 @media print {
@@ -1163,8 +1224,8 @@ table.type-matrix tbody td:first-child {
 
   body {
     background: #ffffff;
-    font-size: 10pt;
-    line-height: 1.38;
+    font-size: 9pt;
+    line-height: 1.32;
   }
 
   .no-print {
@@ -1178,14 +1239,14 @@ table.type-matrix tbody td:first-child {
   .workbook-cover {
     box-shadow: none;
     margin: 0;
-    padding: 1.4rem 1.4rem 1.2rem;
+    padding: 1.25rem 1.25rem 1rem;
     break-after: page;
     page-break-after: always;
   }
 
   .workbook-toc {
     margin: 0;
-    padding: 1rem 1.15rem;
+    padding: 0.9rem 1rem;
     break-after: page;
     page-break-after: always;
   }
@@ -1196,9 +1257,9 @@ table.type-matrix tbody td:first-child {
   }
 
   .chapter-banner {
-    margin-top: 0.35rem;
-    margin-bottom: 0.65rem;
-    padding: 0.55rem 0.85rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding: 0.45rem 0.75rem;
   }
 
   .page-container {
@@ -1211,69 +1272,181 @@ table.type-matrix tbody td:first-child {
   }
 
   .header-box {
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.6rem;
   }
 
   .problem-card {
-    padding: 0.5rem 0.7rem;
-    margin-bottom: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.55rem;
     box-shadow: none;
   }
 
   .problem-card-header {
-    padding-bottom: 0.3rem;
-    margin-bottom: 0.4rem;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
   }
 
   .problem-card-header h3 {
-    font-size: 8.6pt;
+    font-size: 8pt;
   }
 
   .problem-text {
-    font-size: 8pt;
-    line-height: 1.28;
+    font-size: 7.3pt;
+    line-height: 1.24;
   }
 
   .problem-question {
-    font-size: 8pt;
-    padding: 0.25rem 0.45rem;
-    margin-top: 0.35rem;
+    font-size: 7.3pt;
+    padding: 0.2rem 0.4rem;
+    margin-top: 0.28rem;
   }
 
   .poke-sprite {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
   }
 
   .poke-sprite-secondary {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
 
   .problem-diagram {
-    margin: 0.3rem 0 0.15rem;
-    padding: 0.2rem;
+    margin: 0.25rem 0 0.1rem;
+    padding: 0.18rem;
   }
 
   .problem-diagram svg {
-    max-height: 140px;
+    max-height: 125px;
   }
 
   .rotom-hint {
-    margin-top: 0.3rem;
-    padding: 0.2rem 0.45rem;
-    font-size: 7.2pt;
+    margin-top: 0.25rem;
+    padding: 0.18rem 0.4rem;
+    font-size: 6.8pt;
   }
 
   .workspace-box {
-    margin-top: 0.45rem;
-    height: 145px;
+    margin-top: 0.4rem;
+    height: 195px;
+    background-size: 16px 16px;
   }
 
   body.grade-early .workspace-box,
   .page-container.grade-early .workspace-box {
-    height: 190px;
+    height: 235px;
+  }
+
+  /* Ajustes compactos para impresión A5 (cuadernillo doblado en A4) */
+  body.layout-a5 {
+    font-size: 7.5pt;
+    line-height: 1.24;
+  }
+
+  body.layout-a5 .workbook-cover {
+    padding: 0.7rem 0.75rem;
+    border-width: 2px;
+  }
+
+  body.layout-a5 .workbook-cover h1.cover-title {
+    font-size: 1.35rem;
+  }
+
+  body.layout-a5 .cover-subtitle {
+    font-size: 0.82rem;
+    margin-bottom: 0.5rem;
+  }
+
+  body.layout-a5 .cover-sprites-trio {
+    margin: 0.5rem auto 0.65rem;
+    padding: 0.45rem 0.6rem;
+    gap: 0.7rem;
+  }
+
+  body.layout-a5 .cover-sprite-img {
+    width: 62px;
+    height: 62px;
+  }
+
+  body.layout-a5 .cover-student-box {
+    padding: 0.55rem 0.7rem;
+    margin: 0.55rem 0 0.65rem;
+  }
+
+  body.layout-a5 .cover-fields-grid {
+    font-size: 7.2pt;
+    gap: 0.4rem 0.7rem;
+  }
+
+  body.layout-a5 .passport-box {
+    padding: 0.5rem 0.6rem;
+  }
+
+  body.layout-a5 .medals-grid {
+    gap: 0.35rem;
+  }
+
+  body.layout-a5 .medal-slot {
+    padding: 0.3rem 0.2rem;
+    font-size: 6.2pt;
+  }
+
+  body.layout-a5 .medal-circle {
+    width: 20px;
+    height: 20px;
+    font-size: 6pt;
+  }
+
+  body.layout-a5 .workbook-toc {
+    padding: 0.55rem 0.65rem;
+  }
+
+  body.layout-a5 .workbook-toc table {
+    font-size: 6.8pt;
+  }
+
+  body.layout-a5 .problem-card {
+    padding: 0.32rem 0.48rem;
+    margin-bottom: 0.4rem;
+  }
+
+  body.layout-a5 .problem-card-header h3 {
+    font-size: 7.4pt;
+  }
+
+  body.layout-a5 .problem-text,
+  body.layout-a5 .problem-question {
+    font-size: 6.8pt;
+    line-height: 1.2;
+  }
+
+  body.layout-a5 .poke-sprite {
+    width: 36px;
+    height: 36px;
+  }
+
+  body.layout-a5 .poke-sprite-secondary {
+    width: 26px;
+    height: 26px;
+  }
+
+  body.layout-a5 .problem-diagram svg {
+    max-height: 95px;
+  }
+
+  body.layout-a5 .rotom-hint {
+    font-size: 6.3pt;
+  }
+
+  body.layout-a5 .workspace-box {
+    height: 145px;
+    background-size: 14px 14px;
+  }
+
+  body.layout-a5.grade-early .workspace-box,
+  body.layout-a5 .page-container.grade-early .workspace-box {
+    height: 175px;
   }
 
   h2 {
@@ -2174,13 +2347,7 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
   </div>
   {diagram_html}
   {hint_html}
-  <div class="workspace-box" aria-label="Espacio para operaciones">
-    <div class="workspace-columns">
-      <div class="workspace-col"><span class="workspace-col-title">Datos</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Operación / Planteamiento</span></div>
-      <div class="workspace-col"><span class="workspace-col-title">Respuesta y unidades</span></div>
-    </div>
-  </div>
+  <div class="workspace-box" aria-label="Espacio para operaciones y respuesta"></div>
 </article>
 """
             rendered_cards.append(card_html)
@@ -2220,6 +2387,13 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
     cover_html = build_workbook_cover(doc, grade, total_problems)
     toc_html = build_workbook_toc(total_problems)
 
+    appendix_header = f"""
+<section class="teacher-appendix-cover">
+  <h1>Apéndice del Docente — {html.escape(doc["badge"])}</h1>
+  <p>Guía curricular LOMLOE (Ficha del Profesor Oak, Competencias Específicas CE1–CE8, rúbrica de evaluación) y solucionario completo paso a paso de los {total_problems} ejercicios (sin páginas del alumno).</p>
+</section>
+"""
+
     trainer_header = f"""
 <section class="header-box">
   <div class="header-title-row">
@@ -2240,11 +2414,11 @@ def build_kid_problem_document(raw_md: str, doc: dict, md: markdown.Markdown, sp
   </div>
 </section>
 <div class="kid-welcome">
-  <strong>¡Misión de Entrenamiento!</strong> Lee cada historia con atención, organiza <em>Datos · Operación · Respuesta</em> en la cuadrícula y suma <strong>+1 EXP</strong> por cada reto superado.
+  <strong>¡Misión de Entrenamiento!</strong> Lee cada historia con atención, resuelve el reto en la cuadrícula y suma <strong>+1 EXP</strong> por cada reto superado.
 </div>
 """
 
-    return cover_html + toc_html + trainer_header + "\n".join(rendered_sections) + oak_html + sol_html, total_problems
+    return cover_html + toc_html + trainer_header + "\n".join(rendered_sections) + appendix_header + oak_html + sol_html, total_problems
 
 
 def wrap_cards(
@@ -2328,14 +2502,17 @@ def render_page(
         pdf_links = ""
         if grade:
             pdf_links = (
-                f'<a class="btn btn-pdf-link" href="pdf/cuadernillo_{grade}_primaria_alumno.pdf" download>📄 PDF Alumno</a>'
-                f'<a class="btn btn-pdf-link" href="pdf/cuadernillo_{grade}_primaria_docente.pdf" download>📘 PDF Docente</a>'
+                f'<a class="btn btn-pdf-link" href="pdf/cuadernillo_{grade}_primaria_alumno.pdf" download>📄 PDF A4 Alumno</a>'
+                f'<a class="btn btn-pdf-link" href="pdf/cuadernillo_{grade}_primaria_alumno_a5_folleto.pdf" download>📖 PDF A5 Folleto</a>'
+                f'<a class="btn btn-pdf-link" href="pdf/apendice_{grade}_primaria_docente.pdf" download>📘 Apéndice Docente</a>'
             )
         print_actions = (
             '<button type="button" class="btn btn-print-student" onclick="printStudentWorkbook()">'
-            '🖨️ Imprimir Cuadernillo Alumno</button>'
-            '<button type="button" class="btn btn-primary" onclick="window.print()">'
-            '🖨️ Imprimir Actual / Docente</button>'
+            '🖨️ Imprimir A4 Alumno</button>'
+            '<button type="button" class="btn btn-preset" onclick="printA5Workbook()">'
+            '📖 Imprimir A5</button>'
+            '<button type="button" class="btn btn-primary" onclick="printTeacherAppendix()">'
+            '📘 Imprimir Apéndice Docente</button>'
             + pdf_links
         )
         filter_bar = f"""
@@ -2525,8 +2702,26 @@ def render_page(
       applyFilters();
     }
 
+    function setA5PageRule(enabled) {
+      let styleEl = document.getElementById('a5-page-style');
+      if (enabled) {
+        if (!styleEl) {
+          styleEl = document.createElement('style');
+          styleEl.id = 'a5-page-style';
+          styleEl.textContent = '@page { size: A5 portrait; margin: 9mm 9mm 11mm 13mm; } @page :left { margin: 9mm 13mm 11mm 9mm; } @page :right { margin: 9mm 9mm 11mm 13mm; }';
+          document.head.appendChild(styleEl);
+        }
+        document.body.classList.add('layout-a5');
+      } else {
+        if (styleEl) styleEl.remove();
+        document.body.classList.remove('layout-a5');
+      }
+    }
+
     function printStudentWorkbook() {
       resetFilters();
+      setA5PageRule(false);
+      document.body.classList.remove('teacher-appendix-only');
       document.body.classList.add('hide-solutions');
       const btn = document.getElementById('toggle-solutions');
       if (btn) {
@@ -2534,6 +2729,30 @@ def render_page(
         btn.textContent = 'Mostrar solucionario y Ficha Oak';
       }
       window.print();
+    }
+
+    function printA5Workbook() {
+      resetFilters();
+      setA5PageRule(true);
+      document.body.classList.remove('teacher-appendix-only');
+      document.body.classList.add('hide-solutions');
+      const btn = document.getElementById('toggle-solutions');
+      if (btn) {
+        btn.classList.add('active');
+        btn.textContent = 'Mostrar solucionario y Ficha Oak';
+      }
+      window.print();
+    }
+
+    function printTeacherAppendix() {
+      resetFilters();
+      setA5PageRule(false);
+      document.body.classList.remove('hide-solutions');
+      document.body.classList.add('teacher-appendix-only');
+      window.print();
+      window.addEventListener('afterprint', () => {
+        document.body.classList.remove('teacher-appendix-only');
+      }, { once: true });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -2559,9 +2778,23 @@ def render_page(
 </head>
 <body{body_cls}>
   <script>
-    if (new URLSearchParams(window.location.search).get('mode') === 'alumno') {{
-      document.body.classList.add('hide-solutions');
-    }}
+    (function () {{
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get('mode');
+      const size = params.get('size');
+      if (mode === 'alumno') {{
+        document.body.classList.add('hide-solutions');
+      }} else if (mode === 'docente') {{
+        document.body.classList.add('teacher-appendix-only');
+      }}
+      if (size === 'a5') {{
+        document.body.classList.add('layout-a5');
+        const st = document.createElement('style');
+        st.id = 'a5-page-style';
+        st.textContent = '@page {{ size: A5 portrait; margin: 9mm 9mm 11mm 13mm; }} @page :left {{ margin: 9mm 13mm 11mm 9mm; }} @page :right {{ margin: 9mm 9mm 11mm 13mm; }}';
+        document.head.appendChild(st);
+      }}
+    }})();
   </script>
   <header class="print-toolbar no-print">
     <div class="toolbar-main">
@@ -2592,9 +2825,10 @@ def build_index() -> str:
         if doc["is_problems"] and doc.get("grade"):
             g = doc["grade"]
             actions_html = (
-                f'<a class="btn-outline" href="{doc["out"]}">Abrir cuadernillo interactivo</a>'
-                f'<a class="btn-outline" href="pdf/cuadernillo_{g}_primaria_alumno.pdf" download>📄 PDF Cuadernillo Alumno</a>'
-                f'<a class="btn-outline" href="pdf/cuadernillo_{g}_primaria_docente.pdf" download>📘 PDF Libro Docente</a>'
+                f'<a class="btn-outline" href="{doc["out"]}">Abrir interactivo</a>'
+                f'<a class="btn-outline" href="pdf/cuadernillo_{g}_primaria_alumno.pdf" download>📄 PDF A4 Alumno</a>'
+                f'<a class="btn-outline" href="pdf/cuadernillo_{g}_primaria_alumno_a5_folleto.pdf" download>📖 PDF A5 Folleto (A4)</a>'
+                f'<a class="btn-outline" href="pdf/apendice_{g}_primaria_docente.pdf" download>📘 Apéndice Docente</a>'
             )
         else:
             actions_html = f'<a class="btn-outline" href="{doc["out"]}">Abrir ficha imprimible</a>'
